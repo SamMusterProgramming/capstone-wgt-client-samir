@@ -1,9 +1,11 @@
+import ColumnGroup from 'antd/es/table/ColumnGroup';
 import axios from 'axios'
 
 
  const baseURL_DEVOLOPMENT = "http://localhost:8000/"
- const baseURL_PRODUCTION = "https://capstone-wgt-server-1.onrender.com/"
-export const BASE_URL = baseURL_DEVOLOPMENT ; 
+ const baseURL_PRODUCTION = import.meta.env.VITE_BASE_URL
+ console.log(baseURL_PRODUCTION)
+export const BASE_URL = baseURL_PRODUCTION ; 
 
 // *********************************** AUTHENTIFICATION *************************
 
