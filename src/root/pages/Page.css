@@ -121,12 +121,14 @@
 /* ************************** challenges ****************************************** */
 .ch-page {
     background-color: black;
-    min-height:100%;
+    max-height:84vh;
     min-width: 100%;
+    max-width: 500px;
+    overflow: scroll;
 }
 .challenges {
     background-color:#1f1e15;
-    min-height:600px;
+    height:600px;
     min-width:350px;
     max-width: 500px;
     width: 100%;
@@ -145,14 +147,18 @@
 /* ************************** profile ****************************************** */
 
 .profilecontainer{
+ 
+    height: 84vh;
     width: 100%;
-    min-height: 100%;
-    min-width: 100%;
     max-width: 500px;
+    min-width: 500px;
+    overflow: scroll;
     /* background-color: black; */
+    background-color: rgb(35, 21, 21);
 }
 .cover{
-    width: 100%;
+    max-width: 500px;
+    /* width: 500px; */
     height: 100%;
     max-height: 200px;
     /* max-width: 1000px; */
@@ -181,9 +187,8 @@
   
 }
 .mid-container{
-    min-width: 100%;
-    width:  100%;
-    background-color: white;
+    max-width:  500px;
+    background-color: rgb(35, 21, 21);
     min-height: 20%;
 
  }
@@ -219,12 +224,12 @@
 }
 
 .name {
-    font-size: 22px;
+    font-size: 17px;
     font-weight: bold
 }
 
 .idd {
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 600
 }
 
@@ -240,7 +245,7 @@
 .follow {
     font-size: 12px;
     font-weight: 500;
-    color: #444444
+    color: #2485d4
 }
 
 .btn1 {

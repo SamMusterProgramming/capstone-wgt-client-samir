@@ -35,7 +35,7 @@ const [video_url ,setVideo_url] = useState()
                
                 }
                 )} 
-          </div>
+    </div>
 
   )
 }

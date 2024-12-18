@@ -4,20 +4,20 @@ import TalentSelector from "../../components/helper/TalentSelector"
 
 const Home = ({user}) => {
   return (
-     <div className="container-fluid d-flex flex-column align-items-center  justify-content-evenly" 
-     style={{minWidth:'100%',minHeight:'100%',width:'100%',height:'85vh'}}>   
-         <div className="d-flex  mt-3"
-          style={{minWidth:'350px', maxWidth:'10%'}}>     
-           <div class="fancy-welcome">
-              <h1>Welcome to tyour Home page!</h1>
-              <p>Make your selection down Below </p>
-            </div>  
-           </div> 
+     <div className="d-flex flex-column align-items-center  justify-content-center" 
+     style={{maxWidth:'500px',minHeight:'100%',width:'100%',height:'85vh'}}>   
+            <div className="d-flex  mt-1"
+               style={{minWidth:'350px', maxWidth:'10%'}}>     
+               <div class="fancy-welcome">
+                  <h1>Welcome to tyour Home page!</h1>
+                  <p>Make your selection down Below </p>
+               </div>  
+            </div> 
            
          
-           <div  className ="d-flex justify-content-center mt-2 gap-3 flex-wrap selectcontainer"> 
+            <div  className ="d-flex justify-content-center mt-3 gap-3 flex-wrap selectcontainer"> 
       
-              <div  className="card mt-1" 
+              <div  className="card mt-2" 
                 style={{borderRadius:'10%'}}>
                     <div className='d-flex justify-content-between align-items-center top'>
                       <img className='logo-select' src={user.profile_img} alt="logo" />
