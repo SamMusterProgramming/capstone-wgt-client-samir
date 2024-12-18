@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 
- const baseURL_DEVOLOPMENT = "http://localhost:8080/"
+ const baseURL_DEVOLOPMENT = "http://localhost:8000/"
  const baseURL_PRODUCTION = "https://capstone-wgt-server-1.onrender.com/"
 export const BASE_URL = baseURL_DEVOLOPMENT ; 
 

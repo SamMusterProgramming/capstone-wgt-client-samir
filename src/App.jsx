@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react'
 import './App.css'
-// import './globals.css'
+import './globals.css'
 import { Route,Routes } from 'react-router-dom'
 import AuthLayout from './auth/authLayout.jsx'
 import { Signin } from './auth/forms/Signin.jsx'
