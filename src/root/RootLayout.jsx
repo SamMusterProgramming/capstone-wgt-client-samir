@@ -13,15 +13,17 @@ function RootLayout({user}) {
    
     { isAuthenticated ? (
  
-    <div className='w-full h-full  d-flex flex-column justify-content-between full-page'>
+    <div className='w-full h-full  d-flex flex-column justify-content-between align-items-center full-page'>
           
-        <TopBar user={user} /> 
        
-        <div className="container-fluid homelayout">
+       
+        <div className=" homelayout">
+         <TopBar user={user} /> 
           <Outlet />
+          <RightSideBar user={user}/>
         </div>
         
-        <RightSideBar user={user}/>
+       
 
     </div>
 

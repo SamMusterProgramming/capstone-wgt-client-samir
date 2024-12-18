@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import './Page.css'
 import { useState } from 'react';
-import { follow, getUserById, isfollowing, STORAGE_URL } from '../../apiCalls';
+import { BASE_URL, follow, getUserById, isfollowing, STORAGE_URL } from '../../apiCalls';
 import { Link, useParams } from 'react-router-dom';
 
 
@@ -48,10 +48,10 @@ const handleFollowing = ()=> { // add a follower , apiCall.js
 
       <div className=' d-flex flex-column justify-content-start align-items-center profilecontainer'>
               <div className='cover'>
-                  <img src={"http://localhost:8080" +  user.profile_img} alt="samir" />
+                  <img src={BASE_URL +  user.profile_img} alt="samir" />
               </div>
               <div className='d-flex justify-content-center align-items-center profileimg'>
-                  <img src={"http://localhost:8080" + user.profile_img } alt="" />
+                  <img src={BASE_URL + user.profile_img } alt="" />
               </div>
       </div>   
       <div className='midk-container'>

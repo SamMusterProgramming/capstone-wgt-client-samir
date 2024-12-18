@@ -1,7 +1,8 @@
 .topbar{
     width: 100%;
-    min-height: 70px;
-    max-height: 90px;
+    min-height: 60px;
+    max-height: 70px;
+    position: fixed;
     height: 16%;
     align-items: center;
     justify-content: space-evenly;
@@ -65,11 +66,14 @@
 
 
 .footer {  
-    max-height:80px;  
-    min-height: 70px;
+    max-height:70px;  
+    min-height: 60px;
     height: 17%;
+    width: 100%;
+    /* max-width: 700px; */
     align-items: center;
     display: flex;
+    position: fixed;
     justify-content: center;
     position: "fixed";
     left: 0;

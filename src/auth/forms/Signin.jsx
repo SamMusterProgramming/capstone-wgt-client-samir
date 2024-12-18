@@ -24,19 +24,21 @@ import logo from '/asset/material/guiness.jpeg'
  
 return (    
 
- <div className="d-flex flex-column justify-content-center align-items-center h-100 login ">
+ <div className="d-flex flex-column justify-content-between align-items-center h-100 login ">
      {/* <img style={{width:'100%',height:'70px',objectFit:'cover'}} 
        src="/asset/material/gotTalent.jpg" alt="" />    */}
-     
-       <h3 >Challengify</h3>
+      
+        
      <div className="user_card"> 
-     
+       <div className ='logo-header'>
+         <h1>Challengify</h1>
+       </div>
      <div className="d-flex justify-content-center form_container">
        <form> 
-          <div className="d-flex mb-3 justify-content-center">
-           <h2>Login</h2>
+          <div className="d-flex mb-5 justify-content-center">
+           <h1 style={{fontSize:'25px'}}>Login</h1>
          </div> 
-         <div className="input-group gap-2 mb-3 p-2">
+         <div className="input-group gap-2 mb-5 p-2">
            <div className="input-group-append ">
               <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" className="bi bi-person-add" viewBox="0 0 16 16">
                 <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0m-2-6a3 3 0 1 1-6 0 3 3 0 0 1 6 0M8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4"/>
@@ -82,9 +84,9 @@ return (
             className="d-flex justify-content-center links">
             <a href="#">Forgot your password?</a>
        </div>   
-     </div>
+       </div>
 
-     <div className="d-flex mt-3 gap-3 justify-content-center align-item-center ">   
+     <div className="d-flex mt-3 gap-3 justify-content-between align-item-center ">   
           <img src="/asset/material/you.png" alt="" 
               style={{height:'40px',width:'40px',objectFit:'fill' 
           }} />
@@ -94,14 +96,14 @@ return (
           <img src="/asset/material/world.jpg" alt="" 
               style={{height:'40px',width:'40px',objectFit:'fill' 
           }} />
-     </div>
-        
+            
+      </div>
+     
+  
     </div>
-         <img style={{width:'100%',height:'70px',objectFit:'fill',marginTop:'auto'}} 
-         src="/asset/material/contest.png" alt="" /> 
-  </div>
- 
-
+   
+  </div> 
+  
  
 )
 }

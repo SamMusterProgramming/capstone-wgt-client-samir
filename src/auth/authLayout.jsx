@@ -10,7 +10,7 @@ const AuthLayout = ({user}) => {
      { isAuthenticated ? ( < Navigate to ="/home" /> ):
      (<>
       <section
-      style={{height:'100vh'}}
+      style={{ backgroundColor:'white', height:'90vh',minWidth:"100vw"}}
       className="d-flex  justify-center items-center flex-column " >
         <Outlet />
       </section>   
