@@ -80,14 +80,15 @@ const addDescrition =(e)=> {
 
   
     <div className=" text-start post-container">
-           <span style={{fontSize:16,color:'#bf771f',padding:"10px"}}>{props.user.name}</span>
-          <p style={{fontSize:11,color:"white",fontWeight:'600',padding:"6px",marginTop:'-40px'}}> Welcome  ,
-            are you ready to lunch a new Challenge to the world <br/>
-            the Stage is yours !! record or upload your challenge content from your comfort zone 
-            and let the world be judge, someone will pick up the challenge   </p>
+
+          <div class="container mt-5">
+            <div class="fancy-welcome">
+              <h1>Welcome to the Challenge App!</h1>
+              <p>Ready to take on new challenges and showcase your skills?</p>
+            </div>
+          </div>
           
-          
-         <PostHeader user={props.user} talentType ="Challenge"/>
+          <PostHeader user={props.user} talentType ="Challenge"/>
   
           <textarea style={{backgroundColor:'white',color:'black',fontWeight:500}}
            className="description" onChange={addDescrition}  name='description' placeholder='add description to your challenge'>

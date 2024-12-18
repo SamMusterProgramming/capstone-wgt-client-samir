@@ -170,7 +170,7 @@ const ParticipantsDisplayer = (props) => {
           </Select>
         </div>
         <div className=" d-flex flex-column mb-0 videopost">
-            <PostHeader user={userProfile} participant={selectedParticipant} talentType ="Challenge"/>
+            {/* <PostHeader user={userProfile} participant={selectedParticipant} talentType ="Challenge"/> */}
             <div className='videodisplayer'>
                 <video
                     className='video'
