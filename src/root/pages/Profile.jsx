@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import './Page.css'
 import { useState } from 'react';
-import { follow, getUserById, isfollowing } from '../../apiCalls';
+import { follow, getUserById, isfollowing, STORAGE_URL } from '../../apiCalls';
 import { Link, useParams } from 'react-router-dom';
 
 
@@ -15,7 +15,7 @@ const Profile = (props) => {
     const [follower,setFollower] = useState({})
     const [following,setFollowing] = useState({isFollowing:false})
     const [display , setDisplay] = useState(false)
-
+    
     useEffect ( () => {
       
       getUserById(_id,setUser)
@@ -106,7 +106,7 @@ const handleFollowing = ()=> { // add a follower , apiCall.js
       </div>
 
       <video  className='post-size' style={{marginTop:'auto'}}
-       src="/asset/postVideos/dummy.mp4" controls width='100%' />
+       src={ STORAGE_URL + "4973185-hd_1920_1080_30fps.mp4" } controls width='100%' />
 
   
 

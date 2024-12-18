@@ -4,8 +4,9 @@ import axios from 'axios'
 
  const baseURL_DEVOLOPMENT = "http://localhost:8000/"
  const baseURL_PRODUCTION = import.meta.env.VITE_BASE_URL
+ export const STORAGE_URL = import.meta.env.VITE_BASE_STORAGE
  console.log(baseURL_PRODUCTION)
-export const BASE_URL = baseURL_PRODUCTION ; 
+export const BASE_URL = baseURL_DEVOLOPMENT; 
 
 // *********************************** AUTHENTIFICATION *************************
 
