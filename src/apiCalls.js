@@ -1,12 +1,32 @@
-import ColumnGroup from 'antd/es/table/ColumnGroup';
-import axios from 'axios'
 
+import axios from 'axios'
+import AWS from "aws-sdk"
 
  const baseURL_DEVOLOPMENT = "http://localhost:8000/"
  const baseURL_PRODUCTION = import.meta.env.VITE_BASE_URL
  export const STORAGE_URL = import.meta.env.VITE_BASE_STORAGE
+
+
+ export const BUCKET_NAME = import.meta.env.VITE_BUCKET_NAME
+ const BUCKET_REGION = import.meta.env.VITE_BUCKET_REGION;
+ const ACCESS_KEY = import.meta.env.VITE_ACCESS_KEY
+ const SECRET_KEY = import.meta.env.VITE_SECRET_KEY
+ 
+ AWS.config.update({
+   region: BUCKET_REGION,
+   accessKeyId:ACCESS_KEY,
+   secretAccessKey: SECRET_KEY,
+ });
+
+ export const CHALLENGIFY_S3 = new AWS.S3();
+
+
+
+ const bName = "chalengify-storage"
+ const  PURL = "https://capstone-wgt-server-1.onrender.com/";
+
  console.log(baseURL_PRODUCTION)
-export const BASE_URL = baseURL_PRODUCTION; 
+export const BASE_URL = baseURL_DEVOLOPMENT; 
 
 // *********************************** AUTHENTIFICATION *************************
 

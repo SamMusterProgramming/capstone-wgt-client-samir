@@ -10,8 +10,10 @@ export default defineConfig({
   build: {
     port: 5000
   },
+  define: {
+    global: {},
+  },
 },
-
 
 
 )

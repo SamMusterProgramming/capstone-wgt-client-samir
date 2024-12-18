@@ -25,9 +25,11 @@ import logo from '/asset/material/guiness.jpeg'
 return (    
 
  <div className="d-flex flex-column justify-content-center align-items-center h-100 login ">
-     <img style={{width:'100%',height:'70px',objectFit:'cover'}} 
-       src="/asset/material/gotTalent.jpg" alt="" />   
-   <div className="user_card"> 
+     {/* <img style={{width:'100%',height:'70px',objectFit:'cover'}} 
+       src="/asset/material/gotTalent.jpg" alt="" />    */}
+     
+       <h3 >Challengify</h3>
+     <div className="user_card"> 
      
      <div className="d-flex justify-content-center form_container">
        <form> 

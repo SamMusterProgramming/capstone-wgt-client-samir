@@ -6,6 +6,7 @@ import UploadVideo from '../../components/helper/UploadVideo';
 import axios from 'axios'
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import { BUCKET_NAME, CHALLENGIFY_S3 } from '../../apiCalls';
 
 
 const NewChallenge = (props) => {
@@ -36,6 +37,14 @@ const NewChallenge = (props) => {
       let newFilename = new File([file],date+ props.user.name +'.' + ext,{type:file.type,
         lastModified:file.lastModified  
       })
+      const params = {
+        Bucket: BUCKET_NAME, 
+        Key: file.name,
+        Body: file,
+      };
+     
+    
+
       formData.append('video',newFilename)
       formData.append('origin_id', props.user._id)
       formData.append('description', description)
@@ -44,6 +53,8 @@ const NewChallenge = (props) => {
       formData.append('user_id', props.user._id)
     }
     if(!challenge_id){ // when user creates new challenge
+      await CHALLENGIFY_S3.putObject(params).promise();
+      console.log("successfull")
       await axios.post('http://localhost:8080/challenges/upload',formData,{
         headers: {
           'Content-Type': 'multipart/form-data',
