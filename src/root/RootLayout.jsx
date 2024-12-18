@@ -13,12 +13,12 @@ function RootLayout({user}) {
    
     { isAuthenticated ? (
  
-    <div className='w-full h-full  d-flex flex-column justify-content-between align-items-center full-page'>
+    <div className=' d-flex flex-column justify-content-between align-items-center full-page'>
           
        
        
         <div className=" homelayout">
-         <TopBar user={user} /> 
+          <TopBar user={user} /> 
           <Outlet />
           <RightSideBar user={user}/>
         </div>

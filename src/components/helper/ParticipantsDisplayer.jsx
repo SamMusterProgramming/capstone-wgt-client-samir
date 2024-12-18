@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import './Helper.css'
-import {  getUserById, liked, loadLikeVoteData, voted } from '../../apiCalls'
+import {  BASE_URL, getUserById, liked, loadLikeVoteData, voted } from '../../apiCalls'
 
 import ReactPlayer from "react-player";
 import PostHeader from './PostHeader';
@@ -144,6 +144,7 @@ const ParticipantsDisplayer = (props) => {
             onChange={handleChange} 
                 >
                 {props.participants.map((participant,index)=>{
+
                   return  (<Select.Option key={index} style={{ color:'black',fontWeight:"500",
                     backgroundColor:"lightgray",width:"100%",height:"60px"
                   }}  value = {participant.user_id} 
@@ -152,8 +153,9 @@ const ParticipantsDisplayer = (props) => {
                     <div  className="d-flex flex-row align-items-center gap-2">
 
                     <div class="chip">
+                      <img src={BASE_URL + participant.profile_img } alt="" />
                       <p > {(props.user._id===participant.user_id)? participant.name + " - YOU": participant.name} </p> 
-                     </div>
+                    </div>
                     
                      <div className='d-flex flex-ro text-center gap-2  align-items-center showvote'>
                           <p>{participant.votes}</p> 
@@ -178,7 +180,7 @@ const ParticipantsDisplayer = (props) => {
                     width="100%"
                     height="100%"
                     autoPlay
-                    src={ "http://localhost:8080" + video_url}
+                    src={ BASE_URL + video_url}
                     controls />
                 
             </div>

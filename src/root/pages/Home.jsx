@@ -4,7 +4,7 @@ import TalentSelector from "../../components/helper/TalentSelector"
 
 const Home = ({user}) => {
   return (
-     <div className="container-fluid d-flex flex-column align-items-center bg-dark justify-content-evenly" 
+     <div className="container-fluid d-flex flex-column align-items-center  justify-content-evenly" 
      style={{minWidth:'100%',minHeight:'100%',width:'100%',height:'85vh'}}>   
          <div className="d-flex  mt-3"
           style={{minWidth:'350px', maxWidth:'10%'}}>     
@@ -15,7 +15,7 @@ const Home = ({user}) => {
            </div> 
            
          
-           <div  className ="d-flex justify-content-center mt-4 gap-3 flex-wrap selectcontainer"> 
+           <div  className ="d-flex justify-content-center mt-2 gap-3 flex-wrap selectcontainer"> 
       
               <div  className="card mt-1" 
                 style={{borderRadius:'10%'}}>

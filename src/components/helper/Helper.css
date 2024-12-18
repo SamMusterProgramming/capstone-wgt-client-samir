@@ -140,7 +140,7 @@
     font-weight: 600;
     line-height: 50px;
     border-radius: 10px;
-    background-color: #1542d4;
+    background-color: #616d91;
     width: 70%;
     text-align: center;
    
@@ -157,7 +157,7 @@
   .showvote {
     width: 30%;
     height: 50px;
-    background-color:#1542d4;
+    background-color:#616d91;
     margin-left: -23px;
     align-items: end;
     justify-content: end;

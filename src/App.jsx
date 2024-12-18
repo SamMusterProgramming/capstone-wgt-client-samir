@@ -28,7 +28,7 @@ export default function App() {
   }, [user])
   
   return (
-   <main className='flex h-screen'>
+  //  <main className='flex h-screen'>
   
        <Routes>
            
@@ -56,7 +56,7 @@ export default function App() {
 
 
 
-   </main>
+  //  </main>
   )  
 }   
   

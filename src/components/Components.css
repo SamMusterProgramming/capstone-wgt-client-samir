@@ -2,7 +2,7 @@
     width: 100%;
     min-height: 60px;
     max-height: 70px;
-    position: fixed;
+    max-width: 500px;
     height: 16%;
     align-items: center;
     justify-content: space-evenly;
@@ -10,9 +10,8 @@
 }
 .menu{
    align-items: center;
-   /* margin-left: 15px; */
    min-height: 100%;
-   /* background-color: aliceblue; */
+
 }
 .menu-item {
     align-items: center;
@@ -68,20 +67,19 @@
 .footer {  
     max-height:70px;  
     min-height: 60px;
-    height: 17%;
+    height: 17vh;
     width: 100%;
-    /* max-width: 700px; */
+    max-width: 500px;
     align-items: center;
     display: flex;
-    position: fixed;
+    /* position: fixed; */
     justify-content: center;
     position: "fixed";
-    left: 0;
-    bottom:0;
+    /* margin-top: auto; */
     width: "100%";
     /* background-color: black; */
    
-    background-color: rgb(42, 40, 40);
+    background-color: rgb(54, 47, 47);
 }
 
 .menu-item p {
