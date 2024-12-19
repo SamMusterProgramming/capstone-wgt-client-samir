@@ -139,12 +139,14 @@ const ParticipantsDisplayer = (props) => {
        
         <div key={props.key} className='d-flex mt-0 justify-content-center participantdisplayer'> 
           <Select
-            style={{width:"100%",height:"60px",border:"none",fontWeight:"800", backgroundColor:"transparent",textAlign:"center"}}
-        
+            style={{width:"100%",height:"60px",fontSize:' 35px' ,border:"none",fontWeight:"800", backgroundColor:'red',textAlign:"center"}}
+              defaultValue="Select a Participant"
             onChange={handleChange} 
-                >
-                {props.participants.map((participant,index)=>{
+                >   
+       
+               
 
+                {props.participants.map((participant,index)=>{    
                   return  (<Select.Option key={index} style={{ color:'black',fontWeight:"500",
                     backgroundColor:"lightgray",width:"100%",height:"60px"
                   }}  value = {participant.user_id} 
