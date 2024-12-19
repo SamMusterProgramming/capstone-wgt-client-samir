@@ -23,10 +23,10 @@ import AWS from "aws-sdk"
 
 
  const bName = "chalengify-storage"
- const  PURL = baseURL_DEVOLOPMENT;
+ const  PURL = baseURL_PRODUCTION;
 
  console.log(baseURL_PRODUCTION)
-export const BASE_URL =  PURL; 
+export const BASE_URL =  baseURL_PRODUCTION; 
 
 // *********************************** AUTHENTIFICATION *************************
 
