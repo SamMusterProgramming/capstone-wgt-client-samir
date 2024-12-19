@@ -1,18 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
 import './Helper.css'
 import {  BASE_URL, getUserById, liked, loadLikeVoteData, voted } from '../../apiCalls'
-
-import ReactPlayer from "react-player";
-import PostHeader from './PostHeader';
 import PostFooter from './PostFooter';
-import Link from 'antd/es/typography/Link';
 import { useNavigate } from 'react-router-dom';
-import { MDBCarousel, MDBCarouselItem } from 'mdb-react-ui-kit';
 import { Select } from 'antd';
-import axios from 'axios'
-import Challenges from '../../root/pages/Challenges';
-
-
 
 
 
