@@ -6,7 +6,7 @@ import UploadVideo from '../../components/helper/UploadVideo';
 import axios from 'axios'
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import { BUCKET_NAME, CHALLENGIFY_S3 } from '../../apiCalls';
+import { BASE_URL, BUCKET_NAME, CHALLENGIFY_S3 } from '../../apiCalls';
 
 
 const NewChallenge = (props) => {
@@ -53,9 +53,7 @@ const NewChallenge = (props) => {
       formData.append('user_id', props.user._id)
     }
     if(!challenge_id){ // when user creates new challenge
-      await CHALLENGIFY_S3.putObject(params).promise();
-      console.log("successfull")
-      await axios.post('http://localhost:8080/challenges/upload',formData,{
+      await axios.post( BASE_URL + '/challenges/upload',formData,{
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -63,11 +61,11 @@ const NewChallenge = (props) => {
         res => navigate('/challenges')
       )
     }else{
-      await axios.post(`http://localhost:8080/challenges/upload/${challenge_id}`,formData,{
+      await axios.post(BASE_URL +`/challenges/upload/${challenge_id}`,formData,{
         headers: {
           'Content-Type': 'multipart/form-data',
         },
-      }).then( res => console.log(res.data)
+      }).then(   res => navigate('/challenges')
       )
     }
    
@@ -87,21 +85,25 @@ const addDescrition =(e)=> {
 }
 
   return (
-   <div className="d-flex justify-content-center align-items-center">
+  //  <div className="d-flex justify-content-center align-items-center"
+  //   >
 
   
-    <div className=" text-start post-container">
+    // <div className=" text-start post-container">
+    <div className="d-flex justify-content-center gap-4 align-items-center post-container">
 
-          <div class="container mt-5">
-            <div class="fancy-welcome">
-              <h1>Welcome to the Challenge App!</h1>
+         
+            <div class="fancy-welcome mt-1" 
+            style={{height:'150px',padding:'15px', width:'90%' }}>
+              <h1 style={{ marginTop:'0'}}>Welcome to the Challenge App!</h1>
               <p>Ready to take on new challenges and showcase your skills?</p>
+              <p>Someone Else will pick the challenge </p>
             </div>
-          </div>
+       
           
           <PostHeader user={props.user} talentType ="Challenge"/>
   
-          <textarea style={{backgroundColor:'white',color:'black',fontWeight:500}}
+          <textarea style={{backgroundColor:'white',color:'black',fontWeight:500, width:'90%'}}
            className="description" onChange={addDescrition}  name='description' placeholder='add description to your challenge'>
           </textarea>
 
@@ -126,11 +128,11 @@ const addDescrition =(e)=> {
           
               }
               
-          <button onClick={handleUploading} className='mt-1 mb-3 submit'>Submit</button>
+          <button onClick={handleUploading} className='mt-1 mb-3 submit-button'>Submit</button>
 
     </div> 
 
-  </div>
+ 
   )
 }  
 
