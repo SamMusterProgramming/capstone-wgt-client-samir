@@ -25,8 +25,6 @@ const ParticipantsDisplayer = (props) => {
     const [selectedUser ,setSelectedUser] = useState (props.participants[0])
     const [selectedParticipant ,setSelectedParticipant] = useState (props.participants[0])
     const [ownChallenge , setOwnChallenge ] = useState(false)
-    const [userProfile , setUserProfile] = useState (props.participants[0])
-    const [initLikeVoteCount , setInitLikeVoteCount] = useState({like_count:props.participants[0].likes,vote_count:props.participants[0].votes})
     const [isVotedColor,setIsVotedColor] = useState("lightpink")
     const [isLikedColor,setIsLikedColor] = useState("lightblue")
     const ids =[ props.user._id,
@@ -96,7 +94,8 @@ const ParticipantsDisplayer = (props) => {
 
   return (
     <div className="d-flex flex-column mb-0 mt-5 justify-content-center align-items-center challenges">
-          
+      
+
          <div className='d-flex flex-row  justify-content-between align-items-center '
             style={{height:'50px',width:'100%'}} >
               
@@ -155,7 +154,12 @@ const ParticipantsDisplayer = (props) => {
                     <div  className="d-flex flex-row align-items-center gap-2">
 
                     <div class="chip">
-                      <img src={BASE_URL + participant.profile_img } alt="" />
+                  
+            
+                          <img src={BASE_URL + participant.profile_img } alt="" />
+                      
+                 
+                     
                       <p > {(props.user._id===participant.user_id)? participant.name + " - YOU": participant.name} </p> 
                     </div>
                     
@@ -167,6 +171,8 @@ const ParticipantsDisplayer = (props) => {
                          <p style={{marginRight:'6px'}}>votes</p>
                      </div>
                     </div>
+                     
+                   
                     
                   </Select.Option>)
                 }
@@ -174,7 +180,6 @@ const ParticipantsDisplayer = (props) => {
           </Select>
         </div>
         <div className=" d-flex flex-column mb-0 videopost">
-            {/* <PostHeader user={userProfile} participant={selectedParticipant} talentType ="Challenge"/> */}
             <div className='videodisplayer'>
                 <video
                     className='video'

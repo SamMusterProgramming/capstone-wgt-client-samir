@@ -26,7 +26,7 @@ import AWS from "aws-sdk"
  const  PURL = "https://capstone-wgt-server.onrender.com";
 
  console.log(baseURL_PRODUCTION)
-export const BASE_URL = baseURL_PRODUCTION; 
+export const BASE_URL =  baseURL_DEVOLOPMENT; 
 
 // *********************************** AUTHENTIFICATION *************************
 
