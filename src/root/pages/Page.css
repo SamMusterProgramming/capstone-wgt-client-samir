@@ -11,7 +11,7 @@
 
 /* ************************** homelayout ****************************************** */
 .homelayout{
-    min-height:100vh;
+    min-height:84vh;
     width: 100%;
     max-width: 500px;
     overflow: scroll;
