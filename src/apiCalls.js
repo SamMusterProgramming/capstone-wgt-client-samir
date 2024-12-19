@@ -23,7 +23,7 @@ import AWS from "aws-sdk"
 
 
  const bName = "chalengify-storage"
- const  PURL = "https://capstone-wgt-server.onrender.com";
+ const  PURL = baseURL_DEVOLOPMENT;
 
  console.log(baseURL_PRODUCTION)
 export const BASE_URL =  PURL; 

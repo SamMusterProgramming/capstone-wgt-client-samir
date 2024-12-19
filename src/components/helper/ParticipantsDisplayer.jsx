@@ -27,12 +27,12 @@ const ParticipantsDisplayer = (props) => {
     const [ownChallenge , setOwnChallenge ] = useState(false)
     const [isVotedColor,setIsVotedColor] = useState("lightpink")
     const [isLikedColor,setIsLikedColor] = useState("lightblue")
+    const [userProfile,setUserProfile] = useState(props.user)
     const ids =[ props.user._id,
       selectedParticipant._id,
       props.challenge._id
       ]
-  
-    // const [likesVotesData,setLikesVotesData] = useState(
+
     const [likesVotesData,setLikesVotesData] = useState({})  
 
     const navigate = useNavigate()
