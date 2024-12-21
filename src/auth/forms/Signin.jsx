@@ -24,7 +24,7 @@ import logo from '/asset/material/guiness.jpeg'
  
 return (    
 
- <div className="d-flex flex-column justify-content-between align-items-center h-100 login ">
+ <div className="d-flex flex-column justify-content-center gap-1 align-items-center h-100 login ">
      {/* <img style={{width:'100%',height:'70px',objectFit:'cover'}} 
        src="/asset/material/gotTalent.jpg" alt="" />    */}
       
@@ -33,7 +33,7 @@ return (
        <div className ='logo-header'>
          <h1>Challengify</h1>
        </div>
-     <div className="d-flex justify-content-center form_container">
+      <div className="d-flex justify-content-center form_container">
        <form> 
           <div className="d-flex mb-5 justify-content-center">
            <h1 style={{fontSize:'25px'}}>Login</h1>
@@ -84,9 +84,9 @@ return (
             className="d-flex justify-content-center links">
             <a href="#">Forgot your password?</a>
        </div>   
-       </div>
+    </div>
 
-     <div className="d-flex mt-3 gap-3 justify-content-between align-item-center ">   
+     <div className="d-flex mt-1 gap-3 mb-5 justify-content-between align-item-center ">   
           <img src="/asset/material/you.png" alt="" 
               style={{height:'40px',width:'40px',objectFit:'fill' 
           }} />
