@@ -8,8 +8,8 @@ const firebaseConfig = {
   authDomain: "challengify-wgt.firebaseapp.com",
   projectId: "challengify-wgt",
   storageBucket: "challengify-wgt.firebasestorage.app",
-  messagingSenderId: "373653845536",
-  appId: "1:373653845536:web:922f2f65a9a7718a92ee45"
+  messagingSenderId: import.meta.env.VITE_messagingSenderId,
+  appId: import.meta.env.VITE_appId
 };
 
 // Initialize Firebase
