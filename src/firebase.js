@@ -4,7 +4,7 @@ import { getStorage } from "firebase/storage";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyB12LtMOPw2OPeiUS3DB4wtlpQKtTQ-FU8",
+  apiKey: import.meta.env.VITE_FIREBASE_KEY,
   authDomain: "challengify-wgt.firebaseapp.com",
   projectId: "challengify-wgt",
   storageBucket: "challengify-wgt.firebasestorage.app",
