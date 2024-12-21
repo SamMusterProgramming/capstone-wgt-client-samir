@@ -29,7 +29,7 @@ const [video_url ,setVideo_url] = useState()
          { challenges.map((challenge,index)=>{
 
           return  ( 
-                <ParticipantsDisplayer user={user}  participants={challenge.participants} key={index}
+                <ParticipantsDisplayer user={user}  participants = {challenge.participants} key={index}
                 challenge={challenge} setVideo_url={setVideo_url} />
 
           )

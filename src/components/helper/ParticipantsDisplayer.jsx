@@ -4,6 +4,8 @@ import {  BASE_URL, getUserById, liked, loadLikeVoteData, voted } from '../../ap
 import PostFooter from './PostFooter';
 import { useNavigate } from 'react-router-dom';
 import { Select } from 'antd';
+import { getDownloadURL, ref } from 'firebase/storage';
+import { generateUserFolder, storage } from '../../firebase';
 
 
 
@@ -29,11 +31,17 @@ const ParticipantsDisplayer = (props) => {
     const navigate = useNavigate()
     
 
-    useEffect(() => { 
+  useEffect(() => { 
   //apiCall.js  , load the like and vote data when nloading 
-   loadLikeVoteData(ids,setLikesVotesData)    
-
+  loadLikeVoteData(ids,setLikesVotesData)    
+ 
    },[] )
+
+  // useEffect(() => { 
+  // apiCall.js  , load the like and vote data when nloading 
+  //  getDownloadURL 
+  // },[video_url] )
+
     
     const handleLikes = async(e) => {
     //apiCall.js , when user click like button 
@@ -50,14 +58,34 @@ const ParticipantsDisplayer = (props) => {
     useEffect(() => { //logic here is to disable the add challenge button if the user has already participated  
       props.participants.map(participant =>{
         if(participant.user_id === props.user._id) {
-            setOwnChallenge(prev => !prev)
+            setOwnChallenge( prev => !prev)
          } 
       })
+
+      const imageRef = ref(storage, generateUserFolder(selectedParticipant.email) + selectedParticipant.video_url);
+      console.log(imageRef.fullPath)
+      getDownloadURL(imageRef)
+      .then((url) => {
+         setVideo_url(url)
+      })
+      .catch((error) => {
+       console.error(error);
+      });
       
       }, [])
 
     useEffect(() => {
-       setVideo_url(selectedParticipant.video_url)
+      const imageRef = ref(storage, selectedParticipant.video_url);
+      console.log(imageRef.fullPath)
+      getDownloadURL(imageRef)
+      .then((url) => {
+         setVideo_url(url)
+      })
+      .catch((error) => {
+       console.error(error);
+      });
+      
+      //  setVideo_url(selectedParticipant.video_url)
        setLikesVotesData({like_count:selectedParticipant.likes,vote_count:selectedParticipant.votes})
        //apiCall.js  , load the like and vote data when loading new participant 
        loadLikeVoteData(ids,setLikesVotesData)   
@@ -178,10 +206,11 @@ const ParticipantsDisplayer = (props) => {
                     width="100%"
                     height="100%"
                     autoPlay
-                    src={ BASE_URL + video_url}
+                    // src={ BASE_URL + video_url}
+                    src={video_url}
                     controls />
                 
-            </div>
+                </div>
             <PostFooter challenge={props.challenge} likesVotesData={likesVotesData} handleLikes={handleLikes}
               handleVotes={handleVotes}  isLikedColor={isLikedColor} isVotedColor={isVotedColor} user={props.user}
                />

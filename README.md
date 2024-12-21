@@ -1,6 +1,6 @@
 # Challengify-app
             
-This app is like a challenge-oriented social-media type that allows a user to  create challenges/any challenge, it can be eating contest or guiness world record , or talent like singing ,playing instruments ... for each created challenge,  others can join or pick up the challenge and  response in video with condition to stay in same context of the challenge 
+This app is like a challenge-oriented social-media type, we can call Social-challenge that allows a user to  create challenges/any challenge, it can be eating contest or guiness world record , or talent like singing ,playing instruments ... for each created challenge,  others can join or pick up the challenge and  response in a video  with condition to stay in same context of the challenge 
 
 # App Concept Overview:
 The app revolves around challenges where users can both create and participate in various challenges, such as eating contests, Guinness World Record attempts, or talent shows like singing and playing instruments.
@@ -44,3 +44,4 @@ Create a .env file in the root of the backend project and set up your database c
 4. Run the app: npm run dev
 
 
+import { toast } from 'sonner' for alerts

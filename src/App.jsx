@@ -22,11 +22,12 @@ import Profile from './root/pages/Profile.jsx'
 export default function App() {
   const [user, setUser] = useState(null)
 
-  useEffect(() => {
-    console.log(user)
+  // useEffect(() => {
+  //   console.log(user)
 
-  }, [user])
+  // }, [user])
   
+
   return (
   //  <main className='flex h-screen'>
   
@@ -52,6 +53,7 @@ export default function App() {
              </Route> */}
             <Route path="newtalent" element={ <Talent/>} /> 
          </Route>
+         
         </Routes>  
 
 
