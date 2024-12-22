@@ -12,7 +12,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 } */
-body {
+:root {
   margin: 0;
   width: 100vw;
   height: 100vh;

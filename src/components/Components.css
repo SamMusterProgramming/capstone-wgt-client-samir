@@ -3,7 +3,7 @@
     min-height: 60px;
     max-height: 70px;
     max-width: 500px;
-    height: 16%;
+    /* height: 16%; */
     align-items: center;
     justify-content: space-evenly;
     background-color: rgb(42, 40, 40);

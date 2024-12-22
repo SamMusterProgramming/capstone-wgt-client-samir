@@ -15,7 +15,7 @@
     width: 100%;
     max-width: 500px;
     overflow: scroll;
-    background-color: black;
+    background-color: rgb(157, 19, 19);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -109,7 +109,7 @@
 
 
 .homepage {
-     height: 84vh; 
+     height: 86vh; 
     /* min-width: 84vw; */
     min-height:84vh;
     max-width: 500px;
@@ -118,6 +118,7 @@
   
     /* border: 6px solid black; */
     background-color:#020202;  
+    overflow: scroll;
 }
 
 
