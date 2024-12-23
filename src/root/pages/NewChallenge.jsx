@@ -10,7 +10,8 @@ import { BASE_URL } from '../../apiCalls';
 import { ref, uploadBytes } from 'firebase/storage';
 import { v4 } from 'uuid';
 import { generateUserFolder, storage } from '../../firebase';
-
+import { challengeType } from '../../utilitise/typeSelectorData';
+import { Select } from 'antd';
 
 const NewChallenge = (props) => {
   
@@ -23,13 +24,17 @@ const NewChallenge = (props) => {
   const [description , setDescription] = useState("")
   const navigate = useNavigate();
   const  challenge_id  = useParams().id;
+  const [selectedType,setSelectedType]= useState("type")
+  const [selectedCategory,setSelectedCategory] = useState("")
+  const [categories,setCategories] = useState([])
+
+
+
  
 
 
 
-
-
-    const handleUploading = async () => {
+  const handleUploading = async () => {
     
     // const formData = new FormData();
     if(file){ // if video is recorded and ready to upload to data base
@@ -77,17 +82,63 @@ const addDescrition =(e)=> {
   console.log(challenge_id)
 }
 
+const handleSelectedType =(value)=> {
+   const type = value ; 
+ 
+   setSelectedType((prev) => type)
+   const categories = challengeType.find(selection => selection.type === type).category
+   setSelectedCategory((prev) => categories[0])
+   setCategories((prev) => [...categories])
+}
+
+const handleSelectedCategory =(value) => {
+  setSelectedCategory(value)
+}
+
   return (
   
-    <div className="d-flex justify-content-center gap-4 align-items-center post-container">
+    <div className="d-flex justify-content-start gap-4 align-items-center post-container">
 
-         
-            <div class="fancy-welcome mt-1" 
+        <div className='d-flex gap-2 mt-4 mb-5 justify-content-center align-items-center'
+        style={{height:'40px',width:'100%'}}>
+
+      
+           
+               <Select  onChange={handleSelectedType} defaultValue="Select Challenge Type"
+               style={{width:"40%",height:"40px",fontSize:' 35px' ,border:"none",fontWeight:"800", backgroundColor:'red',textAlign:"center"}} >
+                   {challengeType.map((selection,index)=>{   
+                    return ( <Select.Option key={index} value = {selection.type}
+                      style={{ color:'black',fontWeight:"500",
+                        backgroundColor:"white",width:"100%",height:"40px" }} >
+                           <p>{selection.type}</p> 
+                      </Select.Option> )
+                     })}
+                </Select> 
+          
+            
+
+
+            {categories &&  
+               
+               <Select  onChange={handleSelectedCategory} defaultValue={selectedCategory}
+                  style={{width:"40%",height:"40px",fontSize:' 35px' ,border:"none",fontWeight:"800", backgroundColor:'red',textAlign:"center"}} >
+                   {categories.map((category,index)=>{   
+                    return ( <Select.Option key={index} value = {category}
+                      style={{ color:'black',fontWeight:"500",
+                        backgroundColor:"white",width:"100%",height:"40px" }} >
+                           <p>{category}</p> 
+                      </Select.Option> )
+                     })}
+                </Select> 
+            }
+
+          </div>
+            {/* <div class="fancy-welcome mt-1" 
             style={{height:'150px',padding:'15px', width:'90%' }}>
               <h1 style={{ marginTop:'0'}}>Welcome to the Challenge App!</h1>
               <p>Ready to take on new challenges and showcase your skills?</p>
               <p>Someone Else will pick the challenge </p>
-            </div>
+            </div> */}
        
           
           <PostHeader user={props.user} talentType ="Challenge"/>
