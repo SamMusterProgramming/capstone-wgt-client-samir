@@ -1,5 +1,5 @@
 import React from 'react'
-import VideoUploader from './videoUploader'
+import VideoUploader from './VideoUploader'
 import VideoRecorder from './VideoRecorder'
 
 

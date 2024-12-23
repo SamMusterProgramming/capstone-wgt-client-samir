@@ -1,10 +1,14 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import TopBar from '../components/TopBar'
 import { Navigate, Outlet } from 'react-router-dom'
 import RightSideBar from '../components/RightSideBar';
 import './pages/Page.css'
+import {AuthContent} from '../context/AuthContent.jsx'
 
-function RootLayout({user}) {
+function RootLayout() {
+
+  const {user} = useContext(AuthContent)
+  
 
   const isAuthenticated = user? true : false ; 
 
@@ -13,15 +17,17 @@ function RootLayout({user}) {
    
     { isAuthenticated ? (
  
-    <div className='w-full h-full  d-flex flex-column justify-content-between full-page'>
+    <div className=' d-flex flex-column justify-content-between align-items-center full-page'>
           
-        <TopBar user={user} /> 
+           
        
-        <div className="container-fluid homelayout">
+        <div className=" homelayout">
+          <TopBar user={user} /> 
           <Outlet />
+          <RightSideBar user={user}/>
         </div>
         
-        <RightSideBar user={user}/>
+       
 
     </div>
 

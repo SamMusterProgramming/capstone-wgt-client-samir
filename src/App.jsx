@@ -1,8 +1,8 @@
 
-import React, { useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { useState } from 'react'
 import './App.css'
-// import './globals.css'
+import './globals.css'
 import { Route,Routes } from 'react-router-dom'
 import AuthLayout from './auth/authLayout.jsx'
 import { Signin } from './auth/forms/Signin.jsx'
@@ -18,17 +18,14 @@ import TopBar from './components/TopBar.jsx'
 import RightSideBar from './components/RightSideBar.jsx'
 import TopChallenges from './root/pages/TopChallenges.jsx'
 import Profile from './root/pages/Profile.jsx'
-
+import { AuthContent } from './context/AuthContent.jsx'
 export default function App() {
-  const [user, setUser] = useState(null)
+  // const [user, setUser] = useState(null)
 
-  useEffect(() => {
-    console.log(user)
+  const {user,setUser} = useContext(AuthContent)
 
-  }, [user])
-  
   return (
-   <main className='flex h-screen'>
+  
   
        <Routes>
            
@@ -37,7 +34,7 @@ export default function App() {
             <Route path="/sign-in" element={ <Signin setUser={setUser}/>} /> 
             <Route path="/sign-up" element={ <Signup setUser={setUser}/>} /> 
          </Route>
-         <Route path="/" element={<RootLayout user={user} />}>
+         <Route path="/" element={<RootLayout />}>
               <Route path="" element={ <Homepage user = {user}/>} >
                 <Route path="home" element={ <Home user={user}/>} />
                 <Route path="challenges" element ={<Challenges user={user}/>} /> 
@@ -52,11 +49,12 @@ export default function App() {
              </Route> */}
             <Route path="newtalent" element={ <Talent/>} /> 
          </Route>
+         
         </Routes>  
 
 
 
-   </main>
+
   )  
 }   
   

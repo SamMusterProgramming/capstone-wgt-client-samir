@@ -1,15 +1,38 @@
+
 import axios from 'axios'
+import AWS from "aws-sdk"
+
+ const baseURL_DEVOLOPMENT = "http://localhost:8000"
+ const baseURL_PRODUCTION = import.meta.env.VITE_BASE_URL
+ export const STORAGE_URL = import.meta.env.VITE_BASE_STORAGE
 
 
- const baseURL_DEVOLOPMENT = "http://localhost:8080/"
- const baseURL_PRODUCTION = "https://capstone-wgt-server-1.onrender.com/"
-export const BASE_URL = baseURL_DEVOLOPMENT ; 
+ export const BUCKET_NAME = import.meta.env.VITE_BUCKET_NAME
+ const BUCKET_REGION = import.meta.env.VITE_BUCKET_REGION;
+ const ACCESS_KEY = import.meta.env.VITE_ACCESS_KEY
+ const SECRET_KEY = import.meta.env.VITE_SECRET_KEY
+ 
+ AWS.config.update({
+   region: BUCKET_REGION,
+   accessKeyId:ACCESS_KEY,
+   secretAccessKey: SECRET_KEY,
+ });
+
+ export const CHALLENGIFY_S3 = new AWS.S3();
+
+
+
+ const bName = "chalengify-storage"
+ const  PURL = baseURL_PRODUCTION;
+
+ console.log(baseURL_PRODUCTION)
+export const BASE_URL =  baseURL_DEVOLOPMENT; 
 
 // *********************************** AUTHENTIFICATION *************************
 
 export const authLogin = async(credentiels,setUser)=>{
    
-    await axios.post(BASE_URL +'users/login',credentiels)
+    await axios.post(BASE_URL +'/users/login',credentiels)
     .then(res => { 
                if (res.data.email && res.data.password) {
          setUser({...res.data})
@@ -19,7 +42,7 @@ export const authLogin = async(credentiels,setUser)=>{
 
 export const authRegister= async(credentiels,setUser)=>{
    
-    await axios.post( BASE_URL +'users/',credentiels)
+    await axios.post( BASE_URL +'/users/',credentiels)
 	.then(res => {
 		if(res.status == 200 ) setUser({...res.data}) 
 		})
@@ -27,7 +50,7 @@ export const authRegister= async(credentiels,setUser)=>{
 
 export const getUserById = async(user_id,setUserProfile) =>{
     try {
-        await axios.get(BASE_URL+`users/user/${user_id}`)
+        await axios.get(BASE_URL+`/users/user/${user_id}`)
         .then(res => setUserProfile({...res.data}))
     } catch (error) {
         console.log(error)
@@ -42,7 +65,7 @@ export const getUserById = async(user_id,setUserProfile) =>{
 export const getUserChallenges = async( user_id , setChallenges)=>{
    console.log(user_id)
     try {
-        await axios.get( BASE_URL + `challenges/${user_id}`)
+        await axios.get( BASE_URL + `/challenges/${user_id}`)
         .then(res => {
             setChallenges(res.data) 
         }
@@ -57,7 +80,7 @@ export const getUserChallenges = async( user_id , setChallenges)=>{
   export const getTopChallenges = async( user_id , setChallenges)=>{
     console.log(user_id)
      try {
-         await axios.get( BASE_URL + `challenges/top/${user_id}`)
+         await axios.get( BASE_URL + `/challenges/top/${user_id}`)
          .then(res => {
              setChallenges(res.data) 
          }
@@ -75,7 +98,7 @@ export const getUserChallenges = async( user_id , setChallenges)=>{
     export const loadLikeVoteData= async(ids,setLikesVotesData)=> {
 
     try {
-      await axios.get( BASE_URL + 'challenges/load/like/', {
+      await axios.get( BASE_URL + '/challenges/load/like/', {
         params:{
             ids: ids.join(',')
         }
@@ -88,7 +111,7 @@ export const getUserChallenges = async( user_id , setChallenges)=>{
 
   export const liked = async(ids,setLikesVotesData,likesVotesData)=>{
     try {
-        await axios.get( BASE_URL + `challenges/challenge/like/`, {
+        await axios.get( BASE_URL + `/challenges/challenge/like/`, {
           params:{
               ids: ids.join(',')
           }
@@ -101,7 +124,7 @@ export const getUserChallenges = async( user_id , setChallenges)=>{
 
   export const voted = async(ids,setLikesVotesData,likesVotesData)=>{
     try {
-        await axios.get( BASE_URL + `challenges/challenge/vote/`, {
+        await axios.get( BASE_URL + `/challenges/challenge/vote/`, {
           params:{
               ids: ids.join(',')
           }
@@ -117,7 +140,7 @@ export const getUserChallenges = async( user_id , setChallenges)=>{
 
     export const follow= async(user_id , rawBody , setFollower)=>{
       try {
-        await axios.post( BASE_URL + `users/followers/add/${user_id}`, rawBody )
+        await axios.post( BASE_URL + `/users/followers/add/${user_id}`, rawBody )
         .then(res =>  { 
           console.log(res.data)
           setFollower({...res.data}) 
@@ -130,7 +153,7 @@ export const getUserChallenges = async( user_id , setChallenges)=>{
 
      export const isfollowing = async(user_id , follower_id, setIsFollowing)=>{
       try {
-        await axios.post( BASE_URL + `users/followers/${user_id}` ,{follower_id:follower_id} )
+        await axios.post( BASE_URL + `/users/followers/${user_id}` ,{follower_id:follower_id} )
         .then(res =>  { 
           setIsFollowing({isfollowing:res.data.isfollowing})
       } )

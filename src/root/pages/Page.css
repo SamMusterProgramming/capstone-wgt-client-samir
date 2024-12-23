@@ -3,21 +3,29 @@
 .full-page {
     width: 100vw;
     height: 100vh;
-   background-color:black; 
+   background-color:rgb(241, 234, 234); 
+   display: flex;
+   align-items: center;
+   justify-content: center;
 }
 
 /* ************************** homelayout ****************************************** */
 .homelayout{
-    min-height:85vh;
-    width: 100vw;
+    min-height:100vh;
+    width: 100%;
+    max-width: 500px;
     overflow: scroll;
-    
+    background-color: rgb(157, 19, 19);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
 }
 /* ************************** challenge post ****************************************** */
 .post-container{
-    max-width:900px;
+    height: 100vh;
+    max-width:500px;
     gap:30px;
-    min-height:100%;
     flex-direction: column;
     display: flex;
     justify-content: center;
@@ -25,6 +33,34 @@
     overflow: scroll;
     background-color:#080808
     
+}
+
+.fancy-welcome {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #fff;
+  background: linear-gradient(to right, #ff7e5f, #feb47b);
+  padding: 50px;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+  animation: fadeIn 1.5s ease-out;
+}
+
+.fancy-welcome h1 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 .description {
 
@@ -35,29 +71,32 @@
     width: 100%;
 }
 .postholder {
-    width: 100%;
-    min-height: 50%;
+    max-width: 500px;
+    width: 90%;
+    min-height: 30%;
     background-color: rgb(87, 126, 126);
     border-radius: 15px;
 }
 .post-size {
     width: 100%;
-    height: 400px;
+    max-width: 500px;
+    height: 250px;
     object-fit: cover;
     border-radius: 15px;
     background-color: rgb(87, 126, 126);
 }
 .postfooter{
-    width: 100%;
-    height: 70px;
+    width: 90%;
+    max-width: 500px;
+    height: 60px;
     background-color: rgb(40, 40, 28);
     border-radius: 20px;
 }
 .postfooter button {
-  font-size: 20px;
+  font-size: 18px;
   cursor: pointer;
 }
-.submit{
+.submit-button{
     background-color: green;
     width: 30%;
     height: 45px;
@@ -70,25 +109,30 @@
 
 
 .homepage {
-    min-width: 100%;
-    min-height:100%;
+     height: 86vh; 
+    /* min-width: 84vw; */
+    min-height:84vh;
+    max-width: 500px;
     display: flex;
     justify-content: start;
   
     /* border: 6px solid black; */
-    background-color:#eaeaea;  
+    background-color:#020202;  
+    overflow: scroll;
 }
 
 
 /* ************************** challenges ****************************************** */
 .ch-page {
     background-color: black;
-    min-height:100%;
+    max-height:84vh;
     min-width: 100%;
+    max-width: 500px;
+    overflow: scroll;
 }
 .challenges {
     background-color:#1f1e15;
-    min-height:600px;
+    height:600px;
     min-width:350px;
     max-width: 500px;
     width: 100%;
@@ -107,14 +151,18 @@
 /* ************************** profile ****************************************** */
 
 .profilecontainer{
+ 
+    height: 84vh;
     width: 100%;
-    min-height: 100%;
-    min-width: 100%;
-    /* max-width: 700px; */
+    max-width: 500px;
+    min-width: 500px;
+    overflow: scroll;
     /* background-color: black; */
+    background-color: rgb(35, 21, 21);
 }
 .cover{
-    width: 100%;
+    max-width: 500px;
+    width: 430px;
     height: 100%;
     max-height: 200px;
     /* max-width: 1000px; */
@@ -143,9 +191,8 @@
   
 }
 .mid-container{
-    min-width: 100%;
-    width:  100%;
-    background-color: white;
+    max-width:  500px;
+    background-color: rgb(35, 21, 21);
     min-height: 20%;
 
  }
@@ -181,12 +228,12 @@
 }
 
 .name {
-    font-size: 22px;
+    font-size: 17px;
     font-weight: bold
 }
 
 .idd {
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 600
 }
 
@@ -202,7 +249,7 @@
 .follow {
     font-size: 12px;
     font-weight: 500;
-    color: #444444
+    color: #2485d4
 }
 
 .btn1 {

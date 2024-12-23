@@ -1,18 +1,11 @@
 import { useEffect, useRef, useState } from 'react'
 import './Helper.css'
-import {  getUserById, liked, loadLikeVoteData, voted } from '../../apiCalls'
-
-import ReactPlayer from "react-player";
-import PostHeader from './PostHeader';
+import {  BASE_URL, getUserById, liked, loadLikeVoteData, voted } from '../../apiCalls'
 import PostFooter from './PostFooter';
-import Link from 'antd/es/typography/Link';
 import { useNavigate } from 'react-router-dom';
-import { MDBCarousel, MDBCarouselItem } from 'mdb-react-ui-kit';
 import { Select } from 'antd';
-import axios from 'axios'
-import Challenges from '../../root/pages/Challenges';
-
-
+import { getDownloadURL, ref } from 'firebase/storage';
+import { generateUserFolder, storage } from '../../firebase';
 
 
 
@@ -25,26 +18,30 @@ const ParticipantsDisplayer = (props) => {
     const [selectedUser ,setSelectedUser] = useState (props.participants[0])
     const [selectedParticipant ,setSelectedParticipant] = useState (props.participants[0])
     const [ownChallenge , setOwnChallenge ] = useState(false)
-    const [userProfile , setUserProfile] = useState (props.participants[0])
-    const [initLikeVoteCount , setInitLikeVoteCount] = useState({like_count:props.participants[0].likes,vote_count:props.participants[0].votes})
     const [isVotedColor,setIsVotedColor] = useState("lightpink")
     const [isLikedColor,setIsLikedColor] = useState("lightblue")
+    const [userProfile,setUserProfile] = useState(props.user)
     const ids =[ props.user._id,
       selectedParticipant._id,
       props.challenge._id
       ]
-  
-    // const [likesVotesData,setLikesVotesData] = useState(
+
     const [likesVotesData,setLikesVotesData] = useState({})  
 
     const navigate = useNavigate()
     
 
-    useEffect(() => { 
+  useEffect(() => { 
   //apiCall.js  , load the like and vote data when nloading 
-   loadLikeVoteData(ids,setLikesVotesData)    
-
+  loadLikeVoteData(ids,setLikesVotesData)    
+ 
    },[] )
+
+  // useEffect(() => { 
+  // apiCall.js  , load the like and vote data when nloading 
+  //  getDownloadURL 
+  // },[video_url] )
+
     
     const handleLikes = async(e) => {
     //apiCall.js , when user click like button 
@@ -61,14 +58,34 @@ const ParticipantsDisplayer = (props) => {
     useEffect(() => { //logic here is to disable the add challenge button if the user has already participated  
       props.participants.map(participant =>{
         if(participant.user_id === props.user._id) {
-            setOwnChallenge(prev => !prev)
+            setOwnChallenge( prev => !prev)
          } 
       })
+
+      const imageRef = ref(storage, generateUserFolder(selectedParticipant.email) + selectedParticipant.video_url);
+      console.log(imageRef.fullPath)
+      getDownloadURL(imageRef)
+      .then((url) => {
+         setVideo_url(url)
+      })
+      .catch((error) => {
+       console.error(error);
+      });
       
       }, [])
 
     useEffect(() => {
-       setVideo_url(selectedParticipant.video_url)
+      const imageRef = ref(storage, selectedParticipant.video_url);
+      console.log(imageRef.fullPath)
+      getDownloadURL(imageRef)
+      .then((url) => {
+         setVideo_url(url)
+      })
+      .catch((error) => {
+       console.error(error);
+      });
+      
+      //  setVideo_url(selectedParticipant.video_url)
        setLikesVotesData({like_count:selectedParticipant.likes,vote_count:selectedParticipant.votes})
        //apiCall.js  , load the like and vote data when loading new participant 
        loadLikeVoteData(ids,setLikesVotesData)   
@@ -96,7 +113,8 @@ const ParticipantsDisplayer = (props) => {
 
   return (
     <div className="d-flex flex-column mb-0 mt-5 justify-content-center align-items-center challenges">
-          
+      
+
          <div className='d-flex flex-row  justify-content-between align-items-center '
             style={{height:'50px',width:'100%'}} >
               
@@ -139,11 +157,14 @@ const ParticipantsDisplayer = (props) => {
        
         <div key={props.key} className='d-flex mt-0 justify-content-center participantdisplayer'> 
           <Select
-            style={{width:"100%",height:"60px",border:"none",fontWeight:"800", backgroundColor:"transparent",textAlign:"center"}}
-        
+            style={{width:"100%",height:"60px",fontSize:' 35px' ,border:"none",fontWeight:"800", backgroundColor:'red',textAlign:"center"}}
+              defaultValue="Select a Participant"
             onChange={handleChange} 
-                >
-                {props.participants.map((participant,index)=>{
+                >   
+       
+               
+
+                {props.participants.map((participant,index)=>{    
                   return  (<Select.Option key={index} style={{ color:'black',fontWeight:"500",
                     backgroundColor:"lightgray",width:"100%",height:"60px"
                   }}  value = {participant.user_id} 
@@ -152,8 +173,14 @@ const ParticipantsDisplayer = (props) => {
                     <div  className="d-flex flex-row align-items-center gap-2">
 
                     <div class="chip">
+                  
+            
+                          <img src={BASE_URL + participant.profile_img } alt="" />
+                      
+                 
+                     
                       <p > {(props.user._id===participant.user_id)? participant.name + " - YOU": participant.name} </p> 
-                     </div>
+                    </div>
                     
                      <div className='d-flex flex-ro text-center gap-2  align-items-center showvote'>
                           <p>{participant.votes}</p> 
@@ -163,6 +190,8 @@ const ParticipantsDisplayer = (props) => {
                          <p style={{marginRight:'6px'}}>votes</p>
                      </div>
                     </div>
+                     
+                   
                     
                   </Select.Option>)
                 }
@@ -170,7 +199,6 @@ const ParticipantsDisplayer = (props) => {
           </Select>
         </div>
         <div className=" d-flex flex-column mb-0 videopost">
-            <PostHeader user={userProfile} participant={selectedParticipant} talentType ="Challenge"/>
             <div className='videodisplayer'>
                 <video
                     className='video'
@@ -178,10 +206,11 @@ const ParticipantsDisplayer = (props) => {
                     width="100%"
                     height="100%"
                     autoPlay
-                    src={ "http://localhost:8080" + video_url}
+                    // src={ BASE_URL + video_url}
+                    src={video_url}
                     controls />
                 
-            </div>
+                </div>
             <PostFooter challenge={props.challenge} likesVotesData={likesVotesData} handleLikes={handleLikes}
               handleVotes={handleVotes}  isLikedColor={isLikedColor} isVotedColor={isVotedColor} user={props.user}
                />

@@ -6,17 +6,17 @@ import UploadVideo from '../../components/helper/UploadVideo';
 import axios from 'axios'
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-
+import { BASE_URL } from '../../apiCalls';
+import { ref, uploadBytes } from 'firebase/storage';
+import { v4 } from 'uuid';
+import { generateUserFolder, storage } from '../../firebase';
+import { challengeType } from '../../utilitise/typeSelectorData';
+import { Select } from 'antd';
 
 const NewChallenge = (props) => {
   
   const [swicthUploadLive ,setSwitchUploadLive] = useState(false)
-
-  // const webcamRef = useRef(null);
-  // const mediaRecorderRef = useRef(null);
   const video = useRef()
-  const [capturing, setCapturing] = useState(false);
-  const [recordedChunks, setRecordedChunks] = useState([]);
   const [videoSrc , setVideoSrc] = useState("");
   const [file,setFile] = useState(null)
   const [isFullScreen, setIsFullScreen] = useState(false);
@@ -24,43 +24,50 @@ const NewChallenge = (props) => {
   const [description , setDescription] = useState("")
   const navigate = useNavigate();
   const  challenge_id  = useParams().id;
+  const [selectedType,setSelectedType]= useState("type")
+  const [selectedCategory,setSelectedCategory] = useState("")
+  const [categories,setCategories] = useState([])
+
+
+
  
+
+
 
   const handleUploading = async () => {
     
-    const formData = new FormData();
+    // const formData = new FormData();
     if(file){ // if video is recorded and ready to upload to data base
-      const lastIndex = file.name.lastIndexOf('.')
-      const ext = file.name.slice( lastIndex + 1)
-      const date = Date.now()
-      let newFilename = new File([file],date+ props.user.name +'.' + ext,{type:file.type,
-        lastModified:file.lastModified  
+      const newFile = v4()+file.name 
+      const CHALLENGE_VIDEO_URL = generateUserFolder(props.user.email)+ newFile;
+      const videoRef = ref(storage,CHALLENGE_VIDEO_URL)
+
+      uploadBytes(videoRef,file).then(()=> {
+        alert("uploaded successfully to firestorage")
       })
-      formData.append('video',newFilename)
-      formData.append('origin_id', props.user._id)
-      formData.append('description', description)
-      formData.append('profile_img',props.user.profile_img)
-      formData.append('name', props.user.name)
-      formData.append('user_id', props.user._id)
-    }
+      
+     const challenge = {
+       origin_id : props.user._id ,
+       description: description,
+       profile_img:props.user.profile_img,
+       user_id : props.user._id,
+       name:props.user.name,
+       video_url : CHALLENGE_VIDEO_URL,
+       email:props.user.email
+     }
+
     if(!challenge_id){ // when user creates new challenge
-      await axios.post('http://localhost:8080/challenges/upload',formData,{
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      }).then( // when user challenge another user , we will insert his change to an existing challenge by challenge_id
+      await axios.post( BASE_URL + '/challenges/uploads', challenge).then( // when user challenge another user , we will insert his change to an existing challenge by challenge_id
         res => navigate('/challenges')
       )
     }else{
-      await axios.post(`http://localhost:8080/challenges/upload/${challenge_id}`,formData,{
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      }).then( res => console.log(res.data)
+      await axios.post(BASE_URL +`/challenges/uploads/${challenge_id}`,challenge)
+      .then(   res => navigate('/challenges')
       )
     }
    
   }; 
+}
 
 const handleUpload = ({file}) => {
   setFile(file.originFileObj) 
@@ -75,21 +82,68 @@ const addDescrition =(e)=> {
   console.log(challenge_id)
 }
 
-  return (
-   <div className="d-flex justify-content-center align-items-center">
+const handleSelectedType =(value)=> {
+   const type = value ; 
+ 
+   setSelectedType((prev) => type)
+   const categories = challengeType.find(selection => selection.type === type).category
+   setSelectedCategory((prev) => categories[0])
+   setCategories((prev) => [...categories])
+}
 
+const handleSelectedCategory =(value) => {
+  setSelectedCategory(value)
+}
+
+  return (
   
-    <div className=" text-start post-container">
-           <span style={{fontSize:16,color:'#bf771f',padding:"10px"}}>{props.user.name}</span>
-          <p style={{fontSize:11,color:"white",fontWeight:'600',padding:"6px",marginTop:'-40px'}}> Welcome  ,
-            are you ready to lunch a new Challenge to the world <br/>
-            the Stage is yours !! record or upload your challenge content from your comfort zone 
-            and let the world be judge, someone will pick up the challenge   </p>
+    <div className="d-flex justify-content-start gap-4 align-items-center post-container">
+
+        <div className='d-flex gap-2 mt-4 mb-5 justify-content-center align-items-center'
+        style={{height:'40px',width:'100%'}}>
+
+      
+           
+               <Select  onChange={handleSelectedType} defaultValue="Select Challenge Type"
+               style={{width:"40%",height:"40px",fontSize:' 35px' ,border:"none",fontWeight:"800", backgroundColor:'red',textAlign:"center"}} >
+                   {challengeType.map((selection,index)=>{   
+                    return ( <Select.Option key={index} value = {selection.type}
+                      style={{ color:'black',fontWeight:"500",
+                        backgroundColor:"white",width:"100%",height:"40px" }} >
+                           <p>{selection.type}</p> 
+                      </Select.Option> )
+                     })}
+                </Select> 
           
+            
+
+
+            {categories &&  
+               
+               <Select  onChange={handleSelectedCategory} defaultValue={selectedCategory}
+                  style={{width:"40%",height:"40px",fontSize:' 35px' ,border:"none",fontWeight:"800", backgroundColor:'red',textAlign:"center"}} >
+                   {categories.map((category,index)=>{   
+                    return ( <Select.Option key={index} value = {category}
+                      style={{ color:'black',fontWeight:"500",
+                        backgroundColor:"white",width:"100%",height:"40px" }} >
+                           <p>{category}</p> 
+                      </Select.Option> )
+                     })}
+                </Select> 
+            }
+
+          </div>
+            {/* <div class="fancy-welcome mt-1" 
+            style={{height:'150px',padding:'15px', width:'90%' }}>
+              <h1 style={{ marginTop:'0'}}>Welcome to the Challenge App!</h1>
+              <p>Ready to take on new challenges and showcase your skills?</p>
+              <p>Someone Else will pick the challenge </p>
+            </div> */}
+       
           
-         <PostHeader user={props.user} talentType ="Challenge"/>
+          <PostHeader user={props.user} talentType ="Challenge"/>
   
-          <textarea style={{backgroundColor:'white',color:'black',fontWeight:500}}
+          <textarea style={{backgroundColor:'white',color:'black',fontWeight:500, width:'90%'}}
            className="description" onChange={addDescrition}  name='description' placeholder='add description to your challenge'>
           </textarea>
 
@@ -114,11 +168,11 @@ const addDescrition =(e)=> {
           
               }
               
-          <button onClick={handleUploading} className='mt-1 mb-3 submit'>Submit</button>
+          <button onClick={handleUploading} className='mt-1 mb-3 submit-button'>Submit</button>
 
     </div> 
 
-  </div>
+ 
   )
 }  
 

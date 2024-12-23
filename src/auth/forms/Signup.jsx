@@ -37,12 +37,14 @@ export const Signup = ({setUser}) => {
      
   return (
     <div className="d-flex flex-column justify-content-center align-items-center  h-100 login  ">
-	
-	     	<img style={{width:'100%',height:'70px',objectFit:'cover'}} 
-             src="/asset/material/gotTalent.jpg" alt="" />  
+
+
 			<div style={{marginTop:'-30px'}} className="user_card">
-		     	<div className="d-flex justify-content-center">
-                  <h3>Register</h3>
+		     	<div className ='logo-header'>
+                 <h1>Challengify</h1>
+                </div>
+		     	<div className="d-flex mt-5 justify-content-center">
+                  <h1>Register</h1>
                 </div>  
 				<div className="d-flex justify-content-center form_container">
 					<form> 
@@ -139,8 +141,7 @@ export const Signup = ({setUser}) => {
 				<p style={{color:'red',fontSize:12}} >{errorMessage}</p>
 			</div>
 
-			<img style={{width:'100%',height:'70px',objectFit:'fill',marginTop:'auto'}} 
-            src="/asset/material/contest.png" alt="" /> 
+		
 		</div>
 
   )

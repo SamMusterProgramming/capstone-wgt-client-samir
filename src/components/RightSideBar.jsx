@@ -6,11 +6,11 @@ const RightSideBar = ({user}) => {
 
   return (
 
-   
+      <>
 
-        // <div className="col-sm-auto bg-dark   sticky-top">
+         {/* <div className="col-sm-auto bg-dark   sticky-top"> */}
        
-            <div  className="d-flex  align-items-center gap-5 footer ">
+            <div  className="container-fluid d-flex  justify-content-center gap-5 footer ">
                     
                 <div  className="d-flex flex-row text-center menu-item ">
                   <Link to='/newtalent'>
@@ -54,7 +54,7 @@ const RightSideBar = ({user}) => {
             </div>
    
         
-    
+       </>
 
 
   )
