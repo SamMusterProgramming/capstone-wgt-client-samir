@@ -3,6 +3,7 @@ import './Page.css'
 import { useState } from 'react';
 import { BASE_URL, follow, getUserById, isfollowing, STORAGE_URL } from '../../apiCalls';
 import { Link, useParams } from 'react-router-dom';
+import { toast, Toaster } from 'sonner';
 
 
 
@@ -19,16 +20,16 @@ const Profile = (props) => {
     useEffect ( () => {
       
       getUserById(_id,setUser)
-     } , [] )
+     } , [] ) 
 
-     useEffect ( () => {
-      
+     useEffect ( () => {   
+      toast.success('successfully added!');
       isfollowing(_id,props.user._id,setFollowing)
       setDisplay(true)
      } , [] )
       
      
-     useEffect ( () => {
+     useEffect ( () => {  
          setDisplay(true)
      } , [following] ) 
      

@@ -7,7 +7,7 @@ const AuthLayout = ({user}) => {
   // user ? isAuthenticated = true : isAuthenticated =false;
   return (
    <>
-     { isAuthenticated ? ( < Navigate to ="/" /> ):
+     { isAuthenticated ? ( < Navigate to ="/home" /> ):
      (<>
       <section
       style={{ backgroundColor:'white', height:'100vh',minWidth:"100vw"}}

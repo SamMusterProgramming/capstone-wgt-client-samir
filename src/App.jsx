@@ -19,6 +19,7 @@ import RightSideBar from './components/RightSideBar.jsx'
 import TopChallenges from './root/pages/TopChallenges.jsx'
 import Profile from './root/pages/Profile.jsx'
 import { AuthContent } from './context/AuthContent.jsx'
+import { Toaster } from 'sonner'
 export default function App() {
   // const [user, setUser] = useState(null)
 
@@ -26,16 +27,16 @@ export default function App() {
 
   return (
   
-  
+   
        <Routes>
            
-       
+      
          <Route element={<AuthLayout user={user} />}>
             <Route path="/sign-in" element={ <Signin setUser={setUser}/>} /> 
             <Route path="/sign-up" element={ <Signup setUser={setUser}/>} /> 
          </Route>
-         <Route path="/" element={<RootLayout />}>
-              <Route path="" element={ <Homepage user = {user}/>} >
+         <Route path="" element={<RootLayout />}>
+              <Route path="/" element={ <Homepage user = {user}/>} >
                 <Route path="home" element={ <Home user={user}/>} />
                 <Route path="challenges" element ={<Challenges user={user}/>} /> 
                 <Route path="topchallenges" element ={<TopChallenges user={user}/>} /> 
@@ -50,7 +51,8 @@ export default function App() {
             <Route path="newtalent" element={ <Talent/>} /> 
          </Route>
          
-        </Routes>  
+      </Routes>  
+  
 
 
 

@@ -21,16 +21,17 @@ const PostHeader = (props) => {
             <div className="user-name">{props.user.name}</div>
             <div className="post-time">5 mins ago</div>
         </div>
-        <div className='d-flex text-light  text-center'>
-        <p style={{fontSize:12}}>
-          
-        </p>    
+        <div className='d-flex text-light flex-column gap-2 text-center'>
+        <p style={{fontSize:10}}>
+            Category
+        </p> 
+        <span className="talenttype">{props.category}</span>   
         </div>
-        <div style={{marginLeft:'auto'}} className='d-flex flex-column justify-content-center align-items-center'>
-          <p style={{fontSize:12}}>Competition</p>
+        <div style={{marginLeft:'auto'}} className='d-flex gap-2 flex-column justify-content-center align-items-center'>
+          <p style={{fontSize:10}}>Competition</p>
             <span className="talenttype">{props.talentType}</span>
         </div>
-        <img style={{backgroundColor:'pink'}} src = "/asset/material/chalenge.png"  alt="User Avatar"/>
+        <img style={{backgroundColor:'gold'}} src = "/asset/material/chalenge.png"  alt="User Avatar"/>
 </div>
   )
 }

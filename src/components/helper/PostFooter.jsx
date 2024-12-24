@@ -7,7 +7,7 @@ const PostFooter = (props) => {
 
   
   return (
-    <div className='d-flex flex-row text-light justify-content-evenly gap-4 align-items-center videofooter'>
+  <div className='d-flex flex-row text-light justify-content-evenly gap-4 align-items-center videofooter'>
     <div className='d-flex align-items-center gap-3'>
        <button style={{color:props.isLikedColor,marginLeft:'15px'}} onClick={props.handleLikes} >
         <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" className="bi bi-hand-thumbs-up-fill" viewBox="0 0 16 16">
@@ -25,8 +25,7 @@ const PostFooter = (props) => {
        <div className='d-flex text-center gap-2 flex-column'>
        <span style={{fontSize:'12px',color:'pink'}}>vote</span> 
        <span style={{fontSize:'11px',marginLeft:'0px'}}>{props.likesVotesData.vote_count}</span> 
-       </div>
-      
+       </div>   
     </div>
     <div className='d-flex align-items-center gap-3'>
        <button style={{color:'pink',marginLeft:'15px'}} >
@@ -44,7 +43,7 @@ const PostFooter = (props) => {
        </button>
       {/* <span style={{fontSize:'11px',marginLeft:'0px'}}>{props.challenge.comments.length}</span>  */}
     </div>
-    </div>
+  </div>
    
 
    

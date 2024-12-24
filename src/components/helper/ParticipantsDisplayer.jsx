@@ -21,6 +21,7 @@ const ParticipantsDisplayer = (props) => {
     const [isVotedColor,setIsVotedColor] = useState("lightpink")
     const [isLikedColor,setIsLikedColor] = useState("lightblue")
     const [userProfile,setUserProfile] = useState(props.user)
+    const [topChallenger ,setTopChallenger] = useState("")
     const ids =[ props.user._id,
       selectedParticipant._id,
       props.challenge._id
@@ -37,13 +38,41 @@ const ParticipantsDisplayer = (props) => {
  
    },[] )
 
-  // useEffect(() => { 
-  // apiCall.js  , load the like and vote data when nloading 
-  //  getDownloadURL 
-  // },[video_url] )
+  useEffect(() => { // get top challenger for the challenge
+    let obj = {
+      topChallenger : props.participants[0].name,
+      votes : props.participants[0].votes
+    } 
+    props.participants.forEach(participant => {
+      if(participant.votes > obj.votes) obj = {
+          ...obj,
+          topChallenger:participant.name,
+          votes:participant.votes
+        }
+    });
+    console.log(obj)
+    setTopChallenger({...obj})
+  },[] )
+  
+
+  useEffect(() => { // get top challenger for the challenge
+    let obj = {
+      topChallenger : props.participants[0].name,
+      votes : props.participants[0].votes
+    } 
+    props.participants.forEach(participant => {
+      if(participant.votes > obj.votes) obj = {
+          ...obj,
+          topChallenger:participant.name,
+          votes:participant.votes
+        }
+    });
+    console.log(obj)
+    setTopChallenger({...obj})
+  },[likesVotesData] )
 
     
-    const handleLikes = async(e) => {
+  const handleLikes = async(e) => {
     //apiCall.js , when user click like button 
       liked(ids,setLikesVotesData,likesVotesData)
   
@@ -112,11 +141,11 @@ const ParticipantsDisplayer = (props) => {
 
 
   return (
-    <div className="d-flex flex-column mb-0 mt-5 justify-content-center align-items-center challenges">
-      
 
+    <div className="d-flex flex-column mb-0 mt-5 justify-content-start align-items-center challenges">
+    
          <div className='d-flex flex-row  justify-content-between align-items-center '
-            style={{height:'50px',width:'100%'}} >
+            style={{height:'50px',width:'100%',backgroundColor:'#1f1e15'}} >
               
                    {!ownChallenge? (    
                     <button style={{width:'110px',color:"lightgreen",textAlign:'center',
@@ -149,37 +178,27 @@ const ParticipantsDisplayer = (props) => {
                       }}>
                       Follow
                    </button>
-                 
-                  
-               
-              
+            
         </div>
        
         <div key={props.key} className='d-flex mt-0 justify-content-center participantdisplayer'> 
           <Select
-            style={{width:"100%",height:"60px",fontSize:' 35px' ,border:"none",fontWeight:"800", backgroundColor:'red',textAlign:"center"}}
+            style={{width:"100%",height:"43px",fontSize:' 35px' ,border:"none",fontWeight:"800", backgroundColor:'red',textAlign:"center"}}
               defaultValue="Select a Participant"
             onChange={handleChange} 
                 >   
-       
-               
 
                 {props.participants.map((participant,index)=>{    
                   return  (<Select.Option key={index} style={{ color:'black',fontWeight:"500",
-                    backgroundColor:"lightgray",width:"100%",height:"60px"
+                    backgroundColor:"lightgray",width:"100%",height:"45px"
                   }}  value = {participant.user_id} 
                    className="d-flex flex-row align-items-start gap3"
                   >
                     <div  className="d-flex flex-row align-items-center gap-2">
 
                     <div class="chip">
-                  
-            
                           <img src={BASE_URL + participant.profile_img } alt="" />
-                      
-                 
-                     
-                      <p > {(props.user._id===participant.user_id)? participant.name + " - YOU": participant.name} </p> 
+                          <p style={{marginTop:'-5px'}} > {(props.user._id===participant.user_id)? participant.name + " - YOU": participant.name} </p> 
                     </div>
                     
                      <div className='d-flex flex-ro text-center gap-2  align-items-center showvote'>
@@ -198,7 +217,7 @@ const ParticipantsDisplayer = (props) => {
               )}         
           </Select>
         </div>
-        <div className=" d-flex flex-column mb-0 videopost">
+        <div className=" d-flex flex-column videopost">
             <div className='videodisplayer'>
                 <video
                     className='video'
@@ -208,15 +227,43 @@ const ParticipantsDisplayer = (props) => {
                     autoPlay
                     // src={ BASE_URL + video_url}
                     src={video_url}
+                    audio
                     controls />
                 
-                </div>
+            </div>
             <PostFooter challenge={props.challenge} likesVotesData={likesVotesData} handleLikes={handleLikes}
               handleVotes={handleVotes}  isLikedColor={isLikedColor} isVotedColor={isVotedColor} user={props.user}
                />
         </div> 
-       
-     
+        <div className='d-flex justify-content-start  align-items-center '
+          style={{height:"60px",width:"100%"}}>
+            <div className='d-flex flex-column justify-content-start gap align-items-center'
+               style={{height:"100%",width:"30%",backgroundColor:"#eb4f34"}}>
+                <span style={{fontSize:'10px',fontWeight:"600",marginTop:'10px'}}>CREATED BY</span>
+                <p style={{fontSize:'11px',fontWeight:"600",color:'gold'}}>{props.participants[0].name}</p>
+                <p style={{fontSize:'11px',fontWeight:"600",color:'white'}}>{props.challenge.createdAt.substring(0,10)}</p>
+
+            </div>
+            <div className='d-flex flex-column justify-content-start gap align-items-center'
+               style={{height:"100%",width:"40%",backgroundColor:"#3d34eb"}}>
+                <span style={{fontSize:'10px',fontWeight:"600",marginTop:'10px'}}>TOP CHALLENGER</span>
+                <p style={{fontSize:'11px',fontWeight:"600",color:'gold'}}>{topChallenger.topChallenger}</p>
+                <p style={{fontSize:'11px',fontWeight:"600",color:'pink'}}>{topChallenger.votes} <span>  VOTES</span>  </p>
+            </div>
+            <div className='d-flex flex-column justify-content-start gap align-items-start'
+               style={{height:"100%",width:"30%",backgroundColor:"#3d34eb"}}>
+                 <p style={{fontSize:'11px',fontWeight:"600",color:'gold',marginTop:'10px'}}>TYPE : 
+                 <span style={{fontSize:'10px',fontWeight:"300",marginTop:'10px',color:'white'}}> {props.challenge.type}</span>
+                 </p>
+                 <p style={{fontSize:'11px',fontWeight:"600",color:'gold'}}>CATEG : 
+                 <span style={{fontSize:'10px',fontWeight:"300",marginTop:'10px',color:'white'}}> {props.challenge.category}</span>
+                 </p>
+                 <p style={{fontSize:'11px',fontWeight:"600",color:'gold'}}>PRIVACY : 
+                 <span style={{fontSize:'10px',fontWeight:"300",marginTop:'10px',color:'white'}}> {props.challenge.privacy}</span>
+                 </p>
+             
+            </div>
+        </div>
     
     </div>
   )

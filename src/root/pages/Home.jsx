@@ -1,8 +1,17 @@
 import { Link } from "react-router-dom"
 import TalentSelector from "../../components/helper/TalentSelector"
+import { toast } from "sonner";
+import { useEffect } from "react";
 
 
 const Home = ({user}) => {
+
+
+useEffect ( () => {   
+   toast.success('successfully logged in !');
+   
+} , [] ) 
+
   return (
      <div className="d-flex flex-column align-items-center  justify-content-center" 
      style={{maxWidth:'500px',width:'100%',height:'85vh'}}>   

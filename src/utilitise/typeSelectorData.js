@@ -1,20 +1,32 @@
 export const challengeType =[
     {
-       type : "sport" , 
+       type : "SPORT" , 
        category:[
-        "soccer","football","basketball","cricket","tennis","swimming"
+        "SOCCER","FOOTBALL","BASKETBALLl","CRICKET","TENNIS","SWIMMING"
        ]
     },
     {
-        type: "adventure" ,
+        type: "ADVENTURE" ,
         category:[
-            "hiking","climbing","skying","skyDiving","surfing",""
+            "HIKING","CLIMBING","SKIING","SKYDIVING","SURFING",""
         ]
     },
     {
-        type: "food" ,
+        type: "FOOD" ,
         category:[
-            "eating","cooking"
+            "EATING","COOKING","BAKING"
         ]
     }
+]
+
+export const privacyData =[ 
+    {
+   privacy:"PUBLIC",
+   challengers:["YOUR CHALLENGERS" ,"EVERYONE"]
+},
+   {
+    privacy:"PRIVATE",
+    audience: ["ONLY YOU","OONLY CHALLENGERS" ,"EVERYONE"],
+    challengers:["NOBODY","ONLY CHALLENGERS" ]
+   }
 ]
