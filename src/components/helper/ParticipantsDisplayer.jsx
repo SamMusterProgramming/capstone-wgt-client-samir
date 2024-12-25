@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import './Helper.css'
 import {  BASE_URL, getUserById, liked, loadLikeVoteData, voted } from '../../apiCalls'
 import PostFooter from './PostFooter';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Select } from 'antd';
 import { getDownloadURL, ref } from 'firebase/storage';
 import { generateUserFolder, storage } from '../../firebase';
@@ -67,7 +67,6 @@ const ParticipantsDisplayer = (props) => {
           votes:participant.votes
         }
     });
-    console.log(obj)
     setTopChallenger({...obj})
   },[likesVotesData] )
 
@@ -113,8 +112,7 @@ const ParticipantsDisplayer = (props) => {
       .catch((error) => {
        console.error(error);
       });
-      
-      //  setVideo_url(selectedParticipant.video_url)
+
        setLikesVotesData({like_count:selectedParticipant.likes,vote_count:selectedParticipant.votes})
        //apiCall.js  , load the like and vote data when loading new participant 
        loadLikeVoteData(ids,setLikesVotesData)   
@@ -124,8 +122,17 @@ const ParticipantsDisplayer = (props) => {
 
     
     const handleChange = async (value) =>{
-      getUserById(value ,setUserProfile)
-      setSelectedParticipant(props.participants.find(participant => participant.user_id === value))
+      // getUserById(value ,setUserProfile)
+      const newParticipant =  props.participants.find(participant => participant.user_id === value);
+      console.log(newParticipant)
+      setSelectedParticipant( { ...selectedParticipant,
+                                   _id:newParticipant._id,
+                                   name:newParticipant.name,
+                                   profile_img:newParticipant.profile_img ,
+                                   user_id:newParticipant.user_id,
+                                   video_url:newParticipant.video_url,
+                                   likes:newParticipant.likes,
+                                   votes:newParticipant.votes })
       } 
    
 
@@ -143,8 +150,99 @@ const ParticipantsDisplayer = (props) => {
   return (
 
     <div className="d-flex flex-column mb-0 mt-5 justify-content-start align-items-center challenges">
-    
-         <div className='d-flex flex-row  justify-content-between align-items-center '
+         
+
+         <div key={props.key} className='d-flex mt-0 justify-content-center participantdisplayer'> 
+          <Select
+            style={{width:"100%",height:"43px",fontSize:' 35px' ,border:"none",fontWeight:"800", backgroundColor:'red',textAlign:"center"}}
+              defaultValue="Select a Participant"
+            onChange={handleChange} value={selectedParticipant.user_id}
+                >   
+
+                {props.participants.map((participant,index)=>{    
+                  return  (<Select.Option key={index} style={{ color:'black',fontWeight:"500",
+                    backgroundColor:"lightgray",width:"100%",height:"45px"
+                  }}  value = {participant.user_id} autoFocus
+                   className="d-flex flex-row align-items-start gap3"
+                  >
+                    <div  className="d-flex flex-row align-items-center gap-2">
+
+                    <div className="chip">
+                          <img src={BASE_URL + participant.profile_img } alt="" />
+                          <p style={{marginTop:'-5px'}} > {(props.user._id===participant.user_id)? participant.name + " - YOU": participant.name} </p> 
+                    </div>
+                    
+                     <div className='d-flex flex-ro text-center gap-2  align-items-center showvote'>
+                          <p>{participant.votes}</p> 
+                          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"color='red' className="bi bi-heart-fill" viewBox="0 0 16 16">
+                           <path fill-rule="evenodd"  d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
+                          </svg>
+                         <p style={{marginRight:'6px'}}>votes</p>
+                     </div>
+                    </div>
+                     
+                   
+                    
+                  </Select.Option>)
+                }
+              )}         
+          </Select>
+        </div>
+
+
+
+         <div className='d-flex justify-content-start align-items-center  '
+         style={{height:'50px',width:'100%',backgroundColor:'black'}}>
+            <div className='d-flex flex-column justify-content-start gap align-items-center'
+                   style={{height:"100%",width:"20%",backgroundColor:"#bf5b19"}}>
+                <span style={{fontSize:'8px',fontWeight:"600",marginTop:'10px',color:'black'}}>POSTED BY</span>
+                <p style={{fontSize:'9px',fontWeight:"600",color:'white'}}>{selectedParticipant.name}</p>
+            </div>
+             <div className="d-flex justify-content-start align-items-center border " 
+               style={{height:'50px',width:'20%'}}>
+                <Link  style={{height:'50px',width:'100%'}} to = {`/profile/${selectedParticipant.user_id}`} > 
+                  <img  style={{height:'50px',width:'100%',objectFit:"fill"}} src={BASE_URL + selectedParticipant.profile_img } alt="" />
+                </Link>
+            </div>
+            <div className='d-flex flex-column justify-content-center gap align-items-center'
+                   style={{height:"100%",width:"20%",backgroundColor:"white"}}>
+               <button style={{width:'100%',height:'100%', backgroundColor:"#194ebf",fontSize:'10px',fontWeight:"600"}}>
+                     FOLLOW
+               </button>
+            </div> 
+
+           <div className='d-flex flex-column justify-content-center gap align-items-center'
+                   style={{height:"100%",width:"20%",backgroundColor:"#de1051"}}>
+               <button style={{width:'100%',height:'100%',color:'white', backgroundColor:"#de1051",fontSize:'12px',fontWeight:"600"}}>
+                     ADD
+               </button>
+            </div> 
+            
+         </div>
+
+
+      
+        <div className=" d-flex flex-column videopost">
+            <div className='videodisplayer'>
+                <video
+                    className='video'
+                    style={{width:'100%',backgroundColor:'black'}}
+                    width="100%"
+                    height="100%"
+                    autoPlay
+                    // src={ BASE_URL + video_url}
+                    src={video_url}
+                    audio={true}
+                    controls />
+                
+            </div>
+            <PostFooter challenge={props.challenge} likesVotesData={likesVotesData} handleLikes={handleLikes}
+              handleVotes={handleVotes}  isLikedColor={isLikedColor} isVotedColor={isVotedColor} user={props.user}
+               />
+        </div> 
+
+      
+        <div className='d-flex flex-row  justify-content-between align-items-center '
             style={{height:'50px',width:'100%',backgroundColor:'#1f1e15'}} >
               
                    {!ownChallenge? (    
@@ -180,61 +278,8 @@ const ParticipantsDisplayer = (props) => {
                    </button>
             
         </div>
-       
-        <div key={props.key} className='d-flex mt-0 justify-content-center participantdisplayer'> 
-          <Select
-            style={{width:"100%",height:"43px",fontSize:' 35px' ,border:"none",fontWeight:"800", backgroundColor:'red',textAlign:"center"}}
-              defaultValue="Select a Participant"
-            onChange={handleChange} 
-                >   
 
-                {props.participants.map((participant,index)=>{    
-                  return  (<Select.Option key={index} style={{ color:'black',fontWeight:"500",
-                    backgroundColor:"lightgray",width:"100%",height:"45px"
-                  }}  value = {participant.user_id} 
-                   className="d-flex flex-row align-items-start gap3"
-                  >
-                    <div  className="d-flex flex-row align-items-center gap-2">
 
-                    <div class="chip">
-                          <img src={BASE_URL + participant.profile_img } alt="" />
-                          <p style={{marginTop:'-5px'}} > {(props.user._id===participant.user_id)? participant.name + " - YOU": participant.name} </p> 
-                    </div>
-                    
-                     <div className='d-flex flex-ro text-center gap-2  align-items-center showvote'>
-                          <p>{participant.votes}</p> 
-                          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"color='red' className="bi bi-heart-fill" viewBox="0 0 16 16">
-                           <path fill-rule="evenodd"  d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
-                          </svg>
-                         <p style={{marginRight:'6px'}}>votes</p>
-                     </div>
-                    </div>
-                     
-                   
-                    
-                  </Select.Option>)
-                }
-              )}         
-          </Select>
-        </div>
-        <div className=" d-flex flex-column videopost">
-            <div className='videodisplayer'>
-                <video
-                    className='video'
-                    style={{width:'100%',backgroundColor:'black'}}
-                    width="100%"
-                    height="100%"
-                    autoPlay
-                    // src={ BASE_URL + video_url}
-                    src={video_url}
-                    audio
-                    controls />
-                
-            </div>
-            <PostFooter challenge={props.challenge} likesVotesData={likesVotesData} handleLikes={handleLikes}
-              handleVotes={handleVotes}  isLikedColor={isLikedColor} isVotedColor={isVotedColor} user={props.user}
-               />
-        </div> 
         <div className='d-flex justify-content-start  align-items-center '
           style={{height:"60px",width:"100%"}}>
             <div className='d-flex flex-column justify-content-start gap align-items-center'
@@ -250,8 +295,8 @@ const ParticipantsDisplayer = (props) => {
                 <p style={{fontSize:'11px',fontWeight:"600",color:'gold'}}>{topChallenger.topChallenger}</p>
                 <p style={{fontSize:'11px',fontWeight:"600",color:'pink'}}>{topChallenger.votes} <span>  VOTES</span>  </p>
             </div>
-            <div className='d-flex flex-column justify-content-start gap align-items-start'
-               style={{height:"100%",width:"30%",backgroundColor:"#3d34eb"}}>
+            <div className='d-flex flex-column  justify-content-center  align-items-center'
+               style={{height:"100%",width:"30%",backgroundColor:"#de3c10"}}>
                  <p style={{fontSize:'11px',fontWeight:"600",color:'gold',marginTop:'10px'}}>TYPE : 
                  <span style={{fontSize:'10px',fontWeight:"300",marginTop:'10px',color:'white'}}> {props.challenge.type}</span>
                  </p>
@@ -260,7 +305,7 @@ const ParticipantsDisplayer = (props) => {
                  </p>
                  <p style={{fontSize:'11px',fontWeight:"600",color:'gold'}}>PRIVACY : 
                  <span style={{fontSize:'10px',fontWeight:"300",marginTop:'10px',color:'white'}}> {props.challenge.privacy}</span>
-                 </p>
+                </p>
              
             </div>
         </div>
