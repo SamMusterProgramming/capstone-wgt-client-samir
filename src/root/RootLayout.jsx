@@ -18,7 +18,7 @@ function RootLayout() {
    
     { isAuthenticated ? (
  
-    <div className=' d-flex flex-column justify-content-between align-items-center full-page'>
+    // <div className=' d-flex flex-column justify-content-between align-items-center full-page'>
            
        
         <div className=" homelayout">
@@ -30,7 +30,7 @@ function RootLayout() {
         
        
 
-    </div>
+    // </div>
 
     ) : (<Navigate to='/sign-in' />)
     }

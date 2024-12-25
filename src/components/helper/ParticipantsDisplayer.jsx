@@ -229,10 +229,10 @@ const ParticipantsDisplayer = (props) => {
                     style={{width:'100%',backgroundColor:'black'}}
                     width="100%"
                     height="100%"
-                    autoPlay
+                    // autoPlay
                     // src={ BASE_URL + video_url}
                     src={video_url}
-                    audio={true}
+                    muted={false}
                     controls />
                 
             </div>
