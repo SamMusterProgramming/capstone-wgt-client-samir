@@ -14,7 +14,7 @@ function RootLayout() {
   const isAuthenticated = user? true : false ; 
 
   return (
-    <>   
+     <>
    
     { isAuthenticated ? (
  
@@ -34,7 +34,7 @@ function RootLayout() {
 
     ) : (<Navigate to='/sign-in' />)
     }
-     </>
+  </>
   )
 }
 
