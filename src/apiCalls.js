@@ -57,6 +57,17 @@ export const getUserById = async(user_id,setUserProfile) =>{
     }
 
 }
+// *********************************** getChallenge by id *************************
+
+
+export const getChallengeById = async(id,setChallenge)=>{
+   try {
+    await axios.get(BASE_URL+ `/challenges/find/${id}`)
+    .then(res => {setChallenge(res.data)} )
+   } catch (error) {
+      console.log(error)
+   }
+}
 
 
 // *********************************** new Challenge /top challenger *************************
@@ -135,7 +146,7 @@ export const getUserChallenges = async( user_id , setChallenges)=>{
       }
   }
 
-     // *********************************** follower *************************
+  // *********************************** follower *************************
 
 
     export const follow= async(user_id , rawBody , setFollower)=>{

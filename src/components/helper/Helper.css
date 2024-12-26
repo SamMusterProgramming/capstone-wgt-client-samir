@@ -1,7 +1,7 @@
 /* ********************************* PostHeader **************************** */
 
 .post-header{ 
-    width: 100%;
+    width: 95%;
     max-width: 500px;
     height: 40px;
     /* background-color: rgb(99, 94, 92); */
@@ -169,4 +169,8 @@
     font-size: 12px;
     margin-bottom: opx;
     color: goldenrod;
+  }
+
+  button:hover {
+    opacity: 70%;
   }

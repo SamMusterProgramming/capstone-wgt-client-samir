@@ -6,7 +6,7 @@ import UploadVideo from '../../components/helper/UploadVideo';
 import axios from 'axios'
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import { BASE_URL } from '../../apiCalls';
+import { BASE_URL, getChallengeById } from '../../apiCalls';
 import { ref, uploadBytes } from 'firebase/storage';
 import { v4 } from 'uuid';
 import { generateUserFolder, storage } from '../../firebase';
@@ -36,7 +36,7 @@ const NewChallenge = (props) => {
   const [audience , setAudience] = useState([])
   const [challengers , setChallengers] = useState([])
   const [selectedChallenger , setSelectedChallenger] = useState("EVERYONE")
-  
+  const [challenge,setChallenge] = useState({})
 
 
 
@@ -97,7 +97,6 @@ const handleUpload = ({file}) => {
 const addDescrition =(e)=> {
   e.preventDefault(e)
   setDescription(e.target.value)
-  console.log(challenge_id)
 }
 
 const handleSelectedType =(value)=> {
@@ -142,15 +141,23 @@ useEffect(() => {
 }, [selectedPrivacy])
 
 
+useEffect(() => {
+  if(challenge_id) {
+     getChallengeById(challenge_id,setChallenge)
+  }
+}, [])
+
   return (
   
-    <div className="d-flex justify-content-start gap-2 align-items-center post-container">
+    <div className="d-flex justify-content-center gap-4 align-items-center post-container">
 
-      <PostHeader user={props.user} talentType ={selectedType} category ={selectedCategory}/>
+     
 
-      {(!challenge_id) &&  (
+      {(!challenge_id) ?  (
+        <>
+           <PostHeader user={props.user} talentType ={selectedType} category ={selectedCategory}/>
            <div className='d-flex flex-wrap gap-1 mt-1 justify-content-evenly align-items-start'
-           style={{height:'80px',width:'100%'}}>
+           style={{height:'50px',width:'100%'}}>
              
              
               <div className='d-flex flex-column gap-2'
@@ -199,13 +206,22 @@ useEffect(() => {
               </div>  
                 
          </div>
+        </>
+      ):(
+        <>
+        <PostHeader user={props.user} talentType ={challenge.type} category ={challenge.category}/>
+
+        <div className='d-flex flex-column justify-content-start aligh-items-center'>
+           <h5>You are about to participate in a challenge</h5>
+        </div>
+        </>
       )}
           
           
-  
           <textarea style={{backgroundColor:'white',color:'black',fontWeight:500, width:'95%',height:'50px'}}
-           className="description mt-2 mb-3" onChange={addDescrition}  name='description' placeholder='add description to your challenge'>
+           className="description " onChange={addDescrition}  name='description' placeholder='add description to your challenge'>
           </textarea>
+         
 
               { !swicthUploadLive ? (
 

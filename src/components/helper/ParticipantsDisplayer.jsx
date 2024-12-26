@@ -246,16 +246,16 @@ const ParticipantsDisplayer = (props) => {
             style={{height:'50px',width:'100%',backgroundColor:'#1f1e15'}} >
               
                    {!ownChallenge? (    
-                    <button style={{width:'110px',color:"lightgreen",textAlign:'center',
-                      backgroundColor:'#c29311',height:'100%',fontSize:"16px",fontWeight:"800"
+                    <button style={{width:'90px',color:"lightgreen",textAlign:'center',
+                      backgroundColor:'#c29311',height:'100%',fontSize:"14px",fontWeight:"800"
                     }}               
                       onClick={(e) => navigate(`/matchchallenge/${props.challenge._id}`)} >
-                        CHALLENGE      
+                        REPLY     
                     </button> 
                   ):(
         
                     <button style={{width:'90px',color:"white",textAlign:'center',
-                      backgroundColor:'#b81842',height:'100%',fontSize:"16px",fontWeight:"800"
+                      backgroundColor:'#b81842',height:'100%',fontSize:"14px",fontWeight:"800"
                     }}  >
                         QUIT  
                     </button>
@@ -264,15 +264,15 @@ const ParticipantsDisplayer = (props) => {
                    <div className='d-flex flex-column align-items-center justify-content-start'
                       style={{widh:"180px" , height:"100%"}}>
                       <span>{props.participants.length}</span>
-                      <p style={{fontSize:'12px'}}>CHALLENGERS</p>
+                      <p style={{fontSize:'10px'}}>CHALLENGERS</p>
                    </div>
                    <div className='d-flex flex-column align-items-center justify-content-center'
                       style={{widh:"180px" , height:"100%"}}>      
-                    <p style={{fontSize:'18px',color:'white'}}>4.5<span style={{fontSize:'18px',color:'gold'}}>   *****</span></p> 
+                    <p style={{fontSize:'15px',color:'white'}}>4.5<span style={{fontSize:'18px',color:'gold'}}>   *****</span></p> 
                       <p style={{fontSize:'11px',color:'white',marginTop:"-9px",marginLeft:"29px"}}>rating</p>
                    </div>
                    <button style={{backgroundColor:'#114fc2'
-                      ,width:'90px',color:"lightblue",height:'100%',fontSize:"16px",fontWeight:"800"
+                      ,width:'90px',color:"lightblue",height:'100%',fontSize:"14px",fontWeight:"800"
                       }}>
                       Follow
                    </button>
