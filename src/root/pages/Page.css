@@ -16,7 +16,7 @@
     max-width: 500px;
     /* max-height: 900px;  */
     overflow: scroll;
-    background-color: rgb(157, 19, 19);
+    background-color: rgb(2, 2, 2);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -24,7 +24,8 @@
 }
 /* ************************** challenge post ****************************************** */
 .post-container{
-    height: 85vh;
+    min-height: 83%; 
+    width: 100%;
     max-width:500px;
     gap:30px;
     flex-direction: column;
@@ -66,22 +67,23 @@
 .description {
 
     padding: 10px;
-    font-size: 13px;
-    font-weight: 200;
+    font-size: 10px;
+    font-weight: 400;
     color: black;
     width: 100%;
+    margin-top: -25px;
 }
 .postholder {
     max-width: 500px;
-    width: 90%;
-    min-height: 30%;
+    width: 95%;
+    min-height: 40%;
     background-color: rgb(87, 126, 126);
     border-radius: 15px;
 }
 .post-size {
     width: 100%;
     max-width: 500px;
-    height: 250px;
+    height: 100%;
     object-fit: cover;
     border-radius: 15px;
     background-color: rgb(87, 126, 126);
@@ -89,21 +91,21 @@
 .postfooter{
     width: 90%;
     max-width: 500px;
-    height: 60px;
+    height: 30px;
     background-color: rgb(40, 40, 28);
     border-radius: 20px;
 }
 .postfooter button {
-  font-size: 18px;
+  font-size: 15px;
   cursor: pointer;
 }
 .submit-button{
     background-color: green;
-    width: 30%;
-    height: 45px;
+    width: 24%;
+    height: 35px;
     border-radius: 15px;
     font-weight: 500;
-    font-size: 18px;
+    font-size: 14px;
 }
 
 /* ************************** homepage ****************************************** */

@@ -40,8 +40,20 @@ const LiveWebcam = (props) => {
       const blob = mediaRecorderRef.current.getBlob();
       setRecordedChunks([blob])
       const url = URL.createObjectURL(blob)
-      setBlob(url)
+      const a = document.createElement("a");
+      document.body.appendChild(a)
+      a.style = "display: none";
+      a.href = url;
+      a.download = "1.webm";
+      a.click();
+      setBlob(url);
       props.setVideoSrc(url)   
+      // const blob1 = new Blob(recordedChunks , {
+      //   type:"video/webm"
+      // })
+      // const url1 = URL.createObjectURL(blob1)
+      // props.setVideoSrc(url1)   
+      props.setFile(blob)
       props.setSwitchUploadLive(false)
     })
   },[setRecording,mediaRecorderRef]) 
@@ -100,7 +112,7 @@ const LiveWebcam = (props) => {
                      (
                      <button id='stopCapture' onClick={handleStopRecording}
                         >
-                        <svg xmlns="http://www.w3.org/2000/svg" width="46" height="46" fill="currentColor" color="lightgreen" className="bi bi-camera-video-off-fill" viewBox="0 0 16 16">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" color="lightgreen" className="bi bi-camera-video-off-fill" viewBox="0 0 16 16">
                            <path d="M6 3a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
                            <path d="M9 6a3 3 0 1 1 0-6 3 3 0 0 1 0 6"/>
                            <path d="M9 6h.5a2 2 0 0 1 1.983 1.738l3.11-1.382A1 1 0 0 1 16 7.269v7.462a1 1 0 0 1-1.406.913l-3.111-1.382A2 2 0 0 1 9.5 16H2a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z"/>
@@ -109,7 +121,7 @@ const LiveWebcam = (props) => {
                      ):(
                        <button id='startCapture'  onClick={handleStartRecording}
                        >
-                       <svg xmlns="http://www.w3.org/2000/svg" width="46" height="46" fill="currentColor" className="bi bi-play" color='red'  viewBox="0 0 16 16">
+                       <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" className="bi bi-play" color='red'  viewBox="0 0 16 16">
                          <path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2M6 5.883a.5.5 0 0 1 .757-.429l3.528 2.117a.5.5 0 0 1 0 .858l-3.528 2.117a.5.5 0 0 1-.757-.43V5.884z"/>
                        </svg>
                       </button>

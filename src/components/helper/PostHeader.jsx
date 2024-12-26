@@ -13,23 +13,23 @@ const PostHeader = (props) => {
 
 
   return (
-    <div className=" d-flex justify-content-start align-items-center gap-4 post-header">
+    <div className=" d-flex justify-content-start align-items-center mt-3 gap-4 post-header">
         <Link to ={`/profile/${props.user._id}`}>
                 <img src={BASE_URL+ props.user.profile_img} alt="Person"/>
         </Link> 
-        <div className='d-flex  gap-1 flex-column  text-center'>
+        <div className='d-flex  gap-0 flex-column  text-center'>
             <div className="user-name">{props.user.name}</div>
             <div className="post-time">5 mins ago</div>
         </div>
-        <div className='d-flex text-light flex-column gap-2 text-center'>
-        <p style={{fontSize:10}}>
+        <div className='d-flex text-light flex-column gap-0 text-center'>
+        <p style={{fontSize:9}}>
             Category
         </p> 
-        <span className="talenttype">{props.category}</span>   
+        <span style={{fontSize:10}} className="talenttype">{props.category}</span>   
         </div>
-        <div style={{marginLeft:'auto'}} className='d-flex gap-2 flex-column justify-content-center align-items-center'>
-          <p style={{fontSize:10}}>Competition</p>
-            <span className="talenttype">{props.talentType}</span>
+        <div style={{marginLeft:'auto'}} className='d-flex gap-0 flex-column justify-content-center align-items-center'>
+          <p style={{fontSize:9}}>Competition</p>
+            <span style={{fontSize:10}} className="talenttype">{props.talentType}</span>
         </div>
         <img style={{backgroundColor:'gold'}} src = "/asset/material/chalenge.png"  alt="User Avatar"/>
 </div>

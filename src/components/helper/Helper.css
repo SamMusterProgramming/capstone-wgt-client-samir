@@ -1,25 +1,25 @@
 /* ********************************* PostHeader **************************** */
 
 .post-header{ 
-    width: 90%;
+    width: 100%;
     max-width: 500px;
-    height: 60px;
+    height: 40px;
     /* background-color: rgb(99, 94, 92); */
-    background-color:#134eb3;
+    background-color:#4a6ead;
    
 }
 .post-header img {
-    width: 50px;
-    height: 60px;
+    width: 40px;
+    height: 40px;
     border-radius: 0%;
 }
 .user-name {
-    font-size: 10px;
-    font-weight: 700;
+    font-size: 9px;
+    font-weight: 900;
     font-family:Georgia, 'Times New Roman', Times, serif
 }
 .post-time{
-    font-size: 10px;
+    font-size: 7px;
     font-weight: 100;
 }
 .talenttype {

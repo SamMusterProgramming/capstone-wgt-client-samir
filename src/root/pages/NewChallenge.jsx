@@ -44,6 +44,7 @@ const NewChallenge = (props) => {
     
     // const formData = new FormData();
     if(file){ // if video is recorded and ready to upload to data base
+      console.log(file)
       const newFile = v4()+file.name 
       const CHALLENGE_VIDEO_URL = generateUserFolder(props.user.email)+ newFile;
       const videoRef = ref(storage,CHALLENGE_VIDEO_URL)
@@ -84,6 +85,7 @@ const NewChallenge = (props) => {
    
   }; 
 }
+
 
 const handleUpload = ({file}) => {
   setFile(file.originFileObj) 
@@ -142,189 +144,67 @@ useEffect(() => {
 
   return (
   
-    <div className="d-flex justify-content-start gap-4 align-items-center post-container">
+    <div className="d-flex justify-content-start gap-2 align-items-center post-container">
+
+      <PostHeader user={props.user} talentType ={selectedType} category ={selectedCategory}/>
 
       {(!challenge_id) &&  (
-           <div className='d-flex flex-wrap gap-1 mt-4 justify-content-evenly align-items-start'
-           style={{height:'150px',width:'100%'}}>
+           <div className='d-flex flex-wrap gap-1 mt-1 justify-content-evenly align-items-start'
+           style={{height:'80px',width:'100%'}}>
              
              
               <div className='d-flex flex-column gap-2'
                 style={{width:"29%",height:"80px",fontSize:'14px' ,border:"none",fontWeight:"800",textAlign:"center"}}>
                      <p style={{fontSize:'7px'}} >SELECT CHALLENGE TYPE</p>
                     <Select  onChange={handleSelectedType} defaultValue={selectedType}
-                    style={{width:"100%",height:"45px",fontSize:'14px' ,border:"none",fontWeight:"1200",textAlign:"center"}}>
+                    style={{width:"100%",height:"25px",fontSize:'14px' ,border:"none",fontWeight:"1200",textAlign:"center"}}>
                   {challengeType.map((selection,index)=>{   
                    return ( <Select.Option key={index} value = {selection.type}
-                               style={{ color:'black',fontWeight:"1000",fontSize:"14px",
-                               backgroundColor:"white",width:"100%",height:"50px" }} >
-                          <p style={{ color:'black',fontWeight:"900",fontSize:"13px"}}>{selection.type}</p> 
+                               style={{ color:'black',fontWeight:"1000",fontSize:"9px",
+                               backgroundColor:"white",width:"100%",height:"20px" }} >
+                          <p style={{ color:'black',fontWeight:"900",fontSize:"9px"}}>{selection.type}</p> 
                      </Select.Option> )
                     })}
                </Select> 
               </div>
              
               <div className='d-flex flex-column gap-2'
-                style={{width:"29%",height:"80px",fontSize:'14px' ,border:"none",fontWeight:"800",textAlign:"center"}}>
-                     <p style={{fontSize:'7px'}} >SELECT CHALLENGE CATEGORY</p> 
+                style={{width:"29%",height:"80px",fontSize:'9px' ,border:"none",fontWeight:"800",textAlign:"center"}}>
+                     <p style={{fontSize:'7px'}} >SELECT  CATEGORY</p> 
               <Select  onChange={handleSelectedCategory} defaultValue={selectedCategory}
-                 style={{width:"100%",height:"45px",fontSize:'14px' ,border:"none",fontWeight:"800",textAlign:"center"}} >
+                 style={{width:"100%",height:"25px",fontSize:'9px' ,border:"none",fontWeight:"800",textAlign:"center"}} >
                   {categories.map((category,index)=>{   
                    return ( <Select.Option key={index} value = {category}
-                     style={{ color:'black',fontWeight:"1000",fontSize:"14px",
-                       backgroundColor:"white",width:"100%",height:"40px" }} >
-                          <p style={{ color:'black',fontWeight:"700",fontSize:"13px"}}>{category}</p> 
+                     style={{ color:'black',fontWeight:"1000",fontSize:"9px",
+                       backgroundColor:"white",width:"100%",height:"20px" }} >
+                          <p style={{ color:'black',fontWeight:"700",fontSize:"9px"}}>{category}</p> 
                      </Select.Option> )
                     })}
                </Select> 
              </div>
              
              <div className='d-flex flex-column gap-2'
-                style={{width:"29%",height:"80px",fontSize:'12px' ,border:"none",fontWeight:"800",textAlign:"center"}}>
-                     <p style={{fontSize:'7px'}} >SET UP CHALLENGE PRIVACY</p> 
+                style={{width:"29%",height:"80px",fontSize:'9px' ,border:"none",fontWeight:"800",textAlign:"center"}}>
+                     <p style={{fontSize:'7px'}} >SET UP PRIVACY</p> 
                <Select  onChange={handleSelectedPrivacy} defaultValue={selectedPrivacy}
-                 style={{width:"100%",height:"45px",fontSize:' 14px' ,border:"none",fontWeight:"800",textAlign:"center"}} >
+                 style={{width:"100%",height:"25px",fontSize:' 9px' ,border:"none",fontWeight:"800",textAlign:"center"}} >
                   {privacyData.map((selection,index)=>{   
                    return ( <Select.Option key={index} value = {selection.privacy}
                      style={{ color:'black',fontWeight:"500",
-                       backgroundColor:"white",width:"100%",height:"40px" }} >
-                          <p style={{ color:'black',fontWeight:"700",fontSize:"13px"}}>{selection.privacy}</p> 
+                       backgroundColor:"white",width:"100%",height:"20px" }} >
+                          <p style={{ color:'black',fontWeight:"700",fontSize:"9px"}}>{selection.privacy}</p> 
                      </Select.Option> )
                     })}
                </Select> 
               </div>  
                 
-               { (selectedPrivacy === "PRIVATE") &&  (
-                   <div className='d-flex flex-column gap-2'
-                   style={{width:"40%",height:"80px",fontSize:'12px' ,border:"none",fontWeight:"800",textAlign:"center"}}>
-                        <p style={{fontSize:'7px'}} >WHO CAN SEE YOUR CHALLENGE</p> 
-              
-                  <Select  onChange={handleSelectedAudience} defaultValue={selectedAudience}
-                     style={{width:"100%",height:"45px",fontSize:' 12px' ,border:"none",fontWeight:"800",textAlign:"center"}} >
-                       {audience.map((audience,index)=>{   
-                       return ( <Select.Option key={index} value = {audience}
-                             style={{ color:'black',fontWeight:"500",
-                               backgroundColor:"white",width:"100%",height:"40px" }} >
-                                   <p  style={{ color:'black',fontWeight:"600",fontSize:"13px"}} >{audience}</p> 
-                         </Select.Option> )
-                         })}
-                 </Select> 
-                </div>
-               ) 
-
-               } 
-
-              <div className='d-flex flex-column gap-2'
-                   style={{width:"40%",height:"80px",fontSize:'12px' ,border:"none",fontWeight:"800",textAlign:"center"}}>
-                     <p style={{fontSize:'7px'}} >WHO CAN CHALLENGE YOU</p> 
-             
-                   <Select  onChange={handleSelectedChallenger} defaultValue={selectedChallenger}
-                     style={{width:"100%",height:"45px",fontSize:' 12px' ,border:"none",fontWeight:"800", textAlign:"center"}} >
-                       {challengers.map((challenger,index)=>{   
-                       return ( <Select.Option key={index} value = {challenger}
-                         style={{ color:'black',fontWeight:"500",
-                           backgroundColor:"white",width:"100%",height:"40px" }} >
-                               <p  style={{ color:'black',fontWeight:"700",fontSize:"13px"}} >{challenger}</p> 
-                         </Select.Option> )
-                         })}
-                   </Select> 
-             </div>   
-
          </div>
       )}
-  
-        {/* <div className='d-flex flex-wrap gap-1 mt-4 justify-content-evenly align-items-start'
-            style={{height:'150px',width:'100%'}}>
-              
-              
-               <div className='d-flex flex-column gap-2'
-                 style={{width:"29%",height:"80px",fontSize:'14px' ,border:"none",fontWeight:"800",textAlign:"center"}}>
-                      <p style={{fontSize:'7px'}} >SELECT CHALLENGE TYPE</p>
-                     <Select  onChange={handleSelectedType} defaultValue={selectedType}
-                     style={{width:"100%",height:"45px",fontSize:'14px' ,border:"none",fontWeight:"1200",textAlign:"center"}}>
-                   {challengeType.map((selection,index)=>{   
-                    return ( <Select.Option key={index} value = {selection.type}
-                                style={{ color:'black',fontWeight:"1000",fontSize:"14px",
-                                backgroundColor:"white",width:"100%",height:"50px" }} >
-                           <p style={{ color:'black',fontWeight:"900",fontSize:"13px"}}>{selection.type}</p> 
-                      </Select.Option> )
-                     })}
-                </Select> 
-               </div>
-              
-               <div className='d-flex flex-column gap-2'
-                 style={{width:"29%",height:"80px",fontSize:'14px' ,border:"none",fontWeight:"800",textAlign:"center"}}>
-                      <p style={{fontSize:'7px'}} >SELECT CHALLENGE CATEGORY</p> 
-               <Select  onChange={handleSelectedCategory} defaultValue={selectedCategory}
-                  style={{width:"100%",height:"45px",fontSize:'14px' ,border:"none",fontWeight:"800",textAlign:"center"}} >
-                   {categories.map((category,index)=>{   
-                    return ( <Select.Option key={index} value = {category}
-                      style={{ color:'black',fontWeight:"1000",fontSize:"14px",
-                        backgroundColor:"white",width:"100%",height:"40px" }} >
-                           <p style={{ color:'black',fontWeight:"700",fontSize:"13px"}}>{category}</p> 
-                      </Select.Option> )
-                     })}
-                </Select> 
-              </div>
-              
-              <div className='d-flex flex-column gap-2'
-                 style={{width:"29%",height:"80px",fontSize:'12px' ,border:"none",fontWeight:"800",textAlign:"center"}}>
-                      <p style={{fontSize:'7px'}} >SET UP CHALLENGE PRIVACY</p> 
-                <Select  onChange={handleSelectedPrivacy} defaultValue={selectedPrivacy}
-                  style={{width:"100%",height:"45px",fontSize:' 14px' ,border:"none",fontWeight:"800",textAlign:"center"}} >
-                   {privacyData.map((selection,index)=>{   
-                    return ( <Select.Option key={index} value = {selection.privacy}
-                      style={{ color:'black',fontWeight:"500",
-                        backgroundColor:"white",width:"100%",height:"40px" }} >
-                           <p style={{ color:'black',fontWeight:"700",fontSize:"13px"}}>{selection.privacy}</p> 
-                      </Select.Option> )
-                     })}
-                </Select> 
-               </div>  
-                 
-                { (selectedPrivacy === "PRIVATE") &&  (
-                    <div className='d-flex flex-column gap-2'
-                    style={{width:"40%",height:"80px",fontSize:'12px' ,border:"none",fontWeight:"800",textAlign:"center"}}>
-                         <p style={{fontSize:'7px'}} >WHO CAN SEE YOUR CHALLENGE</p> 
-               
-                   <Select  onChange={handleSelectedAudience} defaultValue={selectedAudience}
-                      style={{width:"100%",height:"45px",fontSize:' 12px' ,border:"none",fontWeight:"800",textAlign:"center"}} >
-                        {audience.map((audience,index)=>{   
-                        return ( <Select.Option key={index} value = {audience}
-                              style={{ color:'black',fontWeight:"500",
-                                backgroundColor:"white",width:"100%",height:"40px" }} >
-                                    <p  style={{ color:'black',fontWeight:"600",fontSize:"13px"}} >{audience}</p> 
-                          </Select.Option> )
-                          })}
-                  </Select> 
-                 </div>
-                ) 
-
-                } 
-
-               <div className='d-flex flex-column gap-2'
-                    style={{width:"40%",height:"80px",fontSize:'12px' ,border:"none",fontWeight:"800",textAlign:"center"}}>
-                      <p style={{fontSize:'7px'}} >WHO CAN CHALLENGE YOU</p> 
-              
-                    <Select  onChange={handleSelectedChallenger} defaultValue={selectedChallenger}
-                      style={{width:"100%",height:"45px",fontSize:' 12px' ,border:"none",fontWeight:"800", textAlign:"center"}} >
-                        {challengers.map((challenger,index)=>{   
-                        return ( <Select.Option key={index} value = {challenger}
-                          style={{ color:'black',fontWeight:"500",
-                            backgroundColor:"white",width:"100%",height:"40px" }} >
-                                <p  style={{ color:'black',fontWeight:"700",fontSize:"13px"}} >{challenger}</p> 
-                          </Select.Option> )
-                          })}
-                    </Select> 
-              </div>   
-
-          </div> */}
-            
           
-          <PostHeader user={props.user} talentType ={selectedType} category ={selectedCategory}/>
+          
   
-          <textarea style={{backgroundColor:'white',color:'black',fontWeight:500, width:'90%'}}
-           className="description" onChange={addDescrition}  name='description' placeholder='add description to your challenge'>
+          <textarea style={{backgroundColor:'white',color:'black',fontWeight:500, width:'95%',height:'50px'}}
+           className="description mt-2 mb-3" onChange={addDescrition}  name='description' placeholder='add description to your challenge'>
           </textarea>
 
               { !swicthUploadLive ? (
@@ -337,7 +217,7 @@ useEffect(() => {
                   
                   <>
                   
-                   <LiveWebcam setSwitchUploadLive={setSwitchUploadLive} setVideoSrc={setVideoSrc} />
+                   <LiveWebcam setSwitchUploadLive={setSwitchUploadLive} setFile={setFile} setVideoSrc={setVideoSrc} />
                   </>
                 
                 )
