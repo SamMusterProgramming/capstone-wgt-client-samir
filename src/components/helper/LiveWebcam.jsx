@@ -3,12 +3,6 @@ import Webcam from "react-webcam";
 import RecordRTC from 'recordrtc'
 import VideoRecorder from "./VideoRecorder";
 
-const videoConstraints = {
-  width: 800,
-  height: 420,
-  facingMode: "user"
-};
-
 
 const LiveWebcam = (props) => {
     
@@ -18,7 +12,12 @@ const LiveWebcam = (props) => {
   const [recording, setRecording] = useState(false)
   const [recordedChunks, setRecordedChunks] = useState([])
   const [blob ,setBlob] = useState(null)   
+  const [facingMode, setFacingMode] = useState('user'); // Default to front camera
+  
 
+  const handleFlipCamera = () => {
+    setFacingMode(facingMode === 'user' ? 'environment' : 'user');
+  };
   const handleDataAvailable = useCallback(({data})=>{
     if(data.size > 0){
       setRecordedChunks(prev => prev.concat(data));
@@ -28,7 +27,7 @@ const LiveWebcam = (props) => {
   const handleStartRecording = useCallback(()=>{
     setRecording(true);
     mediaRecorderRef.current = RecordRTC(webcamRef.current.stream,{
-      type: "video"
+      type: "video/webm"
     })
     mediaRecorderRef.current.startRecording();
     mediaRecorderRef.current.ondataavailable = handleDataAvailable;
@@ -40,7 +39,7 @@ const LiveWebcam = (props) => {
       const blob = mediaRecorderRef.current.getBlob();
       setRecordedChunks([blob])
       const url = URL.createObjectURL(blob)
-      const a = document.createElement("a");
+      // const a = document.createElement("a");
       // document.body.appendChild(a)
       // a.style = "display: none";
       // a.href = url;
@@ -78,18 +77,24 @@ const LiveWebcam = (props) => {
     <>
      <div className="postholder">
       {!blob?(
+        <>
          <Webcam
         className='post-size'
          height="100%"
          width="100%"
          audio = "true"
          ref={webcamRef}
-         videoConstraints={videoConstraints}
-         controls
+         videoConstraints = {{
+          width: 800,
+          height: 420,
+          facingMode: facingMode
+        }}
+         controls   
         />
+        </>
       ):(
         <>
-           <button onClick={handleDownload}>download</button>
+           
            <video
            className='post-size'
            height="100%"
@@ -98,6 +103,7 @@ const LiveWebcam = (props) => {
            src={blob}
            controls
            />
+          
           </>
       )}
      
@@ -105,7 +111,7 @@ const LiveWebcam = (props) => {
           
      
     </div>
-              <div className='container-fluid d-flex gap-5 justify-content-between 
+              <div className='container-fluid d-flex gap-2 justify-content-between 
               align-items-center postfooter'>
                  
                    { recording ?
@@ -127,6 +133,10 @@ const LiveWebcam = (props) => {
                       </button>
                      ) 
                   }
+
+                      <button   onClick={handleFlipCamera}
+                      style={{color:'white'}}>flip</button>
+                  
                    <VideoRecorder   setSwitchUploadLive={props.setSwitchUploadLive}/>
                   </div>
                 </>  
