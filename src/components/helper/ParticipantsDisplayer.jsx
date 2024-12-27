@@ -1,11 +1,12 @@
 import { useEffect, useRef, useState } from 'react'
 import './Helper.css'
-import {  BASE_URL, getUserById, liked, loadLikeVoteData, voted } from '../../apiCalls'
+import {  BASE_URL, getUserById, liked, loadLikeVoteData, quitChallenge, voted } from '../../apiCalls'
 import PostFooter from './PostFooter';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { Select } from 'antd';
 import { getDownloadURL, ref } from 'firebase/storage';
 import { generateUserFolder, storage } from '../../firebase';
+
 
 
 
@@ -77,20 +78,33 @@ const ParticipantsDisplayer = (props) => {
   
     }
      
-    const handleVotes = async(e)=> {
+  const handleVotes = async(e)=> {
        //apiCall.js , when user vote like button
       voted(ids,setLikesVotesData,likesVotesData)   
     }
 
 
-    useEffect(() => { //logic here is to disable the add challenge button if the user has already participated  
+  const handleQuit = (e) => {
+      quitChallenge(props.challenge._id,props.user._id)
+      .then(data => { console.log("deleted")
+        res =>  setTimeout(() => {
+          navigate('/challenges')
+       }, 8000)  
+     
+    })
+  }
+
+
+  
+
+  useEffect(() => { //logic here is to disable the add challenge button if the user has already participated  
       props.participants.map(participant =>{
         if(participant.user_id === props.user._id) {
             setOwnChallenge( prev => !prev)
          } 
       })
 
-      const imageRef = ref(storage, generateUserFolder(selectedParticipant.email) + selectedParticipant.video_url);
+  const imageRef = ref(storage, generateUserFolder(selectedParticipant.email) + selectedParticipant.video_url);
       console.log(imageRef.fullPath)
       getDownloadURL(imageRef)
       .then((url) => {
@@ -102,7 +116,7 @@ const ParticipantsDisplayer = (props) => {
       
       }, [])
 
-    useEffect(() => {
+  useEffect(() => {
       const imageRef = ref(storage, selectedParticipant.video_url);
       console.log(imageRef.fullPath)
       getDownloadURL(imageRef)
@@ -135,7 +149,7 @@ const ParticipantsDisplayer = (props) => {
                                    votes:newParticipant.votes })
       } 
    
-
+  
   useEffect(() => {
     likesVotesData.isLiked ? 
          setIsLikedColor("blue")   
@@ -256,8 +270,8 @@ const ParticipantsDisplayer = (props) => {
         
                     <button style={{width:'90px',color:"white",textAlign:'center',
                       backgroundColor:'#b81842',height:'100%',fontSize:"14px",fontWeight:"800"
-                    }}  >
-                        QUIT  
+                    }} onClick={handleQuit} >
+                        RESIGN  
                     </button>
                     )}
             

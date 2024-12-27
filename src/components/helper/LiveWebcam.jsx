@@ -27,7 +27,7 @@ const LiveWebcam = (props) => {
   const handleStartRecording = useCallback(()=>{
     setRecording(true);
     mediaRecorderRef.current = RecordRTC(webcamRef.current.stream,{
-      type: "video"
+      mimeType: "video/webm"
     })
     mediaRecorderRef.current.startRecording();
     mediaRecorderRef.current.ondataavailable = handleDataAvailable;
@@ -85,8 +85,8 @@ const LiveWebcam = (props) => {
          audio = "true"
          ref={webcamRef}
          videoConstraints = {{
-          width: 800,
-          height: 420,
+          // width: 800,
+          // height: 420,
           facingMode: facingMode
         }}
          controls   

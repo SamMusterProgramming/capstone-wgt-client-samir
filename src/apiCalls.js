@@ -1,6 +1,7 @@
 
 import axios from 'axios'
 import AWS from "aws-sdk"
+import { Navigate } from 'react-router-dom'
 
  const baseURL_DEVOLOPMENT = "http://localhost:8000"
  const baseURL_PRODUCTION = import.meta.env.VITE_BASE_URL
@@ -100,8 +101,17 @@ export const getUserChallenges = async( user_id , setChallenges)=>{
          console.log(error)
      }
    }  
-
-
+  
+  // quit a challenge 
+  
+  export const quitChallenge = async(challenge_id, user_id)=> {
+      try {
+         await axios.patch(BASE_URL + `/challenges/quit/${challenge_id}`,{user_id:user_id}).
+         then(res => res.data)
+      } catch (error) {
+         console.log(error)
+      }
+  }
 
    // *********************************** likes and votes data *************************
 
