@@ -6,9 +6,9 @@ import { BASE_URL } from '../../apiCalls'
 const PostHeader = (props) => {
 
 
-  useEffect(() => {
-    console.log(props.userProfile)
-  }, [])
+  // useEffect(() => {
+  //   console.log(props.userProfile)
+  // }, [])
   
 
 
