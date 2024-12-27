@@ -27,7 +27,7 @@ const LiveWebcam = (props) => {
   const handleStartRecording = useCallback(()=>{
     setRecording(true);
     mediaRecorderRef.current = RecordRTC(webcamRef.current.stream,{
-      type: "video/webm"
+      type: "video"
     })
     mediaRecorderRef.current.startRecording();
     mediaRecorderRef.current.ondataavailable = handleDataAvailable;
