@@ -41,11 +41,11 @@ const LiveWebcam = (props) => {
       setRecordedChunks([blob])
       const url = URL.createObjectURL(blob)
       const a = document.createElement("a");
-      document.body.appendChild(a)
-      a.style = "display: none";
-      a.href = url;
-      a.download = "1.webm";
-      a.click();
+      // document.body.appendChild(a)
+      // a.style = "display: none";
+      // a.href = url;
+      // a.download = "1.webm";
+      // a.click();
       setBlob(url);
       props.setVideoSrc(url)   
       // const blob1 = new Blob(recordedChunks , {
@@ -65,12 +65,12 @@ const LiveWebcam = (props) => {
       })
    
       const url = URL.createObjectURL(blob)
-      const a = document.createElement("a");
-      document.body.appendChild(a)
-      a.style = "display: none";
-      a.href = url;
-      a.download = "1.webm";
-      a.click();
+      // const a = document.createElement("a");
+      // document.body.appendChild(a)
+      // a.style = "display: none";
+      // a.href = url;
+      // a.download = "1.webm";
+      // a.click();
       setBlob(url);
     }
   },[recordedChunks])

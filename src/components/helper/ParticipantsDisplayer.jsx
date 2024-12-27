@@ -206,14 +206,14 @@ const ParticipantsDisplayer = (props) => {
             </div>
             <div className='d-flex flex-column justify-content-center gap align-items-center'
                    style={{height:"100%",width:"20%",backgroundColor:"white"}}>
-               <button style={{width:'100%',height:'100%', backgroundColor:"#194ebf",fontSize:'10px',fontWeight:"600"}}>
+               <button style={{width:'100%',height:'100%', backgroundColor:"#194ebf",fontSize:'13px',fontWeight:"800"}}>
                      FOLLOW
                </button>
             </div> 
 
            <div className='d-flex flex-column justify-content-center gap align-items-center'
                    style={{height:"100%",width:"20%",backgroundColor:"#de1051"}}>
-               <button style={{width:'100%',height:'100%',color:'white', backgroundColor:"#de1051",fontSize:'12px',fontWeight:"600"}}>
+               <button style={{width:'100%',height:'100%',color:'white', backgroundColor:"#de1051",fontSize:'13px',fontWeight:"800"}}>
                      ADD
                </button>
             </div> 
@@ -274,7 +274,7 @@ const ParticipantsDisplayer = (props) => {
                    <button style={{backgroundColor:'#114fc2'
                       ,width:'90px',color:"lightblue",height:'100%',fontSize:"14px",fontWeight:"800"
                       }}>
-                      Follow
+                      FOLLOW
                    </button>
             
         </div>
