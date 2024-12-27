@@ -29,7 +29,7 @@ useEffect ( () => {
               <div  className="card mt-2" 
                 style={{borderRadius:'10%'}}>
                     <div className='d-flex justify-content-between align-items-center top'>
-                      <img className='logo-select' src={user.profile_img} alt="logo" />
+                      {/* <img className='logo-select' src={user.profile_img} alt="logo" /> */}
                       <h5 className="card-header text-center">profile</h5>
                     </div>
                     <div className="card-body d-flex flex-column text-center">   
