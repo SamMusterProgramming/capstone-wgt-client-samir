@@ -26,7 +26,7 @@ import AWS from "aws-sdk"
  const  PURL = baseURL_PRODUCTION;
 
  console.log(baseURL_PRODUCTION)
-export const BASE_URL =  baseURL_DEVOLOPMENT; 
+export const BASE_URL =  baseURL_PRODUCTION; 
 
 // *********************************** AUTHENTIFICATION *************************
 
