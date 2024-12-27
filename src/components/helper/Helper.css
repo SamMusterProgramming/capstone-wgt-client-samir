@@ -30,7 +30,7 @@
 
 /* ********************************* PostFooter **************************** */
 .videofooter {
-    height: 14%;
+    height: 11%;
     background-color: #1f1f1b;
     align-items: center;
     /* justify-content: center; */
@@ -109,9 +109,10 @@
 .videopost {
     height: 500px;
     min-width: 100%;
+    max-width: 500px;
 }
 .videodisplayer{
-   height:100% ;
+   height:89% ;
    width: 100%;
    display: flex;
    flex-direction: column;

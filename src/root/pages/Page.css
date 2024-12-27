@@ -128,17 +128,17 @@
 /* ************************** challenges ****************************************** */
 .ch-page {
     background-color: rgb(19, 18, 18);
-    max-height:84vh;
-    min-width: 100%;
+    max-height:100%;
+    width: 100%;
     max-width: 500px;
     overflow: scroll;
 }
 .challenges {
     background-color:#1f1e15;
     /* background-color:#b0a220; */
-    height:700px;
-    min-width:350px;
-    max-width: 500px;
+    height:740px;
+    min-width:500px;
+    max-width: 100%;
     width: 100%;
     /* border-radius: 10px; */
 
