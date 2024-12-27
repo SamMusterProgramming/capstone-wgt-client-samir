@@ -80,8 +80,8 @@ const LiveWebcam = (props) => {
         <>
          <Webcam
         className='post-size'
-         height="100%"
-         width="100%"
+        //  height="100%"
+        //  width="100%"
          audio = "true"
          ref={webcamRef}
          videoConstraints = {{
