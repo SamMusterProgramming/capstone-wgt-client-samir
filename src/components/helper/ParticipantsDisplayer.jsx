@@ -88,7 +88,7 @@ const ParticipantsDisplayer = (props) => {
       quitChallenge(props.challenge._id,props.user._id)
       .then(data => { console.log("deleted")
         res =>  setTimeout(() => {
-          navigate('/challenges')
+          navigate('chpage/challenges')
        }, 8000)  
      
     })
@@ -163,7 +163,7 @@ const ParticipantsDisplayer = (props) => {
 
   return (
 
-    <div className="d-flex flex-column mb-0 mt-5 justify-content-start align-items-center challenges">
+    <div className="d-flex flex-column mb-0 mt-0 justify-content-start align-items-center challenges">
          
 
          <div key={props.key} className='d-flex mt-0 justify-content-center participantdisplayer'> 

@@ -46,9 +46,12 @@ useEffect ( () => {
                      </Link>
                   </div>
              </div>
-             <TalentSelector  link="/challenges" type={"Challenges"} color={'teal'} 
+             {/* <TalentSelector  link="/challenges" type={"Challenges"} color={'teal'} 
                 logo={'/asset/material/challenge.jpg'}
-                quote="view your challenges" />
+                quote="view your challenges" /> */}
+              <TalentSelector  link="/chpage/challenges" type={"Challenges"} color={'teal'} 
+                logo={'/asset/material/challenge.jpg'}
+                quote="view your challenges" />   
              <TalentSelector  link="/" type={"Your Talent"} color={'tomato'} 
                 logo={'/asset/material/show.avif'} 
                 quote="access your Talents"

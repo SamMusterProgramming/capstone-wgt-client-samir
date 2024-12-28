@@ -76,13 +76,13 @@ const NewChallenge = (props) => {
       }
       await axios.post( BASE_URL + '/challenges/uploads', challenge).then( // when user challenge another user , we will insert his change to an existing challenge by challenge_id
         res =>  setTimeout(() => {
-          navigate('/challenges')
+          navigate('/chpage/challenges')
        }, 8000)  
       )
     }else{
       await axios.post(BASE_URL +`/challenges/uploads/${challenge_id}`,challenge)
       .then(   res =>  setTimeout(() => {
-         navigate('/challenges')
+         navigate('/chpage/participatechallenges')
       }, 8000)  
       )
     }

@@ -20,6 +20,8 @@ import TopChallenges from './root/pages/TopChallenges.jsx'
 import Profile from './root/pages/Profile.jsx'
 import { AuthContent } from './context/AuthContent.jsx'
 import { Toaster } from 'sonner'
+import ChallengePage from './root/pages/ChallengePage.jsx'
+import ParticipateChallenge from './root/pages/ParticipateChallenge.jsx'
 export default function App() {
   // const [user, setUser] = useState(null)
 
@@ -37,14 +39,19 @@ export default function App() {
          </Route>
          <Route path="" element={<RootLayout />}>
               <Route path="/" element={ <Homepage user = {user}/>} >
-                <Route path="home" element={ <Home user={user}/>} />
-                <Route path="challenges" element ={<Challenges user={user}/>} /> 
+                <Route path="home" element={ <Home user={user}/> } />
+                <Route path='chpage' element={ <ChallengePage/> }>
+                  <Route path="challenges" element ={<Challenges user={user}/>} /> 
+                  <Route path="participatechallenges" element ={<ParticipateChallenge user={user}/>} /> 
+                  <Route path="topchallenges" element ={<TopChallenges user={user}/>} /> 
+                </Route>
                 <Route path="topchallenges" element ={<TopChallenges user={user}/>} /> 
+               
                 <Route path="profile/:id" element={<Profile user={user}/>} />
               </Route>
-
-             <Route path="newchallenge" element={ <NewChallenge user={user}/>} />
-             <Route path="matchchallenge/:id" element={ <NewChallenge user={user}/>} />
+             
+              <Route path="newchallenge" element={ <NewChallenge user={user}/>} />
+              <Route path="matchchallenge/:id" element={ <NewChallenge user={user}/>} />
                 {/* <Route path="challenge" element={ <Challenge user={user}/>} />
                 <Route path="about" element ={<Signin />} /> 
              </Route> */}

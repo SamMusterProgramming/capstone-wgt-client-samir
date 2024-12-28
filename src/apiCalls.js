@@ -27,7 +27,7 @@ import { Navigate } from 'react-router-dom'
  const  PURL = baseURL_PRODUCTION;
 
  console.log(baseURL_PRODUCTION)
-export const BASE_URL =  baseURL_PRODUCTION; 
+export const BASE_URL =  baseURL_DEVOLOPMENT; 
 
 // *********************************** AUTHENTIFICATION *************************
 
@@ -77,7 +77,7 @@ export const getChallengeById = async(id,setChallenge)=>{
 export const getUserChallenges = async( user_id , setChallenges)=>{
    console.log(user_id)
     try {
-        await axios.get( BASE_URL + `/challenges/${user_id}`)
+        await axios.get( BASE_URL + `/challenges/original/${user_id}`)
         .then(res => {
             setChallenges(res.data) 
         }
@@ -86,6 +86,19 @@ export const getUserChallenges = async( user_id , setChallenges)=>{
         console.log(error)
     }
   }  
+
+  export const getUserParticipateChallenges = async( user_id , setChallenges)=>{
+    console.log(user_id)
+     try {
+         await axios.get( BASE_URL + `/challenges/participate/${user_id}`)
+         .then(res => {
+             setChallenges(res.data) 
+         }
+          )
+     } catch (error) {
+         console.log(error)
+     }
+   }  
 
   //top challenges 
 
