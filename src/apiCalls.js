@@ -172,7 +172,7 @@ export const getUserChallenges = async( user_id , setChallenges)=>{
   // *********************************** follower *************************
 
 
-    export const follow= async(user_id , rawBody , setFollower)=>{
+    export const follow = async(user_id , rawBody , setFollower)=>{
       try {
         await axios.post( BASE_URL + `/users/followers/add/${user_id}`, rawBody )
         .then(res =>  { 
@@ -185,7 +185,7 @@ export const getUserChallenges = async( user_id , setChallenges)=>{
      }
 
 
-     export const isfollowing = async(user_id , follower_id, setIsFollowing)=>{
+    export const isfollowing = async(user_id , follower_id, setIsFollowing)=>{
       try {
         await axios.post( BASE_URL + `/users/followers/${user_id}` ,{follower_id:follower_id} )
         .then(res =>  { 
@@ -197,4 +197,27 @@ export const getUserChallenges = async( user_id , setChallenges)=>{
      }
 
 
-     
+     // followings 
+
+    export const addFollowing = async(user_id , rawBody , setFollowings) =>{
+      try {
+        await axios.post( BASE_URL + `/users/followings/add/${user_id}`, rawBody )
+        .then(res =>  { 
+          setFollowings(res.data)
+      } )
+      } catch (error) {
+        console.log(error)
+      }
+     }
+ 
+
+    export const getFollowings = async(user_id , setFollowings)=>{
+      try {
+        await axios.get( BASE_URL + `/users/followings/${user_id}` )
+        .then(res =>  { 
+          setFollowings(res.data)
+      } )
+      } catch (error) {
+        console.log(error)
+      }
+     }

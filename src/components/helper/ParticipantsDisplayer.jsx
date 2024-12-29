@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import './Helper.css'
-import {  BASE_URL, getUserById, liked, loadLikeVoteData, quitChallenge, voted } from '../../apiCalls'
+import {  BASE_URL, getUserById,getFollowings, liked, loadLikeVoteData, quitChallenge, voted, addFollowing } from '../../apiCalls'
 import PostFooter from './PostFooter';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { Select } from 'antd';
@@ -13,17 +13,15 @@ import { generateUserFolder, storage } from '../../firebase';
 const ParticipantsDisplayer = (props) => {
 
 
-    const [selectedOption, setSelectedOption] = useState(null);
-    const [options,setOption] = useState ()
-    const [video_url ,setVideo_url] = useState(props.participants[0].video_url)
-    const [selectedUser ,setSelectedUser] = useState (props.participants[0])
-    const [selectedParticipant ,setSelectedParticipant] = useState (props.participants[0])
-    const [ownChallenge , setOwnChallenge ] = useState(false)
-    const [isVotedColor,setIsVotedColor] = useState("lightpink")
-    const [isLikedColor,setIsLikedColor] = useState("lightblue")
-    const [userProfile,setUserProfile] = useState(props.user)
-    const [topChallenger ,setTopChallenger] = useState("")
-    const ids =[ props.user._id,
+  const [followings,setFollowings] = useState ([])
+  const [video_url ,setVideo_url] = useState(props.participants[0].video_url)
+  const [selectedUser ,setSelectedUser] = useState (props.participants[0])
+  const [selectedParticipant ,setSelectedParticipant] = useState (props.participants[0])
+  const [ownChallenge , setOwnChallenge ] = useState(false)
+  const [isVotedColor,setIsVotedColor] = useState("lightpink")
+  const [isLikedColor,setIsLikedColor] = useState("lightblue")
+  const [topChallenger ,setTopChallenger] = useState("")
+  const ids =[ props.user._id,
       selectedParticipant._id,
       props.challenge._id
       ]
@@ -135,14 +133,14 @@ const ParticipantsDisplayer = (props) => {
     
 
     
-    const handleChange = async (value) =>{
+  const handleChange = async (value) =>{
       // getUserById(value ,setUserProfile)
       const newParticipant =  props.participants.find(participant => participant.user_id === value);
       console.log(newParticipant)
       setSelectedParticipant( { ...selectedParticipant,
                                    _id:newParticipant._id,
                                    name:newParticipant.name,
-                                   profile_img:newParticipant.profile_img ,
+                                   profile_img:newParticipant.profile_img,
                                    user_id:newParticipant.user_id,
                                    video_url:newParticipant.video_url,
                                    likes:newParticipant.likes,
@@ -159,14 +157,41 @@ const ParticipantsDisplayer = (props) => {
          : setIsVotedColor("lightpink")    
   }, [likesVotesData])
   
-
+  
+  useEffect(() => {
+    getFollowings(props.user._id , setFollowings)
+  }, [])
+  
+  const handleFollowing =  ()=> {
+    const rawBody = {
+      following_id : selectedParticipant.user_id,
+      following_email:selectedParticipant.email
+   }
+   addFollowing(props.user._id,rawBody, setFollowings)
+  //  setFollowings((prevItems) => [...prevItems,rawBody])
+  }
+  
+  const handleUnFollowing =  ()=> {
+    const rawBody = {
+      following_id : selectedParticipant.user_id,
+      following_email:selectedParticipant.email
+   }
+   addFollowing(props.user._id,rawBody, setFollowings)
+  //  setFollowings((prevItems) => [...prevItems,rawBody])
+  }
+  
+  
+  // useEffect(() => {
+    
+  // }, [])
+  
 
   return (
 
     <div className="d-flex flex-column mb-0 mt-0 justify-content-start align-items-center challenges">
          
 
-         <div key={props.key} className='d-flex mt-0 justify-content-center participantdisplayer'> 
+         <div className='d-flex mt-0 justify-content-center participantdisplayer'> 
           <Select
             style={{width:"100%",height:"43px",fontSize:' 35px' ,border:"none",fontWeight:"800", backgroundColor:'red',textAlign:"center"}}
               defaultValue="Select a Participant"
@@ -189,7 +214,7 @@ const ParticipantsDisplayer = (props) => {
                      <div className='d-flex flex-ro text-center gap-2  align-items-center showvote'>
                           <p>{participant.votes}</p> 
                           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"color='red' className="bi bi-heart-fill" viewBox="0 0 16 16">
-                           <path fill-rule="evenodd"  d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
+                           <path fillRule="evenodd"  d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
                           </svg>
                          <p style={{marginRight:'6px'}}>votes</p>
                      </div>
@@ -220,9 +245,31 @@ const ParticipantsDisplayer = (props) => {
             </div>
             <div className='d-flex flex-column justify-content-center gap align-items-center'
                    style={{height:"100%",width:"20%",backgroundColor:"white"}}>
-               <button style={{width:'100%',height:'100%', backgroundColor:"#194ebf",fontSize:'13px',fontWeight:"800"}}>
+              {(selectedParticipant.user_id === props.user._id)? 
+              (
+                <button style={{width:'100%',height:'100%', backgroundColor:"gray",fontSize:'13px',fontWeight:"800"}}
+                disabled>
+                  FOLLOW
+                </button>
+              ):
+              ( 
+                <>
+                {followings.find(following => following.following_id === selectedParticipant.user_id)?(
+                  <button style={{width:'100%',height:'100%', backgroundColor:"#194ebf",fontSize:'13px',fontWeight:"800"}}
+                  onClick={handleUnFollowing}>
+                     UNFOLLOW
+                  </button>
+                ):(
+                  <button style={{width:'100%',height:'100%', backgroundColor:"#194ebf",fontSize:'13px',fontWeight:"800"}}
+                  onClick={handleFollowing}>
                      FOLLOW
-               </button>
+                  </button>
+                )
+                }
+                </>
+             
+              )}      
+              
             </div> 
 
            <div className='d-flex flex-column justify-content-center gap align-items-center'

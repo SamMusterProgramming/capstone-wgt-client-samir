@@ -57,22 +57,17 @@ const LiveWebcam = (props) => {
     })
   },[setRecording,mediaRecorderRef]) 
 
-  const handleDownload = useCallback(()=> {
-    if(recordedChunks.length) {
-      const blob = new Blob(recordedChunks , {
-        type:"video/webm"
-      })
+  // const handleDownload = useCallback(()=> {
+  //   if(recordedChunks.length) {
+  //     const blob = new Blob(recordedChunks , {
+  //       type:"video/webm"
+  //     })
    
-      const url = URL.createObjectURL(blob)
-      // const a = document.createElement("a");
-      // document.body.appendChild(a)
-      // a.style = "display: none";
-      // a.href = url;
-      // a.download = "1.webm";
-      // a.click();
-      setBlob(url);
-    }
-  },[recordedChunks])
+  //     const url = URL.createObjectURL(blob)
+
+  //     setBlob(url);
+  //   }
+  // },[recordedChunks])
   return (
     <>
      <div className="postholder">
