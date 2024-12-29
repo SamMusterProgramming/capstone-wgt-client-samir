@@ -25,7 +25,7 @@ import { Navigate } from 'react-router-dom'
 
  const bName = "chalengify-storage"
  const  PURL = baseURL_PRODUCTION;
-
+  
  console.log(baseURL_PRODUCTION)
 export const BASE_URL =  baseURL_PRODUCTION; 
 
@@ -169,14 +169,13 @@ export const getUserChallenges = async( user_id , setChallenges)=>{
       }
   }
 
-  // *********************************** follower *************************
+  // *********************************** follower and following *************************
 
 
-    export const follow = async(user_id , rawBody , setFollower)=>{
+    export const getFollowData = async(user_id ,setFollower)=>{
       try {
-        await axios.post( BASE_URL + `/users/followers/add/${user_id}`, rawBody )
+        await axios.get( BASE_URL + `/users/follow/data/${user_id}`)
         .then(res =>  { 
-          console.log(res.data)
           setFollower({...res.data}) 
       } )
       } catch (error) {
@@ -214,6 +213,17 @@ export const getUserChallenges = async( user_id , setChallenges)=>{
     export const getFollowings = async(user_id , setFollowings)=>{
       try {
         await axios.get( BASE_URL + `/users/followings/${user_id}` )
+        .then(res =>  { 
+          setFollowings(res.data)
+      } )
+      } catch (error) {
+        console.log(error)
+      }
+     }
+
+     export const unFollowings = async(user_id ,rawBody, setFollowings)=>{
+      try {
+        await axios.patch( BASE_URL + `/users/unfollowing/${user_id}`,rawBody )
         .then(res =>  { 
           setFollowings(res.data)
       } )

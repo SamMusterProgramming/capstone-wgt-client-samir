@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import './Page.css'
 import { useState } from 'react';
-import { BASE_URL, follow, getUserById, isfollowing, STORAGE_URL } from '../../apiCalls';
+import { addFollowing, BASE_URL, getFollowData, getUserById, STORAGE_URL, unFollowings } from '../../apiCalls';
 import { Link, useParams } from 'react-router-dom';
 import { toast, Toaster } from 'sonner';
 
@@ -14,41 +14,44 @@ const Profile = (props) => {
     const _id  =  useParams().id;
     const [user, setUser] = useState({})
     const [follower,setFollower] = useState({})
-    const [following,setFollowing] = useState({isFollowing:false})
     const [display , setDisplay] = useState(false)
+    const [follow , setFollow ] = useState(null)
+    const [follows , setFollows ] = useState([])
     
-    useEffect ( () => {
-      
+    useEffect ( () => {  
       getUserById(_id,setUser)
      } , [] ) 
 
-     useEffect ( () => {   
-      toast.success('successfully added!');
-      isfollowing(_id,props.user._id,setFollowing)
-      setDisplay(true)
-     } , [] )
-      
+    useEffect ( () => {  
+      getFollowData(props.user._id,setFollow)
+     } , [] ) 
      
-     useEffect ( () => {  
-         setDisplay(true)
-     } , [following] ) 
-     
-const handleFollowing = ()=> { // add a follower , apiCall.js
-    const rawBody = {
-        follower_id : props.user._id,
-        user_email:user.email,
-        follower_email:props.user.email
-    }
-       follow (user._id,rawBody,setFollower) 
+    const handleFollowing = ()=> { // add a follower , apiCall.js
+       const rawBody = {
+        following_id :_id,
+        following_email:user.email
+       }
+       addFollowing(props.user._id,rawBody,setFollows)
+
      }
-     
+     const handleUnFollowing = ()=> { // add a follower , apiCall.js
+      const rawBody = {
+       following_id :_id,
+       following_email:user.email
+      }
+      unFollowings(props.user._id,rawBody,setFollows)
+
+    }
+     useEffect ( () => {  
+      setFollow(follows.followings)
+     } , [follows] ) 
         
    return(
-    <div className=' d-flex flex-column justify-content-between align-items-center '
-    style={{height:'84vh',maxWidth:'500px',background:' rgb(35, 21, 21)'}}>
+    <div className=' d-flex flex-column justify-content-start align-items-center '
+      style={{minHeight:'100%',maxWidth:'500px', width:'100%',  background:' rgb(35, 21, 21)',overflow:'scroll'}}>
 
-
-      <div className=' d-flex flex-column justify-content-start align-items-center '>
+      <div className=' d-flex flex-column justify-content-start align-items-center'
+        style={{maxWidth:'500px', height:'200px', width:'100%', background:' rgb(35, 21, 21)'}}>
               <div className='cover'>
                   <img src={BASE_URL +  user.profile_img} alt="samir" />
               </div>
@@ -57,37 +60,51 @@ const handleFollowing = ()=> { // add a follower , apiCall.js
               </div>
       </div>   
 
-
-
-      <div className='d-flex flex-column mt-4 gap-2 justify-content-start align-items-center mid-container'>
-                  
-             
-               <span className="lead name mt-0">{user.name}</span> 
+      <div className='d-flex flex-column mt-5 gap-2 justify-content-start align-items-center mid-container'>
+               <span className="name mt-3 ">{user.name}</span> 
                <span className="link idd1">{user.email}</span> 
                <div className="d-flex flex-row justify-content-center align-items-center gap-2"> 
                       <span className="idd">{user.username}</span>
                </div>
-               <div className="d-flex flex-column justify-content-center align-items-center mt-2">
-                    <span className="number">{user.followers} </span> 
-                    <span className="follow">Followers</span>
-               </div>  
-           
-       
-              <div className="col-md-2 d-flex mt-3 justify-content-center align-item-center">
-       
-                  <button onClick={handleFollowing} style={{
-                  width:'70px', height:'40px',backgroundColor:'blueviolet',color:'white',borderRadius:'15px'
-                }} className='mt-md-5'>
-                    Follow 
-                </button>
+               <div className='d-flex justify-content-center align-items-center gap-5 '>
+                  <div className="d-flex flex-column justify-content-center align-items-center mt-2">
+                        <span className="number">{follow &&follow.followers_count} </span> 
+                        <span className="follow">Followers</span>
+                  </div>  
+                  <div className="d-flex flex-column justify-content-center align-items-center mt-2">
+                    <span className="number">{follow && follow.followings_count} </span> 
+                    <span className="follow">Followings</span>
+                 </div>  
+                 
+                 {(props.user._id !== _id && follow) && (
+                    <>
+                     {(follow.followings.find(following => following.following_id === user._id) )? 
+                     (
+                      <button onClick={handleUnFollowing} style={{ fontSize:'13px',
+                        width:'70px', height:'40px',backgroundColor:'green',color:'white',borderRadius:'10px'
+                        }} className='mt-md-2'>
+                        UnFollow 
+                     </button>
+                     ): 
+                     (
+                      <button onClick={handleFollowing} style={{ fontSize:'13px',
+                        width:'70px', height:'40px',backgroundColor:'green',color:'white',borderRadius:'10px'
+                        }} className='mt-md-2'>
+                        Follow 
+                     </button>
+                     )
+                    }
+                    
+                   </>
+                  
+                 )} 
                 
-              </div>   
+               </div> 
          
         
         </div>
 
-      <video  className='' style={{marginTop:'auto'}} width='480px'
-       src={ BASE_URL + "4973185-hd_1920_1080_30fps.mp4" } controls  />
+    
 
      
 

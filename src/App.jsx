@@ -46,7 +46,6 @@ export default function App() {
                   <Route path="topchallenges" element ={<TopChallenges user={user}/>} /> 
                 </Route>
                 <Route path="topchallenges" element ={<TopChallenges user={user}/>} /> 
-               
                 <Route path="profile/:id" element={<Profile user={user}/>} />
               </Route>
              

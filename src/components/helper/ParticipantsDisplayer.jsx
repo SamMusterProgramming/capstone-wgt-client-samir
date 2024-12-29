@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import './Helper.css'
-import {  BASE_URL, getUserById,getFollowings, liked, loadLikeVoteData, quitChallenge, voted, addFollowing } from '../../apiCalls'
+import {  BASE_URL, getUserById,getFollowings, liked, loadLikeVoteData, quitChallenge, voted, addFollowing, unFollowings } from '../../apiCalls'
 import PostFooter from './PostFooter';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { Select } from 'antd';
@@ -144,7 +144,8 @@ const ParticipantsDisplayer = (props) => {
                                    user_id:newParticipant.user_id,
                                    video_url:newParticipant.video_url,
                                    likes:newParticipant.likes,
-                                   votes:newParticipant.votes })
+                                   votes:newParticipant.votes,
+                                   email:newParticipant.email })
       } 
    
   
@@ -176,7 +177,7 @@ const ParticipantsDisplayer = (props) => {
       following_id : selectedParticipant.user_id,
       following_email:selectedParticipant.email
    }
-   addFollowing(props.user._id,rawBody, setFollowings)
+   unFollowings(props.user._id,rawBody, setFollowings)
   //  setFollowings((prevItems) => [...prevItems,rawBody])
   }
   
@@ -247,7 +248,7 @@ const ParticipantsDisplayer = (props) => {
                    style={{height:"100%",width:"20%",backgroundColor:"white"}}>
               {(selectedParticipant.user_id === props.user._id)? 
               (
-                <button style={{width:'100%',height:'100%', backgroundColor:"gray",fontSize:'13px',fontWeight:"800"}}
+                <button style={{width:'100%',height:'100%', backgroundColor:"gray",fontSize:'12px',fontWeight:"800"}}
                 disabled>
                   FOLLOW
                 </button>
@@ -255,7 +256,7 @@ const ParticipantsDisplayer = (props) => {
               ( 
                 <>
                 {followings.find(following => following.following_id === selectedParticipant.user_id)?(
-                  <button style={{width:'100%',height:'100%', backgroundColor:"#194ebf",fontSize:'13px',fontWeight:"800"}}
+                  <button style={{width:'100%',height:'100%', backgroundColor:"#194ebf",fontSize:'12px',fontWeight:"800"}}
                   onClick={handleUnFollowing}>
                      UNFOLLOW
                   </button>
