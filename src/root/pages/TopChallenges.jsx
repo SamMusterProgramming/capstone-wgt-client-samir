@@ -16,7 +16,7 @@ getTopChallenges(user._id,setTopChallenges) // get top challenges for user
 
   return (
    
-    <div className=' d-flex gap-3 flex-wrap  mt-2 justify-content-center align-items-center ch-page'>
+    <div className=' d-flex gap-5 flex-wrap  mt-2 justify-content-center align-items-center ch-page'>
        
    
     { topChallenges.map((challenge,index)=>{

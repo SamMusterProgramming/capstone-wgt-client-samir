@@ -22,7 +22,7 @@ const [video_url ,setVideo_url] = useState()
 
   return (
   
-     <div className=' d-flex gap-3 flex-wrap mt-2 justify-content-center align-items-center ch-page'>
+     <div className=' d-flex gap-5 flex-wrap mt-2 justify-content-center align-items-center ch-page'>
        
        { (challenges.length > 0)?
        ( <>

@@ -13,7 +13,7 @@ const LiveWebcam = (props) => {
   const [recordedChunks, setRecordedChunks] = useState([])
   const [blob ,setBlob] = useState(null)   
   const [facingMode, setFacingMode] = useState('user'); // Default to front camera
-  
+  const [volume, setVolume] = useState(1);
 
   const handleFlipCamera = () => {
     setFacingMode(facingMode === 'user' ? 'environment' : 'user');
@@ -39,65 +39,55 @@ const LiveWebcam = (props) => {
       const blob = mediaRecorderRef.current.getBlob();
       setRecordedChunks([blob])
       const url = URL.createObjectURL(blob)
-      // const a = document.createElement("a");
-      // document.body.appendChild(a)
-      // a.style = "display: none";
-      // a.href = url;
-      // a.download = "1.webm";
-      // a.click();
       setBlob(url);
       props.setVideoSrc(url)   
-      // const blob1 = new Blob(recordedChunks , {
-      //   type:"video/webm"
-      // })
-      // const url1 = URL.createObjectURL(blob1)
-      // props.setVideoSrc(url1)   
+    
       props.setFile(blob)
       props.setSwitchUploadLive(false)
     })
   },[setRecording,mediaRecorderRef]) 
 
-  // const handleDownload = useCallback(()=> {
-  //   if(recordedChunks.length) {
-  //     const blob = new Blob(recordedChunks , {
-  //       type:"video/webm"
-  //     })
-   
-  //     const url = URL.createObjectURL(blob)
-
-  //     setBlob(url);
-  //   }
-  // },[recordedChunks])
+  const handleUserMedia = (stream) => {
+    const audio = new Howl({
+      src: [stream.getAudioTracks()[0]],
+      html5: true, 
+      volume: volume,
+    });
+    audio.play();
+  };
+  const handleVolumeChange = (event) => {
+    const newVolume = parseFloat(event.target.value);
+    setVolume(newVolume);
+  };
   return (
     <>
      <div className="postholder">
       {!blob?(
         <>
          <Webcam
-        className='post-size'
-        //  height="100%"
-        //  width="100%"
-         audio = "true"
+         className='post-size'
+        //  onUserMedia={handleUserMedia}
          ref={webcamRef}
          videoConstraints = {{
-          // width: 800,
-          // height: 420,
           facingMode: facingMode
         }}
+         audio={true}
          controls   
         />
+       
         </>
       ):(
         <>
            
            <video
            className='post-size'
-           height="100%"
-           width="100%"
+           onUserMedia={handleUserMedia}
            autoPlay
+           volume="true"
            src={blob}
            controls
            />
+           
           
           </>
       )}

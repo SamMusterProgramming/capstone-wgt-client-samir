@@ -55,7 +55,7 @@ const Profile = (props) => {
    return(
     
     <div className='d-flex flex-column justify-content-start align-items-center '
-      style={{maxWidth:'500px', width:'100%', height:"100%", background:' rgb(35, 21, 21)',overflow:'scroll'}}>
+      style={{maxWidth:'500px', width:'100%', height:"100%",overflow:'scroll'}}>
 
       <div className=' d-flex flex-column justify-content-start align-items-center'
         style={{maxWidth:'500px', height:'200px', width:'100%', background:' rgb(35, 21, 21)'}}>
