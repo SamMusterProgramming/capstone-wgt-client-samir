@@ -52,7 +52,10 @@ export const authRegister= async(credentiels,setUser)=>{
 export const getUserById = async(user_id,setUserProfile) =>{
     try {
         await axios.get(BASE_URL+`/users/user/${user_id}`)
-        .then(res => setUserProfile({...res.data}))
+        .then(res => 
+          { console.log(res.data)
+            setUserProfile({...res.data})
+          } )
     } catch (error) {
         console.log(error)
     }
@@ -175,8 +178,8 @@ export const getUserChallenges = async( user_id , setChallenges)=>{
     export const getFollowData = async(user_id ,setFollower)=>{
       try {
         await axios.get( BASE_URL + `/users/follow/data/${user_id}`)
-        .then(res =>  { 
-          setFollower({...res.data}) 
+        .then(res =>  { const data = res.data
+          setFollower( {...data} ) 
       } )
       } catch (error) {
         console.log(error)
@@ -198,12 +201,13 @@ export const getUserChallenges = async( user_id , setChallenges)=>{
 
      // followings 
 
-    export const addFollowing = async(user_id , rawBody , setFollowings) =>{
+    export const addFollowing = async(user_id , rawBody , setFollow) =>{
       try {
         await axios.post( BASE_URL + `/users/followings/add/${user_id}`, rawBody )
         .then(res =>  { 
-          setFollowings(res.data)
-      } )
+          setFollow([...res.data]);
+          } )
+       
       } catch (error) {
         console.log(error)
       }
@@ -221,11 +225,11 @@ export const getUserChallenges = async( user_id , setChallenges)=>{
       }
      }
 
-     export const unFollowings = async(user_id ,rawBody, setFollowings)=>{
+     export const unFollowings = async(user_id ,rawBody, setFollow)=>{
       try {
         await axios.patch( BASE_URL + `/users/unfollowing/${user_id}`,rawBody )
-        .then(res =>  { 
-          setFollowings(res.data)
+        .then(res =>  { console.log(res.data)
+          setFollow([...res.data])
       } )
       } catch (error) {
         console.log(error)

@@ -128,7 +128,7 @@
 /* ************************** challenges ****************************************** */
 .ch-page {
     background-color: rgb(19, 18, 18);
-    height:90%;
+    height:90%; 
     width: 100%;
     max-width: 500px;
     overflow: scroll;
@@ -181,24 +181,25 @@
 }
 .profileimg {
     border-radius: 50%;
-    position:absolute;   
+    position:relative;   
     width: 100px;
     height: 100px;
     background-color: lightblue;
-    margin-top:150px;
+    margin-top:-35px;
 }
 .profileimg img {
-   width: 96%;
-   height: 96%;
-   object-fit: cover;
+   width: 97%;
+   height: 97%;
+   object-fit: fill;
    border-radius: 50%;
   
 }
 .mid-container{
     max-width:  500px;
-    width: 100%;
+    /* width: 100%; */
     background-color: rgb(35, 21, 21);
-    min-height: 300px;
+    min-height: 200px;
+    overflow: scroll;
    
  }
  .right-container{

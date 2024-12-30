@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { addFollowing, BASE_URL, getFollowData, getUserById, STORAGE_URL, unFollowings } from '../../apiCalls';
 import { Link, useParams } from 'react-router-dom';
 import { toast, Toaster } from 'sonner';
+import Challenges from './Challenges';
 
 
 
@@ -13,42 +14,48 @@ const Profile = (props) => {
 
     const _id  =  useParams().id;
     const [user, setUser] = useState({})
-    const [follower,setFollower] = useState({})
-    const [display , setDisplay] = useState(false)
+    const [followerProfile , setFollowerProfile ] = useState(null)
     const [follow , setFollow ] = useState(null)
     const [follows , setFollows ] = useState([])
     
     useEffect ( () => {  
       getUserById(_id,setUser)
+     } , [] )     
+                
+    useEffect ( () => {  
+      getFollowData(_id,setFollowerProfile)
      } , [] ) 
 
-    useEffect ( () => {  
+    useEffect ( () => {     
       getFollowData(props.user._id,setFollow)
-     } , [] ) 
+    } , [] ) 
+         
      
     const handleFollowing = ()=> { // add a follower , apiCall.js
        const rawBody = {
         following_id :_id,
-        following_email:user.email
+        following_email:user.email   
        }
        addFollowing(props.user._id,rawBody,setFollows)
 
-     }
-     const handleUnFollowing = ()=> { // add a follower , apiCall.js
+    }
+    const handleUnFollowing = ()=> { // add a follower , apiCall.js
       const rawBody = {
        following_id :_id,
        following_email:user.email
       }
       unFollowings(props.user._id,rawBody,setFollows)
-
     }
-     useEffect ( () => {  
-      setFollow(follows.followings)
-     } , [follows] ) 
+
+    useEffect ( () => {  
+      getFollowData(_id,setFollowerProfile)
+      getFollowData(props.user._id,setFollow)
+     } , [follows]) 
         
    return(
-    <div className=' d-flex flex-column justify-content-start align-items-center '
-      style={{minHeight:'100%',maxWidth:'500px', width:'100%',  background:' rgb(35, 21, 21)',overflow:'scroll'}}>
+    
+    <div className='d-flex flex-column justify-content-start align-items-center '
+      style={{maxWidth:'500px', width:'100%', height:"100%", background:' rgb(35, 21, 21)',overflow:'scroll'}}>
 
       <div className=' d-flex flex-column justify-content-start align-items-center'
         style={{maxWidth:'500px', height:'200px', width:'100%', background:' rgb(35, 21, 21)'}}>
@@ -68,11 +75,11 @@ const Profile = (props) => {
                </div>
                <div className='d-flex justify-content-center align-items-center gap-5 '>
                   <div className="d-flex flex-column justify-content-center align-items-center mt-2">
-                        <span className="number">{follow &&follow.followers_count} </span> 
+                        <span className="number">{followerProfile &&followerProfile.followers_count} </span> 
                         <span className="follow">Followers</span>
                   </div>  
                   <div className="d-flex flex-column justify-content-center align-items-center mt-2">
-                    <span className="number">{follow && follow.followings_count} </span> 
+                    <span className="number">{followerProfile && followerProfile.followings_count} </span> 
                     <span className="follow">Followings</span>
                  </div>  
                  
@@ -83,9 +90,9 @@ const Profile = (props) => {
                       <button onClick={handleUnFollowing} style={{ fontSize:'13px',
                         width:'70px', height:'40px',backgroundColor:'green',color:'white',borderRadius:'10px'
                         }} className='mt-md-2'>
-                        UnFollow 
+                        Unfollow 
                      </button>
-                     ): 
+                     ):    
                      (
                       <button onClick={handleFollowing} style={{ fontSize:'13px',
                         width:'70px', height:'40px',backgroundColor:'green',color:'white',borderRadius:'10px'
@@ -101,14 +108,18 @@ const Profile = (props) => {
                 
                </div> 
          
-        
+               
         </div>
-
+        
+        <div className='d-flex' style={{width:'100%', maxWidth:'500px',minHeight:'800px'}}>
+            {user && follow && (<Challenges user = {user}/>)}    
+        </div>
     
-
-     
+       
 
      </div>
+      
+      
   )
 }
 

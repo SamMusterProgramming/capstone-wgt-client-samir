@@ -160,7 +160,7 @@ const ParticipantsDisplayer = (props) => {
   
   
   useEffect(() => {
-    getFollowings(props.user._id , setFollowings)
+    getFollowings(props.user._id ,setFollowings)
   }, [])
   
   const handleFollowing =  ()=> {

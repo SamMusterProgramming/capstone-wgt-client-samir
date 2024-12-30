@@ -47,18 +47,6 @@ const [video_url ,setVideo_url] = useState()
          </div>
         )
       }
-   
-       {/* { challenges.map((challenge,index)=>{
-
-            return  ( 
-                            <ParticipantsDisplayer user={user}  participants={challenge.participants} key={index}
-                            challenge={challenge} setVideo_url={setVideo_url} />
-
-                      )
-               
-                }
-                )} 
-    </div> */}
     </div>
 
   )
