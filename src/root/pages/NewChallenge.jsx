@@ -16,6 +16,19 @@ import { Toaster, toast } from 'sonner';
 
 
 
+const colourStyles = {
+  control: (styles) => ({ 
+    ...styles, 
+    backgroundColor: 'lightgrey' 
+  }),
+  option: (styles, { isFocused }) => ({
+    ...styles,
+    backgroundColor: isFocused ? 'blue' : 'white',
+    color: isFocused ? 'white' : 'black',
+  })
+};
+
+
 const NewChallenge = (props) => {
   
   const [swicthUploadLive ,setSwitchUploadLive] = useState(false)
@@ -160,30 +173,32 @@ useEffect(() => {
       {(!challenge_id) ?  (
         <>
            <PostHeader user={props.user} talentType ={selectedType} category ={selectedCategory}/>
-           <div className='d-flex flex-wrap gap-1 mt-1 justify-content-evenly align-items-start'
+           <div className='d-flex flex-wrap  mt-1 justify-content-evenly align-items-start'
            style={{height:'50px',width:'100%'}}>
              
              
               <div className='d-flex flex-column gap-2'
                 style={{width:"29%",height:"80px",fontSize:'14px' ,border:"none",fontWeight:"800",textAlign:"center"}}>
                      <p style={{fontSize:'7px'}} >SELECT CHALLENGE TYPE</p>
-                    <Select  onChange={handleSelectedType} defaultValue={selectedType}
-                    style={{width:"100%",height:"25px",fontSize:'14px' ,border:"none",fontWeight:"1200",textAlign:"center"}}>
+                    <Select  onChange={handleSelectedType} defaultValue={selectedType} 
+                    style={{width:"100%",height:"30px",fontSize:'14px' ,border:"none",fontWeight:"1200",textAlign:"center"}}
+                    styles={colourStyles}>
                   {challengeType.map((selection,index)=>{   
                    return ( <Select.Option key={index} value = {selection.type}
                                style={{ color:'black',fontWeight:"1000",fontSize:"9px",
-                               backgroundColor:"white",width:"100%",height:"20px" }} >
+                               backgroundColor:"green",width:"100%",height:"30px" }} >
                           <p style={{ color:'black',fontWeight:"900",fontSize:"9px"}}>{selection.type}</p> 
                      </Select.Option> )
                     })}
                </Select> 
               </div>
              
-              <div className='d-flex flex-column gap-2'
-                style={{width:"29%",height:"80px",fontSize:'9px' ,border:"none",fontWeight:"800",textAlign:"center"}}>
+              <div className='d-flex flex-column gap-2' 
+                 style={{width:"29%",height:"80px",fontSize:'9px' ,border:"none",fontWeight:"800",textAlign:"center"}}
+                 >
                      <p style={{fontSize:'7px'}} >SELECT  CATEGORY</p> 
               <Select  onChange={handleSelectedCategory} defaultValue={selectedCategory}
-                 style={{width:"100%",height:"25px",fontSize:'9px' ,border:"none",fontWeight:"800",textAlign:"center"}} >
+                 style={{width:"100%",height:"30px",fontSize:'9px' ,border:"none",fontWeight:"800",textAlign:"center"}} >
                   {categories.map((category,index)=>{   
                    return ( <Select.Option key={index} value = {category}
                      style={{ color:'black',fontWeight:"1000",fontSize:"9px",
@@ -198,7 +213,7 @@ useEffect(() => {
                 style={{width:"29%",height:"80px",fontSize:'9px' ,border:"none",fontWeight:"800",textAlign:"center"}}>
                      <p style={{fontSize:'7px'}} >SET UP PRIVACY</p> 
                <Select  onChange={handleSelectedPrivacy} defaultValue={selectedPrivacy}
-                 style={{width:"100%",height:"25px",fontSize:' 9px' ,border:"none",fontWeight:"800",textAlign:"center"}} >
+                 style={{width:"100%",height:"30px",fontSize:' 9px' ,border:"none",fontWeight:"800",textAlign:"center"}} >
                   {privacyData.map((selection,index)=>{   
                    return ( <Select.Option key={index} value = {selection.privacy}
                      style={{ color:'black',fontWeight:"500",
@@ -222,7 +237,7 @@ useEffect(() => {
       )}
           
           
-          <textarea style={{backgroundColor:'white',color:'black',fontWeight:500, width:'95%',height:'50px'}}
+          <textarea style={{backgroundColor:'white',color:'black',fontWeight:500, width:'93%',height:'35px',borderRadius:'5px'}}
            className="description " onChange={addDescrition}  name='description' placeholder='add description to your challenge'>
           </textarea>
          

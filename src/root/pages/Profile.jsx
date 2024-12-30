@@ -66,7 +66,7 @@ const Profile = (props) => {
                   <img src={BASE_URL + user.profile_img } alt="" />
               </div>
       </div>   
-
+    
       <div className='d-flex flex-column mt-5 gap-2 justify-content-start align-items-center mid-container'>
                <span className="name mt-3 ">{user.name}</span> 
                <span className="link idd1">{user.email}</span> 
@@ -105,16 +105,16 @@ const Profile = (props) => {
                    </>
                   
                  )} 
-                
+               
                </div> 
          
-               
+               <h5 className='mt-3 mb-1' style={{fontSize:'12px',fontFamily:'sans-serif',color:'#eb4034'}}>Top Challenges</h5>
         </div>
         
+       
         <div className='d-flex' style={{width:'100%', maxWidth:'500px',minHeight:'800px'}}>
-            {user && follow && (<Challenges user = {user}/>)}    
+                {user && follow && props.user._id === _id && (<Challenges user = {user}/>)}    
         </div>
-    
        
 
      </div>

@@ -75,25 +75,25 @@
 }
 .postholder {
     max-width: 500px;
-    width: 95%;
-    min-height: 40%;
+    width: 93%;
+    min-height: 35%;
     background-color: rgb(87, 126, 126);
-    border-radius: 15px;
+    border-radius: 5px;
 }
 .post-size {
     width: 100%;
     max-width: 500px;
     height: 100%;
     object-fit: cover;
-    border-radius: 15px;
-    background-color: rgb(87, 126, 126);
+    border-radius: 5px;
+    background-color: rgb(45, 52, 52);
 }
 .postfooter{
-    width: 90%;
+    width: 93%;
     max-width: 500px;
     height: 30px;
-    background-color: rgb(40, 40, 28);
-    border-radius: 20px;
+    background-color: rgb(46, 46, 38);
+    border-radius: 5px;
 }
 .postfooter button {
   font-size: 15px;
@@ -173,6 +173,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    
 }
 .cover img{
    min-width: 100%;
@@ -180,25 +181,27 @@
    object-fit: fill;
 }
 .profileimg {
-    border-radius: 50%;
-    position:relative;   
+    position: relative;
+    border-radius: 0%; 
     width: 100px;
     height: 100px;
     background-color: lightblue;
-    margin-top:-35px;
+    margin-top:-40px;
+  
 }
 .profileimg img {
    width: 97%;
    height: 97%;
    object-fit: fill;
-   border-radius: 50%;
+   border-radius: 0%;
+
   
 }
 .mid-container{
     max-width:  500px;
     /* width: 100%; */
     background-color: rgb(35, 21, 21);
-    min-height: 200px;
+    min-height: 250px;
     overflow: scroll;
    
  }
