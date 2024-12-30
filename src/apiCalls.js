@@ -24,7 +24,7 @@ import { Navigate } from 'react-router-dom'
 
 
  const bName = "chalengify-storage"
- const  PURL = baseURL_PRODUCTION;
+ const  PURL = baseURL_PRODUCTION;   
   
  console.log(baseURL_PRODUCTION)
 export const BASE_URL =  baseURL_PRODUCTION; 

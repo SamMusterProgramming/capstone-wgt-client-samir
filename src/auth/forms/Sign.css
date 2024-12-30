@@ -1,43 +1,48 @@
 /* ***************************************** sign in ************************************** */
 .login{
-    margin-top: 0%;
-    height: 100vh;   
-    max-width: 100vw;
-    background:rgb(6, 5, 5);
+    /* margin-top: 0%; */
+    max-height: 80%;   
+    max-width: 500px;
+    width: 100%;
+    background:rgb(28, 24, 24);
 }
 .user_card {
-    height: 100vh;
-    max-width: 700px;
-    min-width: 450px;
+    height: 100%;
+    max-width: 500px;
+    width: 90%;
     /* margin-top: auto; */
     margin-bottom: auto;
-    background:black;
+    /* background:rgb(52, 47, 47); */
+    background:rgb(1, 47, 79);
+
     position: relative;
     display: flex;
     /* justify-content: center; */
     flex-direction: column;
     padding: 10px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: 0 4px 8px 0 rgba(47, 41, 41, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    border-radius: 5px;
+    -moz-box-shadow: 0 4px 8px 0 rgba(53, 37, 37, 0.2), 0 6px 20px 0 rgba(34, 25, 25, 0.19);
+    /* border-radius: 5px; */
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items:start;
+    text-align: center;
     justify-content: space-between;
 }
 .logo-header{
+  
+   margin-top: 20px;
    width: 100%;
-   height: 50px;
-   margin-top: 50px;
-   display: flex;
+
+   /* display: flex;
    justify-content: center;
-   align-items: center;
+   align-items: center; */
 }
 .logo-header h1 {
     font-size: 40px;
     font-weight: 600;
-    background-image: linear-gradient(to left, #553c9a, #b393d3);
+    background-image: linear-gradient(to left, #9ed4b9, #085de5);
     color: transparent;
     background-clip: text;
     -webkit-background-clip: text;
@@ -48,7 +53,7 @@
     width: 80px;
     top: -0px;
     left: 0;
-    border-radius: 50%;
+    /* border-radius: 50%; */
     background: #60a3bc;
     /* padding: 10px; */
     text-align: center;
@@ -62,7 +67,7 @@
     width: 80px;
     bottom : -0px;  
     left: 0;
-    border-radius: 50%;
+    /* border-radius: 50%; */
     background: #60a3bc;
     /* padding: 10px; */
     text-align: center;
@@ -81,15 +86,16 @@
     width: 100%;
 }
 .form_container form {
-    padding: 20px;
-    margin: 20px;
+    /* padding: 20px;
+    margin: 20px; */
     width: 100%;
-    max-width: 600px;
+    max-width: 500px;
 }
 .login_btn {
     width: 100%;
     background: #c0392b !important;
     color: white !important;
+  
 }
 .login_btn:focus {
     box-shadow: none !important;
@@ -100,7 +106,8 @@
     outline: 0px !important;
 }
 .login_container {
-    padding: 0 2rem;
+    padding: 7px;
+    width: 100%;
 }
 .input-group {
     width: 100%;
@@ -110,22 +117,28 @@
     color: white !important;
     border: 0 !important;
     border-radius: 0.25rem 0 0 0.25rem !important;
-    font-size: 24px;
+    /* font-size: 24px; */
+}
+.links {
+    width: 100%;
 }
 .input_user,
 .input_pass {
     box-shadow: none !important;
     outline: 0px !important;
-    font-size: 12px;
+    font-size: 13px;
     height: 40px;
+    min-width: 90%;
 }
 .input_user {
-    min-width: 4000px;
-   
+    width: 90%;
 }
 .input-group {
     width: 100%;
 }
+.custom-checkbox{
+    min-width: 100%;
+}
 .custom-checkbox .custom-control-input:checked~.custom-control-label::before {
-    background-color: #c0392b !important;
+    background-color: #d62815 !important;
 }

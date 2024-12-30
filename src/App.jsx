@@ -38,6 +38,7 @@ export default function App() {
             <Route path="/sign-up" element={ <Signup setUser={setUser}/>} /> 
          </Route>
          <Route path="" element={<RootLayout />}>
+
               <Route path="/" element={ <Homepage user = {user}/>} >
                 <Route path="home" element={ <Home user={user}/> } />
                 <Route path='chpage' element={ <ChallengePage/> }>

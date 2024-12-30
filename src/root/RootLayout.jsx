@@ -23,7 +23,7 @@ function RootLayout() {
        
         <div className=" homelayout">
           <TopBar user={user} /> 
-          <Toaster duration={5000} position='top-center' style={{marginTop:'50px',height:'30px' ,width:"300px", marginLeft:"70px" ,fontSize:'10px'}}/>
+          <Toaster duration={3000} position='top-center' style={{marginTop:'50px',height:'30px' ,width:"300px", marginLeft:"70px" ,fontSize:'8px'}}/>
           <Outlet />
           <RightSideBar user={user}/>
         </div>

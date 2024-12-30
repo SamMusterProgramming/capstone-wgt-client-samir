@@ -1,4 +1,6 @@
 import { Outlet,Navigate } from "react-router-dom"
+import TopBar from "../components/TopBar";
+import RightSideBar from "../components/RightSideBar";
 
 
 const AuthLayout = ({user}) => {
@@ -8,13 +10,11 @@ const AuthLayout = ({user}) => {
   return (
    <>
      { isAuthenticated ? ( < Navigate to ="/home" /> ):
-     (<>
-      <section
-      style={{ backgroundColor:'white', height:'100vh',minWidth:"100vw"}}
-      className="d-flex  justify-center items-center flex-column " >
+     (<div className="homelayout"> 
+     <TopBar/>
         <Outlet />
-      </section>   
-     </>)
+      <RightSideBar/>
+     </div>)
      }
    </>
   )

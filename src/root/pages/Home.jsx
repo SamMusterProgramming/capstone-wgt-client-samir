@@ -7,10 +7,10 @@ import { useEffect } from "react";
 const Home = ({user}) => {
 
 
-useEffect ( () => {   
-   toast.success('successfully logged in !');
+// useEffect ( () => {   
+//    toast.success('successfully logged in !');
    
-} , [] ) 
+// } , [] ) 
 
   return (
      <div className="d-flex flex-column align-items-center  justify-content-center" 
