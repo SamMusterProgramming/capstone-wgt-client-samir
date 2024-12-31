@@ -6,6 +6,7 @@ import logo from '/asset/material/guiness.jpeg'
  import { Link } from 'react-router-dom'
  import { authLogin} from '../../apiCalls'
 
+
  const url = import.meta.env.VITE_API_URL;        
 
   export const Signin = ({setUser}) => {
@@ -13,13 +14,10 @@ import logo from '/asset/material/guiness.jpeg'
   const email = useRef();
   const password = useRef();
 
-
  const handleSubmit = async (e) => {
-
    e.preventDefault()
    const credentials = {email:email.current.value,password:password.current.value}
    authLogin(credentials,setUser) // function from apiCalls.js
-    
   }         
  
 return (    
@@ -27,7 +25,8 @@ return (
  <div className="d-flex flex-column justify-content-center gap-1 align-items-center h-100 homepage "
  style={{backgroundColor:"#084569"}}>
     
-        
+   
+     
      <div className="user_card"> 
        <div className ='logo-header text-center'>
          <h1>Challengify</h1>

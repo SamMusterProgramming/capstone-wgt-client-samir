@@ -3,6 +3,7 @@ import axios from 'axios'
 import AWS from "aws-sdk"
 import { Navigate } from 'react-router-dom'
 
+
  const baseURL_DEVOLOPMENT = "http://localhost:8000"
  const baseURL_PRODUCTION = import.meta.env.VITE_BASE_URL
  export const STORAGE_URL = import.meta.env.VITE_BASE_STORAGE
@@ -22,23 +23,47 @@ import { Navigate } from 'react-router-dom'
  export const CHALLENGIFY_S3 = new AWS.S3();
 
 
-
- const bName = "chalengify-storage"
- const  PURL = baseURL_PRODUCTION;   
-  
- console.log(baseURL_PRODUCTION)
+const bName = "chalengify-storage"
+const  PURL = baseURL_PRODUCTION;   
+ 
 export const BASE_URL =  baseURL_PRODUCTION; 
+
+
+export const setLoadingBarAxios =(loadingRef) => {
+  axios.interceptors.request.use((config) => {
+    loadingRef.current.continuousStart();
+  
+  }, (error) => {
+    loadingRef.current.complete();
+
+  });
+  
+  axios.interceptors.response.use((response) => {
+    loadingRef.current.complete();
+
+  }, (error) => {
+    loadingRef.current.complete();
+
+  });
+}
+
+
 
 // *********************************** AUTHENTIFICATION *************************
 
 export const authLogin = async(credentiels,setUser)=>{
+
+    try {
+      await axios.post(BASE_URL +'/users/login',credentiels)
+      .then(res => { 
+                 if (res.data.email && res.data.password) {
+           setUser({...res.data})
+         }     
+          })
+    } catch (error) {
+       console.log(error)     
+    }
    
-    await axios.post(BASE_URL +'/users/login',credentiels)
-    .then(res => { 
-               if (res.data.email && res.data.password) {
-         setUser({...res.data})
-       }     
-        })
 }
 
 export const authRegister= async(credentiels,setUser)=>{
