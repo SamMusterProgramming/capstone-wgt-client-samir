@@ -3,9 +3,10 @@ import './Helper.css'
 import {  BASE_URL, getUserById,getFollowings, liked, loadLikeVoteData, quitChallenge, voted, addFollowing, unFollowings } from '../../apiCalls'
 import PostFooter from './PostFooter';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
-import { Select } from 'antd';
+import { Button, Select } from 'antd';
 import { getDownloadURL, ref } from 'firebase/storage';
 import { generateUserFolder, storage } from '../../firebase';
+import DialogConfirm from './DialogConfirm';
 
 
 
@@ -92,9 +93,6 @@ const ParticipantsDisplayer = (props) => {
     })
   }
 
-
-  
-
   useEffect(() => { //logic here is to disable the add challenge button if the user has already participated  
       props.participants.map(participant =>{
         if(participant.user_id === props.user._id) {
@@ -148,7 +146,6 @@ const ParticipantsDisplayer = (props) => {
                                    email:newParticipant.email })
       } 
    
-  
   useEffect(() => {
     likesVotesData.isLiked ? 
          setIsLikedColor("blue")   
@@ -178,7 +175,6 @@ const ParticipantsDisplayer = (props) => {
       following_email:selectedParticipant.email
    }
    unFollowings(props.user._id,rawBody, setFollowings)
-  //  setFollowings((prevItems) => [...prevItems,rawBody])
   }
   
   
@@ -191,7 +187,7 @@ const ParticipantsDisplayer = (props) => {
 
     <div className="d-flex flex-column mb-0 mt-0 justify-content-start align-items-center challenges">
          
-
+        
          <div className='d-flex mt-0 justify-content-center participantdisplayer'> 
           <Select
             style={{width:"100%",height:"43px",fontSize:' 35px' ,border:"none",fontWeight:"800", backgroundColor:'red',textAlign:"center"}}
@@ -232,7 +228,7 @@ const ParticipantsDisplayer = (props) => {
 
 
          <div className='d-flex justify-content-start align-items-center  '
-         style={{height:'50px',width:'100%',backgroundColor:'black'}}>
+           style={{height:'50px',width:'100%'}}>
             <div className='d-flex flex-column justify-content-start gap align-items-center'
                    style={{height:"100%",width:"20%",backgroundColor:"#bf5b19"}}>
                 <span style={{fontSize:'8px',fontWeight:"600",marginTop:'10px',color:'black'}}>POSTED BY</span>
@@ -248,23 +244,23 @@ const ParticipantsDisplayer = (props) => {
                    style={{height:"100%",width:"20%",backgroundColor:"white"}}>
               {(selectedParticipant.user_id === props.user._id)? 
               (
-                <button style={{width:'100%',height:'100%', backgroundColor:"gray",fontSize:'12px',fontWeight:"800"}}
-                disabled>
+                <Button style={{width:'100%',height:'100%', backgroundColor:"gray",fontSize:'12px',fontWeight:"800",border:'none'}}
+                disabled >
                   FOLLOW
-                </button>
+                </Button>
               ):
               ( 
                 <>
                 {followings.find(following => following.following_id === selectedParticipant.user_id)?(
-                  <button style={{width:'100%',height:'100%', backgroundColor:"#194ebf",fontSize:'12px',fontWeight:"800"}}
+                  <Button style={{width:'100%',height:'100%', backgroundColor:"#194ebf",fontSize:'12px',border:'none',fontWeight:"800"}}
                   onClick={handleUnFollowing}>
                      UNFOLLOW
-                  </button>
+                  </Button>
                 ):(
-                  <button style={{width:'100%',height:'100%', backgroundColor:"#194ebf",fontSize:'13px',fontWeight:"800"}}
+                  <Button style={{width:'100%',height:'100%', backgroundColor:"#194ebf",fontSize:'13px',fontWeight:"800"}}
                   onClick={handleFollowing}>
                      FOLLOW
-                  </button>
+                  </Button>
                 )
                 }
                 </>
@@ -273,11 +269,11 @@ const ParticipantsDisplayer = (props) => {
               
             </div> 
 
-           <div className='d-flex flex-column justify-content-center gap align-items-center'
-                   style={{height:"100%",width:"20%",backgroundColor:"#de1051"}}>
-               <button style={{width:'100%',height:'100%',color:'white', backgroundColor:"#de1051",fontSize:'13px',fontWeight:"800"}}>
+           <div className='d-flex flex-column justify-content-center align-items-center'
+                   style={{height:"100%",width:"20%", backgroundColor:"white"}}>
+               <Button style={{width:'100%',border:'none',height:'100%',color:'white', backgroundColor:"#de1051",fontSize:'13px',fontWeight:"800"}}>
                      ADD
-               </button>
+               </Button>
             </div> 
             
          </div>
@@ -308,19 +304,22 @@ const ParticipantsDisplayer = (props) => {
             style={{height:'50px',width:'100%',backgroundColor:'#1f1e15'}} >
               
                    {!ownChallenge? (    
-                    <button style={{width:'90px',color:"lightgreen",textAlign:'center',
-                      backgroundColor:'#c29311',height:'100%',fontSize:"14px",fontWeight:"800"
-                    }}               
-                      onClick={(e) => navigate(`/matchchallenge/${props.challenge._id}`)} >
-                        REPLY     
-                    </button> 
+                     <DialogConfirm handleAction={(e)=> navigate(`/matchchallenge/${props.challenge._id}`)} style={{width:'90px',color:"lightgreen",textAlign:'center',
+                      backgroundColor:'#c29311',height:'100%',fontSize:"14px",fontWeight:"800",border:'none'
+                    }}   action={"REPLAY"} message ={'are you sure you want to replay to the challenge'}  />
                   ):(
-        
-                    <button style={{width:'90px',color:"white",textAlign:'center',
-                      backgroundColor:'#b81842',height:'100%',fontSize:"14px",fontWeight:"800"
-                    }} onClick={handleQuit} >
-                        RESIGN  
-                    </button>
+                    <>
+                    {props.participants.length == 1 ? 
+                      (
+                        <DialogConfirm handleAction={handleQuit} style={{width:'90px',color:"white",textAlign:'center',
+                          backgroundColor:'#b81842',height:'100%',fontSize:"14px",fontWeight:"800",border:'none'
+                         }} action={"DELETE"} message ={'are you sure you want to delete  the challenge'} />
+                      ):(
+                        <DialogConfirm handleAction={handleQuit} style={{width:'90px',color:"white",textAlign:'center',
+                          backgroundColor:'#b81842',height:'100%',fontSize:"14px",fontWeight:"800",border:'none'
+                         }} action={"RESIGN"} message ={'are you sure you want to resign from the challenge'} />
+                      )} 
+                    </>
                     )}
             
                    <div className='d-flex flex-column align-items-center justify-content-start'
@@ -333,11 +332,11 @@ const ParticipantsDisplayer = (props) => {
                     <p style={{fontSize:'15px',color:'white'}}>4.5<span style={{fontSize:'18px',color:'gold'}}>   *****</span></p> 
                       <p style={{fontSize:'11px',color:'white',marginTop:"-9px",marginLeft:"29px"}}>rating</p>
                    </div>
-                   <button style={{backgroundColor:'#114fc2'
+                   <Button style={{backgroundColor:'#114fc2',border:'none'
                       ,width:'90px',color:"lightblue",height:'100%',fontSize:"14px",fontWeight:"800"
                       }}>
                       FOLLOW
-                   </button>
+                   </Button>
             
         </div>
 
