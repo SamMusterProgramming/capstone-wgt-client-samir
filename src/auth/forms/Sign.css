@@ -142,3 +142,21 @@
 .custom-checkbox .custom-control-input:checked~.custom-control-label::before {
     background-color: #d62815 !important;
 }
+
+/* ************ validation******** */
+
+.shake-email {
+    animation: shake 0.5s ease-in-out 0s 2;
+    border: 1px solid  #c0392b;
+  }
+  .shake-password {
+    animation: shake 0.5s ease-in-out 0s 2;
+    border: 1px solid  #c0392b;
+  }
+
+  @keyframes shake {
+    0% { margin-left: 0rem; }
+    25% { margin-left: -0.5rem; }
+    75% { margin-left: 0.5rem; }
+    100% { margin-left: 0rem; }
+  }

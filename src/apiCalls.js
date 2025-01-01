@@ -51,14 +51,15 @@ export const setLoadingBarAxios =(loadingRef) => {
 
 // *********************************** AUTHENTIFICATION *************************
 
-export const authLogin = async(credentiels,setUser)=>{
+export const authLogin = async(credentiels,setUser,setMessage)=>{
 
     try {
       await axios.post(BASE_URL +'/users/login',credentiels)
-      .then(res => { 
-                 if (res.data.email && res.data.password) {
-           setUser({...res.data})
-         }     
+      .then(res => { console.log(res.data)
+                 if (res.data.email && res.data.password) 
+                   setUser({...res.data});
+                 else setMessage(res.data.error)  
+     
           })
     } catch (error) {
        console.log(error)     

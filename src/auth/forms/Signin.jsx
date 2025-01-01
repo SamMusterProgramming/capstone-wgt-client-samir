@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import './Sign.css'   
 import logo from '/asset/material/guiness.jpeg'
 //  import  {Link, useNavigate}  from 'react-router-dom'
@@ -11,14 +11,61 @@ import logo from '/asset/material/guiness.jpeg'
 
   export const Signin = ({setUser}) => {
 
-  const email = useRef();
-  const password = useRef();
+  const holdEmail = useRef();
+  const holdPassword = useRef();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [isPasswordWrong, setIsPasswordWrong] = useState(false); 
+  const [isEmailWrong, setIsEmailWrong] = useState(false); 
+  const [message,setMessage] = useState("")
 
+ 
+  const handlePasswordChange = (event) => {
+    setMessage("")
+    setPassword(event.target.value);
+    setIsPasswordWrong(false);
+  };
+  const handleEmailChange = (event) => {
+    setMessage("")
+    setEmail(event.target.value);
+    setIsEmailWrong(false);
+  };
  const handleSubmit = async (e) => {
    e.preventDefault()
-   const credentials = {email:email.current.value,password:password.current.value}
-   authLogin(credentials,setUser) // function from apiCalls.js
-  }         
+   if(!validateEmail(email)) {
+     setMessage('Invalid Email');
+     return  setIsEmailWrong(true)
+   }
+   if(!validatePassword(password)) {
+    setMessage('Password must be at least 8 characters long and contain at least one lowercase letter, one uppercase letter, one number, and one special character.')
+    return  setIsPasswordWrong(true)
+  }
+   const credentials = {email:email,password:password}
+   authLogin(credentials,setUser,setMessage) // function from apiCalls.js
+  }      
+  
+  function validateEmail(email) {
+    const re = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
+    return re.test(email);
+  }
+  function validatePassword(passwordRegex) {
+    const re = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]).{8,}$/;
+    return re.test(passwordRegex)
+  }
+
+  useEffect(() => {
+     if(message === "user not found") {
+      setIsEmailWrong(true)
+     }
+     if(message === "invalid password") {
+      setIsPasswordWrong(true)
+     }
+  }, [message])
+  
+  useEffect(() => {
+    setEmail(holdEmail.current.value)
+    setPassword(holdPassword.current.value)
+ }, [])
  
 return (    
 
@@ -39,20 +86,19 @@ return (
          </div> 
          <div className="input-group gap-3 mb-3 p-2 "
          style={{width:'100%'}}>
-              {/* <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" className="bi bi-person-add" viewBox="0 0 16 16">
-                <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0m-2-6a3 3 0 1 1-6 0 3 3 0 0 1 6 0M8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4"/>
-                <path d="M8.256 14a4.5 4.5 0 0 1-.229-1.004H3c.001-.246.154-.986.832-1.664C4.484 10.68 5.711 10 8 10q.39 0 .74.025c.226-.341.496-.65.804-.918Q8.844 9.002 8 9c-5 0-6 3-6 4s1 1 1 1z"/>
-              </svg> */}
-              <input type="text" name="email" ref={email} className="form-control input_user" 
+              <input type="text" name="email"
+              ref={holdEmail}
+              onChange={handleEmailChange}
+               className= {'form-control input_user ' + (isEmailWrong ? 'shake-email' : '') }
            defaultValue="samcoeur2020@gmail.com" placeholder="username" 
            />
          </div>
          <div className="input-group gap-3 p-2  ">
-                {/* <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" className="bi bi-unlock-fill" viewBox="0 0 16 16">
-                    <path d="M11 1a2 2 0 0 0-2 2v4a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h5V3a3 3 0 0 1 6 0v4a.5.5 0 0 1-1 0V3a2 2 0 0 0-2-2"/>
-                </svg> */}
-               <input type="password" name="password" className="form-control input_pass"
-                  ref={password} defaultValue="samir" placeholder="password" 
+               <input type="password" name="password"
+                className= {'form-control input_pass ' + (isPasswordWrong ? 'shake-password' : '')  }
+                  ref={holdPassword}
+                  onChange={handlePasswordChange}
+                   defaultValue="Samir@2025" placeholder="password" 
                   />
          </div>  
          <div className="form-group mt-3 d-flex align-items-center justify-content-start"
@@ -64,13 +110,16 @@ return (
              <label className="custom-control-label" >Remember me</label>
            </div>
          </div>    
-         <div className="d-flex justify-content-start mt-4 login_container">
+         <div className="d-flex  justify-content-start mt-3 login_container">
            <button type="button" onClick={handleSubmit} name="button" className="btn login_btn">Login</button>
          </div>
+         {message && (
+            <p className='mt-2' style={{color:'red',fontSize:'11px'}}>{message}</p>
+             )}
        </form>     
      </div>
  
-     <div className=" d-flex flex-column gap-2"
+     <div className=" d-flex mt-3 flex-column gap-2"
       style={{minWidth:'100%',marginLeft:'0%'}}
       >
        <div className="d-flex justify-content-center links">
@@ -86,7 +135,7 @@ return (
        </div>   
     </div>
 
-     <div className="d-flex mt-1 gap-5 mb-5 justify-content-center align-item-center "
+     <div className="d-flex mt-4 gap-5 mb-5 justify-content-center align-item-center "
       style={{minWidth:'100%',marginLeft:'0%'}}>   
           <img src="/asset/material/you.png" alt="" 
               style={{height:'40px',width:'40px',objectFit:'fill' 
