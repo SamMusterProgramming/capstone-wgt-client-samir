@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom"
 import './Components.css' 
+import { BASE_URL } from "../apiCalls"
 
 const RightSideBar = ({user}) => {
 
@@ -10,7 +11,7 @@ const RightSideBar = ({user}) => {
 
          {/* <div className="col-sm-auto bg-dark   sticky-top"> */}
        
-            <div  className="container-fluid d-flex  justify-content-center gap-5 footer ">
+            <div  className=" d-flex  justify-content-evenly align-items-center gap-0 footer ">
                     
                 <div  className="d-flex flex-row text-center menu-item ">
                   <Link to='/newtalent'>
@@ -36,20 +37,27 @@ const RightSideBar = ({user}) => {
                 <div className="d-flex flex-row text-center  menu-item ">
                   <Link to='/'>
                     <img style={{backgroundColor:'red'}} className="challenge-logo" src="/asset/material/guiness.jpg" alt="" />
-                  </Link>
-                 
+                  </Link> 
                 </div>
+                
 
-                {/* <div className="dropdown">
-                    <a href="#" className="d-flex align-items-center justify-content-center p-3 link-dark text-decoration-none dropdown-toggle" id="dropdownUser3" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i className="bi-person-circle h2"></i>
-                    </a>
-                    <ul className="dropdown-menu text-small shadow" aria-labelledby="dropdownUser3">
-                        <li><a className="dropdown-item" href="#">New project...</a></li>
-                        <li><a className="dropdown-item" href="#">Settings</a></li>
-                        <li><a className="dropdown-item" href="#">Profile</a></li>
-                    </ul>
-                </div> */}
+                {user ? (
+              
+                    <Link to={`/profile/${user._id}` }  style={{height:'70%'}} >
+                      <img style={{height:'100%'}} className="challenge-logo" src={BASE_URL + user.profile_img} alt="" />
+                    </Link> 
+         
+               ):(
+                 <div  className="d-flex menu-item ">
+                    <Link
+                      to= "/sign-in">
+                      <img className="menu-logo" src={"/asset/material/avatar.jpg"} alt="" />
+                    </Link>   
+                 </div> 
+          )}
+
+               
+          
 
             </div>
    

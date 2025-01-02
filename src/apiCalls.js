@@ -1,6 +1,5 @@
 
 import axios from 'axios'
-import AWS from "aws-sdk"
 import { Navigate } from 'react-router-dom'
 
 
@@ -14,20 +13,19 @@ import { Navigate } from 'react-router-dom'
  const ACCESS_KEY = import.meta.env.VITE_ACCESS_KEY
  const SECRET_KEY = import.meta.env.VITE_SECRET_KEY
  
- AWS.config.update({
-   region: BUCKET_REGION,
-   accessKeyId:ACCESS_KEY,
-   secretAccessKey: SECRET_KEY,
- });
+//  AWS.config.update({
+//    region: BUCKET_REGION,
+//    accessKeyId:ACCESS_KEY,
+//    secretAccessKey: SECRET_KEY,
+//  });
 
- export const CHALLENGIFY_S3 = new AWS.S3();
+//  export const CHALLENGIFY_S3 = new AWS.S3();
 
 
 const bName = "chalengify-storage"
 const  PURL = baseURL_PRODUCTION;   
  
 export const BASE_URL =  baseURL_PRODUCTION; 
-
 
 export const setLoadingBarAxios =(loadingRef) => {
   axios.interceptors.request.use((config) => {
@@ -57,7 +55,7 @@ export const authLogin = async(credentiels,setUser,setMessage)=>{
       await axios.post(BASE_URL +'/users/login',credentiels)
       .then(res => { console.log(res.data)
                  if (res.data.email && res.data.password) 
-                   setUser({...res.data});
+                   setUser({...res.data,isNewUser:false});
                  else setMessage(res.data.error)  
      
           })
@@ -69,9 +67,11 @@ export const authLogin = async(credentiels,setUser,setMessage)=>{
 
 export const authRegister= async(credentiels,setUser)=>{
    
-    await axios.post( BASE_URL +'/users/',credentiels)
+  await axios.post( BASE_URL +'/users/',credentiels)
 	.then(res => {
-		if(res.status == 200 ) setUser({...res.data}) 
+		if(res.status == 200 ) {
+      setUser({...res.data ,isNewUser:true})
+     }
 		})
 }
 

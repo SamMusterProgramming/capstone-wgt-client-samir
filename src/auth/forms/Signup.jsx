@@ -1,95 +1,162 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './Sign.css'
 import logo from '/asset/material/guiness.jpeg'
 import { useRef } from 'react'
 import axios from 'axios'
-import { Link } from 'react-router-dom'
+import { Link, Navigate ,useNavigate } from 'react-router-dom'
 import { authRegister } from '../../apiCalls'
+import { validate } from 'uuid'
 
-export const Signup = ({setUser}) => {
+export const Signup = (props) => {
    
-  const email = useRef("")
-  const name =useRef("")
-  const password =useRef("")
-  const profession  = useRef("")
-  const confirmpassword = useRef("")
-  const username = useRef("")
 
+
+  const [fullname,setFullname] = useState("")
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [isPasswordWrong, setIsPasswordWrong] = useState(false); 
+  const [isEmailWrong, setIsEmailWrong] = useState(false); 
+  const [isFullnameWrong, setIsFullnameWrong] = useState(false); 
+  const [isConfirmPasswordWrong, setIsConfirmPasswordWrong] = useState(false); 
+  const [isSignupSuccess,setIsSignupSucess] = useState(false)
+  const navigate = useNavigate()
   const[errorMessage,setErrorMessage] =useState("")
 
-  const handleSubmit = async(e)=> {
+  const handleFullname =(event)=> {
+	event.preventDefault()
+    setErrorMessage("")
+    setFullname(event.target.value);
+    setIsFullnameWrong(false);
+  }
+  
+  const handleEmail =(event) => {
+    event.preventDefault()
+    setErrorMessage("")
+    setEmail(event.target.value);
+    setIsEmailWrong(false);
+  }
 
+  const handlePassword=(event) => {
+    event.preventDefault()
+    setErrorMessage("")
+    setPassword(event.target.value);
+    setIsPasswordWrong(false);
+  }
+  
+  const handleConfirmPassword=(event) => {
+    event.preventDefault()
+    setErrorMessage("")
+    setConfirmPassword(event.target.value);
+    setIsConfirmPasswordWrong(false);
+  }
+
+
+  function validateFrom() {
+	if(!validateName(fullname)) {
+		setErrorMessage("name should have more than  2")
+        setIsFullnameWrong(true)
+		return false
+	}
+    if(!validateEmail(email)) {
+		setErrorMessage("not a valid email address")
+        setIsEmailWrong(true)
+		return false
+	}
+    if(!validatePassword(password)){
+		setErrorMessage('Password must be at least 8 characters long and contain at least one lowercase letter, one uppercase letter, one number, and one special character.')
+        setIsPasswordWrong(true)
+		return false
+	}
+	if(password !== confirmPassword) {
+		setErrorMessage(`Password and confirm password don't match`)
+        setIsConfirmPasswordWrong(true)
+		return false
+	}
+
+	return true;
+  } 
+  const validateName =(name)=> {
+     if(name.length <= 2){
+		return false
+	 }
+	 return true;
+  }
+
+  function validateEmail(email) {
+    const re = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
+    return re.test(email);
+  }
+
+  function validatePassword(passwor) {
+    const re = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]).{8,}$/;
+    return re.test(password)
+  }
+
+  const handleSubmit = async(e)=> {
     e.preventDefault()
-	if(password.current.value !== confirmpassword.current.value)  {
-	  return	setErrorMessage(`passwords don't match`)
+	if(validateFrom()){
+		  const body ={
+			  email:email,
+			  name:fullname ,
+			  password : password,
+			  username:email,
+		  }
+		  authRegister(body,props.setUser)
 	}
-	const body ={
-		email:email.current.value,
-		name:name.current.value ,
-		profession : profession.current.value ,
-		password : password.current.value,
-		confirmpassword: confirmpassword.current.value,
-		username:username.current.value
-	}
-    authRegister(body,setUser)
 	
   }
      
+  
   return (
 	<div className="d-flex flex-column justify-content-center gap-1 align-items-center h-100 homepage "
 	style={{backgroundColor:"#084569"}}>
-
-		       	<div className="user_card">	
+		       	<div className="user_card text-center">	
 				  <div   className ='logo-header'>
                     <h1>Challengify</h1>
                   </div>
 				  <div className="d-flex justify-content-center mt-1 text-center  form_container">
 					<form> 
 				     	<div className="d-flex mt-2 justify-content-center text-center">
-                          <h1 style={{fontSize:'25px'}} >Register</h1>
+                          <h1 style={{fontSize:'21px'}} >Register</h1>
                         </div>  
                         <div className="input-group mt-4 gap-3">
-							<input type="text" name="fullname" ref={name} className="form-control  input_user" 
+							<input type="text" name="fullname"
+							//  ref={name}
+							    onChange={handleFullname}
+							    className={'form-control input_user ' + (isFullnameWrong ? 'shake-email' : '') }
                                 defaultValue="" placeholder="Fullname" 
                                 />
 						</div>
-                        {/* <div className="input-group mb-3 gap-3">
-							<div className="input-group-append">
-								<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" className="bi bi-align-top" viewBox="0 0 16 16">
-									<rect width="4" height="12" rx="1" transform="matrix(1 0 0 -1 6 15)"/>
-									<path d="M1.5 2a.5.5 0 0 1 0-1zm13-1a.5.5 0 0 1 0 1zm-13 0h13v1h-13z"/>
-								</svg>
-							</div>
-							<input type="text" name="Talent" ref={profession} className="form-control input_user" 
-                                defaultValue="" placeholder="Talent" 
-                                />
-						</div>     */}
-						<div className="input-group mt-3 gap-3">
-							
-							<input type="email" name="email" ref={email} className="form-control input_user" 
-                                defaultValue="samdouglas2020@gmail.com" placeholder="email"  required
+                      
+						<div className="input-group mt-3 gap-3">	
+							<input type="email" name="email"
+							 onChange={handleEmail}
+							 className={'form-control input_user ' + (isEmailWrong ? 'shake-email' : '') }
+                             defaultValue="samdouglas2020@gmail.com" placeholder="email"  required
                                 />
 						</div>
 
 						<div className="input-group mt-3 gap-3">
-					
-							<input type="text" name="email" ref={username} className="form-control input_user" 
-                                defaultValue="samdouglas2024" placeholder="username"  required
-                                />
-						</div>
-						<div className="input-group mt-3 gap-3">
-							<input type="password" name="password" className="form-control input_pass"
-                                ref={password} defaultValue="samir" placeholder="password" 
+							<input type="password" name="password" 
+							onChange={handlePassword}
+							className={'form-control input_pass ' + (isPasswordWrong ? 'shake-password' : '') }
+                            defaultValue="samir"
+						    placeholder="password" 
                                 />
 						</div>  
                         <div className="input-group mt-3 gap-3">
-							<input type="password" name="confirmpassword" className="form-control input_pass"
-                                ref={confirmpassword} defaultValue="samir" placeholder="confirm" 
+							<input type="password" name="confirmpassword"
+							 onChange={handleConfirmPassword}
+							 className={'form-control input_pass ' + (isConfirmPasswordWrong ? 'shake-password' : '') }
+                             defaultValue="samir" 
+							 placeholder="confirm" 
                                 />
 						</div>  
 						<div className="d-flex justify-content-center mt-3 login_container">
 				         	<button type="button" onClick={handleSubmit} name="button" className="btn login_btn"> Register</button>
 				        </div>  
+						<p style={{color:'red',fontSize:12}} >{errorMessage}</p>
 				  </form>    
 				 
 				</div>
@@ -115,7 +182,6 @@ export const Signup = ({setUser}) => {
 						style={{height:'40px',width:'40px',objectFit:'fill' 
 					}} />
     		    </div>
-				<p style={{color:'red',fontSize:12}} >{errorMessage}</p>
 			</div>
 
 		

@@ -1,7 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
 import './Sign.css'   
-import logo from '/asset/material/guiness.jpeg'
-//  import  {Link, useNavigate}  from 'react-router-dom'
  import axios from 'axios'
  import { Link } from 'react-router-dom'
  import { authLogin} from '../../apiCalls'
@@ -54,7 +52,7 @@ import logo from '/asset/material/guiness.jpeg'
   }
 
   useEffect(() => {
-     if(message === "user not found") {
+     if(message == "user not found") {
       setIsEmailWrong(true)
      }
      if(message === "invalid password") {
@@ -62,6 +60,7 @@ import logo from '/asset/material/guiness.jpeg'
      }
   }, [message])
   
+
   useEffect(() => {
     setEmail(holdEmail.current.value)
     setPassword(holdPassword.current.value)
@@ -90,7 +89,7 @@ return (
               ref={holdEmail}
               onChange={handleEmailChange}
                className= {'form-control input_user ' + (isEmailWrong ? 'shake-email' : '') }
-           defaultValue="samcoeur2020@gmail.com" placeholder="username" 
+            defaultValue="samirhaddadi@gmail.com" placeholder="email" 
            />
          </div>
          <div className="input-group gap-3 p-2  ">
@@ -98,7 +97,7 @@ return (
                 className= {'form-control input_pass ' + (isPasswordWrong ? 'shake-password' : '')  }
                   ref={holdPassword}
                   onChange={handlePasswordChange}
-                   defaultValue="Samir@2025" placeholder="password" 
+                   defaultValue="Samir@2024" placeholder="password" 
                   />
          </div>  
          <div className="form-group mt-3 d-flex align-items-center justify-content-start"
