@@ -15,7 +15,7 @@ const PostHeader = (props) => {
   return (
     <div className=" d-flex justify-content-start align-items-center mt-3 gap-4 post-header">
         <Link to ={`/profile/${props.user._id}`}>
-                <img src={BASE_URL+ props.user.profile_img} alt="Person"/>
+                <img src={props.user.profile_img} alt="Person"/>
         </Link> 
         <div className='d-flex  gap-0 flex-column  text-center'>
             <div className="user-name">{props.user.name}</div>

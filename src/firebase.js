@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getStorage } from "firebase/storage";
+import { getDownloadURL, getStorage, ref } from "firebase/storage";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -16,6 +16,20 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 export const storage =  getStorage(app)
+
 export const generateUserFolder = (email)=> {
   return  `videos/${email}/`;
+}
+export const generateUserProfileFolder = (email)=> {
+  return  `images/${email}/`;
+}
+
+export const  getMediaFireBase = (filename,setFilename)=> {
+     const fileRef = ref(storage, filename);
+      getDownloadURL(fileRef).then(url => {
+      setFilename(url)
+     })
+    .catch((error) => {
+     console.error(error);
+    });
 }

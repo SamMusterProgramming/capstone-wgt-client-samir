@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import { BASE_URL, getChallengeById } from '../../apiCalls';
 import { ref, uploadBytes } from 'firebase/storage';
 import { v4 } from 'uuid';
-import { generateUserFolder, storage } from '../../firebase';
+import { generateUserFolder, getMediaFireBase, storage } from '../../firebase';
 import { challengeType, privacyData } from '../../utilitise/typeSelectorData';
 import { Select } from 'antd';
 import { Toaster, toast } from 'sonner';
@@ -32,11 +32,8 @@ const colourStyles = {
 const NewChallenge = (props) => {
   
   const [swicthUploadLive ,setSwitchUploadLive] = useState(false)
-  const video = useRef()
   const [videoSrc , setVideoSrc] = useState("");
   const [file,setFile] = useState(null)
-  const [isFullScreen, setIsFullScreen] = useState(false);
-  const [playReview , setPlayReview] = useState(false)
   const [description , setDescription] = useState("")
   const navigate = useNavigate();
   const  challenge_id  = useParams().id;
@@ -50,7 +47,7 @@ const NewChallenge = (props) => {
   const [challengers , setChallengers] = useState([])
   const [selectedChallenger , setSelectedChallenger] = useState("EVERYONE")
   const [challenge,setChallenge] = useState({})
-
+  const [profileImg,setProfileImg] = useState("")
 
 
   const handleUploading = async () => {
@@ -77,6 +74,7 @@ const NewChallenge = (props) => {
        name:props.user.name,
        video_url : CHALLENGE_VIDEO_URL,
        email:props.user.email,
+   
      }
 
     if(!challenge_id){ // when user creates new challenge
@@ -85,7 +83,8 @@ const NewChallenge = (props) => {
         category:selectedCategory,
         privacy:selectedPrivacy,
         audience:selectedAudience,
-        challengers:selectedChallenger
+        challengers:selectedChallenger,
+        name:props.user.name
       }
       await axios.post( BASE_URL + '/challenges/uploads', challenge).then( // when user challenge another user , we will insert his change to an existing challenge by challenge_id
         res =>  setTimeout(() => {
@@ -162,6 +161,7 @@ useEffect(() => {
   if(challenge_id) {
      getChallengeById(challenge_id,setChallenge)
   }
+  // getMediaFireBase(props.user.profile_img,setProfileImg)
 }, [])
 
   return (

@@ -6,6 +6,7 @@ const VideoUploader = (props) => {
   return (
     <div style={{ marginLeft:0,marginTop:30}} className=''>
     <Upload className=""
+       showUploadList={false}
        accept="video/+"           
        maxCount={1}
        onChange={props.onChange}>

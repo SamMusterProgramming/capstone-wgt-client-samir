@@ -20,20 +20,15 @@ import { AuthContent } from './context/AuthContent.jsx'
 import ChallengePage from './root/pages/ChallengePage.jsx'
 import ParticipateChallenge from './root/pages/ParticipateChallenge.jsx'
 import { AddProfileImg } from './auth/forms/AddProfileImg.jsx'
+import { getMediaFireBase } from './firebase.js'
 
 
 export default function App() {
-  // const [user, setUser] = useState(null)
+
 
   const {user,setUser} = useContext(AuthContent)
   
- useEffect(() => {
-   
- console.log(user)
 
- }, [user])
- 
- 
 
   return (
    

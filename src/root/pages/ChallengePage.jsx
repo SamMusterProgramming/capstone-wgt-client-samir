@@ -5,7 +5,7 @@ function ChallengePage() {
   return (
     <>
         <div className='d-flex mt-2 justify-content-between align-items-center  gap-2'
-          style={{minWidth:'100%' ,height:'8%', background:'#141310'}}>
+          style={{minWidth:'100%' ,minHeight:'8%', background:'#141310'}}>
            <Link to ='challenges' style={ {width:"32%" ,height:"100%"} } >
            <button type='button' style={{border:'none',width:"100%",color:"black",background:"#639428",
                 fontSize:'12px',height:"100%",fontWeight:"600"

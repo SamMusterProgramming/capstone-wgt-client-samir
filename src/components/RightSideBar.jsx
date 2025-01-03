@@ -44,10 +44,10 @@ const RightSideBar = ({user}) => {
                 {user ? (
               
                     <Link to={`/profile/${user._id}` }  style={{height:'70%'}} >
-                      <img style={{height:'100%'}} className="challenge-logo" src={BASE_URL + user.profile_img} alt="" />
+                      <img style={{height:'100%'}} className="challenge-logo" src={ user.profile_img} alt="" />
                     </Link> 
          
-               ):(
+                    ):(
                  <div  className="d-flex menu-item ">
                     <Link
                       to= "/sign-in">

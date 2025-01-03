@@ -5,7 +5,7 @@ import PostFooter from './PostFooter';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { Button, Select } from 'antd';
 import { getDownloadURL, ref } from 'firebase/storage';
-import { generateUserFolder, storage } from '../../firebase';
+import { generateUserFolder, getMediaFireBase, storage } from '../../firebase';
 import DialogConfirm from './DialogConfirm';
 
 
@@ -22,6 +22,9 @@ const ParticipantsDisplayer = (props) => {
   const [isVotedColor,setIsVotedColor] = useState("lightpink")
   const [isLikedColor,setIsLikedColor] = useState("lightblue")
   const [topChallenger ,setTopChallenger] = useState("")
+  const [userProfileImg,setUserProfileImg] = useState(props.user.profile_img)
+
+
   const ids =[ props.user._id,
       selectedParticipant._id,
       props.challenge._id
@@ -88,7 +91,7 @@ const ParticipantsDisplayer = (props) => {
       .then(data => { console.log("deleted")
         res =>  setTimeout(() => {
           navigate('chpage/challenges')
-       }, 8000)  
+       }, 5000)  
      
     })
   }
@@ -113,18 +116,19 @@ const ParticipantsDisplayer = (props) => {
       }, [])
 
   useEffect(() => {
-      const imageRef = ref(storage, selectedParticipant.video_url);
-      console.log(imageRef.fullPath)
-      getDownloadURL(imageRef)
-      .then((url) => {
-         setVideo_url(url)
-      })
-      .catch((error) => {
-       console.error(error);
-      });
+        const imageRef = ref(storage, selectedParticipant.video_url);
+        console.log(imageRef.fullPath)
+        getDownloadURL(imageRef)
+        .then((url) => {
+          setVideo_url(url)
+        })
+        .catch((error) => {
+        console.error(error);
+        });
+
+       getMediaFireBase(selectedParticipant.profile_img,setUserProfileImg)
 
        setLikesVotesData({like_count:selectedParticipant.likes,vote_count:selectedParticipant.votes})
-       //apiCall.js  , load the like and vote data when loading new participant 
        loadLikeVoteData(ids,setLikesVotesData)   
   
     }, [selectedParticipant])
@@ -204,11 +208,11 @@ const ParticipantsDisplayer = (props) => {
                     <div  className="d-flex flex-row align-items-center gap-2">
 
                     <div className="chip">
-                          <img src={BASE_URL + participant.profile_img } alt="" />
+                          {/* <img src={participant.profile_img} alt="" /> */}
                           <p style={{marginTop:'-5px'}} > {(props.user._id===participant.user_id)? participant.name + " - YOU": participant.name} </p> 
                     </div>
                     
-                     <div className='d-flex flex-ro text-center gap-2  align-items-center showvote'>
+                     <div className = 'd-flex flex-ro text-center gap-2  align-items-center showvote'>
                           <p>{participant.votes}</p> 
                           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"color='red' className="bi bi-heart-fill" viewBox="0 0 16 16">
                            <path fillRule="evenodd"  d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
@@ -237,7 +241,7 @@ const ParticipantsDisplayer = (props) => {
              <div className="d-flex justify-content-start align-items-center border " 
                style={{height:'50px',width:'20%'}}>
                 <Link  style={{height:'50px',width:'100%'}} to = {`/profile/${selectedParticipant.user_id}`} > 
-                  <img  style={{height:'50px',width:'100%',objectFit:"fill"}} src={BASE_URL + selectedParticipant.profile_img } alt="" />
+                  <img  style={{height:'50px',width:'100%',objectFit:"fill"}} src={selectedParticipant.profile_img} alt="" />
                 </Link>
             </div>
             <div className='d-flex flex-column justify-content-center gap align-items-center'
@@ -346,7 +350,7 @@ const ParticipantsDisplayer = (props) => {
             <div className='d-flex flex-column justify-content-start gap align-items-center'
                style={{height:"100%",width:"30%",backgroundColor:"#eb4f34"}}>
                 <span style={{fontSize:'10px',fontWeight:"600",marginTop:'10px'}}>CREATED BY</span>
-                <p style={{fontSize:'11px',fontWeight:"600",color:'gold'}}>{props.participants[0].name}</p>
+                <p style={{fontSize:'11px',fontWeight:"600",color:'gold'}}>{props.challenge.name}</p>
                 <p style={{fontSize:'11px',fontWeight:"600",color:'white'}}>{props.challenge.createdAt.substring(0,10)}</p>
 
             </div>

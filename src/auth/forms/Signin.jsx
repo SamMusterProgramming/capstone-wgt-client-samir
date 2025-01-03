@@ -28,6 +28,7 @@ import './Sign.css'
     setEmail(event.target.value);
     setIsEmailWrong(false);
   };
+  
  const handleSubmit = async (e) => {
    e.preventDefault()
    if(!validateEmail(email)) {

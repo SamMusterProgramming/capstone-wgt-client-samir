@@ -118,7 +118,7 @@
 
 
 .homepage {
-     min-height: 80%; 
+     min-height: 83%; 
      width: 100%;
     /* min-height:84%; */
     /* max-width: 500px; */
@@ -136,10 +136,10 @@
 /* ************************** challenges ****************************************** */
 .ch-page {
     /* background-color: rgb(19, 18, 18); */
-    height:90%; 
+    min-height:83%; 
     width: 100%;
     max-width: 500px;
-    overflow: scroll;
+    /* overflow: scroll; */
 }
 .challenges {
     background-color:#1f1e15;
@@ -165,54 +165,55 @@
 
 .profilecontainer{
  
-    height: 84vh;
+    min-height: 84vh;
     width: 100%;
     max-width: 500px;
-    min-width: 500px;
+
     overflow: scroll;
     /* background-color: black; */
     /* background-color: rgb(35, 21, 21); */
-    background:rgb(1, 47, 79);
+    background:rgb(25, 33, 39);
 
 }
 .cover{
     max-width: 500px;
     width: 100%;
+    /* height: 100%; */
     height: 100%;
-    max-height: 200px;
-    /* max-width: 1000px; */
-    display: flex;
+    /* max-widt/h: 1000px; */
+    /* display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: center; */
     
 }
 .cover img{
    min-width: 100%;
    max-height: 200px;
-   object-fit: fill;
+   object-fit:fill;
 }
-.profileimg {
+/* .profileimg {
     position: relative;
-    border-radius: 0%; 
+    border-radius: 50%; 
     width: 100px;
-    height: 100px;
     background-color: lightblue;
     margin-top:-40px;
   
-}
-.profileimg img {
-   width: 97%;
-   height: 97%;
+} */
+.profileimg {
+  /* position: relative; */
+   /* width: 100px; */
+   height: 100px;
+   width: 100px;
    object-fit: fill;
-   border-radius: 0%;
+   border-radius: 50%;
+   margin-top:-50px;
 
-  
 }
 .mid-container{
     max-width:  500px;
     /* width: 100%; */
     /* background-color: rgb(35, 21, 21); */
-    min-height: 250px;
+    min-height: 200px;
     overflow: scroll;
    
  }
@@ -262,14 +263,14 @@
 }
 
 .number {
-    font-size: 22px;
+    font-size: 14px;
     font-weight: bold
 }
 
 .follow {
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 500;
-    color: rgb(2, 11, 18)
+    color: rgb(238, 241, 247)
 }
 
 .btn1 {

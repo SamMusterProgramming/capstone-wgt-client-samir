@@ -1,16 +1,19 @@
 import { Link, useNavigate } from "react-router-dom"
 import TalentSelector from "../../components/helper/TalentSelector"
 import { toast } from "sonner";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 
 const Home = ({user}) => {
 
    const navigate = useNavigate()
 
+
 useEffect ( () => {   
   ( user.isNewUser  && navigate('/updateProfile') )
 } , [] ) 
+
+
 
   return (
      <div className="d-flex flex-column align-items-center  justify-content-center" 

@@ -87,6 +87,17 @@ export const getUserById = async(user_id,setUserProfile) =>{
     }
 
 }
+
+export const updateUser = async(user_id,rawBody,setUser,user)=> {
+  try {
+     await axios.patch(BASE_URL + `/users/user/${user_id}`,rawBody)
+     .then(res =>{
+      setUser( {...user,profile_img:res.data.profile_img,cover_img:res.data.cover_img} )
+    } )
+  } catch (error) {
+     console.error(error)
+  }
+}
 // *********************************** getChallenge by id *************************
 
 

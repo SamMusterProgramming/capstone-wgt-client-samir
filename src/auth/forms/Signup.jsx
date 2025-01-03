@@ -6,6 +6,9 @@ import axios from 'axios'
 import { Link, Navigate ,useNavigate } from 'react-router-dom'
 import { authRegister } from '../../apiCalls'
 import { validate } from 'uuid'
+import { ref, uploadBytes } from 'firebase/storage'
+import { storage } from '../../firebase'
+import { toast } from 'sonner'
 
 export const Signup = (props) => {
    
@@ -92,15 +95,19 @@ export const Signup = (props) => {
     const re = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]).{8,}$/;
     return re.test(password)
   }
-
+  
   const handleSubmit = async(e)=> {
     e.preventDefault()
+	const imageProf ="https://firebasestorage.googleapis.com/v0/b/challengify-wgt.firebasestorage.app/o/avatar%2Favatar.jpg?alt=media&token=25ae4701-e132-4f15-a522-5b9332d2c0b2"
+	const imageCover ="https://firebasestorage.googleapis.com/v0/b/challengify-wgt.firebasestorage.app/o/avatar%2F67.jpg?alt=media&token=d32c765c-31bc-4f74-8925-de45b2640544"
 	if(validateFrom()){
 		  const body ={
 			  email:email,
 			  name:fullname ,
 			  password : password,
 			  username:email,
+			  profile_img:imageProf,
+			  cover_img:imageCover
 		  }
 		  authRegister(body,props.setUser)
 	}
