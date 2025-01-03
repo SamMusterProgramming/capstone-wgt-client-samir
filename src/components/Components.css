@@ -4,6 +4,7 @@
     max-height: 8%;
     max-width: 500px;
     /* height: 16%; */
+    display: flex;
     align-items: center;
     justify-content: space-evenly;
     background-color: rgb(4, 37, 68);
@@ -16,11 +17,13 @@
 .menu-item {
     align-items: center;
     height: 100%;
+    /* max-width: 500px;
+    width: 100%; */
 }
 .menu-logo {
     width: 40px;
     height: 80%;
-    background-color: rgb(14, 153, 213);
+    background-color: rgb(133, 196, 224);
     border-radius: 20%;
     cursor: pointer;
     object-fit: cover;
@@ -92,5 +95,5 @@
     border-radius: 20%;
     cursor: pointer;
     object-fit: cover;
-    background-color: white;
+    background-color: #e44061;
 }

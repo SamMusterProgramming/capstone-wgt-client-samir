@@ -12,17 +12,9 @@ import { Navigate } from 'react-router-dom'
  const BUCKET_REGION = import.meta.env.VITE_BUCKET_REGION;
  const ACCESS_KEY = import.meta.env.VITE_ACCESS_KEY
  const SECRET_KEY = import.meta.env.VITE_SECRET_KEY
- 
-//  AWS.config.update({
-//    region: BUCKET_REGION,
-//    accessKeyId:ACCESS_KEY,
-//    secretAccessKey: SECRET_KEY,
-//  });
-
-//  export const CHALLENGIFY_S3 = new AWS.S3();
 
 
-const bName = "chalengify-storage"
+
 const  PURL = baseURL_PRODUCTION;   
  
 export const BASE_URL =  baseURL_PRODUCTION; 

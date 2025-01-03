@@ -237,7 +237,7 @@ useEffect(() => {
       )}
           
           
-          <textarea style={{backgroundColor:'white',color:'black',fontWeight:500, width:'93%',height:'35px',borderRadius:'5px'}}
+          <textarea style={{backgroundColor:'gray',color:'white',fontWeight:500, width:'92%',height:'35px',borderRadius:'5px'}}
            className="description " onChange={addDescrition}  name='description' placeholder='add description to your challenge'>
           </textarea>
          

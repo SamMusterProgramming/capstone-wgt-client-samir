@@ -114,13 +114,13 @@ export const AddProfileImg = (props) => {
     <div className='d-flex flex-column align-items-center  justify-content-start'
       style={{ width:'100%' ,minHeight:'100%'}}>
   
-           <div className='d-flex flex-column align-items-center  justify-content-center'
+           <div className='d-flex  align-items-center  justify-content-center'
               style={{ width:'100%' ,height:'200px' }}>
                <img style={{width:'100%',height:'100%',objectFit:"fill"}} src={coverImgDisplay} alt="" />
            </div>
-           <div className='d-flex flex-column align-items-center justify-content-center'
-              style={{ width:'150px',height:'150px',position:'absolute',marginTop:'120px',borderRadius:'50%'}}>
-               <img style={{ width:'100%'  ,objectFit:"fill" ,borderRadius:'50%'}} 
+           <div className='d-flex flex-column align-items-center justify-content-center bg-light'
+              style={{ width:'150px',height:'150px',position:'relative',marginTop:'-80px',borderRadius:'50%'}}>
+               <img style={{ width:'95%',height:"95%"  ,objectFit:"fill" ,borderRadius:'50%'}} 
                src={profileImgDisplay} alt="" />
            </div>
      
