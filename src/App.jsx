@@ -21,6 +21,8 @@ import ChallengePage from './root/pages/ChallengePage.jsx'
 import ParticipateChallenge from './root/pages/ParticipateChallenge.jsx'
 import { AddProfileImg } from './auth/forms/AddProfileImg.jsx'
 import { getMediaFireBase } from './firebase.js'
+import { Timeline } from 'antd'
+import TimeLine from './root/pages/TimeLine.jsx'
 
 
 export default function App() {
@@ -42,11 +44,12 @@ export default function App() {
          <Route path="" element={<RootLayout user={user} />}>
 
               <Route path="/" element={ <Homepage user = {user}/>} >
-                  <Route path="home" element={ <Home user={user}/> } />
-                  <Route path='chpage' element={ <ChallengePage/> }>
+                  {/* <Route path="home" element={ <Home user={user}/> } /> */}
+                  <Route path="home" element={ <TimeLine user={user}/> } />
+                  <Route path='chpage' element={ <ChallengePage user={user}/> }>
                     <Route path="challenges" element ={<Challenges user={user}/>} /> 
                     <Route path="participatechallenges" element ={<ParticipateChallenge user={user}/>} /> 
-                    <Route path="topchallenges" element ={<TopChallenges user={user}/>} /> 
+                    {/* <Route path="topchallenges" element ={<TopChallenges user={user}/>} />  */}
                   </Route>
                   <Route path="topchallenges" element ={<TopChallenges user={user}/>} /> 
                   <Route path="profile/:id" element={<Profile user={user}/>} />

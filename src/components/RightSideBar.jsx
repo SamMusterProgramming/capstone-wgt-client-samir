@@ -19,26 +19,26 @@ const RightSideBar = ({user}) => {
           
                 <div  className="d-flex flex-row text-center menu-item ">
                   <Link to='/home'>
-                    <img style={{backgroundColor:'lightblue'}} className="challenge-logo" src=  "/asset/material/home.png" alt="" />
+                    <img  data-toggle="tooltip" title="HOME" style={{backgroundColor:'lightblue'}} className="challenge-logo" src=  "/asset/material/home.png" alt="" />
                   </Link>   
                 
                 </div>
                 <div  className="d-flex flex-row text-center menu-item ">
-                  <Link to='/talent'>
-                    <img style={{backgroundColor:'#c21373'}} className="challenge-logo" src="/asset/material/talent.png" alt="" />
+                  <Link data-toggle="tooltip" title="talent" to='/talent'>
+                    <img style={{backgroundColor:'#0c77c9'}} className="challenge-logo" src="/asset/material/talent.png" alt="" />
                   </Link>   
                 
                 </div>
 
                 <div className="d-flex flex-row text-center menu-item ">
-                  <Link to='/newchallenge'>
-                    <img className="challenge-logo" src="/asset/material/chalenge.png" alt="" />
+                  <Link to='/chpage/challenges'>
+                    <img data-toggle="tooltip" title="CHALLENGE" className="challenge-logo" src="/asset/material/chalenge.png" alt="" />
                   </Link>    
                 </div>
 
                 <div className="d-flex flex-row text-center  menu-item ">
-                  <Link to={'/'}>
-                    <img style={{backgroundColor:'red'}} className="challenge-logo" src="/asset/material/guiness.jpg" alt="" />
+                  <Link data-toggle="tooltip" title="GUINESS" to={'/'}>
+                    <img  style={{backgroundColor:'red'}} className="challenge-logo" src="/asset/material/guiness.jpg" alt="" />
                   </Link>    
                 </div>
                 <div  className="d-flex menu-item ">

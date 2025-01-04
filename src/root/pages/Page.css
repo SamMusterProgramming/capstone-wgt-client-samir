@@ -126,8 +126,8 @@
     justify-content: start;
   
     /* border: 6px solid black; */
-    /* background-color:#020202;   */
-    background:rgb(16, 65, 102);
+    background-color:#e7dcdc;  
+    /* background:rgb(16, 65, 102); */
 
     overflow: scroll;
 }
@@ -144,7 +144,7 @@
 .challenges {
     background-color:#1f1e15;
     /* background-color:#b0a220; */
-    height:700px;
+    height:720px;
     /* min-width:500px; */
     max-width: 100%;
     width: 100%;
@@ -157,7 +157,7 @@
 .top-ch {
   min-width: 100vw;
   min-height: 84vh;
-  background:rgb(1, 47, 79);
+  /* background:rgb(1, 47, 79); */
 
 }
 
@@ -207,6 +207,7 @@
    object-fit: fill;
    border-radius: 50%;
    margin-top:-50px;
+   object-fit: cover;
 
 }
 .mid-container{

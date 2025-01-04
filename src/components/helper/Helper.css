@@ -139,11 +139,11 @@
     display: inline-block;
     padding: 0 24px;
     height: 40px;
-    font-size: 15px;
+    font-size: 12px;
     font-weight: 600;
     line-height: 50px;
     border-radius: 10px;
-    background-color: #616d91;
+    /* background-color: #616d91; */
     width: 70%;
     text-align: center;
    
@@ -155,12 +155,12 @@
     height: 40px;
     width: 40px;   
     border-radius: 10%;
-    margin-top: 0px;
+    margin-top: 0px;   
   }
   .showvote {
     width: 30%;
     height: 40px;
-    background-color:#616d91;
+    /* background-color:#616d91; */
     margin-left: -23px;
     align-items: end;
     justify-content: end;
@@ -169,7 +169,7 @@
   .showvote p{
     font-size: 12px;
     margin-bottom: opx;
-    color: goldenrod;
+    color: rgb(78, 57, 5);
   }
 
   button:hover {

@@ -77,7 +77,7 @@ const Profile = (props) => {
       <div className=' d-flex flex-column justify-content-start align-items-center'
         style={{maxWidth:'500px', height:'250px', width:'100%', background:' transparent'}}>
            
-               <img style={{width:"100%",height:"150px"}} src={user.cover_img} alt="" />
+               <img style={{width:"100%",height:"150px",objectFit:"cover"}} src={user.cover_img} alt="" />
            
               {/* <div className='d-flex justify-content-center align-items-center profileimg'> */}
                <img className='profileimg' src={user.profile_img} alt="" />

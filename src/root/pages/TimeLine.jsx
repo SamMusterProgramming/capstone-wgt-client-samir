@@ -1,7 +1,21 @@
-import React from 'react'
+import { Link } from "react-router-dom"
+import Challenges from "./Challenges"
+import ProfileHeader from "../../components/helper/ProfileHeader"
+import TopChallenges from "./TopChallenges"
 
-export default function TimeLine() {
+
+
+
+
+
+const TimeLine = ({user}) => {
   return (
-    <div>TimeLine</div>
+    <>
+          <ProfileHeader user={user} title={"CHALLENGE TIMELINE"}/>
+          <TopChallenges user={user}/>
+    </>
+
   )
 }
+
+export default TimeLine

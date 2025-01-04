@@ -1,14 +1,25 @@
-import React from 'react'
-import { Link, Outlet } from 'react-router-dom'
-import ProfileHeader from '../../components/helper/ProfileHeader'
-import { Select } from 'antd'
-import { challengeType } from '../../utilitise/typeSelectorData'
+import { Link } from "react-router-dom"
+import { challengeType } from "../../utilitise/typeSelectorData"
+import { useEffect, useState } from "react"
+import { Select } from "antd"
 
-function ChallengePage(props) {
-  return (
-    <>
-        <div className="d-flex flex-column mb-0 mt-0 justify-content-start border align-items-center"
-          style={{width:"100%",height:'20%',backgroundColor:'#b6d1de'}}>
+
+
+
+
+const ProfileHeader = (props) => {
+
+const [selectedType,setSelectedType]= useState("ADVENTURE")
+  
+// useEffect(() => {
+//   challengeType.push({type:"all"})
+// }, [])
+
+
+return (
+
+    <div className="d-flex flex-column mb-4 mt-0 justify-content-start border align-items-center"
+          style={{width:"100%",height:'15%',backgroundColor:'#b6d1de'}}>
           
              <div className="d-flex  bg-light justify-content-between gap-0 align-items-center " 
                 style={{fontSize:'10px',width:'100%',height:"30%",padding:'10px'}}>
@@ -22,7 +33,7 @@ function ChallengePage(props) {
                  <div>
                    <p style={{fontSize:'10px',color:"#1f2426",fontWeight:'500', 
                       fontFamily:'monospace'
-                    }}>|_ USER CHALLENGES _|
+                    }}>|_ {props.title} _|
                     </p>
                  </div>
                  <div>
@@ -37,7 +48,7 @@ function ChallengePage(props) {
              <div className="d-flex   justify-content-start align-items-center border" 
                 style={{fontSize:'10px',width:'100%',height:"70%"}}>
                 <div className="d-flex justify-content-center align-items-center "
-                     style={{fontSize:'10px',width:'20%',height:"90%",borderRadius:'50%',backgroundColor:'blue'}}>
+                     style={{fontSize:'10px',width:'15%',height:"90%",borderRadius:'50%',backgroundColor:'blue'}}>
                  <Link to={"/profile/"+`${props.user._id}`} style={{width:'90%',height:"90%"}}>
                    <img   style={{fontSize:'10px',width:'100%',height:"100%",objectFit:'cover',borderRadius:'50%'}}
                      src={props.user.profile_img}  alt="" />
@@ -69,29 +80,28 @@ function ChallengePage(props) {
                      </div>
                      <div className="d-flex justify-content-evenly align-items-center "
                      style={{fontSize:'10px',width:'96%',height:"40%",backgroundColor:''}} >
-                        <Link to={"/chpage/challenges"}
+                        <Link to={"/challengers"}
                         style={{fontSize:'9px',color:"#1b78cf",fontWeight:'800', 
                             fontFamily:'revert'}}>
-                               CREATED BY YOU
+                             ALL CHALLENGES 
                         </Link>
-                        <Link to={"/chpage/participatechallenges"}
+                        <Link to={"/challengers"}
                         style={{fontSize:'9px',color:"#1b78cf",fontWeight:'800', 
                             fontFamily:'revert'}}>
-                              PARTICIPATED IN
+                            HOT CHALLENGES
                         </Link>
-                        {/* <Link to={"/challengers"}
+                        <Link to={"/challengers"}
                         style={{fontSize:'9px',color:"#1b78cf",fontWeight:'800', 
                             fontFamily:'revert'}}>
-                             FRIENDS CHALLENGERS 
-                        </Link> */}
+                          FRIENDS CHALLENGERS 
+                        </Link>
                        
                      </div>
                 </div>
              </div>
           </div>
-        <Outlet/>
-    </>
+
   )
 }
 
-export default ChallengePage
+export default ProfileHeader

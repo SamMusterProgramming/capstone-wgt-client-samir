@@ -45,7 +45,7 @@ const TopBar = ({user}) => {
                 </div>
                 <div className="d-flex flex-row text-center  menu-item ">
                   <Link to={'/notifications'}>
-                    <img style={{backgroundColor:''}} className="challenge-logo" src="/asset/material/bell.png" alt="" />
+                    <img style={{backgroundColor:'#bda42b'}} className="challenge-logo" src="/asset/material/bell.png" alt="" />
                   </Link>    
                 </div>
                 

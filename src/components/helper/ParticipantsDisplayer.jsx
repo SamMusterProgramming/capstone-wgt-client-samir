@@ -191,10 +191,13 @@ const ParticipantsDisplayer = (props) => {
 
     <div className="d-flex flex-column mb-0 mt-0 justify-content-start align-items-center challenges">
          
-        
+         <div className='d-flex mt-0 justify-content-center align-items-center'
+           style={{width:"100%",height:"50px",padding:'10px'}}>
+            <span style={{fontSize:'11px'}} >Title  |</span> <p style={{fontSize:'11px'}}>| {props.challenge.desc} ||</p>
+         </div>
          <div className='d-flex mt-0 justify-content-center participantdisplayer'> 
           <Select
-            style={{width:"100%",height:"43px",fontSize:' 35px' ,border:"none",fontWeight:"800", backgroundColor:'red',textAlign:"center"}}
+            style={{width:"100%",height:"43px",fontSize:' 25px' ,border:"none",fontWeight:"800", backgroundColor:'',textAlign:"center"}}
               defaultValue="Select a Participant"
             onChange={handleChange} value={selectedParticipant.user_id}
                 >   
@@ -208,7 +211,7 @@ const ParticipantsDisplayer = (props) => {
                     <div  className="d-flex flex-row align-items-center gap-2">
 
                     <div className="chip">
-                          {/* <img src={participant.profile_img} alt="" /> */}
+                          <img src={participant.profile_img} alt="" />
                           <p style={{marginTop:'-5px'}} > {(props.user._id===participant.user_id)? participant.name + " - YOU": participant.name} </p> 
                     </div>
                     
@@ -232,39 +235,39 @@ const ParticipantsDisplayer = (props) => {
 
 
          <div className='d-flex justify-content-start align-items-center  '
-           style={{height:'50px',width:'100%'}}>
-            <div className='d-flex flex-column justify-content-start gap align-items-center'
-                   style={{height:"100%",width:"20%",backgroundColor:"#bf5b19"}}>
-                <span style={{fontSize:'8px',fontWeight:"600",marginTop:'10px',color:'black'}}>POSTED BY</span>
-                <p style={{fontSize:'9px',fontWeight:"600",color:'white'}}>{selectedParticipant.name}</p>
-            </div>
+           style={{height:'40px',width:'100%'}}>
              <div className="d-flex justify-content-start align-items-center border " 
                style={{height:'50px',width:'20%'}}>
-                <Link  style={{height:'50px',width:'100%'}} to = {`/profile/${selectedParticipant.user_id}`} > 
-                  <img  style={{height:'50px',width:'100%',objectFit:"fill"}} src={selectedParticipant.profile_img} alt="" />
+                <Link  style={{height:'40px',width:'100%'}} to = {`/profile/${selectedParticipant.user_id}`} > 
+                  <img  style={{height:'40px',width:'100%',objectFit:"fill"}} src={selectedParticipant.profile_img} alt="" />
                 </Link>
+            </div>
+            <div className='d-flex flex-column justify-content-start gap align-items-center'
+                   style={{height:"100%",width:"20%",backgroundColor:"#bf5b19"}}>
+                <span style={{fontSize:'9px',fontWeight:"600",marginTop:'10px',color:'black'}}>POSTED BY</span>
+                <p style={{fontSize:'9px',fontWeight:"600",color:'white'}}>{selectedParticipant.name}</p>
             </div>
             <div className='d-flex flex-column justify-content-center gap align-items-center'
                    style={{height:"100%",width:"20%",backgroundColor:"white"}}>
               {(selectedParticipant.user_id === props.user._id)? 
               (
-                <Button style={{width:'100%',height:'100%', backgroundColor:"gray",fontSize:'12px',fontWeight:"800",border:'none'}}
+                <button style={{width:'100%',height:'100%', backgroundColor:"gray",fontSize:'12px',fontWeight:"800",border:'none'}}
                 disabled >
-                  FOLLOW
-                </Button>
+                  Follow
+                </button>
               ):
               ( 
                 <>
                 {followings.find(following => following.following_id === selectedParticipant.user_id)?(
-                  <Button style={{width:'100%',height:'100%', backgroundColor:"#194ebf",fontSize:'12px',border:'none',fontWeight:"800"}}
+                  <button style={{width:'100%',height:'100%', backgroundColor:"#194ebf",fontSize:'12px',border:'none',fontWeight:"800"}}
                   onClick={handleUnFollowing}>
-                     UNFOLLOW
-                  </Button>
+                     Unfollow
+                  </button>
                 ):(
-                  <Button style={{width:'100%',height:'100%', backgroundColor:"#194ebf",fontSize:'13px',fontWeight:"800"}}
+                  <button style={{width:'100%',height:'100%', backgroundColor:"#194ebf",fontSize:'12px',fontWeight:"800"}}
                   onClick={handleFollowing}>
-                     FOLLOW
-                  </Button>
+                     Follow
+                  </button>
                 )
                 }
                 </>
@@ -273,11 +276,17 @@ const ParticipantsDisplayer = (props) => {
               
             </div> 
 
-           <div className='d-flex flex-column justify-content-center align-items-center'
+            <div className='d-flex flex-column justify-content-center align-items-center'
                    style={{height:"100%",width:"20%", backgroundColor:"white"}}>
-               <Button style={{width:'100%',border:'none',height:'100%',color:'white', backgroundColor:"#de1051",fontSize:'13px',fontWeight:"800"}}>
-                     ADD
-               </Button>
+               <button style={{width:'100%',border:'none',height:'100%',color:'white', backgroundColor:"#de1051",fontSize:'12px',fontWeight:"800"}}>
+                      Friend
+               </button>
+            </div> 
+            <div className='d-flex flex-column justify-content-center align-items-center'
+                   style={{height:"100%",width:"20%"}}>
+               <button style={{width:'100%',border:'none',height:'100%',color:'white',fontSize:'12px',fontWeight:"800"}}>
+                     Report
+               </button>
             </div> 
             
          </div>
@@ -305,7 +314,7 @@ const ParticipantsDisplayer = (props) => {
 
       
         <div className='d-flex flex-row  justify-content-between align-items-center '
-            style={{height:'50px',width:'100%',backgroundColor:'#1f1e15'}} >
+            style={{height:'40px',width:'100%',backgroundColor:'#1f1e15'}} >
               
                    {!ownChallenge? (    
                      <DialogConfirm handleAction={(e)=> navigate(`/matchchallenge/${props.challenge._id}`)} style={{width:'90px',color:"lightgreen",textAlign:'center',
@@ -316,11 +325,11 @@ const ParticipantsDisplayer = (props) => {
                     {props.participants.length == 1 ? 
                       (
                         <DialogConfirm handleAction={handleQuit} style={{width:'90px',color:"white",textAlign:'center',
-                          backgroundColor:'#b81842',height:'100%',fontSize:"14px",fontWeight:"800",border:'none'
+                          backgroundColor:'#b81842',height:'100%',fontSize:"12px",fontWeight:"800",border:'none'
                          }} action={"DELETE"} message ={'are you sure you want to delete  the challenge'} />
                       ):(
                         <DialogConfirm handleAction={handleQuit} style={{width:'90px',color:"white",textAlign:'center',
-                          backgroundColor:'#b81842',height:'100%',fontSize:"14px",fontWeight:"800",border:'none'
+                          backgroundColor:'#b81842',height:'100%',fontSize:"12px",fontWeight:"800",border:'none'
                          }} action={"RESIGN"} message ={'are you sure you want to resign from the challenge'} />
                       )} 
                     </>
@@ -328,16 +337,16 @@ const ParticipantsDisplayer = (props) => {
             
                    <div className='d-flex flex-column align-items-center justify-content-start'
                       style={{widh:"180px" , height:"100%"}}>
-                      <span>{props.participants.length}</span>
-                      <p style={{fontSize:'10px'}}>CHALLENGERS</p>
+                      <span style={{fontSize:'10px' ,marginTop:"5px"}}>{props.participants.length}</span>
+                      <p style={{fontSize:'9px'}}>CHALLENGERS</p>
                    </div>
                    <div className='d-flex flex-column align-items-center justify-content-center'
                       style={{widh:"180px" , height:"100%"}}>      
-                    <p style={{fontSize:'15px',color:'white'}}>4.5<span style={{fontSize:'18px',color:'gold'}}>   *****</span></p> 
-                      <p style={{fontSize:'11px',color:'white',marginTop:"-9px",marginLeft:"29px"}}>rating</p>
+                    <p style={{fontSize:'12px',color:'white'}}>4.5<span style={{fontSize:'14px',color:'gold'}}>   *****</span></p> 
+                      <p style={{fontSize:'11px',color:'white',marginTop:"-9px",marginLeft:"29px"}}>Rating</p>
                    </div>
                    <Button style={{backgroundColor:'#114fc2',border:'none'
-                      ,width:'90px',color:"lightblue",height:'100%',fontSize:"14px",fontWeight:"800"
+                      ,width:'90px',color:"lightblue",height:'100%',fontSize:"12px",fontWeight:"800"
                       }}>
                       FOLLOW
                    </Button>
@@ -346,30 +355,30 @@ const ParticipantsDisplayer = (props) => {
 
 
         <div className='d-flex justify-content-start  align-items-center '
-          style={{height:"60px",width:"100%"}}>
-            <div className='d-flex flex-column justify-content-start gap align-items-center'
+          style={{height:"45px",width:"100%"}}>
+            <div className='d-flex flex-column justify-content-start  align-items-center'
                style={{height:"100%",width:"30%",backgroundColor:"#eb4f34"}}>
-                <span style={{fontSize:'10px',fontWeight:"600",marginTop:'10px'}}>CREATED BY</span>
+                <span style={{fontSize:'10px',fontWeight:"600",marginTop:'5px'}}>CREATED BY</span>
                 <p style={{fontSize:'11px',fontWeight:"600",color:'gold'}}>{props.challenge.name}</p>
-                <p style={{fontSize:'11px',fontWeight:"600",color:'white'}}>{props.challenge.createdAt.substring(0,10)}</p>
+                {/* <p style={{fontSize:'11px',fontWeight:"600",color:'white'}}>{props.challenge.createdAt.substring(0,10)}</p> */}
 
             </div>
             <div className='d-flex flex-column justify-content-start gap align-items-center'
                style={{height:"100%",width:"40%",backgroundColor:"#3d34eb"}}>
-                <span style={{fontSize:'10px',fontWeight:"600",marginTop:'10px'}}>TOP CHALLENGER</span>
+                <span style={{fontSize:'10px',fontWeight:"600",marginTop:'5px'}}>TOP CHALLENGER</span>
                 <p style={{fontSize:'11px',fontWeight:"600",color:'gold'}}>{topChallenger.topChallenger}</p>
-                <p style={{fontSize:'11px',fontWeight:"600",color:'pink'}}>{topChallenger.votes} <span>  VOTES</span>  </p>
+                {/* <p style={{fontSize:'11px',fontWeight:"600",color:'pink'}}>{topChallenger.votes} <span>  VOTES</span>  </p> */}
             </div>
             <div className='d-flex flex-column  justify-content-center  align-items-center'
                style={{height:"100%",width:"30%",backgroundColor:"#de3c10"}}>
-                 <p style={{fontSize:'11px',fontWeight:"600",color:'gold',marginTop:'10px'}}>TYPE : 
-                 <span style={{fontSize:'10px',fontWeight:"300",marginTop:'10px',color:'white'}}> {props.challenge.type}</span>
+                 <p style={{fontSize:'10px',fontWeight:"600",color:'gold',marginTop:'0px'}}>TYPE : 
+                 <span style={{fontSize:'10px',fontWeight:"300",color:'white'}}> {props.challenge.type}</span>
                  </p>
-                 <p style={{fontSize:'11px',fontWeight:"600",color:'gold'}}>CATEG : 
+                 {/* <p style={{fontSize:'11px',fontWeight:"600",color:'gold'}}>CATEG : 
                  <span style={{fontSize:'10px',fontWeight:"300",marginTop:'10px',color:'white'}}> {props.challenge.category}</span>
-                 </p>
-                 <p style={{fontSize:'11px',fontWeight:"600",color:'gold'}}>PRIVACY : 
-                 <span style={{fontSize:'10px',fontWeight:"300",marginTop:'10px',color:'white'}}> {props.challenge.privacy}</span>
+                 </p> */}
+                 <p style={{fontSize:'10px',fontWeight:"600",color:'gold',marginTop:'0px'}}>PRIVACY : 
+                 <span style={{fontSize:'10px',fontWeight:"300",color:'white'}}> {props.challenge.privacy}</span>
                 </p>
              
             </div>
