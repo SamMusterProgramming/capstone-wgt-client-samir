@@ -90,7 +90,7 @@ return (
               ref={holdEmail}
               onChange={handleEmailChange}
                className= {'form-control input_user ' + (isEmailWrong ? 'shake-email' : '') }
-            defaultValue="samirhaddadi@gmail.com" placeholder="email" 
+            defaultValue="dummy@gmail.com" placeholder="email" 
            />
          </div>
          <div className="input-group gap-3 p-2  ">
@@ -98,7 +98,7 @@ return (
                 className= {'form-control input_pass ' + (isPasswordWrong ? 'shake-password' : '')  }
                   ref={holdPassword}
                   onChange={handlePasswordChange}
-                   defaultValue="Samir@2024" placeholder="password" 
+                   defaultValue="Dummy@2024" placeholder="password" 
                   />
          </div>  
          <div className="form-group mt-3 d-flex align-items-center justify-content-start"

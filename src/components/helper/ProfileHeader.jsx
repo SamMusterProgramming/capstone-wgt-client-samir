@@ -19,10 +19,10 @@ const [selectedType,setSelectedType]= useState("ADVENTURE")
 return (
 
     <div className="d-flex flex-column mb-4 mt-0 justify-content-start border align-items-center"
-          style={{width:"100%",height:'15%',backgroundColor:'#b6d1de'}}>
+          style={{width:"100%",minHeight:'25%',backgroundColor:'#b6d1de'}}>
           
              <div className="d-flex  bg-light justify-content-between gap-0 align-items-center " 
-                style={{fontSize:'10px',width:'100%',height:"30%",padding:'10px'}}>
+                style={{fontSize:'10px',width:'100%',minHeight:"20%",padding:'10px'}}>
                   <div>
                       <p style={{fontSize:'10px',color:"#1f2426"}}> 
                       <span className="lead text" style={{fontSize:'10px',color:"#232324",fontWeight:'800', 
@@ -45,12 +45,12 @@ return (
                  </div>
                
              </div>
-             <div className="d-flex   justify-content-start align-items-center border" 
-                style={{fontSize:'10px',width:'100%',height:"70%"}}>
+             <div className="d-flex   justify-content-start align-items-center" 
+                style={{fontSize:'10px',width:'100%',minHeight:"80%"}}>
                 <div className="d-flex justify-content-center align-items-center "
-                     style={{fontSize:'10px',width:'15%',height:"90%",borderRadius:'50%',backgroundColor:'blue'}}>
+                     style={{fontSize:'10px',width:'18%',height:"68%",borderRadius:'50%',backgroundColor:''}}>
                  <Link to={"/profile/"+`${props.user._id}`} style={{width:'90%',height:"90%"}}>
-                   <img   style={{fontSize:'10px',width:'100%',height:"100%",objectFit:'cover',borderRadius:'50%'}}
+                   <img   style={{fontSize:'10px',width:'100%',objectFit:'cover',borderRadius:'50%'}}
                      src={props.user.profile_img}  alt="" />
                  </Link>  
                 </div>
@@ -83,17 +83,17 @@ return (
                         <Link to={"/challengers"}
                         style={{fontSize:'9px',color:"#1b78cf",fontWeight:'800', 
                             fontFamily:'revert'}}>
-                             ALL CHALLENGES 
+                             All Challenges
                         </Link>
                         <Link to={"/challengers"}
                         style={{fontSize:'9px',color:"#1b78cf",fontWeight:'800', 
                             fontFamily:'revert'}}>
-                            HOT CHALLENGES
+                            Hot Challenges
                         </Link>
                         <Link to={"/challengers"}
                         style={{fontSize:'9px',color:"#1b78cf",fontWeight:'800', 
                             fontFamily:'revert'}}>
-                          FRIENDS CHALLENGERS 
+                          Friends Challenges
                         </Link>
                        
                      </div>

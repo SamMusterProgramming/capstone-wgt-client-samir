@@ -39,9 +39,11 @@ const [video_url ,setVideo_url] = useState()
      </> ) 
        :
        ( <div  className='d-flex flex-column gap-5 align-items-center justify-content-center'>
-           <h3 style={{marginTop:"350px"}}>empty list </h3>
+              <div>
+                 <img src="../../asset/material/empty.jpg" alt="" />
+              </div>
            <Link to="/newChallenge">
-              <button style={{height:'45px',width:'240px',backgroundColor:"white",color:'black',borderRadius:'14px'}} > create new challenge </button>
+              <button style={{height:'45px',width:'240px',backgroundColor:"lightblue",color:'black',borderRadius:'10px',fontSize:'12px'}} > create new challenge </button>
            </Link>
            
          </div>

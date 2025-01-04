@@ -1,21 +1,31 @@
 export const challengeType =[
     {
-       type : "SPORT" , 
+       type : "Sport" , 
        category:[
         "SOCCER","FOOTBALL","BASKETBALLl","CRICKET","TENNIS","SWIMMING"
        ]
     },
     {
-        type: "ADVENTURE" ,
+        type: "Adventure" ,
         category:[
             "HIKING","CLIMBING","SKIING","SKYDIVING","SURFING",""
         ]
     },
     {
-        type: "FOOD" ,
+        type: "Food" ,
         category:[
             "EATING","COOKING","BAKING"
         ]
+    },
+    {
+        type: "Science" ,
+        category:[
+            "EATING","COOKING","BAKING"
+        ]
+    },
+    ,
+    {
+        type: "Fitness" 
     }
 ]
 

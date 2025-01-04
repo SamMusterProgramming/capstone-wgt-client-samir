@@ -49,7 +49,7 @@ const UploadVideo = (props) => {
             ) 
            
             }
-             <input
+             {/* <input
              style={{width:"100%"}}
             type="range"
             min="0"
@@ -57,7 +57,7 @@ const UploadVideo = (props) => {
             step="0.01"
             value={volume}
             onChange={handleVolumeChange}
-          /> 
+          />  */}
          </div>
          <div className='container-fluid d-flex gap-5 mt-2 justify-content-between 
               align-items-center postfooter'>

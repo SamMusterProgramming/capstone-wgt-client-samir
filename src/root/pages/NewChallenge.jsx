@@ -4,7 +4,7 @@ import './Page.css'
 import LiveWebcam from '../../components/helper/LiveWebcam';
 import UploadVideo from '../../components/helper/UploadVideo';
 import axios from 'axios'
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { BASE_URL, getChallengeById } from '../../apiCalls';
 import { ref, uploadBytes } from 'firebase/storage';
@@ -13,6 +13,7 @@ import { generateUserFolder, getMediaFireBase, storage } from '../../firebase';
 import { challengeType, privacyData } from '../../utilitise/typeSelectorData';
 import { Select } from 'antd';
 import { Toaster, toast } from 'sonner';
+import { borderRadius } from '@mui/system';
 
 
 
@@ -38,8 +39,8 @@ const NewChallenge = (props) => {
   const navigate = useNavigate();
   const  challenge_id  = useParams().id;
   const [selectedType,setSelectedType]= useState("ADVENTURE")
-  const [selectedCategory,setSelectedCategory] = useState("CLIMBING")
-  const [categories,setCategories] = useState([])
+  const [selectedCategory,setSelectedCategory] = useState("climbing")
+  const [categories,setCategories] = useState("climbing")
   const [privacy ,setPrivacy] = useState([])
   const [selectedPrivacy , setSelectedPrivacy] = useState("PUBLIC")
   const [selectedAudience , setSelectAudience] =useState("EVERYONE")
@@ -48,7 +49,7 @@ const NewChallenge = (props) => {
   const [selectedChallenger , setSelectedChallenger] = useState("EVERYONE")
   const [challenge,setChallenge] = useState({})
   const [profileImg,setProfileImg] = useState("")
-
+  // const [selectedValue, setSelectedValue] = useState('option1');
 
   const handleUploading = async () => {
     
@@ -80,9 +81,9 @@ const NewChallenge = (props) => {
     if(!challenge_id){ // when user creates new challenge
       challenge = {...challenge,
         type:selectedType,
-        category:selectedCategory,
+        // category:selectedCategory,
         privacy:selectedPrivacy,
-        audience:selectedAudience,
+        // audience:selectedAudience,
         challengers:selectedChallenger,
         name:props.user.name
       }
@@ -115,130 +116,202 @@ const addDescrition =(e)=> {
   setDescription(e.target.value)
 }
 
-const handleSelectedType =(value)=> {
+const handleSelectedType = (value) => {
    const type = value ; 
+   console.log("here"+type)
    setSelectedType((prev) => type)
-   
 }
 
-const handleSelectedCategory =(value) => {
-  setSelectedCategory(value)
 
+const handleSelectedPrivacy = (event) => {
+  setSelectedPrivacy(event.target.value) 
 }
-const handleSelectedPrivacy = (value) => {
-  setSelectedPrivacy(value) 
-}
-
-const handleSelectedAudience = (value) => {
-  setSelectAudience(value)
-}
-const handleSelectedChallenger = (value) => {
-  setSelectedChallenger(value)
-}
-
-useEffect(() => {
-  const categories = challengeType.find(selection => selection.type === selectedType).category
-  setCategories((prev) => [...categories])
-}, [selectedType])
-
-useEffect(() => {
-  setSelectedCategory((prev) => categories[0])
-}, [categories])
 
 
 useEffect(() => {
-  if(selectedPrivacy == "PRIVATE") {
-  const audiences = privacyData.find(selection => selection.privacy === selectedPrivacy).audience
-  setAudience([...audiences])
-  setSelectAudience(audience[0])
-  }
-  const challengers = privacyData.find(selection => selection.privacy === selectedPrivacy).challengers
-  setChallengers(challengers)
-}, [selectedPrivacy])
-
+   setSelectedType("ADVENTURE")
+}, [])
 
 useEffect(() => {
   if(challenge_id) {
      getChallengeById(challenge_id,setChallenge)
   }
-  // getMediaFireBase(props.user.profile_img,setProfileImg)
 }, [])
-
   return (
   
-    <div className="d-flex justify-content-center gap-4 align-items-center post-container">
+    <div className="d-flex justify-content-start gap-0 align-items-center post-container">
 
      
 
       {(!challenge_id) ?  (
         <>
-           <PostHeader user={props.user} talentType ={selectedType} category ={selectedCategory}/>
-           <div className='d-flex flex-wrap  mt-1 justify-content-evenly align-items-start'
-           style={{height:'50px',width:'100%'}}>
-             
-             
-              <div className='d-flex flex-column gap-2'
-                style={{width:"29%",height:"80px",fontSize:'14px' ,border:"none",fontWeight:"800",textAlign:"center"}}>
-                     <p style={{fontSize:'7px'}} >SELECT CHALLENGE TYPE</p>
-                    <Select  onChange={handleSelectedType} defaultValue={selectedType} 
-                    style={{width:"100%",height:"30px",fontSize:'14px' ,border:"none",fontWeight:"1200",textAlign:"center"}}
-                    styles={colourStyles}>
-                  {challengeType.map((selection,index)=>{   
-                   return ( <Select.Option key={index} value = {selection.type}
-                               style={{ color:'black',fontWeight:"1000",fontSize:"9px",
-                               backgroundColor:"green",width:"100%",height:"30px" }} >
-                          <p style={{ color:'black',fontWeight:"900",fontSize:"9px"}}>{selection.type}</p> 
-                     </Select.Option> )
-                    })}
-               </Select> 
-              </div>
-             
-              <div className='d-flex flex-column gap-2' 
-                 style={{width:"29%",height:"80px",fontSize:'9px' ,border:"none",fontWeight:"800",textAlign:"center"}}
-                 >
-                     <p style={{fontSize:'7px'}} >SELECT  CATEGORY</p> 
-              <Select  onChange={handleSelectedCategory} defaultValue={selectedCategory}
-                 style={{width:"100%",height:"30px",fontSize:'9px' ,border:"none",fontWeight:"800",textAlign:"center"}} >
-                  {categories.map((category,index)=>{   
-                   return ( <Select.Option key={index} value = {category}
-                     style={{ color:'black',fontWeight:"1000",fontSize:"9px",
-                       backgroundColor:"white",width:"100%",height:"20px" }} >
-                          <p style={{ color:'black',fontWeight:"700",fontSize:"9px"}}>{category}</p> 
-                     </Select.Option> )
-                    })}
-               </Select> 
+      <div className="d-flex flex-column mb-0 mt-0 justify-content-start align-items-center"
+          style={{width:"100%",height:'20%',backgroundColor:'#b6d1de'}}>
+          
+             <div className="d-flex  bg-light justify-content-between gap-0 align-items-center " 
+                style={{fontSize:'10px',width:'100%',height:"30%",padding:'10px'}}>
+                  <div>
+                      <p style={{fontSize:'10px',color:"#1f2426"}}> 
+                      <span className="lead text" style={{fontSize:'10px',color:"#232324",fontWeight:'800', 
+                        fontFamily:'monospace'
+                      }}>  {props.user.name.toUpperCase()}</span>
+                    </p>
+                 </div>
+                 <div>
+                   <p style={{fontSize:'10px',color:"#1f2426",fontWeight:'500', 
+                      fontFamily:'monospace'
+                    }}>|_ NEW CHALLENGE _|
+                    </p>
+                 </div>
+                 <div>
+                  <Link to={"/home"} style={{fontSize:'10px',color:"#1b78cf",fontWeight:'500', 
+                      fontFamily:'revert'
+                    }}>
+                          Home
+                  </Link>
+                 </div>
+               
              </div>
-             
-             <div className='d-flex flex-column gap-2'
-                style={{width:"29%",height:"80px",fontSize:'9px' ,border:"none",fontWeight:"800",textAlign:"center"}}>
-                     <p style={{fontSize:'7px'}} >SET UP PRIVACY</p> 
-               <Select  onChange={handleSelectedPrivacy} defaultValue={selectedPrivacy}
-                 style={{width:"100%",height:"30px",fontSize:' 9px' ,border:"none",fontWeight:"800",textAlign:"center"}} >
-                  {privacyData.map((selection,index)=>{   
-                   return ( <Select.Option key={index} value = {selection.privacy}
-                     style={{ color:'black',fontWeight:"500",
-                       backgroundColor:"white",width:"100%",height:"20px" }} >
-                          <p style={{ color:'black',fontWeight:"700",fontSize:"9px"}}>{selection.privacy}</p> 
-                     </Select.Option> )
-                    })}
-               </Select> 
-              </div>  
-                
-         </div>
+             <div className="d-flex   justify-content-start align-items-center border" 
+                style={{fontSize:'10px',width:'100%',height:"70%"}}>
+                <div className="d-flex justify-content-center align-items-center "
+                     style={{fontSize:'10px',width:'23%',height:"90%",borderRadius:'50%',backgroundColor:'blue'}}>
+                 <Link to={"/profile/"+`${props.user._id}`} style={{width:'90%',height:"90%"}}>
+                   <img   style={{fontSize:'10px',width:'100%',height:"100%",objectFit:'cover',borderRadius:'50%'}}
+                     src={props.user.profile_img}  alt="" />
+                 </Link>  
+                </div>
+                <div className="d-flex flex-column justify-content-start align-items-center "
+                     style={{fontSize:'10px',width:'85%',height:"100%",backgroundColor:''}}>
+
+                     <div  className="d-flex justify-content-end mt-2 align-items-center "
+                     style={{fontSize:'10px',width:'90%',height:"50%",backgroundColor:''}} >
+                        <Select onChange={handleSelectedType}
+                            style={{width:"100%",height:"80%",fontSize:'11px' ,border:"none",fontWeight:"600", backgroundColor:'',textAlign:"center"}}
+                            defaultValue="SELECT TYPE" 
+                             >   
+                            {challengeType.map((selection,index)=>{   
+                                return ( 
+                                   <Select.Option key={index} value = {selection.type}
+                                        style={{ color:'black',
+                                        backgroundColor:"lightgray",width:"100%",height:"30px" }} >
+                                       <p style={{ color:'black'}}>{selection.type}</p> 
+                                    </Select.Option> )
+                            })} 
+                        </Select>
+                     </div>
+                     <div className="d-flex justify-content-evenly align-items-center "
+                     style={{fontSize:'10px',width:'96%',height:"40%",backgroundColor:''}} >
+          
+                                        <div className="d-flex justify-content-center align-items-center gap-2">
+                                        <input   style={{fontSize:'10px',width:"20px", height:"20px"}}
+                                            type="radio" 
+                                              value="PUBLIC" 
+                                              checked={selectedPrivacy === 'PUBLIC'} 
+                                              onChange={handleSelectedPrivacy} 
+                                            />
+                                        <label style={{fontSize:'12px',color:"black",fontWeight:'700',marginTop:'3px'}}>
+                                              PUBLIC
+                                          </label >
+                                        </div>
+                                        <div className="d-flex justify-content-center align-items-center gap-2">
+                                        <input style={{fontSize:'10px',width:"20px", height:"20px"}}
+                                              type="radio" 
+                                              value="PRIVATE" 
+                                              checked={selectedPrivacy === 'PRIVATE'} 
+                                              onChange={handleSelectedPrivacy} 
+                                            />
+                                        <label style={{fontSize:'12px',color:"black",fontWeight:'700',marginTop:'3px'}}>
+                                              PRIVATE
+                                          </label >
+                                        </div>
+                                        
+                                      
+                     
+                     </div>
+                </div>
+             </div>
+          </div>
         </>
       ):(
         <>
-        <PostHeader user={props.user} talentType ={challenge.type} category ={challenge.category}/>
 
-        <div className='d-flex flex-column justify-content-start aligh-items-center'>
-           <h5>You are about to participate in a challenge</h5>
-        </div>
+          <div className="d-flex flex-column mb-0 mt-0 justify-content-start align-items-center"
+          style={{width:"100%",height:'20%',backgroundColor:'#b6d1de'}}>
+          
+             <div className="d-flex  bg-light justify-content-between gap-0 align-items-center " 
+                style={{fontSize:'10px',width:'100%',height:"30%",padding:'10px'}}>
+                  <div>
+                      <p style={{fontSize:'10px',color:"#1f2426"}}> 
+                      <span className="lead text" style={{fontSize:'10px',color:"#232324",fontWeight:'800', 
+                        fontFamily:'monospace'
+                      }}>  {props.user.name.toUpperCase()}</span>
+                    </p>
+                 </div>
+                 <div>
+                   <p style={{fontSize:'10px',color:"#1f2426",fontWeight:'500', 
+                      fontFamily:'monospace'
+                    }}>|_ REPLY TO CHALLENGE _|
+                    </p>
+                 </div>
+                 <div>
+                  <Link to={"/home"} style={{fontSize:'10px',color:"#1b78cf",fontWeight:'500', 
+                      fontFamily:'revert'
+                    }}>
+                          Home
+                  </Link>
+                 </div>
+               
+             </div>
+             <div className="d-flex   justify-content-start align-items-center border" 
+                style={{fontSize:'10px',width:'100%',height:"70%"}}>
+                <div className="d-flex justify-content-center align-items-center "
+                     style={{fontSize:'10px',width:'23%',height:"90%",borderRadius:'50%',backgroundColor:'blue'}}>
+                 <Link to={"/profile/"+`${props.user._id}`} style={{width:'90%',height:"90%"}}>
+                   <img   style={{fontSize:'10px',width:'100%',height:"100%",objectFit:'cover',borderRadius:'50%'}}
+                     src={props.user.profile_img}  alt="" />
+                 </Link>  
+                </div>
+                <div className="d-flex flex-column mt-3 justify-content-start align-items-center "
+                     style={{fontSize:'10px',width:'85%',height:"100%",backgroundColor:''}}>
+
+                     <div  className="d-flex justify-content-start  align-items-center "
+                     style={{fontSize:'10px',width:'90%',backgroundColor:''}} >
+                          <p style={{fontSize:'11px' ,border:"none",fontWeight:"300", color:'black',width:"90px"}}>Type :
+                          </p>
+                          <span style={{fontSize:'11px' ,border:"none",fontWeight:"700", color:'black'}}> {(challenge.type)}</span>
+                     </div>
+
+                     <div  className="d-flex justify-content-start align-items-center "
+                      style={{fontSize:'10px',width:'90%',backgroundColor:''}} >
+                          <p style={{fontSize:'11px',border:"none",width:"90px", fontWeight:"300", color:'black'}}>Privacy :
+                          </p>
+                          <span style={{fontSize:'11px' ,border:"none",fontWeight:"700", color:'black'}}> {(challenge.privacy)}</span>
+                     </div>
+                     <div  className="d-flex justify-content-start  align-items-center "
+                     style={{fontSize:'10px',width:'90%',backgroundColor:''}} >
+                          <p style={{fontSize:'11px',width:"90px",border:"none",fontWeight:"300", color:'black'}}>Originated-By:
+                          </p>
+                           <span style={{fontSize:'11px',border:"none",fontWeight:"700", color:'black'}}> {(challenge.name)}</span>
+                     </div>
+
+                     <div  className="d-flex justify-content-start align-items-center "
+                     style={{fontSize:'10px',width:'90%',backgroundColor:''}} >
+                          <p style={{fontSize:'11px' ,border:"none",fontWeight:"300", color:'black',textAlign:"center"}}>Title :
+                            <span style={{fontSize:'11px' ,border:"none",fontWeight:"700"}}> {(challenge.desc)}</span>
+                          </p>
+                     </div>
+                    
+                </div>
+             </div>
+          </div>  
+
         </>
       )}
           
           
-          <textarea style={{backgroundColor:'gray',color:'white',fontWeight:500, width:'92%',height:'35px',borderRadius:'5px'}}
-           className="description " onChange={addDescrition}  name='description' placeholder='add description to your challenge'>
+          <textarea style={{fontWeight:300, width:'100%',height:'35px',borderRadius:'0px',border:'none'}}
+           className="description " onChange={addDescrition}  name='description' placeholder='add title to your challenge'>
           </textarea>
          
 
@@ -259,7 +332,10 @@ useEffect(() => {
           
               }
               
-          <button onClick={handleUploading} className='mt-1 mb-3 submit-button'>Submit</button>
+          <button onClick={handleUploading} className='mt-1 mb-3 submit-button'>
+             <img style={{backgroundColor:'transparent',width:"100%",height:"100%",borderRadius:'10px'}} 
+             src="../../asset/material/submit.png" alt="" />
+          </button>
 
     </div> 
 

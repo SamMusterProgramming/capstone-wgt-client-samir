@@ -28,10 +28,10 @@
     min-height: 84%; 
     width: 90%;
     max-width:500px;
-    gap:30px;
+    /* gap:30px; */
     flex-direction: column;
     display: flex;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
     overflow: scroll;
     background:rgb(1, 47, 79);
@@ -72,17 +72,17 @@
 .description {
 
     padding: 5px;
-    font-size: 10px;
+    font-size: 12px;
     font-weight: 400;
-    color: black;
+    color: rgb(240, 231, 231);
     width: 100%;
-    background-color: #e4bda0;  
+    background-color: #537582;  
     /* margin-top: -25px; */
 }
 .postholder {
     max-width: 500px;
-    width: 93%;
-    height: 35%;
+    width: 100%;
+    height: 60%;
     background-color: rgb(10, 11, 11);
     border-radius: 15px;
 }
@@ -95,7 +95,7 @@
     background-color: rgb(19, 20, 20);
 }
 .postfooter{
-    width: 93%;
+    width: 100%;
     max-width: 500px;
     height: 30px;
     /* background-color: rgb(46, 46, 38); */
@@ -106,12 +106,12 @@
   cursor: pointer;
 }
 .submit-button{
-    background-color: green;
-    width: 24%;
-    height: 35px;
-    border-radius: 15px;
+    /* background-color: green; */
+    width: 20%;
+    height: 30px;
+    border-radius: 10px;
     font-weight: 500;
-    font-size: 14px;
+    font-size: 10px;
 }
 
 /* ************************** homepage ****************************************** */
