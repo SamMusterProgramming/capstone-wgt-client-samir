@@ -175,3 +175,8 @@
   button:hover {
     opacity: 70%;
   }
+
+  .highlight {
+    text-decoration-line: underline ;
+    font-weight: 900;
+  }

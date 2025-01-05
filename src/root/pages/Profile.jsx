@@ -113,7 +113,7 @@ const Profile = (props) => {
                      ):    
                      (
                       <button onClick={handleFollowing} style={{ fontSize:'13px',
-                        width:'50%', height:'100%',backgroundColor:'green',color:'white',borderRadius:'10px'
+                        width:'50%', height:'50%',backgroundColor:'green',color:'white',borderRadius:'10px'
                         }} className='mt-md-2'>
                         Follow 
                      </button>

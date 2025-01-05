@@ -152,20 +152,20 @@ useEffect(() => {
                 style={{fontSize:'10px',width:'100%',height:"30%",padding:'10px'}}>
                   <div>
                       <p style={{fontSize:'10px',color:"#1f2426"}}> 
-                      <span className="lead text" style={{fontSize:'10px',color:"#232324",fontWeight:'800', 
-                        fontFamily:'monospace'
-                      }}>  {props.user.name.toUpperCase()}</span>
+                      <span className="lead text" style={{fontSize:'12px',color:"#232324",fontWeight:'600', 
+                        fontFamily:'Arsenal SC serif'
+                      }}>  {props.user.name.toUpperCase().slice(0,10)}</span>
                     </p>
                  </div>
                  <div>
-                   <p style={{fontSize:'10px',color:"#1f2426",fontWeight:'500', 
-                      fontFamily:'monospace'
+                   <p style={{fontSize:'10px',color:"#1f2426",fontWeight:'700', 
+                      fontFamily:'Arsenal SC serif'
                     }}>|_ NEW CHALLENGE _|
                     </p>
                  </div>
                  <div>
-                  <Link to={"/home"} style={{fontSize:'10px',color:"#1b78cf",fontWeight:'500', 
-                      fontFamily:'revert'
+                  <Link to={"/home"} style={{fontSize:'14px',color:"#1b78cf",fontWeight:'700', 
+                      fontFamily:'Arsenal SC serif'
                     }}>
                           Home
                   </Link>
@@ -249,14 +249,14 @@ useEffect(() => {
                     </p>
                  </div>
                  <div>
-                   <p style={{fontSize:'10px',color:"#1f2426",fontWeight:'500', 
-                      fontFamily:'monospace'
+                   <p style={{fontSize:'12px',color:"#1f2426",fontWeight:'700', 
+                      fontFamily:'Arsenal SC serif'
                     }}>|_ REPLY TO CHALLENGE _|
                     </p>
                  </div>
                  <div>
-                  <Link to={"/home"} style={{fontSize:'10px',color:"#1b78cf",fontWeight:'500', 
-                      fontFamily:'revert'
+                  <Link to={"/home"} style={{fontSize:'14px',color:"#1b78cf",fontWeight:'500', 
+                      fontFamily:'Arsenal SC serif'
                     }}>
                           Home
                   </Link>
@@ -310,7 +310,7 @@ useEffect(() => {
       )}
           
           
-          <textarea style={{fontWeight:300, width:'100%',height:'35px',borderRadius:'0px',border:'none'}}
+          <textarea style={{fontWeight:600, width:'100%',height:'45px',fontFamily:"Arsenal SC serif",border:'none'}}
            className="description " onChange={addDescrition}  name='description' placeholder='add title to your challenge'>
           </textarea>
          

@@ -53,7 +53,7 @@ const ParticipantsDisplayer = (props) => {
           votes:participant.votes
         }
     });
-    console.log(obj)
+ 
     setTopChallenger({...obj})
   },[] )
   
@@ -88,7 +88,7 @@ const ParticipantsDisplayer = (props) => {
 
   const handleQuit = (e) => {
       quitChallenge(props.challenge._id,props.user._id)
-      .then(data => { console.log("deleted")
+      .then(data => { 
         res =>  setTimeout(() => {
           navigate('chpage/challenges')
        }, 5000)  
@@ -103,9 +103,8 @@ const ParticipantsDisplayer = (props) => {
          } 
       })
 
-  const imageRef = ref(storage, generateUserFolder(selectedParticipant.email) + selectedParticipant.video_url);
-      console.log(imageRef.fullPath)
-      getDownloadURL(imageRef)
+  const videoRef = ref(storage, generateUserFolder(selectedParticipant.email) + selectedParticipant.video_url);
+      getDownloadURL(videoRef)
       .then((url) => {
          setVideo_url(url)
       })
@@ -117,7 +116,7 @@ const ParticipantsDisplayer = (props) => {
 
   useEffect(() => {
         const imageRef = ref(storage, selectedParticipant.video_url);
-        console.log(imageRef.fullPath)
+        
         getDownloadURL(imageRef)
         .then((url) => {
           setVideo_url(url)
@@ -138,7 +137,6 @@ const ParticipantsDisplayer = (props) => {
   const handleChange = async (value) =>{
       // getUserById(value ,setUserProfile)
       const newParticipant =  props.participants.find(participant => participant.user_id === value);
-      console.log(newParticipant)
       setSelectedParticipant( { ...selectedParticipant,
                                    _id:newParticipant._id,
                                    name:newParticipant.name,
@@ -189,11 +187,21 @@ const ParticipantsDisplayer = (props) => {
 
   return (
 
-    <div className="d-flex flex-column mb-0 mt-0 justify-content-start align-items-center challenges">
+    <div className="d-flex flex-column mb-3 mt-0 justify-content-start align-items-center challenges">
          
-         <div className='d-flex mt-0 justify-content-center align-items-center'
-           style={{width:"100%",height:"50px",padding:'10px'}}>
-            <span style={{fontSize:'11px'}} >Title  |</span> <p style={{fontSize:'11px'}}>| {props.challenge.desc} ||</p>
+         <div className='d-flex mt-0 justify-content-start align-items-center'
+           style={{width:"100%",height:"50px"}}>
+            <div className='d-flex mt-0 justify-content-start align-items-center'
+              style={{width:"20%",height:"50px",padding:'10px' ,backgroundColor:"#3f7f8c"}}>
+                <span style={{fontSize:'13px', color:'lightblue', fontFamily:'Arsenal SC serif',fontWeight:'900'}} >
+                  Challenge
+                </span>
+            </div>
+            <div className='d-flex mt-0 justify-content-start align-items-center'
+              style={{width:"80%",height:"50px",padding:'10px'}}>
+                   <p style={{fontSize:'12px',fontFamily:'Arsenal SC serif'}}> {props.challenge.desc}</p>
+            </div>
+            
          </div>
          <div className='d-flex mt-0 justify-content-center participantdisplayer'> 
           <Select
@@ -212,7 +220,7 @@ const ParticipantsDisplayer = (props) => {
 
                     <div className="chip">
                           <img src={participant.profile_img} alt="" />
-                          <p style={{marginTop:'-5px'}} > {(props.user._id===participant.user_id)? participant.name + " - YOU": participant.name} </p> 
+                          <p style={{marginTop:'-5px', fontFamily:'Arsenal SC serif'}} > {(props.user._id===participant.user_id)? participant.name + " - YOU": participant.name} </p> 
                     </div>
                     
                      <div className = 'd-flex flex-ro text-center gap-2  align-items-center showvote'>
@@ -242,16 +250,12 @@ const ParticipantsDisplayer = (props) => {
                   <img  style={{height:'40px',width:'100%',objectFit:"fill"}} src={selectedParticipant.profile_img} alt="" />
                 </Link>
             </div>
-            <div className='d-flex flex-column justify-content-start gap align-items-center'
-                   style={{height:"100%",width:"20%",backgroundColor:"#bf5b19"}}>
-                <span style={{fontSize:'9px',fontWeight:"600",marginTop:'10px',color:'black'}}>POSTED BY</span>
-                <p style={{fontSize:'9px',fontWeight:"600",color:'white'}}>{selectedParticipant.name}</p>
-            </div>
+        
             <div className='d-flex flex-column justify-content-center gap align-items-center'
-                   style={{height:"100%",width:"20%",backgroundColor:"white"}}>
+                   style={{height:"100%",width:"25%",backgroundColor:"white"}}>
               {(selectedParticipant.user_id === props.user._id)? 
               (
-                <button style={{width:'100%',height:'100%', backgroundColor:"gray",fontSize:'12px',fontWeight:"800",border:'none'}}
+                <button style={{width:'100%',height:'100%', fontFamily:'Arsenal SC serif' ,backgroundColor:"gray",fontSize:'12px',fontWeight:"600",border:'none'}}
                 disabled >
                   Follow
                 </button>
@@ -259,12 +263,12 @@ const ParticipantsDisplayer = (props) => {
               ( 
                 <>
                 {followings.find(following => following.following_id === selectedParticipant.user_id)?(
-                  <button style={{width:'100%',height:'100%', backgroundColor:"#194ebf",fontSize:'12px',border:'none',fontWeight:"800"}}
+                  <button style={{width:'100%',height:'100%', fontFamily:'Arsenal SC serif', backgroundColor:"#194ebf",fontSize:'12px',border:'none',fontWeight:"600"}}
                   onClick={handleUnFollowing}>
                      Unfollow
                   </button>
                 ):(
-                  <button style={{width:'100%',height:'100%', backgroundColor:"#194ebf",fontSize:'12px',fontWeight:"800"}}
+                  <button style={{width:'100%',height:'100%', fontFamily:'Arsenal SC serif', backgroundColor:"#194ebf",fontSize:'12px',fontWeight:"600"}}
                   onClick={handleFollowing}>
                      Follow
                   </button>
@@ -277,14 +281,14 @@ const ParticipantsDisplayer = (props) => {
             </div> 
 
             <div className='d-flex flex-column justify-content-center align-items-center'
-                   style={{height:"100%",width:"20%", backgroundColor:"white"}}>
-               <button style={{width:'100%',border:'none',height:'100%',color:'white', backgroundColor:"#de1051",fontSize:'12px',fontWeight:"800"}}>
-                      Friend
+                   style={{height:"100%",width:"30%", backgroundColor:"white"}}>
+               <button style={{width:'100%',border:'none', fontFamily:'Arsenal SC serif',height:'100%',color:'white', backgroundColor:"#de1051",fontSize:'12px',fontWeight:"600"}}>
+                     Add Friend
                </button>
             </div> 
             <div className='d-flex flex-column justify-content-center align-items-center'
-                   style={{height:"100%",width:"20%"}}>
-               <button style={{width:'100%',border:'none',height:'100%',color:'white',fontSize:'12px',fontWeight:"800"}}>
+                   style={{height:"100%",width:"25%"}}>
+               <button style={{width:'100%',border:'none', fontFamily:'Arsenal SC serif',height:'100%',color:'white',fontSize:'12px',fontWeight:"800"}}>
                      Report
                </button>
             </div> 
@@ -318,18 +322,18 @@ const ParticipantsDisplayer = (props) => {
               
                    {!ownChallenge? (    
                      <DialogConfirm handleAction={(e)=> navigate(`/matchchallenge/${props.challenge._id}`)} style={{width:'90px',color:"lightgreen",textAlign:'center',
-                      backgroundColor:'#c29311',height:'100%',fontSize:"14px",fontWeight:"800",border:'none'
+                      backgroundColor:'#c29311',height:'100%',fontSize:"14px",fontWeight:"800",border:'none', fontFamily:'Arsenal SC serif'
                     }}   action={"REPLAY"} message ={'are you sure you want to replay to the challenge'}  />
                   ):(
                     <>
                     {props.participants.length == 1 ? 
                       (
                         <DialogConfirm handleAction={handleQuit} style={{width:'90px',color:"white",textAlign:'center',
-                          backgroundColor:'#b81842',height:'100%',fontSize:"12px",fontWeight:"800",border:'none'
+                          backgroundColor:'#b81842',height:'100%',fontSize:"12px",fontWeight:"800",border:'none', fontFamily:'Arsenal SC serif'
                          }} action={"DELETE"} message ={'are you sure you want to delete  the challenge'} />
                       ):(
                         <DialogConfirm handleAction={handleQuit} style={{width:'90px',color:"white",textAlign:'center',
-                          backgroundColor:'#b81842',height:'100%',fontSize:"12px",fontWeight:"800",border:'none'
+                          backgroundColor:'#b81842',height:'100%',fontSize:"12px",fontWeight:"800",border:'none', fontFamily:'Arsenal SC serif'
                          }} action={"RESIGN"} message ={'are you sure you want to resign from the challenge'} />
                       )} 
                     </>
@@ -346,7 +350,7 @@ const ParticipantsDisplayer = (props) => {
                       <p style={{fontSize:'11px',color:'white',marginTop:"-9px",marginLeft:"29px"}}>Rating</p>
                    </div>
                    <Button style={{backgroundColor:'#114fc2',border:'none'
-                      ,width:'90px',color:"lightblue",height:'100%',fontSize:"12px",fontWeight:"800"
+                      ,width:'90px',color:"lightblue",height:'100%',fontSize:"12px",fontWeight:"800", fontFamily:'Arsenal SC serif'
                       }}>
                       FOLLOW
                    </Button>
@@ -358,26 +362,26 @@ const ParticipantsDisplayer = (props) => {
           style={{height:"45px",width:"100%"}}>
             <div className='d-flex flex-column justify-content-start  align-items-center'
                style={{height:"100%",width:"30%",backgroundColor:"#eb4f34"}}>
-                <span style={{fontSize:'10px',fontWeight:"600",marginTop:'5px'}}>CREATED BY</span>
+                <span style={{fontSize:'10px',fontWeight:"600",marginTop:'5px', fontFamily:'Arsenal SC serif'}}>Created by</span>
                 <p style={{fontSize:'11px',fontWeight:"600",color:'gold'}}>{props.challenge.name}</p>
                 {/* <p style={{fontSize:'11px',fontWeight:"600",color:'white'}}>{props.challenge.createdAt.substring(0,10)}</p> */}
 
             </div>
             <div className='d-flex flex-column justify-content-start gap align-items-center'
                style={{height:"100%",width:"40%",backgroundColor:"#3d34eb"}}>
-                <span style={{fontSize:'10px',fontWeight:"600",marginTop:'5px'}}>TOP CHALLENGER</span>
+                <span style={{fontSize:'10px',fontWeight:"600",marginTop:'5px', fontFamily:'Arsenal SC serif'}}>Top Challenger</span>
                 <p style={{fontSize:'11px',fontWeight:"600",color:'gold'}}>{topChallenger.topChallenger}</p>
                 {/* <p style={{fontSize:'11px',fontWeight:"600",color:'pink'}}>{topChallenger.votes} <span>  VOTES</span>  </p> */}
             </div>
             <div className='d-flex flex-column  justify-content-center  align-items-center'
                style={{height:"100%",width:"30%",backgroundColor:"#de3c10"}}>
-                 <p style={{fontSize:'10px',fontWeight:"600",color:'gold',marginTop:'0px'}}>TYPE : 
+                 <p style={{fontSize:'10px',fontWeight:"600",color:'gold',marginTop:'0px', fontFamily:'Arsenal SC serif'}}>Type : 
                  <span style={{fontSize:'10px',fontWeight:"300",color:'white'}}> {props.challenge.type}</span>
                  </p>
                  {/* <p style={{fontSize:'11px',fontWeight:"600",color:'gold'}}>CATEG : 
                  <span style={{fontSize:'10px',fontWeight:"300",marginTop:'10px',color:'white'}}> {props.challenge.category}</span>
                  </p> */}
-                 <p style={{fontSize:'10px',fontWeight:"600",color:'gold',marginTop:'0px'}}>PRIVACY : 
+                 <p style={{fontSize:'10px',fontWeight:"600",color:'gold',marginTop:'0px', fontFamily:'Arsenal SC serif'}}>Privacy: 
                  <span style={{fontSize:'10px',fontWeight:"300",color:'white'}}> {props.challenge.privacy}</span>
                 </p>
              

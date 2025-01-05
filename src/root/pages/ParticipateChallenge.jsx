@@ -19,7 +19,7 @@ const ParticipateChallenge = ({user}) => {
 
 
        
-        <div className=' d-flex gap-5 flex-wrap  mt-2 justify-content-center align-items-center ch-page'>
+        <div className=' d-flex gap-5 flex-wrap  mt-2 justify-content-center align-items-center '>
             
             { (participateChallenges.length > 0)?
                 ( <>
@@ -34,12 +34,12 @@ const ParticipateChallenge = ({user}) => {
                ) } 
                </> ) 
               :
-           ( <div  className='d-flex flex-column gap-5 align-items-center justify-content-center'>
+           ( <div  className='d-flex flex-column gap-5 align-items-center mt-auto justify-content-center'>
               <div>
                  <img src="../../asset/material/empty.jpg" alt="" />
               </div>
               <Link to="/newChallenge">
-                  <button style={{height:'45px',width:'240px',backgroundColor:"lightblue",color:'black',borderRadius:'10px',fontSize:'12px'}} > create new challenge </button>
+                  <button style={{height:'45px',width:'240px',fontFamily:"Arsenal S ",backgroundColor:"lightblue",color:'black',borderRadius:'10px',fontSize:'12px'}} > create new challenge </button>
               </Link>  
            </div>
           )

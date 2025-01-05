@@ -45,7 +45,7 @@ export const authLogin = async(credentiels,setUser,setMessage)=>{
 
     try {
       await axios.post(BASE_URL +'/users/login',credentiels)
-      .then(res => { console.log(res.data)
+      .then(res => { 
                  if (res.data.email && res.data.password) 
                    setUser({...res.data,isNewUser:false});
                  else setMessage(res.data.error)  
@@ -71,7 +71,7 @@ export const getUserById = async(user_id,setUserProfile) =>{
     try {
         await axios.get(BASE_URL+`/users/user/${user_id}`)
         .then(res => 
-          { console.log(res.data)
+          { 
             setUserProfile({...res.data})
           } )
     } catch (error) {
@@ -107,7 +107,7 @@ export const getChallengeById = async(id,setChallenge)=>{
 
 
 export const getUserChallenges = async( user_id , setChallenges)=>{
-   console.log(user_id)
+ 
     try {
         await axios.get( BASE_URL + `/challenges/original/${user_id}`)
         .then(res => {
@@ -135,7 +135,7 @@ export const getUserChallenges = async( user_id , setChallenges)=>{
   //top challenges 
 
   export const getTopChallenges = async( user_id , setChallenges)=>{
-    console.log(user_id)
+  
      try {
          await axios.get( BASE_URL + `/challenges/top/${user_id}`)
          .then(res => {
@@ -257,7 +257,7 @@ export const getUserChallenges = async( user_id , setChallenges)=>{
      export const unFollowings = async(user_id ,rawBody, setFollow)=>{
       try {
         await axios.patch( BASE_URL + `/users/unfollowing/${user_id}`,rawBody )
-        .then(res =>  { console.log(res.data)
+        .then(res =>  { 
           setFollow([...res.data])
       } )
       } catch (error) {

@@ -22,7 +22,7 @@ const [video_url ,setVideo_url] = useState()
 
   return (
   
-     <div className=' d-flex gap-5 flex-wrap mt-2 justify-content-center align-items-center ch-page'>
+     <div className=' d-flex gap-5 flex-wrap mt-2 justify-content-center align-items-center '>
        
        { (challenges.length > 0)?
        ( <>
@@ -38,12 +38,13 @@ const [video_url ,setVideo_url] = useState()
     ) } 
      </> ) 
        :
-       ( <div  className='d-flex flex-column gap-5 align-items-center justify-content-center'>
-              <div>
-                 <img src="../../asset/material/empty.jpg" alt="" />
-              </div>
+       ( <div  className='d-flex flex-column gap- align-items-center mt-auto justify-content-center '
+       >
+             
+                 <img style={{minHeight:'100%',width:'100%',objectFit:'fill'}} src="../../asset/material/empty.jpg" alt="" />
+             
            <Link to="/newChallenge">
-              <button style={{height:'45px',width:'240px',backgroundColor:"lightblue",color:'black',borderRadius:'10px',fontSize:'12px'}} > create new challenge </button>
+              <button style={{height:'45px',width:'240px',fontFamily:"Arsenal S ",backgroundColor:"lightblue",color:'black',borderRadius:'10px',fontSize:'13px'}} > create new challenge </button>
            </Link>
            
          </div>
