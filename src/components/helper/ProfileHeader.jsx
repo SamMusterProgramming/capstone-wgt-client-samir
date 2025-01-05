@@ -48,9 +48,9 @@ return (
              <div className="d-flex   justify-content-start align-items-center" 
                 style={{fontSize:'10px',width:'100%',minHeight:"80%"}}>
                 <div className="d-flex justify-content-center align-items-center "
-                     style={{fontSize:'10px',width:'18%',height:"68%",borderRadius:'50%',backgroundColor:''}}>
+                     style={{fontSize:'10px',width:'20%',height:"68%",borderRadius:'50%',backgroundColor:''}}>
                  <Link to={"/profile/"+`${props.user._id}`} style={{width:'90%',height:"90%"}}>
-                   <img   style={{fontSize:'10px',width:'100%',objectFit:'cover',borderRadius:'50%'}}
+                   <img   style={{fontSize:'10px',width:'100%',height:'95%', objectFit:'cover',borderRadius:'50%'}}
                      src={props.user.profile_img}  alt="" />
                  </Link>  
                 </div>

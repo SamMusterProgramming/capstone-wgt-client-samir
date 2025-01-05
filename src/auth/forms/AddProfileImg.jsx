@@ -99,7 +99,10 @@ export const AddProfileImg = (props) => {
         if(profileImg) rawBody = {...rawBody,profile_img:profileImg}
            console.log(rawBody)
            updateUser(props.user._id,rawBody,props.setUser,props.user)
-          .finally(navigate(`/profile/${props.user._id}`))    
+          .finally( 
+            props.setUser({...props.user , isNewUser:false}),
+            navigate(`/profile/${props.user._id}`)
+          )    
         }
 
    
@@ -130,7 +133,7 @@ export const AddProfileImg = (props) => {
                 {props.user.isNewUser? (
                    <DialogConfirm
                    handleAction={(e)=> { props.setUser({...props.user , isNewUser:false}); 
-                   navigate(`/home`)}} 
+                   navigate(`/demo`)}} 
                    style={{width:'90px',color:"blue",textAlign:'center',
                            backgroundColor:'white',height:'60px',fontSize:"12px",fontWeight:"800",border:'none'
                            }}   action={"SKIP"} message ={'are you sure you want to skip this section'} 

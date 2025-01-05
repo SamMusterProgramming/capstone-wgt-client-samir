@@ -21,7 +21,7 @@ const TopBar = ({user}) => {
         
                     
 <              div  className="d-flex flex-row text-center menu-item ">
-                  <Link to='/badge'>
+                  <Link to='/demo'>
                     <img style={{backgroundColor:'#4674d1'}} className="challenge-logo" src=  "/asset/material/badge.svg" alt="" />
                   </Link>   
                 

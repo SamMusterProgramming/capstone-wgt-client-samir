@@ -23,6 +23,7 @@ import { AddProfileImg } from './auth/forms/AddProfileImg.jsx'
 import { getMediaFireBase } from './firebase.js'
 import { Timeline } from 'antd'
 import TimeLine from './root/pages/TimeLine.jsx'
+import Demo from './root/pages/Demo.jsx'
 
 
 export default function App() {
@@ -53,7 +54,9 @@ export default function App() {
                   </Route>
                   <Route path="topchallenges" element ={<TopChallenges user={user}/>} /> 
                   <Route path="profile/:id" element={<Profile user={user}/>} />
-                  <Route path="updateProfile" element={ <AddProfileImg setUser={setUser} user={user}/>} />           
+                  <Route path="updateProfile" element={ <AddProfileImg setUser={setUser} user={user}/>} />   
+                  <Route path="demo" element={ <Demo  user={user}/>} />           
+        
               </Route>
 
               <Route path="newchallenge" element={ <NewChallenge user={user}/>} />
