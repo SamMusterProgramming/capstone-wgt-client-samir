@@ -13,9 +13,9 @@ import { Navigate } from 'react-router-dom'
  const ACCESS_KEY = import.meta.env.VITE_ACCESS_KEY
  const SECRET_KEY = import.meta.env.VITE_SECRET_KEY
 
+   
 
-
-const  PURL = baseURL_PRODUCTION;   
+const  PURL = baseURL_DEVOLOPMENT   
  
 export const BASE_URL =  baseURL_PRODUCTION; 
 
@@ -264,3 +264,44 @@ export const getUserChallenges = async( user_id , setChallenges)=>{
         console.log(error)
       }
      }
+
+  //*********************** Friends request , adding */
+   
+  export const friendRequest = async(receiver_id , rawBody , setFriendRequest) =>{
+    try {
+      await axios.post( BASE_URL + `/users/friends/request/${receiver_id}`, rawBody )
+      .then(res =>  {  console.log(res.data)
+        setFriendRequest({...res.data});
+        } )
+     
+    } catch (error) {
+      console.log(error)
+    }
+   }
+
+   export const getUserFriendsData = async(receiver_id , setFriendRequest) =>{
+    try {
+      await axios.get( BASE_URL + `/users/friends/list/${receiver_id}` )
+      .then(res =>  { 
+        setFriendRequest({...res.data});
+        } )
+     
+    } catch (error) {
+      console.log(error)
+    }
+   }
+
+
+   //******************************** notifications */
+
+
+   export const getNotificationByUser = async(receiver_id , setNotification) =>{
+    try {
+      await axios.get( BASE_URL + `/users/notifications/${receiver_id}` )
+      .then(res =>  { 
+        setNotification([...res.data]);
+        } )
+    } catch (error) {
+      console.log(error)
+    }
+   }

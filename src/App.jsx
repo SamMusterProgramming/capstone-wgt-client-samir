@@ -24,14 +24,14 @@ import { getMediaFireBase } from './firebase.js'
 import { Timeline } from 'antd'
 import TimeLine from './root/pages/TimeLine.jsx'
 import Demo from './root/pages/Demo.jsx'
+import { getNotificationByUser } from './apiCalls.js'
 
 
 export default function App() {
 
 
   const {user,setUser} = useContext(AuthContent)
-  
-
+ 
 
   return (
    

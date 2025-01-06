@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
 import './Helper.css'
-import {  BASE_URL, getUserById,getFollowings, liked, loadLikeVoteData, quitChallenge, voted, addFollowing, unFollowings } from '../../apiCalls'
+import {  BASE_URL, getUserById,getFollowings, liked, loadLikeVoteData,
+ quitChallenge, voted, addFollowing, unFollowings, friendRequest, 
+ getUserFriendsData} from '../../apiCalls'
 import PostFooter from './PostFooter';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { Button, Select } from 'antd';
@@ -23,6 +25,11 @@ const ParticipantsDisplayer = (props) => {
   const [isLikedColor,setIsLikedColor] = useState("lightblue")
   const [topChallenger ,setTopChallenger] = useState("")
   const [userProfileImg,setUserProfileImg] = useState(props.user.profile_img)
+  const [addFriendRequest , setAddFriendRequest] = useState(null)
+  const [participantFriendData,setParticipantFriendData] = useState(null)
+  const[isFriend,setIsFriend]= useState(false)
+  const[isPending,setIsPending]= useState(false)
+
 
 
   const ids =[ props.user._id,
@@ -115,8 +122,7 @@ const ParticipantsDisplayer = (props) => {
       }, [])
 
   useEffect(() => {
-        const imageRef = ref(storage, selectedParticipant.video_url);
-        
+        const imageRef = ref(storage, selectedParticipant.video_url); 
         getDownloadURL(imageRef)
         .then((url) => {
           setVideo_url(url)
@@ -126,13 +132,24 @@ const ParticipantsDisplayer = (props) => {
         });
 
        getMediaFireBase(selectedParticipant.profile_img,setUserProfileImg)
-
        setLikesVotesData({like_count:selectedParticipant.likes,vote_count:selectedParticipant.votes})
        loadLikeVoteData(ids,setLikesVotesData)   
-  
+       getUserFriendsData(selectedParticipant.user_id,setParticipantFriendData)
     }, [selectedParticipant])
     
 
+  useEffect(() => {
+    console.log(participantFriendData)
+    if(participantFriendData){
+    if(participantFriendData.friend_request_received)
+    participantFriendData.friend_request_received.find(data => data.sender_id == props.user._id)
+    ? setIsPending(true) : setIsPending(false)
+    if(participantFriendData.friends)
+    participantFriendData.friends.find(data => data.friend_id === props.user._id)
+    ? setIsFriend(true) : setIsFriend(false)
+    }
+  }, [participantFriendData])
+  
     
   const handleChange = async (value) =>{
       // getUserById(value ,setUserProfile)
@@ -180,6 +197,12 @@ const ParticipantsDisplayer = (props) => {
   }
   
   
+  const sendFriendRequest = () => {
+     console.log(props.user)
+     const rawBody = props.user;
+     friendRequest(selectedParticipant.user_id,rawBody,setAddFriendRequest)
+  }
+
   // useEffect(() => {
     
   // }, [])
@@ -280,12 +303,58 @@ const ParticipantsDisplayer = (props) => {
               
             </div> 
 
-            <div className='d-flex flex-column justify-content-center align-items-center'
+
+            {(props.user._id === selectedParticipant.user_id)? 
+            (
+              <div className='d-flex flex-column justify-content-center align-items-center'
                    style={{height:"100%",width:"30%", backgroundColor:"white"}}>
-               <button style={{width:'100%',border:'none', fontFamily:'Arsenal SC serif',height:'100%',color:'white', backgroundColor:"#de1051",fontSize:'12px',fontWeight:"600"}}>
+               <button style={{width:'100%',border:'none', fontFamily:'Arsenal SC serif',height:'100%',color:'black', backgroundColor:"lightgray",fontSize:'12px',fontWeight:"600"}}
+                 disabled onClick={sendFriendRequest}>
                      Add Friend
                </button>
             </div> 
+
+            ):(
+              <>
+              {participantFriendData && (
+                <>
+                {isFriend && (
+                   <div className='d-flex flex-column justify-content-center align-items-center'
+                     style={{height:"100%",width:"30%", backgroundColor:"white"}}>
+                      <button style={{width:'100%',border:'none', fontFamily:'Arsenal SC serif',height:'100%',color:'white', backgroundColor:"#de1051",fontSize:'12px',fontWeight:"600"}}
+                       onClick={sendFriendRequest}>
+                       Unfriend
+                     </button>
+                  </div> 
+               )}
+               {isPending&&(
+                     <div className='d-flex flex-column justify-content-center align-items-center'
+                       style={{height:"100%",width:"30%", backgroundColor:"white"}}>
+                        <button style={{width:'100%',border:'none', fontFamily:'Arsenal SC serif',height:'100%',color:'white', backgroundColor:"#de1051",fontSize:'12px',fontWeight:"600"}}
+                         onClick={sendFriendRequest}>
+                          pending
+                        </button>
+                      </div> 
+               )}
+               {!(isPending||isFriend)&&(
+                    <div className='d-flex flex-column justify-content-center align-items-center'
+                    style={{height:"100%",width:"30%", backgroundColor:"white"}}>
+                     <button style={{width:'100%',border:'none', fontFamily:'Arsenal SC serif',height:'100%',color:'white', backgroundColor:"#de1051",fontSize:'12px',fontWeight:"600"}}
+                        onClick={sendFriendRequest}>
+                          Add Friend
+                      </button>
+                  </div> 
+               )}
+                </>
+              )}
+
+              </>
+           
+            )
+            }
+            
+
+
             <div className='d-flex flex-column justify-content-center align-items-center'
                    style={{height:"100%",width:"25%"}}>
                <button style={{width:'100%',border:'none', fontFamily:'Arsenal SC serif',height:'100%',color:'white',fontSize:'12px',fontWeight:"800"}}>

@@ -3,15 +3,16 @@ import './Components.css'
 import ItemMenu from "./helper/ItemMenu"
 import { useEffect, useRef, useState } from "react"
 import { BASE_URL } from "../apiCalls"
+import Badge from '@mui/material/Badge';
+import { notification } from "antd"
 
-
-const TopBar = ({user}) => {
+const TopBar = (props) => {
 
   const search  = useRef()
   const [searchDisplay,setSearchDisplay] = useState(false)
-  
+  const [notCount,setNotCount] = useState(0)
   useEffect(() => {
-    // search.current.display('none')
+   if(props.notifications) setNotCount(props.notifications.length)
   }, [])
   
   return (  
@@ -43,16 +44,20 @@ const TopBar = ({user}) => {
                     )}
                 
                 </div>
-                <div className="d-flex flex-row text-center  menu-item ">
+                <div className="d-flex flex-row text-center menu-item ">
+                 
                   <Link to={'/notifications'}>
+                   <Badge badgeContent={notCount} color="error">
                     <img style={{backgroundColor:'#bda42b'}} className="challenge-logo" src="/asset/material/bell.png" alt="" />
-                  </Link>    
+                   </Badge>    
+                  </Link>  
+             
                 </div>
                 
-                {user ? (
+                {props.user ? (
                       <div  className="d-flex menu-item ">
-                    <Link to={`/profile/${user._id}`}  style={{height:'70%'}} >
-                      <img style={{height:'100%'}} className="challenge-logo" src={ user.profile_img} alt="" />
+                    <Link to={`/profile/${props.user._id}`}  style={{height:'70%'}} >
+                      <img style={{height:'100%'}} className="challenge-logo" src={ props.user.profile_img} alt="" />
                     </Link> 
                      </div>
                     ):(
