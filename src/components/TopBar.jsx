@@ -1,20 +1,27 @@
 import { Link, Navigate } from "react-router-dom"
 import './Components.css'
 import ItemMenu from "./helper/ItemMenu"
-import { useEffect, useRef, useState } from "react"
-import { BASE_URL } from "../apiCalls"
+import { useContext, useEffect, useRef, useState } from "react"
+import { BASE_URL, getNotificationByUser } from "../apiCalls"
 import Badge from '@mui/material/Badge';
 import { notification } from "antd"
+import { AuthContent } from "../context/AuthContent"
 
 const TopBar = (props) => {
 
   const search  = useRef()
   const [searchDisplay,setSearchDisplay] = useState(false)
+ 
   const [notCount,setNotCount] = useState(0)
-  useEffect(() => {
-   if(props.notifications) setNotCount(props.notifications.length)
-  }, [])
+  const {notifications,setNotifications} = useContext(AuthContent)
+
   
+  
+  useEffect(() => {
+    if(notifications) setNotCount(notifications.length)
+  }, [notifications])
+  
+
   return (  
       <>
        

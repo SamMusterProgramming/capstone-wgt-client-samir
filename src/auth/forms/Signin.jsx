@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import './Sign.css'   
  import axios from 'axios'
  import { Link } from 'react-router-dom'
- import { authLogin} from '../../apiCalls'
+ import { authLogin, getNotificationByUser} from '../../apiCalls'
 
 
  const url = import.meta.env.VITE_API_URL;        

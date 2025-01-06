@@ -25,12 +25,14 @@ import { Timeline } from 'antd'
 import TimeLine from './root/pages/TimeLine.jsx'
 import Demo from './root/pages/Demo.jsx'
 import { getNotificationByUser } from './apiCalls.js'
+import Bell from './root/pages/Bell.jsx'
 
 
 export default function App() {
 
 
   const {user,setUser} = useContext(AuthContent)
+ 
  
 
   return (
@@ -39,10 +41,10 @@ export default function App() {
            
       
          <Route element={<AuthLayout user={user} />}>
-            <Route path="/sign-in" element={ <Signin setUser={setUser}/>} /> 
+            <Route path="/sign-in" element={ <Signin setUser={setUser} />} /> 
             <Route path="/sign-up" element={ <Signup setUser={setUser} />} /> 
          </Route>
-         <Route path="" element={<RootLayout user={user} />}>
+         <Route path="" element={<RootLayout user={user}  />}>
 
               <Route path="/" element={ <Homepage user = {user}/>} >
                   {/* <Route path="home" element={ <Home user={user}/> } /> */}
@@ -56,7 +58,7 @@ export default function App() {
                   <Route path="profile/:id" element={<Profile user={user}/>} />
                   <Route path="updateProfile" element={ <AddProfileImg setUser={setUser} user={user}/>} />   
                   <Route path="demo" element={ <Demo  user={user}/>} />           
-        
+                  <Route path="notifications" element={ <Bell />} /> 
               </Route>
 
               <Route path="newchallenge" element={ <NewChallenge user={user}/>} />

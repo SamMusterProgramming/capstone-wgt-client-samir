@@ -9,16 +9,11 @@ import LoadingBar from 'react-top-loading-bar';
 import { getNotificationByUser, setLoadingBarAxios } from '../apiCalls.js';
 import TopLoadingBar from '../components/helper/TopLoadingBar.jsx';
 
-function RootLayout() {
+function RootLayout(props) {
 
   const {user} = useContext(AuthContent)
   const loadingRef = useRef(null)
-  const [notifications,setNotifications] = useState([])
-
-  useEffect(() => {
-    if(user)
-    getNotificationByUser(user._id , setNotifications)
-  }, [user])
+ 
   
 
   const isAuthenticated = user? true : false ; 
@@ -29,7 +24,7 @@ function RootLayout() {
     { ( isAuthenticated) ? (
  
         <div className=" homelayout">
-          <TopBar user={user} notifications={notifications} /> 
+          <TopBar user={user} /> 
           <TopLoadingBar />
           <Outlet />
           <RightSideBar user={user}/>

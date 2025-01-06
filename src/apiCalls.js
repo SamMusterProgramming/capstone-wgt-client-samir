@@ -295,11 +295,11 @@ export const getUserChallenges = async( user_id , setChallenges)=>{
    //******************************** notifications */
 
 
-   export const getNotificationByUser = async(receiver_id , setNotification) =>{
+   export const getNotificationByUser = async(receiver_id ,notifications, setNotification) =>{
     try {
       await axios.get( BASE_URL + `/users/notifications/${receiver_id}` )
       .then(res =>  { 
-        setNotification([...res.data]);
+        setNotification(res.data);
         } )
     } catch (error) {
       console.log(error)

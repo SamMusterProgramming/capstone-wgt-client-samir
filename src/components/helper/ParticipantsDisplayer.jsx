@@ -1,14 +1,16 @@
-import { useEffect, useRef, useState } from 'react'
+import { useContext, useEffect, useRef, useState } from 'react'
 import './Helper.css'
 import {  BASE_URL, getUserById,getFollowings, liked, loadLikeVoteData,
  quitChallenge, voted, addFollowing, unFollowings, friendRequest, 
- getUserFriendsData} from '../../apiCalls'
+ getUserFriendsData,
+ getNotificationByUser} from '../../apiCalls'
 import PostFooter from './PostFooter';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { Button, Select } from 'antd';
 import { getDownloadURL, ref } from 'firebase/storage';
 import { generateUserFolder, getMediaFireBase, storage } from '../../firebase';
 import DialogConfirm from './DialogConfirm';
+import { AuthContent } from '../../context/AuthContent';
 
 
 
@@ -29,6 +31,9 @@ const ParticipantsDisplayer = (props) => {
   const [participantFriendData,setParticipantFriendData] = useState(null)
   const[isFriend,setIsFriend]= useState(false)
   const[isPending,setIsPending]= useState(false)
+  const {notifications,setNotifications} = useContext(AuthContent)
+
+
 
 
 
@@ -207,6 +212,12 @@ const ParticipantsDisplayer = (props) => {
     
   // }, [])
   
+  useEffect(() => {
+    if(props.user){
+    getNotificationByUser(props.user._id ,notifications, setNotifications)
+    console.log(notifications)  
+    }
+  }, [])
 
   return (
 
