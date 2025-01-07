@@ -3,14 +3,22 @@ import { AuthContent } from '../../context/AuthContent'
 import { challengeType } from '../../utilitise/typeSelectorData'
 import { Button, Select } from 'antd'
 import { Link } from 'react-router-dom'
+import { getUserFriendsData, removeFriendRequest } from '../../apiCalls'
+import UserNotification from '../../components/helper/UserNotification'
 
 const Bell = () => {
   const {notifications,setNotifications,user} = useContext(AuthContent)  
-  const [requestType,setRequestType] = useState("")
-  useEffect(() => {
-   
-  }, [])
+//   const [useFriendData,setUserFriendData] = useState(null)
 
+//   useEffect(() => {
+//     getUserFriendsData(user._id,setUserFriendData)
+//   }, [])
+
+
+//   const handleDeny =()=>{
+//     const rawBody = useFriendData.
+//     removeFriendRequest(user._id,)
+//   }
   return (
    <>
 
@@ -101,45 +109,7 @@ const Bell = () => {
 
 {notifications.map((notification,index)=>{
         return (
-            <div className='d-flex flex-column mt-3 justify-content-start'
-             style={{width:"95%",height:"60px",backgroundColor:"lightgray",border:"1px solid gray",borderRadius:"10px"}}>
-
-                 <div className='d-flex align-items-center justify-content-between text-center' 
-                   style={{width:"100%",height:"30%",backgroundColor:"white",padding:"5px"}}>
-                    <p style={{color:"black",fontSize:'10px'}}>{
-                    notification.type} </p>   
-                    <p style={{color:"black",fontSize:'10px'}}>
-                    Date: {notification.createdAt.slice(0,10)} </p> 
-                 </div>
-                 <div className='d-flex align-items-center  justify-content-start text-center' 
-                   style={{width:"100%",height:"70%"}}>
-
-                     <img style={{height:"30px",width:"30px",borderRadius:"50px",objectFit:"cover"}} 
-                     src={notification.content.profile_img} alt="" />
-                     
-                     <div className='d-flex flex-column align-items-center  justify-content-center text-center'
-                        style={{width:"25%",height:"100%"}} >
-                           <p style={{color:"black",fontSize:'10px',fontWeight:"700", fontFamily:'Arsenal SC '}}>
-                            {notification.content.name.slice(0,14)}</p>
-                     </div>
-                     <div className='d-flex  align-items-center  justify-content-center text-center'
-                        style={{width:"35%",height:"100%"}} >
-                           <p style={{color:"black",fontSize:'10px',fontWeight:"500", fontFamily:'Arsenal SC serif'}}>
-                            {notification.message}</p>
-                     </div>
-                     <div className='d-flex align-items-center  justify-content-evenly text-center'
-                        style={{width:"30%",height:"100%"}} >
-                          <Button style={{color:"black",fontSize:'10px',fontWeight:"500", fontFamily:'Arsenal SC serif',
-                            width:"40px",height:"25px",backgroundColor:"lightgreen"
-                          }}>Accept</Button>
-                                <Button style={{color:"black",fontSize:'10px',fontWeight:"500", fontFamily:'Arsenal SC serif',
-                            width:"40px",height:"25px" ,backgroundColor:"#f06c79"   
-                          }}>Deny</Button> 
-                     </div>
-                 </div>
-
-
-            </div>
+          <UserNotification notification={notification} user={user} key={index} />
         )
      })}
 

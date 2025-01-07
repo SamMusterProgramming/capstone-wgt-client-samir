@@ -25,8 +25,7 @@ const DialogConfirm = (props) => {
   return (
     <>
       <Button 
-    //   variant="outlined" 
-      onClick={handleClickOpen} style={props.style}>
+        onClick={handleClickOpen} style={props.style}>
         {props.action}
       </Button>
       <Dialog
@@ -35,17 +34,17 @@ const DialogConfirm = (props) => {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title" fontSize={13} fontWeight={500}  color='red'>
+        <DialogTitle id="alert-dialog-title" fontSize={11}  fontWeight={600}  color='black'>
           {props.message}
         </DialogTitle>
         <DialogContent>
-          <DialogContentText id="alert-dialog-description" fontSize={13}>
-            This action cannot be undone .
+          <DialogContentText id="alert-dialog-description" fontSize={11}>
+            {/* This action cannot be undone . */}
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} style={{backgroundColor:'navy',color:'white'}}   >Cancel</Button>
-          <Button onClick={handleConfirm} style={props.style} autoFocus>
+          <Button onClick={handleClose} style={{backgroundColor:'gray',fontSize:'10px', fontFamily:'Arsenal SC serif',color:'white'}}   >Cancel</Button>
+          <Button onClick={handleConfirm} style={{backgroundColor:'navy',fontSize:'10px', fontFamily:'Arsenal SC serif',color:'white'}} autoFocus>
             {props.action}
           </Button>
         </DialogActions>

@@ -270,6 +270,40 @@ export const getUserChallenges = async( user_id , setChallenges)=>{
   export const friendRequest = async(receiver_id , rawBody , setFriendRequest) =>{
     try {
       await axios.post( BASE_URL + `/users/friends/request/${receiver_id}`, rawBody )
+      .then(res =>  { 
+        setFriendRequest({...res.data});
+        } )
+     
+    } catch (error) {
+      console.log(error)
+    }
+   }
+  
+   export const removeFriendRequest = async(receiver_id,rawBody,setFriendRequest)=>{
+    try {
+      await axios.post( BASE_URL + `/users/friends/cancel/${receiver_id}`, rawBody )
+      .then(res =>  {  console.log(res.data)
+        setFriendRequest({...res.data});
+        } )
+    } catch (error) {
+      console.log(error)
+    }
+   }
+   export const getUserFriendsData = async(receiver_id , setFriendRequest) =>{
+    try {
+      await axios.get( BASE_URL + `/users/friends/list/${receiver_id}` )
+      .then(res =>  { 
+        setFriendRequest(res.data) 
+        } )
+     
+    } catch (error) {
+      console.log(error)
+    }
+   }
+
+   export const denyFriendRequest = async(receiver_id,rawBody,setFriendRequest)=>{
+    try {
+      await axios.post( BASE_URL + `/users/friends/deny/${receiver_id}`, rawBody )
       .then(res =>  {  console.log(res.data)
         setFriendRequest({...res.data});
         } )
@@ -278,20 +312,7 @@ export const getUserChallenges = async( user_id , setChallenges)=>{
       console.log(error)
     }
    }
-
-   export const getUserFriendsData = async(receiver_id , setFriendRequest) =>{
-    try {
-      await axios.get( BASE_URL + `/users/friends/list/${receiver_id}` )
-      .then(res =>  { 
-        setFriendRequest({...res.data});
-        } )
-     
-    } catch (error) {
-      console.log(error)
-    }
-   }
-
-
+    
    //******************************** notifications */
 
 
@@ -299,9 +320,12 @@ export const getUserChallenges = async( user_id , setChallenges)=>{
     try {
       await axios.get( BASE_URL + `/users/notifications/${receiver_id}` )
       .then(res =>  { 
+        const not =[...notifications]
         setNotification(res.data);
         } )
     } catch (error) {
       console.log(error)
     }
    }
+
+  // export const getNotificationById = async()
