@@ -278,7 +278,17 @@ export const getUserChallenges = async( user_id , setChallenges)=>{
       console.log(error)
     }
    }
-  
+   export const unfriendRequest = async(receiver_id , rawBody , setFriendRequest) =>{
+    try {
+      await axios.post( BASE_URL + `/users/friends/request/${receiver_id}`, rawBody )
+      .then(res =>  { 
+        setFriendRequest({...res.data});
+        } )
+     
+    } catch (error) {
+      console.log(error)
+    }
+   }
    export const removeFriendRequest = async(receiver_id,rawBody,setFriendRequest)=>{
     try {
       await axios.post( BASE_URL + `/users/friends/cancel/${receiver_id}`, rawBody )
@@ -312,6 +322,18 @@ export const getUserChallenges = async( user_id , setChallenges)=>{
       console.log(error)
     }
    }
+
+   export const acceptFriendRequest = async(receiver_id,rawBody,setFriendRequest)=>{
+    try {
+      await axios.post( BASE_URL + `/users/friends/accept/${receiver_id}`, rawBody )
+      .then(res =>  {  console.log(res.data)
+        setFriendRequest({...res.data});
+        } )
+     
+    } catch (error) {
+      console.log(error)
+    }
+   }
     
    //******************************** notifications */
 
@@ -327,5 +349,15 @@ export const getUserChallenges = async( user_id , setChallenges)=>{
       console.log(error)
     }
    }
-
+   export const deleteUserNotification = async(_id) =>{
+    try {
+      await axios.delete( BASE_URL + `/users/notifications/${_id}` )
+      .then(res =>  { 
+           console.log(res.data)
+        } )
+    } catch (error) {
+      console.log(error)
+    }
+   }
+   
   // export const getNotificationById = async()

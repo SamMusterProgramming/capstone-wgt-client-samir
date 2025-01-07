@@ -4,7 +4,8 @@ import {  BASE_URL, getUserById,getFollowings, liked, loadLikeVoteData,
  quitChallenge, voted, addFollowing, unFollowings, friendRequest, 
  getUserFriendsData,
  getNotificationByUser,
- removeFriendRequest} from '../../apiCalls'
+ removeFriendRequest,
+ unfriendRequest} from '../../apiCalls'
 import PostFooter from './PostFooter';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { Button, Select } from 'antd';
@@ -151,7 +152,7 @@ const ParticipantsDisplayer = (props) => {
     participantFriendData.friend_request_received.find(data => data.sender_id == props.user._id)
     ? setIsPending(true) : setIsPending(false)
     if(participantFriendData.friends)
-    participantFriendData.friends.find(data => data.friend_id === props.user._id)
+    participantFriendData.friends.find(data => data.sender_id === props.user._id)
     ? setIsFriend(true) : setIsFriend(false)
     }
   }, [participantFriendData])
@@ -209,6 +210,11 @@ const ParticipantsDisplayer = (props) => {
      friendRequest(selectedParticipant.user_id,rawBody,setAddFriendRequest)
   }
   
+  const unfriendFriendRequest = () => {
+    console.log(props.user)
+    const rawBody = props.user;
+    unfriendRequest(selectedParticipant.user_id,rawBody,setAddFriendRequest)
+ }
   const cancelFriendRequest = () => {
     removeFriendRequest(selectedParticipant.user_id,props.user,setAddFriendRequest)
  }
@@ -223,7 +229,7 @@ const ParticipantsDisplayer = (props) => {
     console.log(notifications)  
     }
   }, [])
-
+  
   return (
 
     <div className="d-flex flex-column mb-3 mt-0 justify-content-start align-items-center challenges">
@@ -280,9 +286,9 @@ const ParticipantsDisplayer = (props) => {
 
 
 
-         <div className='d-flex justify-content-start align-items-center border '
+         <div className='d-flex justify-content-start align-items-center '
            style={{height:'35px',width:'100%'}}>
-             <div className="d-flex justify-content-start align-items-center border " 
+             <div className="d-flex justify-content-start align-items-center  " 
                style={{height:'30px',width:'20%'}}>
                 <Link  style={{height:'30px',width:'100%'}} to = {`/profile/${selectedParticipant.user_id}`} > 
                   <img  style={{height:'35px',width:'100%',objectFit:"cover"}} src={selectedParticipant.profile_img} alt="" />
@@ -301,7 +307,8 @@ const ParticipantsDisplayer = (props) => {
               ( 
                 <>
                 {followings.find(following => following.following_id === selectedParticipant.user_id)?(
-                  <button style={{width:'100%',height:'100%', fontFamily:'Arsenal SC serif', backgroundColor:"#194ebf",fontSize:'12px',border:'none',fontWeight:"600"}}
+                  <button style={{width:'100%',height:'100%', fontFamily:'Arsenal SC serif', backgroundColor:"#194ebf",
+                    fontSize:'12px',border:'none',fontWeight:"600"}}
                   onClick={handleUnFollowing}>
                      Unfollow
                   </button>
@@ -323,10 +330,11 @@ const ParticipantsDisplayer = (props) => {
             (
               <div className='d-flex flex-column justify-content-center align-items-center'
                    style={{height:"100%",width:"30%", backgroundColor:"white"}}>
-               <button style={{width:'100%',border:'none', fontFamily:'Arsenal SC serif',height:'100%',color:'black', backgroundColor:"lightgray",fontSize:'12px',fontWeight:"600"}}
+               <Button style={{width:'100%',border:'none', fontFamily:'Arsenal SC serif',height:'100%',color:'black',
+               borderRadius:'0px', backgroundColor:"lightgray",fontSize:'12px',fontWeight:"600"}}
                  disabled >
                      Add Friend
-               </button>
+               </Button>
             </div> 
 
             ):(
@@ -336,10 +344,11 @@ const ParticipantsDisplayer = (props) => {
                 {isFriend && (
                    <div className='d-flex flex-column justify-content-center align-items-center'
                      style={{height:"100%",width:"30%", backgroundColor:"white"}}>
-                      <button style={{width:'100%',border:'none', fontFamily:'Arsenal SC serif',height:'100%',color:'white', backgroundColor:"#de1051",fontSize:'12px',fontWeight:"600"}}
-                       onClick={sendFriendRequest}>
-                       Unfriend
-                     </button>
+                         <DialogConfirm style={{width:'100%',border:'none',borderRadius:'0px', fontFamily:'Arsenal SC serif ',
+                            height:'100%',color:'white', 
+                            backgroundColor:"#de1051",fontSize:'8px',fontWeight:"600"}}
+                            action={"Unfriend"} message ={`are you sure you want to remove${selectedParticipant.name} from your friend list?`} 
+                            handleAction={unfriendFriendRequest}/>    
                   </div> 
                )}
                {isPending&&(
@@ -347,7 +356,7 @@ const ParticipantsDisplayer = (props) => {
                        style={{height:"100%",width:"30%", backgroundColor:"white"}}>
                         <DialogConfirm style={{width:'100%',border:'none',borderRadius:'0px', fontFamily:'Arsenal SC serif ',
                             height:'100%',color:'white', 
-                            backgroundColor:"#de1051",fontSize:'9px',fontWeight:"600"}}
+                            backgroundColor:"#de1051",fontSize:'8px',fontWeight:"600"}}
                             action={"Cancel Request"} message ={`are you sure you want to cancel friend request sent to ${selectedParticipant.name}?`} 
                             handleAction={cancelFriendRequest}/>    
                       </div> 
@@ -357,7 +366,7 @@ const ParticipantsDisplayer = (props) => {
                     style={{height:"100%",width:"30%", backgroundColor:"white"}}>
                      <DialogConfirm style={{width:'100%',border:'none',borderRadius:'0px', fontFamily:'Arsenal SC serif ',
                          height:'100%',color:'white', 
-                         backgroundColor:"#de1051",fontSize:'9px',fontWeight:"600"}}
+                         backgroundColor:"#de1051",fontSize:'8px',fontWeight:"600"}}
                          action={"add friend"} message ={`are you sure you want to add ${selectedParticipant.name} to your friend list?`} 
                          handleAction={sendFriendRequest}/>
                     </div> 
