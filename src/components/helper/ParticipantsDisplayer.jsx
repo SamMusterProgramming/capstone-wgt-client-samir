@@ -290,7 +290,35 @@ useEffect(() => {
   return (
 
     <div className="d-flex flex-column mb-3 mt-0 justify-content-start align-items-center challenges">
-        
+          <div className='d-flex justify-content-start  align-items-center '
+          style={{height:"45px",width:"100%"}}>
+            <div className='d-flex flex-column justify-content-start  align-items-center'
+               style={{height:"100%",width:"30%",backgroundColor:""}}>
+                <span style={{fontSize:'10px',fontWeight:"600",marginTop:'2px', fontFamily:'Arsenal SC'}}>Created by</span>
+                <p style={{fontSize:'10px',fontWeight:"600",color:'gold',fontFamily:'Arsenal SC serif'}}>{props.challenge.name}</p>
+                {/* <p style={{fontSize:'11px',fontWeight:"600",color:'white'}}>{props.challenge.createdAt.substring(0,10)}</p> */}
+
+            </div>
+            <div className='d-flex flex-column justify-content-start gap align-items-center'
+               style={{height:"100%",width:"40%",backgroundColor:""}}>
+                <span style={{fontSize:'10px',fontWeight:"600",marginTop:'2px', fontFamily:'Arsenal SC'}}>Top Challenger</span>
+                <p style={{fontSize:'10px',fontWeight:"600",color:'gold',fontFamily:'Arsenal SC serif'}}>{topChallenger.topChallenger}</p>
+                {/* <p style={{fontSize:'11px',fontWeight:"600",color:'pink'}}>{topChallenger.votes} <span>  VOTES</span>  </p> */}
+            </div>
+            <div className='d-flex flex-column  justify-content-center  align-items-center'
+               style={{height:"100%",width:"30%",backgroundColor:""}}>
+                 <p style={{fontSize:'10px',fontWeight:"600",color:'gold',marginTop:'0px', fontFamily:'Arsenal SC'}}>Type : 
+                 <span style={{fontSize:'10px',fontWeight:"300",color:'white',fontFamily:'Arsenal SC'}}> {props.challenge.type}</span>
+                 </p>
+                 {/* <p style={{fontSize:'11px',fontWeight:"600",color:'gold'}}>CATEG : 
+                 <span style={{fontSize:'10px',fontWeight:"300",marginTop:'10px',color:'white'}}> {props.challenge.category}</span>
+                 </p> */}
+                 <p style={{fontSize:'10px',fontWeight:"600",color:'gold',marginTop:'-2px', fontFamily:'Arsenal SC serif'}}>Privacy: 
+                 <span style={{fontSize:'10px',fontWeight:"300",color:'white',fontFamily:'Arsenal SC'}}> {props.challenge.privacy}</span>
+                </p>
+             
+            </div>
+        </div>
          <div className='d-flex flex-column justify-content-start align-items-center bg-light'
            style={{width:"100%",height:"120px"}}>
 
@@ -303,8 +331,8 @@ useEffect(() => {
                       </span>
                   </div>
                   <div className='d-flex mt-0 justify-content-start align-items-center'
-                    style={{width:"75%",height:"30px",padding:'10px'}}>
-                        <p style={{fontSize:'12px',fontFamily:'Arsenal SC serif'}}> {props.challenge.desc}</p>
+                    style={{width:"75%",height:"30px",padding:'10px',backgroundColor:'lightgray'}}>
+                        <p style={{fontSize:'12px',color:"black",fontFamily:'Arsenal SC serif'}}> {props.challenge.desc}</p>
                   </div>
               </div>
               <div className="d-flex  justify-content-start align-items-center  " 
@@ -524,35 +552,31 @@ useEffect(() => {
                />
         </div> 
 
-        <div className='d-flex justify-content-start  align-items-center '
+        {/* <div className='d-flex justify-content-start  align-items-center '
           style={{height:"45px",width:"100%"}}>
             <div className='d-flex flex-column justify-content-start  align-items-center'
                style={{height:"100%",width:"30%",backgroundColor:""}}>
                 <span style={{fontSize:'10px',fontWeight:"600",marginTop:'2px', fontFamily:'Arsenal SC'}}>Created by</span>
                 <p style={{fontSize:'10px',fontWeight:"600",color:'gold',fontFamily:'Arsenal SC serif'}}>{props.challenge.name}</p>
-                {/* <p style={{fontSize:'11px',fontWeight:"600",color:'white'}}>{props.challenge.createdAt.substring(0,10)}</p> */}
 
             </div>
             <div className='d-flex flex-column justify-content-start gap align-items-center'
                style={{height:"100%",width:"40%",backgroundColor:""}}>
                 <span style={{fontSize:'10px',fontWeight:"600",marginTop:'2px', fontFamily:'Arsenal SC'}}>Top Challenger</span>
                 <p style={{fontSize:'10px',fontWeight:"600",color:'gold',fontFamily:'Arsenal SC serif'}}>{topChallenger.topChallenger}</p>
-                {/* <p style={{fontSize:'11px',fontWeight:"600",color:'pink'}}>{topChallenger.votes} <span>  VOTES</span>  </p> */}
             </div>
             <div className='d-flex flex-column  justify-content-center  align-items-center'
                style={{height:"100%",width:"30%",backgroundColor:""}}>
                  <p style={{fontSize:'10px',fontWeight:"600",color:'gold',marginTop:'0px', fontFamily:'Arsenal SC'}}>Type : 
                  <span style={{fontSize:'10px',fontWeight:"300",color:'white',fontFamily:'Arsenal SC'}}> {props.challenge.type}</span>
                  </p>
-                 {/* <p style={{fontSize:'11px',fontWeight:"600",color:'gold'}}>CATEG : 
-                 <span style={{fontSize:'10px',fontWeight:"300",marginTop:'10px',color:'white'}}> {props.challenge.category}</span>
-                 </p> */}
+                
                  <p style={{fontSize:'10px',fontWeight:"600",color:'gold',marginTop:'-2px', fontFamily:'Arsenal SC serif'}}>Privacy: 
                  <span style={{fontSize:'10px',fontWeight:"300",color:'white',fontFamily:'Arsenal SC'}}> {props.challenge.privacy}</span>
                 </p>
              
             </div>
-        </div>
+        </div> */}
         <div className='d-flex flex-row  justify-content-between align-items-center '  //#1f1e15
             style={{height:'35px',width:'100%',backgroundColor:'#0352fc'}} >
               
@@ -577,12 +601,12 @@ useEffect(() => {
             
                    <div className='d-flex flex-column align-items-center justify-content-start'
                       style={{widh:"180px" , height:"100%",backgroundColor:""}}>
-                      <span style={{fontSize:'10px' ,marginTop:"5px"}}>{props.participants.length}</span>
+                      <span style={{fontSize:'10px' ,marginTop:"2px"}}>{props.participants.length}</span>
                       <p style={{fontSize:'9px'}}>CHALLENGERS</p>
                    </div>
                    <div className='d-flex flex-column align-items-center justify-content-start'
                       style={{widh:"180px" , height:"100%"}}>      
-                    <p style={{fontSize:'10px',color:'white',marginTop:"5px"}}>4.5</p> 
+                    <p style={{fontSize:'10px',color:'white',marginTop:"2px"}}>4.5</p> 
                     <span style={{fontSize:'14px',color:'gold'}}> *****  </span>
                       {/* <p style={{fontSize:'11px',color:'white',marginTop:"-9px",marginLeft:"29px"}}> </p> */}
                    </div>
