@@ -33,7 +33,7 @@ useEffect(() => {
 return (
 
     <div className="d-flex flex-column mt-0 mb-2 justify-content-start border align-items-center"
-          style={{width:"100%",minHeight:'25%',backgroundColor:'#'}}>
+          style={{width:"100%",minHeight:'25%',backgroundColor:'lightgray'}}>
           
              <div className="d-flex  bg-light justify-content-between gap-0 align-items-center " 
                 style={{fontSize:'10px',width:'100%',minHeight:"20%",padding:'10px'}}>
@@ -79,7 +79,7 @@ return (
 
 
                 <div className="d-flex flex-column justify-content-start align-items-center "
-                     style={{fontSize:'10px',width:'80%',height:"100%",backgroundColor:''}}>
+                     style={{fontSize:'10px',width:'80%',height:"100%",backgroundColor:'lightgray'}}>
                      <div  className="d-flex justify-content-center text-center mt-2 align-items-center "
                         style={{fontSize:'10px',width:'90%',height:"25%",backgroundColor:''}} >   
                          <h4 style={{fontSize:'12px',color:"#232324",fontWeight:'800', 

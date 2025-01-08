@@ -97,7 +97,7 @@
 
 .participantdisplayer {
     /* min-height:100%; */
-    height: 50px;
+    height: 30px;
     min-width: 100%;
     display: flex;
     align-items: center;

@@ -17,7 +17,7 @@ import { Navigate } from 'react-router-dom'
 
 const  PURL = baseURL_DEVOLOPMENT   
  
-export const BASE_URL =  baseURL_PRODUCTION 
+export const BASE_URL =  baseURL_DEVOLOPMENT 
 
 export const setLoadingBarAxios =(loadingRef) => {
   axios.interceptors.request.use((config) => {
