@@ -17,7 +17,7 @@ import { Navigate } from 'react-router-dom'
 
 const  PURL = baseURL_DEVOLOPMENT   
  
-export const BASE_URL =  baseURL_PRODUCTION; 
+export const BASE_URL =  baseURL_PRODUCTION 
 
 export const setLoadingBarAxios =(loadingRef) => {
   axios.interceptors.request.use((config) => {
@@ -280,7 +280,7 @@ export const getUserChallenges = async( user_id , setChallenges)=>{
    }
    export const unfriendRequest = async(receiver_id , rawBody , setFriendRequest) =>{
     try {
-      await axios.post( BASE_URL + `/users/friends/request/${receiver_id}`, rawBody )
+      await axios.post( BASE_URL + `/users/friends/unfriend/${receiver_id}`, rawBody )
       .then(res =>  { 
         setFriendRequest({...res.data});
         } )

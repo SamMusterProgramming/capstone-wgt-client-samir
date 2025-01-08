@@ -5,7 +5,8 @@ import {  BASE_URL, getUserById,getFollowings, liked, loadLikeVoteData,
  getUserFriendsData,
  getNotificationByUser,
  removeFriendRequest,
- unfriendRequest} from '../../apiCalls'
+ unfriendRequest,
+ acceptFriendRequest} from '../../apiCalls'
 import PostFooter from './PostFooter';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { Button, Select } from 'antd';
@@ -29,10 +30,14 @@ const ParticipantsDisplayer = (props) => {
   const [isLikedColor,setIsLikedColor] = useState("lightblue")
   const [topChallenger ,setTopChallenger] = useState("")
   const [userProfileImg,setUserProfileImg] = useState(props.user.profile_img)
+
   const [addFriendRequest , setAddFriendRequest] = useState(null)
   const [participantFriendData,setParticipantFriendData] = useState(null)
+  const [userFriendData,setUserFriendData] = useState(null)
+
   const[isFriend,setIsFriend]= useState(false)
   const[isPending,setIsPending]= useState(false)
+  const[isAccept,setIsAccept]= useState(false)
   const {notifications,setNotifications} = useContext(AuthContent)
 
 
@@ -127,6 +132,11 @@ const ParticipantsDisplayer = (props) => {
       });
 
       }, [])
+  
+  useEffect(() => {
+    getUserFriendsData(props.user._id,setUserFriendData)
+  }, [])
+  
 
   useEffect(() => {
         const imageRef = ref(storage, selectedParticipant.video_url); 
@@ -137,28 +147,61 @@ const ParticipantsDisplayer = (props) => {
         .catch((error) => {
         console.error(error);
         });
-
+       
        getMediaFireBase(selectedParticipant.profile_img,setUserProfileImg)
        setLikesVotesData({like_count:selectedParticipant.likes,vote_count:selectedParticipant.votes})
        loadLikeVoteData(ids,setLikesVotesData)   
+       getUserFriendsData(props.user._id,setUserFriendData)
        getUserFriendsData(selectedParticipant.user_id,setParticipantFriendData)
     }, [selectedParticipant])
     
 
   useEffect(() => {
-    console.log(participantFriendData)
-    if(participantFriendData){
-    if(participantFriendData.friend_request_received)
-    participantFriendData.friend_request_received.find(data => data.sender_id == props.user._id)
-    ? setIsPending(true) : setIsPending(false)
-    if(participantFriendData.friends)
-    participantFriendData.friends.find(data => data.sender_id === props.user._id)
-    ? setIsFriend(true) : setIsFriend(false)
-    }
-  }, [participantFriendData])
+
+    if(participantFriendData){ 
+      if(participantFriendData.friend_request_received)
+      participantFriendData.friend_request_received.find(data => data.sender_id == props.user._id)
+      ? setIsPending(true) : setIsPending(false)
+      if(participantFriendData.friends)
+        participantFriendData.friends.find(data => data.sender_id === props.user._id)
+        ? setIsFriend(true) : setIsFriend(false)
+      }
+
+    if( userFriendData){
+      if(userFriendData.friend_request_received) {
+         if(userFriendData.friend_request_received.find(data => data.sender_id == selectedParticipant.user_id))
+         {
+          setIsAccept(true)
+          setIsPending(false)
+          setIsFriend(false)
+        } 
+        else {setIsAccept(false)
+        
+      }}}
+          
+          }
+    
+      
+    // }else if(participantFriendData){ setIsAccept(false)
+    //   if(participantFriendData.friend_request_received)
+    //   participantFriendData.friend_request_received.find(data => data.sender_id == props.user._id)
+    //   ? setIsPending(true) : setIsPending(false)
+    //   if(participantFriendData.friends)
+    //   participantFriendData.friends.find(data => data.sender_id === props.user._id)
+    //   ? setIsFriend(true) : setIsFriend(false)
+      
+    // if(participantFriendData){
+    // if(participantFriendData.friend_request_received)
+    // participantFriendData.friend_request_received.find(data => data.sender_id == props.user._id)
+    // ? setIsPending(true) : setIsPending(false)
+    // if(participantFriendData.friends)
+    // participantFriendData.friends.find(data => data.sender_id === props.user._id)
+    // ? setIsFriend(true) : setIsFriend(false)
+    // }
+  , [participantFriendData,userFriendData])
   
     
-  const handleChange = async (value) =>{
+const handleChange = async (value) =>{
       // getUserById(value ,setUserProfile)
       const newParticipant =  props.participants.find(participant => participant.user_id === value);
       setSelectedParticipant( { ...selectedParticipant,
@@ -172,7 +215,7 @@ const ParticipantsDisplayer = (props) => {
                                    email:newParticipant.email })
       } 
    
-  useEffect(() => {
+useEffect(() => {
     likesVotesData.isLiked ? 
          setIsLikedColor("blue")   
          : setIsLikedColor("lightblue")
@@ -186,16 +229,16 @@ const ParticipantsDisplayer = (props) => {
     getFollowings(props.user._id ,setFollowings)
   }, [])
   
-  const handleFollowing =  ()=> {
+const handleFollowing =  ()=> {
     const rawBody = {
       following_id : selectedParticipant.user_id,
       following_email:selectedParticipant.email
    }
-   addFollowing(props.user._id,rawBody, setFollowings)
-  //  setFollowings((prevItems) => [...prevItems,rawBody])
+  addFollowing(props.user._id,rawBody, setFollowings)
+  // setFollowings((prevItems) => [...prevItems,rawBody])
   }
   
-  const handleUnFollowing =  ()=> {
+const handleUnFollowing =  ()=> {
     const rawBody = {
       following_id : selectedParticipant.user_id,
       following_email:selectedParticipant.email
@@ -204,22 +247,34 @@ const ParticipantsDisplayer = (props) => {
   }
   
   
-  const sendFriendRequest = () => {
+const sendFriendRequest = () => {
      console.log(props.user)
      const rawBody = props.user;
      friendRequest(selectedParticipant.user_id,rawBody,setAddFriendRequest)
   }
   
-  const unfriendFriendRequest = () => {
+const unfriendFriendRequest = () => {
     console.log(props.user)
     const rawBody = props.user;
     unfriendRequest(selectedParticipant.user_id,rawBody,setAddFriendRequest)
  }
-  const cancelFriendRequest = () => {
+
+const okFriendRequest = () => {
+  const rawBody ={
+    _id:selectedParticipant.user_id,
+    name:selectedParticipant.name,
+    email:selectedParticipant.email,
+    profile_img:selectedParticipant.profile_img
+  }
+  acceptFriendRequest(props.user._id,rawBody,setAddFriendRequest)
+}
+
+const cancelFriendRequest = () => {
     removeFriendRequest(selectedParticipant.user_id,props.user,setAddFriendRequest)
  }
 
-  useEffect(() => {
+useEffect(() => {
+  getUserFriendsData(props.user._id,setUserFriendData)
   getUserFriendsData(selectedParticipant.user_id,setParticipantFriendData)
   }, [addFriendRequest])
   
@@ -341,13 +396,23 @@ const ParticipantsDisplayer = (props) => {
               <>
               {participantFriendData && (
                 <>
+                {isAccept && (
+                   <div className='d-flex flex-column justify-content-center align-items-center'
+                     style={{height:"100%",width:"30%", backgroundColor:"white"}}>
+                         <DialogConfirm style={{width:'100%',border:'none',borderRadius:'0px', fontFamily:'Arsenal SC serif ',
+                            height:'100%',color:'white', 
+                            backgroundColor:"#de1051",fontSize:'8px',fontWeight:"600"}}
+                            action={"Accept"} message ={`are you sure you want to remove${selectedParticipant.name} from your friend list?`} 
+                            handleAction={okFriendRequest}/>    
+                  </div> 
+               )}
                 {isFriend && (
                    <div className='d-flex flex-column justify-content-center align-items-center'
                      style={{height:"100%",width:"30%", backgroundColor:"white"}}>
                          <DialogConfirm style={{width:'100%',border:'none',borderRadius:'0px', fontFamily:'Arsenal SC serif ',
                             height:'100%',color:'white', 
                             backgroundColor:"#de1051",fontSize:'8px',fontWeight:"600"}}
-                            action={"Unfriend"} message ={`are you sure you want to remove${selectedParticipant.name} from your friend list?`} 
+                            action={"Unfriend"} message ={`are you sure you want to remove ${selectedParticipant.name} from your friend list?`} 
                             handleAction={unfriendFriendRequest}/>    
                   </div> 
                )}
@@ -357,11 +422,11 @@ const ParticipantsDisplayer = (props) => {
                         <DialogConfirm style={{width:'100%',border:'none',borderRadius:'0px', fontFamily:'Arsenal SC serif ',
                             height:'100%',color:'white', 
                             backgroundColor:"#de1051",fontSize:'8px',fontWeight:"600"}}
-                            action={"Cancel Request"} message ={`are you sure you want to cancel friend request sent to ${selectedParticipant.name}?`} 
+                            action={"Pending"} message ={`are you sure you want to cancel friend request sent to ${selectedParticipant.name}?`} 
                             handleAction={cancelFriendRequest}/>    
                       </div> 
                )}
-               {!(isPending||isFriend)&&(
+               {!(isPending||isFriend||isAccept)&&(
                     <div className='d-flex flex-column justify-content-center align-items-center'
                     style={{height:"100%",width:"30%", backgroundColor:"white"}}>
                      <DialogConfirm style={{width:'100%',border:'none',borderRadius:'0px', fontFamily:'Arsenal SC serif ',
@@ -411,7 +476,35 @@ const ParticipantsDisplayer = (props) => {
                />
         </div> 
 
-      
+        <div className='d-flex justify-content-start  align-items-center '
+          style={{height:"45px",width:"100%"}}>
+            <div className='d-flex flex-column justify-content-start  align-items-center'
+               style={{height:"100%",width:"30%",backgroundColor:""}}>
+                <span style={{fontSize:'10px',fontWeight:"600",marginTop:'2px', fontFamily:'Arsenal SC'}}>Created by</span>
+                <p style={{fontSize:'10px',fontWeight:"600",color:'gold',fontFamily:'Arsenal SC serif'}}>{props.challenge.name}</p>
+                {/* <p style={{fontSize:'11px',fontWeight:"600",color:'white'}}>{props.challenge.createdAt.substring(0,10)}</p> */}
+
+            </div>
+            <div className='d-flex flex-column justify-content-start gap align-items-center'
+               style={{height:"100%",width:"40%",backgroundColor:""}}>
+                <span style={{fontSize:'10px',fontWeight:"600",marginTop:'2px', fontFamily:'Arsenal SC'}}>Top Challenger</span>
+                <p style={{fontSize:'10px',fontWeight:"600",color:'gold',fontFamily:'Arsenal SC serif'}}>{topChallenger.topChallenger}</p>
+                {/* <p style={{fontSize:'11px',fontWeight:"600",color:'pink'}}>{topChallenger.votes} <span>  VOTES</span>  </p> */}
+            </div>
+            <div className='d-flex flex-column  justify-content-center  align-items-center'
+               style={{height:"100%",width:"30%",backgroundColor:""}}>
+                 <p style={{fontSize:'10px',fontWeight:"600",color:'gold',marginTop:'0px', fontFamily:'Arsenal SC'}}>Type : 
+                 <span style={{fontSize:'10px',fontWeight:"300",color:'white',fontFamily:'Arsenal SC'}}> {props.challenge.type}</span>
+                 </p>
+                 {/* <p style={{fontSize:'11px',fontWeight:"600",color:'gold'}}>CATEG : 
+                 <span style={{fontSize:'10px',fontWeight:"300",marginTop:'10px',color:'white'}}> {props.challenge.category}</span>
+                 </p> */}
+                 <p style={{fontSize:'10px',fontWeight:"600",color:'gold',marginTop:'-2px', fontFamily:'Arsenal SC serif'}}>Privacy: 
+                 <span style={{fontSize:'10px',fontWeight:"300",color:'white',fontFamily:'Arsenal SC'}}> {props.challenge.privacy}</span>
+                </p>
+             
+            </div>
+        </div>
         <div className='d-flex flex-row  justify-content-between align-items-center '  //#1f1e15
             style={{height:'35px',width:'100%',backgroundColor:'#0352fc'}} >
               
@@ -454,35 +547,7 @@ const ParticipantsDisplayer = (props) => {
         </div>
 
 
-        <div className='d-flex justify-content-start  align-items-center '
-          style={{height:"45px",width:"100%"}}>
-            <div className='d-flex flex-column justify-content-start  align-items-center'
-               style={{height:"100%",width:"30%",backgroundColor:""}}>
-                <span style={{fontSize:'10px',fontWeight:"600",marginTop:'2px', fontFamily:'Arsenal SC'}}>Created by</span>
-                <p style={{fontSize:'10px',fontWeight:"600",color:'gold',fontFamily:'Arsenal SC serif'}}>{props.challenge.name}</p>
-                {/* <p style={{fontSize:'11px',fontWeight:"600",color:'white'}}>{props.challenge.createdAt.substring(0,10)}</p> */}
-
-            </div>
-            <div className='d-flex flex-column justify-content-start gap align-items-center'
-               style={{height:"100%",width:"40%",backgroundColor:""}}>
-                <span style={{fontSize:'10px',fontWeight:"600",marginTop:'2px', fontFamily:'Arsenal SC'}}>Top Challenger</span>
-                <p style={{fontSize:'10px',fontWeight:"600",color:'gold',fontFamily:'Arsenal SC serif'}}>{topChallenger.topChallenger}</p>
-                {/* <p style={{fontSize:'11px',fontWeight:"600",color:'pink'}}>{topChallenger.votes} <span>  VOTES</span>  </p> */}
-            </div>
-            <div className='d-flex flex-column  justify-content-center  align-items-center'
-               style={{height:"100%",width:"30%",backgroundColor:""}}>
-                 <p style={{fontSize:'10px',fontWeight:"600",color:'gold',marginTop:'0px', fontFamily:'Arsenal SC'}}>Type : 
-                 <span style={{fontSize:'10px',fontWeight:"300",color:'white',fontFamily:'Arsenal SC'}}> {props.challenge.type}</span>
-                 </p>
-                 {/* <p style={{fontSize:'11px',fontWeight:"600",color:'gold'}}>CATEG : 
-                 <span style={{fontSize:'10px',fontWeight:"300",marginTop:'10px',color:'white'}}> {props.challenge.category}</span>
-                 </p> */}
-                 <p style={{fontSize:'10px',fontWeight:"600",color:'gold',marginTop:'-2px', fontFamily:'Arsenal SC serif'}}>Privacy: 
-                 <span style={{fontSize:'10px',fontWeight:"300",color:'white',fontFamily:'Arsenal SC'}}> {props.challenge.privacy}</span>
-                </p>
-             
-            </div>
-        </div>
+        
     
     </div>
   )
