@@ -19,7 +19,7 @@ const ParticipateChallenge = ({user}) => {
 
 
        
-        <div className=' d-flex gap-5 flex-wrap  mt-2 justify-content-center align-items-center '>
+        <div className=' d-flex gap-5 flex-wrap  mt-0 justify-content-center align-items-center '>
             
             { (participateChallenges.length > 0)?
                 ( <>

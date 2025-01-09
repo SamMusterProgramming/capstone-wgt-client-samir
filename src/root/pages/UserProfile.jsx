@@ -165,9 +165,9 @@ const UserProfile = (props) => {
                     <span style={{fontSize:'12px',fontWeight:"300",color:'white',fontFamily:'Arsenal SC serif'}}>{user.email}</span> 
                </div>
                <div className="d-flex flex-row  justify-content-center gap-3 align-items-center">
-                   <p style={{fontSize:'13px',fontWeight:"300",color:'lightgray',fontFamily:'Arsenal SC '}}>City : <span style={{fontSize:'12px',fontWeight:"600",color:'white',fontFamily:'Arsenal SC serif'}}>{user.city}</span></p>
-                   <p style={{fontSize:'13px',fontWeight:"300",color:'lightgray',fontFamily:'Arsenal SC '}}>State : <span style={{fontSize:'12px',fontWeight:"600",color:'white',fontFamily:'Arsenal SC serif'}}>{user.state}</span></p>
-                   <p style={{fontSize:'13px',fontWeight:"300",color:'lightgray',fontFamily:'Arsenal SC '}}>City : <span style={{fontSize:'12px',fontWeight:"600",color:'white',fontFamily:'Arsenal SC serif'}}>USA</span></p>
+                   <p style={{fontSize:'13px',fontWeight:"300",color:'lightgray',fontFamily:'Arsenal SC serif'}}>City : <span style={{fontSize:'12px',fontWeight:"600",color:'white',fontFamily:'Arsenal SC serif'}}>{user.city}</span></p>
+                   <p style={{fontSize:'13px',fontWeight:"300",color:'lightgray',fontFamily:'Arsenal SC serif '}}>State : <span style={{fontSize:'12px',fontWeight:"600",color:'white',fontFamily:'Arsenal SC serif'}}>{user.state}</span></p>
+                   <p style={{fontSize:'13px',fontWeight:"300",color:'lightgray',fontFamily:'Arsenal SC seif '}}>City : <span style={{fontSize:'12px',fontWeight:"600",color:'white',fontFamily:'Arsenal SC serif'}}>USA</span></p>
 
                </div>
               
@@ -180,7 +180,7 @@ const UserProfile = (props) => {
                                       <>
                                       {isAccept && (
                                         <div className='d-flex flex-column justify-content-center align-items-center'
-                                          style={{height:"100%",width:"40%", backgroundColor:"white"}}>
+                                          style={{height:"100%",width:"40%", backgroundColor:""}}>
                                               <DialogConfirm style={{width:'100%',border:'none', fontFamily:'Arsenal SC serif ',
                                                   height:'100%',color:'white', 
                                                   backgroundColor:"#de1051",fontSize:'12px',fontWeight:"600"}}
@@ -190,7 +190,7 @@ const UserProfile = (props) => {
                                     )}
                                       {isFriend && (
                                         <div className='d-flex flex-column justify-content-center align-items-center'
-                                          style={{height:"100%",width:"40%", backgroundColor:"white"}}>
+                                          style={{height:"100%",width:"40%", backgroundColor:""}}>
                                               <DialogConfirm style={{width:'100%',border:'none', fontFamily:'Arsenal SC serif ',
                                                   height:'100%',color:'white', 
                                                   backgroundColor:"#de1051",fontSize:'12px',fontWeight:"600"}}
@@ -210,8 +210,8 @@ const UserProfile = (props) => {
                                     )}
                                     {!(isPending||isFriend||isAccept)&&(
                                         <div className='d-flex flex-column justify-content-center align-items-center'
-                                          style={{height:"100%",width:"40%", backgroundColor:"white"}}>
-                                          <DialogConfirm style={{width:'100%',border:'none',borderRadius:'0px', fontFamily:'Arsenal SC serif ',
+                                          style={{height:"100%",width:"40%", backgroundColor:""}}>
+                                          <DialogConfirm style={{width:'100%',border:'none', fontFamily:'Arsenal SC serif ',
                                               height:'100%',color:'white', 
                                               backgroundColor:"#de1051",fontSize:'10px',fontWeight:"600"}}
                                               action={"add friend"} message ={`are you sure you want to send a friend request to ${user.name} ?`} 

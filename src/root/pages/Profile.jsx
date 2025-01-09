@@ -124,13 +124,13 @@ const Profile = (props) => {
                     <span style={{fontSize:'12px',fontWeight:"300",color:'white',fontFamily:'Arsenal SC serif'}}>{user.email}</span> 
                </div>
                <div className="d-flex flex-row  justify-content-center gap-3 align-items-center">
-                   <p style={{fontSize:'13px',fontWeight:"300",color:'lightgray',fontFamily:'Arsenal SC '}}>City : <span style={{fontSize:'12px',fontWeight:"600",color:'white',fontFamily:'Arsenal SC serif'}}>{user.city}</span></p>
-                   <p style={{fontSize:'13px',fontWeight:"300",color:'lightgray',fontFamily:'Arsenal SC '}}>State : <span style={{fontSize:'12px',fontWeight:"600",color:'white',fontFamily:'Arsenal SC serif'}}>{user.state}</span></p>
-                   <p style={{fontSize:'13px',fontWeight:"300",color:'lightgray',fontFamily:'Arsenal SC '}}>City : <span style={{fontSize:'12px',fontWeight:"600",color:'white',fontFamily:'Arsenal SC serif'}}>USA</span></p>
+                   <p style={{fontSize:'13px',fontWeight:"300",color:'lightgray',fontFamily:'Arsenal SC seif'}}>City : <span style={{fontSize:'12px',fontWeight:"600",color:'white',fontFamily:'Arsenal SC serif'}}>{user.city}</span></p>
+                   <p style={{fontSize:'13px',fontWeight:"300",color:'lightgray',fontFamily:'Arsenal SC serif'}}>State : <span style={{fontSize:'12px',fontWeight:"600",color:'white',fontFamily:'Arsenal SC serif'}}>{user.state}</span></p>
+                   <p style={{fontSize:'13px',fontWeight:"300",color:'lightgray',fontFamily:'Arsenal SC serif '}}>City : <span style={{fontSize:'12px',fontWeight:"600",color:'white',fontFamily:'Arsenal SC serif'}}>USA</span></p>
 
                </div>
               
-               <div className='d-flex justify-content-evenly  align-items-center mt-1 gap-0 '
+               <div className='d-flex justify-content-evenly  align-items-center mt-3 gap-0 '
                  style={{height:'40px' ,width:'100%'}} >
                     {(props.user._id === _id && follow) && (
                       <>

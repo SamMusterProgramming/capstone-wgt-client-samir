@@ -24,11 +24,11 @@ useEffect(() => {
 
   return (
     <>
-        <div className="d-flex flex-column mb-0 mt-0 justify-content-start align-items-center "
-          style={{width:"100%",minHeight:'25%',backgroundColor:'lightgray'}}>
+        <div className="d-flex flex-column mb-0 mt-0 justify-content-evenly align-items-center bg-dark"
+          style={{width:"100%",minHeight:'28%',backgroundColor:'lightgray'}}>
           
              <div className="d-flex  bg-light justify-content-between gap-0 align-items-center " 
-                style={{fontSize:'10px',width:'100%',height:"25%",padding:'10px'}}>
+                style={{fontSize:'10px',width:'100%',height:"19%",padding:'10px'}}>
                   <div>
                       <p style={{fontSize:'12px',color:"#1f2426"}}> 
                       <span className="lead text" style={{fontSize:'12px',color:"#1877F2",fontWeight:'800', 
@@ -51,12 +51,13 @@ useEffect(() => {
                  </div>
                
              </div>
-             <hr style={{height:"2px"}} />
+             {/* <hr style={{height:"2px"}} /> */}
              <div className="d-flex   justify-content-start align-items-end " 
-                style={{fontSize:'10px',width:'100%',minHeight:"75%"}}>
-                <div className="d-flex flex-column justify-content-end align-items-center gap-1 bg-light "
+                style={{fontSize:'10px',width:'100%',minHeight:"60%"}}>
+
+                <div className="d-flex flex-column justify-content-center align-items-center gap-1 bg-light "
                      style={{fontSize:'10px',width:'30%',height:"100%"}}>
-                      <p style={{fontSize:'12px',color:"#1f2426"}}> 
+                      <p style={{fontSize:'11px',color:"#1f2426"}}> 
                       <span className="lead text" style={{fontSize:'10px',color:"#232324",fontWeight:'800', 
                         fontFamily:'Arsenal SC serif'
                       }}>  {props.user.name.toUpperCase().slice(0,20)}...</span>
@@ -67,7 +68,7 @@ useEffect(() => {
                      </Link>  
                 </div>
                 <div className="d-flex flex-column justify-content-start align-items-center "
-                     style={{fontSize:'10px',width:'70%',height:"100%",backgroundColor:''}}>
+                     style={{fontSize:'10px',width:'70%',height:"100%",backgroundColor:'lightgray'}}>
  
                      <div  className="d-flex justify-content-center text-center mt-2 align-items-center "
                         style={{fontSize:'10px',width:'90%',height:"30%",backgroundColor:''}} >   
@@ -96,27 +97,38 @@ useEffect(() => {
                             })} 
                         </Select>
                      </div>
-                     <div className="d-flex justify-content-evenly align-items-end "
-                     style={{fontSize:'10px',width:'96%',height:"40%",backgroundColor:''}} >
-                        <Link to={"/chpage/challenges"}
-                        className={lineCreated ? "highlight" : ""}
-                        onClick={(e)=>{setLineCreated(true)}}
-                        style={{fontSize:'11px',color:"#1b78cf",
-                            fontFamily:'Arsenal SC serif'}}>
-                               CREATED BY YOU
+
+                </div>
+
+             </div>
+
+             <div className="d-flex justify-content-evenly align-items-center "
+                        style={{fontSize:'10px',width:'100%',height:"18%",backgroundColor:'#e6ecf0'
+                           ,fontWeight:"500"
+                        }}>
+                     <Link to={"/chpage/challenges"}
+                           className={lineCreated ? "highlight" : ""}
+                           onClick={(e)=>{setLineCreated(true)}}
+                           style={{fontSize:'12px',color:"#1b78cf",
+                              fontFamily:'Arsenal SC serif'}}>
+                                 CREATED BY YOU
                         </Link>
                         <Link to={"/chpage/participatechallenges"}
-                        className={lineParticipate? "highlight" : ""}
-                        onClick={(e)=>{setLineParticipate(true)}}
-                        style={{fontSize:'11px',color:"#1b78cf",
-                            fontFamily:'Arsenal SC serif'}}>
-                              PARTICIPATED IN
-                        </Link>
-                     
-                       
-                     </div>
-                </div>
-             </div>
+                           className={lineParticipate? "highlight" : ""}
+                           onClick={(e)=>{setLineParticipate(true)}}
+                           style={{fontSize:'12px',color:"#1b78cf",
+                              fontFamily:'Arsenal SC serif'}}>
+                                 PARTICIPATED IN
+                        </Link>   
+                        <Link to={"/chpage/participatechallenges"}
+                           className={lineParticipate? "highlight" : ""}
+                           onClick={(e)=>{setLineParticipate(true)}}
+                           style={{fontSize:'12px',color:"#1b78cf",
+                              fontFamily:'Arsenal SC serif'}}>
+                                 PRIVATE
+                        </Link>       
+            </div>
+
            
           </div>
           <Outlet/>
