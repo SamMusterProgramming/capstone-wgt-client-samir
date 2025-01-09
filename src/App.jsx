@@ -26,6 +26,7 @@ import TimeLine from './root/pages/TimeLine.jsx'
 import Demo from './root/pages/Demo.jsx'
 import { getNotificationByUser } from './apiCalls.js'
 import Bell from './root/pages/Bell.jsx'
+import UserProfile from './root/pages/UserProfile.jsx'
 
 
 export default function App() {
@@ -55,7 +56,8 @@ export default function App() {
                     {/* <Route path="topchallenges" element ={<TopChallenges user={user}/>} />  */}
                   </Route>
                   <Route path="topchallenges" element ={<TopChallenges user={user}/>} /> 
-                  <Route path="profile/:id" element={<Profile user={user}/>} />
+                  <Route path="profile/:id" element={<Profile user={user}/>}/>
+                  <Route path="userprofile/:id" element={<UserProfile user={user}/>}/>
                   <Route path="updateProfile" element={ <AddProfileImg setUser={setUser} user={user}/>} />   
                   <Route path="demo" element={ <Demo  user={user}/>} />           
                   <Route path="notifications" element={ <Bell />} /> 

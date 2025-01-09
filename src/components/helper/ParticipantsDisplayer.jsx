@@ -180,24 +180,6 @@ const ParticipantsDisplayer = (props) => {
       }}}
           
           }
-    
-      
-    // }else if(participantFriendData){ setIsAccept(false)
-    //   if(participantFriendData.friend_request_received)
-    //   participantFriendData.friend_request_received.find(data => data.sender_id == props.user._id)
-    //   ? setIsPending(true) : setIsPending(false)
-    //   if(participantFriendData.friends)
-    //   participantFriendData.friends.find(data => data.sender_id === props.user._id)
-    //   ? setIsFriend(true) : setIsFriend(false)
-      
-    // if(participantFriendData){
-    // if(participantFriendData.friend_request_received)
-    // participantFriendData.friend_request_received.find(data => data.sender_id == props.user._id)
-    // ? setIsPending(true) : setIsPending(false)
-    // if(participantFriendData.friends)
-    // participantFriendData.friends.find(data => data.sender_id === props.user._id)
-    // ? setIsFriend(true) : setIsFriend(false)
-    // }
   , [participantFriendData,userFriendData])
   
     
@@ -248,10 +230,10 @@ const handleUnFollowing =  ()=> {
   
   
 const sendFriendRequest = () => {
-     console.log(props.user)
+     console.log(props.user)    
      const rawBody = props.user;
      friendRequest(selectedParticipant.user_id,rawBody,setAddFriendRequest)
-  }
+  }   
   
 const unfriendFriendRequest = () => {
     console.log(props.user)

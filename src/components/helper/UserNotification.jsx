@@ -38,7 +38,7 @@ const UserNotification = (props) => {
       profile_img:props.notification.content.profile_img
     }
     acceptFriendRequest(props.user._id,rawBody,setUserFriendData)
-    navigate('/home')
+    navigate(`/userProfile/${props.notification.content.sender_id}`)
   }
   const deleteNotification =()=>{
     deleteUserNotification(props.notification._id)
