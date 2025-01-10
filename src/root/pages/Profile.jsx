@@ -117,7 +117,7 @@ const Profile = (props) => {
       </div>   
     
       <div className='d-flex flex-column mt-0 gap-2 justify-content-start align-items-center  '
-       style={{height:'400px' ,width:'100%', backgroundColor:"rgb(25, 33, 39)"}}>
+       style={{height:'700px' ,width:'100%', backgroundColor:"rgb(25, 33, 39)"}}>
 
                <div className="d-flex flex-column mt-2  justify-content-start align-items-center">
                     <span style={{fontSize:'14px',fontWeight:"300",color:'white',fontFamily:'Arsenal SC serif'}}>{user.name}</span> 
@@ -130,7 +130,7 @@ const Profile = (props) => {
 
                </div>
               
-               <div className='d-flex justify-content-evenly  align-items-center mt-3 gap-0 '
+               <div className='d-flex justify-content-evenly mb-2 align-items-center mt-3 gap-0 '
                  style={{height:'40px' ,width:'100%'}} >
                     {(props.user._id === _id && follow) && (
                       <>
@@ -196,7 +196,7 @@ const Profile = (props) => {
                         style={{width:"100%",height:"20px" }}>
                         <p style={{fontSize:"13px",color:"white",fontWeight:"600", fontFamily:"Arsenal SC"}}>FOLLOWERS</p>
                     </div>
-                    <div className='d-flex flex-wrap mt-0 p-3 justify-content-evenly gap-2 align-items-start border'
+                    <div className='d-flex flex-wrap mt-0 p-1 justify-content-start gap-2 align-items-start border'
                       style={{width:'100%',minHeight:"180px",backgroundColor:"lightgray"}}>
                        { follow && follow.followers.map((follower,index)=>{
                         return (
@@ -212,7 +212,7 @@ const Profile = (props) => {
                         style={{width:"100%",height:"20px" }}>
                         <p style={{fontSize:"13px",color:"white",fontWeight:"600", fontFamily:"Arsenal SC"}}>FOLLOWINGS</p>
                     </div>
-                    <div className='d-flex flex-wrap mt-0 p-3 gap-2 justify-content-evenly align-items-start border'
+                    <div className='d-flex flex-wrap mt-0 p-1 gap-2 justify-content-start align-items-start border'
                       style={{width:'100%',minHeight:"180px",backgroundColor:"lightgray"}}>
                        { follow && follow.followings.map((following,index)=>{
                         return (
@@ -228,7 +228,7 @@ const Profile = (props) => {
                         style={{width:"100%",height:"20px" }}>
                         <p style={{fontSize:"13px",color:"white",fontWeight:"600", fontFamily:"Arsenal SC"}}>FRIENDS</p>
                     </div>
-                    <div className='d-flex flex-wrap mt-0 p-3 gap-2 justify-content-evenly align-items-start border'
+                    <div className='d-flex flex-wrap mt-0 p-1 gap-2 justify-content-start align-items-start border'
                       style={{width:'100%',minHeight:"180px",backgroundColor:"lightgray"}}>
                        { friends && friends.friends.map((friend,index)=>{
                         return (

@@ -272,33 +272,28 @@ useEffect(() => {
   return (
 
     <div className="d-flex flex-column mb-3 mt-4 justify-content-start align-items-center challenges">
+         
           <div className='d-flex justify-content-start  align-items-center '
-          style={{height:"45px",width:"100%"}}>
-            <div className='d-flex flex-column justify-content-start  align-items-center'
-               style={{height:"100%",width:"30%",backgroundColor:""}}>
-                <span style={{fontSize:'10px',fontWeight:"600",marginTop:'2px', fontFamily:'Arsenal SC'}}>Created by</span>
-                <p style={{fontSize:'10px',fontWeight:"600",color:'gold',fontFamily:'Arsenal SC serif'}}>{props.challenge.name}</p>
-                {/* <p style={{fontSize:'11px',fontWeight:"600",color:'white'}}>{props.challenge.createdAt.substring(0,10)}</p> */}
-
+          style={{minHeight:"40px",minWidth:"100%"}}>
+            <div className='d-flex flex-column justify-content-center  align-items-center'
+               style={{height:"100%",minWidth:"25%",backgroundColor:""}}>
+                <span style={{fontSize:'9px',fontWeight:"600",marginTop:'0px', fontFamily:'Arsenal SC'}}>By</span>
+                <p style={{fontSize:'10px',fontWeight:"600",marginTop:'-3px',color:'gold',fontFamily:'Arsenal SC serif'}}>{props.challenge.name}</p>
             </div>
-            <div className='d-flex flex-column justify-content-start gap align-items-center'
-               style={{height:"100%",width:"40%",backgroundColor:""}}>
-                <span style={{fontSize:'10px',fontWeight:"600",marginTop:'2px', fontFamily:'Arsenal SC'}}>Top Challenger</span>
-                <p style={{fontSize:'10px',fontWeight:"600",color:'gold',fontFamily:'Arsenal SC serif'}}>{topChallenger.topChallenger}</p>
-                {/* <p style={{fontSize:'11px',fontWeight:"600",color:'pink'}}>{topChallenger.votes} <span>  VOTES</span>  </p> */}
+            <div className='d-flex flex-column justify-content-center gap align-items-center'
+               style={{height:"100%",minWidth:"25%",backgroundColor:""}}>
+                <span style={{fontSize:'10px',fontWeight:"600", fontFamily:'Arsenal SC'}}>Top </span>
+                <p style={{fontSize:'10px',fontWeight:"600",marginTop:'-3px',color:'gold',fontFamily:'Arsenal SC serif'}}>{topChallenger.topChallenger}</p>
+            </div>
+            <div className='d-flex flex-column justify-content-center gap align-items-center'
+               style={{height:"100%",minWidth:"25%",backgroundColor:""}}>
+                <span style={{fontSize:'10px',fontWeight:"600",marginTop:'0px', fontFamily:'Arsenal SC'}}>{props.participants.length}</span>
+                <p style={{fontSize:'10px',fontWeight:"600",marginTop:'-3px',color:'gold',fontFamily:'Arsenal SC serif'}}>Challengers</p>
             </div>
             <div className='d-flex flex-column  justify-content-center  align-items-center'
-               style={{height:"100%",width:"30%",backgroundColor:""}}>
-                 <p style={{fontSize:'10px',fontWeight:"600",color:'gold',marginTop:'0px', fontFamily:'Arsenal SC'}}>Type : 
-                 <span style={{fontSize:'10px',fontWeight:"300",color:'white',fontFamily:'Arsenal SC'}}> {props.challenge.type}</span>
-                 </p>
-                 {/* <p style={{fontSize:'11px',fontWeight:"600",color:'gold'}}>CATEG : 
-                 <span style={{fontSize:'10px',fontWeight:"300",marginTop:'10px',color:'white'}}> {props.challenge.category}</span>
-                 </p> */}
-                 <p style={{fontSize:'10px',fontWeight:"600",color:'gold',marginTop:'-2px', fontFamily:'Arsenal SC serif'}}>Privacy: 
-                 <span style={{fontSize:'10px',fontWeight:"300",color:'white',fontFamily:'Arsenal SC'}}> {props.challenge.privacy}</span>
-                </p>
-             
+               style={{height:"100%",minWidth:"25%",backgroundColor:""}}>
+                 <span style={{fontSize:'10px',fontWeight:"600",color:'white',fontFamily:'Arsenal SC'}}> {props.challenge.type}</span> 
+                 <span style={{fontSize:'10px',fontWeight:"600",marginTop:'-3px',color:'gold',fontFamily:'Arsenal SC '}}> {props.challenge.privacy}</span>      
             </div>
         </div>
          <div className='d-flex flex-column justify-content-start align-items-center bg-light'
@@ -321,7 +316,8 @@ useEffect(() => {
                     style={{height:'90px',width:'100%'}}>
                       <div className="d-flex flex-column justify-content-center align-items-center  " 
                           style={{height:'90px',width:'25%',backgroundColor:'lightblue'}}>
-                            <Link  style={{height:'80px',width:'93%'}} to = {`/profile/${selectedParticipant.user_id}`} > 
+                            <Link  style={{height:'80px',width:'93%'}}
+                             to = {(props.user._id === selectedParticipant.user_id)?`/profile/${selectedParticipant.user_id}`:`/userprofile/${selectedParticipant.user_id}`} > 
                               <img  style={{height:'100%',width:'100%',borderRadius:'15px',objectFit:"cover"}} src={selectedParticipant.profile_img} alt="" />
                             </Link>
                       </div>
@@ -556,10 +552,16 @@ useEffect(() => {
                     </>
                     )}
             
-                   <div className='d-flex flex-column align-items-center justify-content-start'
+                   <div className='d-flex flex align-items-center gap-3 justify-content-evenly'
                       style={{widh:"180px" , height:"100%",backgroundColor:""}}>
-                      <span style={{fontSize:'10px' ,marginTop:"5px"}}>{props.participants.length}</span>
-                      <p style={{fontSize:'9px'}}>CHALLENGERS</p>
+                      {/* <span style={{fontSize:'10px' ,marginTop:"5px"}}>{props.participants.length}</span>
+                      <p style={{fontSize:'9px'}}>CHALLENGERS</p> */}
+                      <button style={{color:props.isLikedColor}} onClick={props.handleLikes} >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" className="bi bi-hand-thumbs-up-fill" viewBox="0 0 16 16">
+                          <path d="M6.956 1.745C7.021.81 7.908.087 8.864.325l.261.066c.463.116.874.456 1.012.965.22.816.533 2.511.062 4.51a10 10 0 0 1 .443-.051c.713-.065 1.669-.072 2.516.21.518.173.994.681 1.2 1.273.184.532.16 1.162-.234 1.733q.086.18.138.363c.077.27.113.567.113.856s-.036.586-.113.856c-.039.135-.09.273-.16.404.169.387.107.819-.003 1.148a3.2 3.2 0 0 1-.488.901c.054.152.076.312.076.465 0 .305-.089.625-.253.912C13.1 15.522 12.437 16 11.5 16H8c-.605 0-1.07-.081-1.466-.218a4.8 4.8 0 0 1-.97-.484l-.048-.03c-.504-.307-.999-.609-2.068-.722C2.682 14.464 2 13.846 2 13V9c0-.85.685-1.432 1.357-1.615.849-.232 1.574-.787 2.132-1.41.56-.627.914-1.28 1.039-1.639.199-.575.356-1.539.428-2.59z"/>
+                        </svg>
+                      </button>
+                      <span style={{fontSize:'12px',fontWeight:"700",color:'white',fontFamily:"Arsenal SC"}}>{props.challenge.like_count}  </span>
                    </div>
                    <div className='d-flex flex-column align-items-center justify-content-start'
                       style={{widh:"180px" , height:"100%"}}>      

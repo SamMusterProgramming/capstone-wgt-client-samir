@@ -72,6 +72,7 @@ const UserNotification = (props) => {
             </div>
             <div className='d-flex align-items-center  justify-content-evenly text-center'
                style={{width:"30%",height:"100%"}} >
+                
                 {props.notification.type === "friend request"? (
                   <>
                     <Button onClick={handleAccept}
