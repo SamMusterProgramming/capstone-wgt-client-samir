@@ -98,7 +98,7 @@ return (
                 className= {'form-control input_pass ' + (isPasswordWrong ? 'shake-password' : '')  }
                   ref={holdPassword}
                   onChange={handlePasswordChange}
-                   defaultValue="Dummy@2024" placeholder="password" 
+                   defaultValue="Sberber@" placeholder="password" 
                   />
          </div>  
          <div className="form-group mt-3 d-flex align-items-center justify-content-start"
