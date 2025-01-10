@@ -149,7 +149,7 @@ const Profile = (props) => {
                       <button onClick={handleDisplayFriends}
                       className="d-flex flex-column justify-content-center gap-0  align-items-center"
                        style={{height:'100%' ,width:'23%' ,backgroundColor:"red" , borderRadius:'5px'}}  to={''}>
-                          <span style={{fontSize:'12px',fontWeight:"300",color:'white',fontFamily:'Arsenal SC serif'}}>{followerProfile && followerProfile.followings_count}</span> 
+                          <span style={{fontSize:'12px',fontWeight:"300",color:'white',fontFamily:'Arsenal SC serif'}}>{friends && friends.friends_count}</span> 
                           <span style={{fontSize:'11px',fontWeight:"700",color:'white',fontFamily:'Arsenal SC '}}>Friends</span>
                       </button>        
                       </>
