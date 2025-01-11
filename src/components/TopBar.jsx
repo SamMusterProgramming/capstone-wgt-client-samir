@@ -18,7 +18,14 @@ const TopBar = (props) => {
   
   
   useEffect(() => {
-    if(notifications) setNotCount(notifications.length)
+    if(notifications) {
+      const notifs = [] 
+      notifications.forEach(notif =>
+        {
+          if (!notif.isRead) notifs.push(notif)
+        }) 
+      setNotCount(notifs.length)
+    }
   }, [notifications])
   
 

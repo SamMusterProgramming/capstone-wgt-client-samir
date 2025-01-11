@@ -109,7 +109,7 @@ const Bell = () => {
 
 {notifications.map((notification,index)=>{
         return (
-          <UserNotification notification={notification} user={user} key={index} />
+          <UserNotification notification={notification} setNotifications={setNotifications} user={user} key={index} />
         )
      })}
 

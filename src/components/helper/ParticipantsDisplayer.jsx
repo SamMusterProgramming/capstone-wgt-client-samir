@@ -264,7 +264,7 @@ useEffect(() => {
   
   useEffect(() => {
     if(props.user){
-    getNotificationByUser(props.user._id ,notifications, setNotifications)
+    getNotificationByUser(props.user._id , setNotifications)
     console.log(notifications)  
     }
   }, [])

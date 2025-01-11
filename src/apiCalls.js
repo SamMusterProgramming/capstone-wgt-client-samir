@@ -303,7 +303,7 @@ export const getUserChallenges = async( user_id , setChallenges)=>{
     try {
       await axios.get( BASE_URL + `/users/friends/list/${receiver_id}` )
       .then(res =>  { 
-        setFriendRequest(res.data) 
+        setFriendRequest({...res.data}) 
         } )
      
     } catch (error) {
@@ -338,22 +338,34 @@ export const getUserChallenges = async( user_id , setChallenges)=>{
    //******************************** notifications */
 
 
-   export const getNotificationByUser = async(receiver_id ,notifications, setNotification) =>{
+   export const getNotificationByUser = async(receiver_id ,setNotification) =>{
     try {
       await axios.get( BASE_URL + `/users/notifications/${receiver_id}` )
       .then(res =>  { 
-        const not =[...notifications]
         setNotification(res.data);
         } )
     } catch (error) {
       console.log(error)
     }
    }
-   export const deleteUserNotification = async(_id) =>{
+   
+  export const updateNotificationByUser = async(_id , setNotification) =>{
+    try {
+      await axios.patch( BASE_URL + `/users/notifications/${_id}` )
+      .then(res =>  { 
+        setNotification(res.data);
+        } )
+    } catch (error) {
+      console.log(error)
+    }
+   }
+ 
+
+   export const deleteUserNotification = async(_id,setNot) =>{
     try {
       await axios.delete( BASE_URL + `/users/notifications/${_id}` )
       .then(res =>  { 
-           console.log(res.data)
+           setNot(res.data)
         } )
     } catch (error) {
       console.log(error)
