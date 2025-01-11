@@ -46,7 +46,7 @@ const UserNotification = (props) => {
   }
   const handleView = ()=> {
    updateNotificationByUser(notification._id,props.setNotifications)
-   navigate('/home')
+  //  navigate('/home')
   }
 
   const deleteNotification =()=>{
@@ -59,7 +59,7 @@ const UserNotification = (props) => {
   }, [not,userFriendData])
   
   return (
-    <div className='d-flex flex-column mt-3 justify-content-start align-items-center'
+    <div className='d-flex flex-column mt-0 justify-content-start align-items-center'
     style={{width:"100%",height:"60px",backgroundColor:{bgColor},border:"1px solid gray",borderRadius:"0px"}}>
 
         <div className='d-flex align-items-center justify-content-between text-center' 

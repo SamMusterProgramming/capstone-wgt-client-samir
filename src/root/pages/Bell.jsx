@@ -104,7 +104,7 @@ const Bell = () => {
             
             </div>
 
-   <div className='d-flex flex-column mt-3 justify-content-start align-items-center'
+   <div className='d-flex flex-column mt-1 justify-content-start align-items-center'
     style={{width:"100%",minHeight:"75%"}}>
 
 {notifications.map((notification,index)=>{
