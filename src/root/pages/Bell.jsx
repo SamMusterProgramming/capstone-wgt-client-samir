@@ -3,16 +3,16 @@ import { AuthContent } from '../../context/AuthContent'
 import { challengeType } from '../../utilitise/typeSelectorData'
 import { Button, Select } from 'antd'
 import { Link } from 'react-router-dom'
-import { getUserFriendsData, removeFriendRequest } from '../../apiCalls'
+import { getNotificationByUser, getUserFriendsData, removeFriendRequest } from '../../apiCalls'
 import UserNotification from '../../components/helper/UserNotification'
 
 const Bell = () => {
   const {notifications,setNotifications,user} = useContext(AuthContent)  
 //   const [useFriendData,setUserFriendData] = useState(null)
 
-//   useEffect(() => {
-//     getUserFriendsData(user._id,setUserFriendData)
-//   }, [])
+  useEffect(() => {
+    getNotificationByUser(user._id,setNotifications)
+  }, [])
 
 
 //   const handleDeny =()=>{

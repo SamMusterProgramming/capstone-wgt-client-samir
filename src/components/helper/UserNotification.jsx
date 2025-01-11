@@ -108,6 +108,12 @@ const UserNotification = (props) => {
                        onClick={handleView}>
                         View
                      </Button>
+                     <Button
+                     style={{color:"white",fontSize:'10px',fontWeight:"500", fontFamily:'Arsenal SC serif',
+                       width:"40px",height:"25px",backgroundColor:"gray"}}
+                       onClick={deleteNotification}>
+                        Ignore
+                     </Button>
                   </>
                 )}
                 </>
