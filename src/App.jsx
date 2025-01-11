@@ -49,6 +49,7 @@ export default function App() {
 
               <Route path="/" element={ <Homepage user = {user}/>} >
                   {/* <Route path="home" element={ <Home user={user}/> } /> */}
+                  <Route path="notifications" element={ <Bell />} /> 
                   <Route path="home" element={ <TimeLine user={user}/> } />
                   <Route path='chpage' element={ <ChallengePage user={user}/> }>
                     <Route path="challenges" element ={<Challenges user={user}/>} /> 
@@ -60,7 +61,7 @@ export default function App() {
                   <Route path="userprofile/:id" element={<UserProfile user={user}/>}/>
                   <Route path="updateProfile" element={ <AddProfileImg setUser={setUser} user={user}/>} />   
                   <Route path="demo" element={ <Demo  user={user}/>} />           
-                  <Route path="notifications" element={ <Bell />} /> 
+                  {/* <Route path="notifications" element={ <Bell />} />  */}
               </Route>
 
               <Route path="newchallenge" element={ <NewChallenge user={user}/>} />
