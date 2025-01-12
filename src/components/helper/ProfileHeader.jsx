@@ -35,8 +35,8 @@ return (
     <div className="d-flex flex-column mt-0 mb-0 justify-content-evenly align-items-center bg-dark"
           style={{width:"100%",minHeight:'28%',backgroundColor:'lightgray'}}>
           
-             <div className="d-flex  bg-light justify-content-between gap-0 align-items-center " 
-                style={{fontSize:'10px',width:'100%',height:"19%",padding:'10px'}}>
+             <div className="d-flex   justify-content-between gap-0 align-items-center " 
+                style={{fontSize:'10px',width:'100%',height:"19%",padding:'10px',backgroundColor:'#f0aa7f'}}>
                   <div>
                       <p style={{fontSize:'12px',color:"#1f2426"}}> 
                       <span className="lead text" style={{fontSize:'12px',color:"#1877F2",fontWeight:'800', 
@@ -62,13 +62,13 @@ return (
              {/* <hr style={{height:"2px"}} /> */}
              <div className="d-flex   justify-content-start align-items-center bg-light border" 
                 style={{fontSize:'10px',width:'100%',minHeight:"60%"}}>
-                 <div className="d-flex flex-column justify-content-center align-items-center gap-1 bg-light "
-                     style={{fontSize:'10px',width:'30%',height:"100%"}}>
+                 <div className="d-flex flex-column justify-content-center align-items-center gap-1  "
+                     style={{fontSize:'10px',width:'30%',height:"100%",backgroundColor:"#b09dcf"}}>
                       <p style={{fontSize:'11px',color:"#1f2426"}}> 
-                      <span className="lead text" style={{fontSize:'10px',color:"#232324",fontWeight:'800', 
+                       <span className="lead text" style={{fontSize:'10px',color:"#232324",fontWeight:'800', 
                         fontFamily:'Arsenal SC serif'
-                      }}>  {props.user.name.toUpperCase().slice(0,20)}...</span>
-                    </p>
+                       }}>  {props.user.name.toUpperCase().slice(0,20)}...</span>
+                     </p>
                      <Link to={"/profile/"+`${props.user._id}`} style={{width:'90%',height:"74%"}}>
                         <img   style={{fontSize:'10px',width:'100%',height:"100%",objectFit:'cover',borderRadius:'5px'}}
                            src={props.user.profile_img}  alt="" />
@@ -77,7 +77,7 @@ return (
 
 
                 <div className="d-flex flex-column justify-content-start align-items-center "
-                     style={{fontSize:'10px',width:'70%',height:"100%",backgroundColor:'lightgray'}}>
+                     style={{fontSize:'10px',width:'70%',height:"100%",backgroundColor:'#b8def2'}}>
                      <div  className="d-flex justify-content-center text-center mt-2 align-items-center "
                         style={{fontSize:'10px',width:'90%',height:"25%",backgroundColor:''}} >   
                          <h4 style={{fontSize:'12px',color:"#232324",fontWeight:'800', 
@@ -111,26 +111,26 @@ return (
              </div>
 
                <div className="d-flex justify-content-evenly align-items-center "
-                        style={{fontSize:'10px',width:'100%',height:"18%",backgroundColor:'#e6ecf0'
+                        style={{fontSize:'10px',width:'100%',height:"18%",backgroundColor:'#b9cf9d'
                            ,fontWeight:"500"
                         }}>
-                      <Link to={""} className={lineAll ? "highlight" : ""}
+                      <Link to={""} className={lineAll ? "highlight" : "nohighlight"}
                         onClick={(e)=>{setLineAll(true)}}
-                        style={{fontSize:'11px',color:"#1b78cf",
+                        style={{fontSize:'12px',color:"#191c16",
                             fontFamily:'Arsenal SC serif'}}>
-                             ALL CHALLENGES
+                             All Challenges
                         </Link>
-                        <Link to={""} className={lineHot ? "highlight" : ""}
+                        <Link to={""} className={lineHot ? "highlight" : "nohighlight"}
                         onClick={(e)=>{setLineHot(true)}}
-                        style={{fontSize:'11px',color:"#1b78cf" ,
+                        style={{fontSize:'12px',color:"#191c16" ,
                             fontFamily:'Arsenal SC serif' }}>
-                            <span>HOT CHALLENGES</span> 
+                            <span>Hot Challenges</span> 
                         </Link>
-                        <Link to={""} className={lineFriend ? "highlight" : ""}
+                        <Link to={""} className={lineFriend ? "highlight" : "nohighlight"}
                         onClick={(e)=>{setLineFriend(true)}}
-                        style={{fontSize:'11px',color:"#1b78cf",
+                        style={{fontSize:'12px',color:"#191c16",
                             fontFamily:'Arsenal SC serif'}}>
-                          FRIENDS CHALLENGES
+                          Friend Challenges
                         </Link>
                </div>
 

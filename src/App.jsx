@@ -60,7 +60,8 @@ export default function App() {
                   <Route path="profile/:id" element={<Profile user={user}/>}/>
                   <Route path="userprofile/:id" element={<UserProfile user={user}/>}/>
                   <Route path="updateProfile" element={ <AddProfileImg setUser={setUser} user={user}/>} />   
-                  <Route path="demo" element={ <Demo  user={user}/>} />           
+                  <Route path="demo" element={ <Demo  user={user}/>} />  
+                  <Route path='viewchallenge/:id' element ={<Challenge /> } />        
                   {/* <Route path="notifications" element={ <Bell />} />  */}
               </Route>
 

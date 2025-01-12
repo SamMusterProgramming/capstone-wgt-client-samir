@@ -107,7 +107,7 @@ const Bell = () => {
    <div className='d-flex flex-column mt-1 justify-content-start align-items-center'
     style={{width:"100%",minHeight:"75%"}}>
 
-{notifications.map((notification,index)=>{
+    {notifications && notifications.map((notification,index)=>{
         return (
           <UserNotification notification={notification} setNotifications={setNotifications} user={user} key={index} />
         )

@@ -180,3 +180,6 @@
     text-decoration-line: underline ;
     font-weight: 900;
   }
+  .nohighlight{
+    font-weight:600;
+  }

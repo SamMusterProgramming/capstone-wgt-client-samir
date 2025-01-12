@@ -17,17 +17,6 @@ import { borderRadius } from '@mui/system';
 
 
 
-const colourStyles = {
-  control: (styles) => ({ 
-    ...styles, 
-    backgroundColor: 'lightgrey' 
-  }),
-  option: (styles, { isFocused }) => ({
-    ...styles,
-    backgroundColor: isFocused ? 'blue' : 'white',
-    color: isFocused ? 'white' : 'black',
-  })
-};
 
 
 const NewChallenge = (props) => {

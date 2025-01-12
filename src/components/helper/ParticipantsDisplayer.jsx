@@ -271,7 +271,7 @@ useEffect(() => {
   
   return (
 
-    <div className="d-flex flex-column mb-3 mt-4 justify-content-start align-items-center challenges">
+    <div className="d-flex flex-column mb-3 mt-0 justify-content-start align-items-center challenges">
          
           <div className='d-flex justify-content-start  align-items-center '
           style={{minHeight:"40px",minWidth:"100%"}}>

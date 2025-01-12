@@ -45,8 +45,9 @@ const UserNotification = (props) => {
     // navigate(`/userProfile/${props.notification.content.sender_id}`)
   }
   const handleView = ()=> {
-   updateNotificationByUser(notification._id,props.setNotifications)
-  //  navigate('/home')
+    console.log(props.notification.content.challenge_id)
+   updateNotificationByUser(props.notification._id,setNot)
+   navigate(`/viewchallenge/${props.notification._id}`)
   }
 
   const deleteNotification =()=>{
@@ -71,9 +72,9 @@ const UserNotification = (props) => {
         </div>
         <div className='d-flex align-items-center  justify-content-start text-center' 
           style={{width:"97%",height:"70%",backgroundColor:`${bgColor}`}}>
-           <Link to={`/profile/${props.notification.content.sender_id}`}>
-           <img style={{height:"30px",width:"30px",borderRadius:"50px",objectFit:"cover"}} 
-            src={props.notification.content.profile_img} alt="" />
+           <Link to={`/userprofile/${props.notification.content.sender_id}`}>
+              <img style={{height:"30px",width:"30px",borderRadius:"50px",objectFit:"cover"}} 
+              src={props.notification.content.profile_img} alt="" />
            </Link>     
             <div className='d-flex flex-column align-items-center  justify-content-center text-center'
                style={{width:"25%",height:"100%"}} >

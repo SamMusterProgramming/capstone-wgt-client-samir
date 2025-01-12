@@ -121,12 +121,12 @@
      min-height: 83%; 
      width: 100%;
     /* min-height:84%; */
-    /* max-width: 500px; */
+    max-width: 500px;
     display: flex;
     justify-content: start;
   
     /* border: 6px solid black; */
-    background-color:#f6eeee;  
+    background-color:#c9bcbc;  
     /* background-color:"lightgray"; */
 
     overflow: scroll;
@@ -144,7 +144,7 @@
 .challenges {
     background-color:#1f1e15;
     /* background-color:#b0a220; */
-    height:660px;
+    height:675px;
     /* min-width:500px; */
     max-width: 100%;
     width: 100%;
