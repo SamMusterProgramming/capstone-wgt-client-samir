@@ -1,13 +1,16 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import './Sign.css'   
  import axios from 'axios'
  import { Link } from 'react-router-dom'
- import { authLogin, getNotificationByUser} from '../../apiCalls'
+ import { authLogin, getNotificationByUser, getUserParticipateChallenges} from '../../apiCalls'
+import { AuthContent } from '../../context/AuthContent'
 
 
  const url = import.meta.env.VITE_API_URL;        
 
-  export const Signin = ({setUser}) => {
+  export const Signin = () => {
+
+  const {user,setUser,setIsLoading} = useContext(AuthContent)
 
   const holdEmail = useRef();
   const holdPassword = useRef();
@@ -16,7 +19,7 @@ import './Sign.css'
   const [isPasswordWrong, setIsPasswordWrong] = useState(false); 
   const [isEmailWrong, setIsEmailWrong] = useState(false); 
   const [message,setMessage] = useState("")
-
+  
  
   const handlePasswordChange = (event) => {
     setMessage("")
@@ -41,7 +44,12 @@ import './Sign.css'
   }
    const credentials = {email:email,password:password}
    authLogin(credentials,setUser,setMessage) // function from apiCalls.js
-  }      
+  }         
+
+  useEffect(() => {
+     setIsLoading(true)
+  }, [user])
+  
   
   function validateEmail(email) {
     const re = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;

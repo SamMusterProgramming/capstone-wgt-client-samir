@@ -1,16 +1,15 @@
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import './Page.css'
 import axios from 'axios'
 import ParticipantsDisplayer from '../../components/helper/ParticipantsDisplayer'
-import { getTopChallenges } from '../../apiCalls'
+import { authLogin, getTopChallenges } from '../../apiCalls'
+import { AuthContent } from '../../context/AuthContent'
 
 const TopChallenges = ({user}) => {
 
-const [topChallenges ,setTopChallenges] = useState([])  
-const [video_url ,setVideo_url] = useState()
+const {topChallenges} = useContext(AuthContent)
+
 useEffect(() => {
-// apiCalls.js
-getTopChallenges(user._id,setTopChallenges) // get top challenges for user 
        
 }, [])
 
@@ -23,7 +22,7 @@ getTopChallenges(user._id,setTopChallenges) // get top challenges for user
 
          return  ( 
                          <ParticipantsDisplayer user={user}  participants={challenge.participants} key={index}
-                         challenge={challenge} setVideo_url={setVideo_url} />
+                         challenge={challenge}  />
               ) 
              }
              )} 

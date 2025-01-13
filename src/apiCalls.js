@@ -1,6 +1,8 @@
 
 import axios from 'axios'
+import { getDownloadURL, ref } from 'firebase/storage'
 import { Navigate } from 'react-router-dom'
+import { generateUserFolder, storage } from './firebase'
 
 
  const baseURL_DEVOLOPMENT = "http://localhost:8000"
@@ -105,13 +107,27 @@ export const getChallengeById = async(id,setChallenge)=>{
 
 // *********************************** new Challenge /top challenger *************************
 
+const loadChallengeData = (data) =>{
+    const pChallenges = data;
+    pChallenges.forEach(challenge => {
+    challenge.participants.forEach(participant => {
+    const videoRef = ref(storage,  participant.video_url);
+    getDownloadURL(videoRef)
+    .then((url) => {
+    participant.video_url = url
+    }) 
+    console.log(participant)
+  })
+  })
+return pChallenges
+}
 
 export const getUserChallenges = async( user_id , setChallenges)=>{
  
     try {
         await axios.get( BASE_URL + `/challenges/original/${user_id}`)
         .then(res => {
-            setChallenges(res.data) 
+            setChallenges(loadChallengeData(res.data)) 
         }
          )
     } catch (error) {
@@ -120,11 +136,10 @@ export const getUserChallenges = async( user_id , setChallenges)=>{
   }  
 
   export const getUserParticipateChallenges = async( user_id , setChallenges)=>{
-    console.log(user_id)
      try {
          await axios.get( BASE_URL + `/challenges/participate/${user_id}`)
          .then(res => {
-             setChallenges(res.data) 
+             setChallenges(loadChallengeData(res.data)) 
          }
           )
      } catch (error) {
@@ -139,7 +154,7 @@ export const getUserChallenges = async( user_id , setChallenges)=>{
      try {
          await axios.get( BASE_URL + `/challenges/top/${user_id}`)
          .then(res => {
-             setChallenges(res.data) 
+             setChallenges(loadChallengeData(res.data)) 
          }
           )
      } catch (error) {

@@ -1,20 +1,21 @@
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import './Page.css'
 import axios from 'axios'
 import ParticipantsDisplayer from '../../components/helper/ParticipantsDisplayer'
 import { getUserChallenges ,BASE_URL } from '../../apiCalls' 
 import {Link} from 'react-router-dom'
+import { AuthContent } from '../../context/AuthContent'
 
 
 const Challenges = ({user}) => {
  
-const [challenges ,setChallenges] = useState([])   
+const {userChallenges ,setUserChallenges} = useContext(AuthContent) 
 const [video_url ,setVideo_url] = useState()
 
 
  useEffect(() => {
   //apiCalls.js
-  getUserChallenges(user._id,setChallenges) // get user challenges video when the page loads
+  // getUserChallenges(user._id,setChallenges) // get user challenges video when the page loads
 
  },[])
  
@@ -25,9 +26,9 @@ const [video_url ,setVideo_url] = useState()
      <div className=' d-flex gap-2 flex-column mt-0 justify-content-start align-items-center '
      style={{width:"100%"}}>
        
-       { (challenges.length > 0)?
+       { (userChallenges.length > 0)?
        ( <>
-         { challenges.map((challenge,index)=>{
+         { userChallenges.map((challenge,index)=>{
 
           return  ( 
                 <ParticipantsDisplayer user={user}  participants = {challenge.participants} key={index}

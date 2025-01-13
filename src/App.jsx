@@ -42,7 +42,7 @@ export default function App() {
            
       
          <Route element={<AuthLayout user={user} />}>
-            <Route path="/sign-in" element={ <Signin setUser={setUser} />} /> 
+            <Route path="/sign-in" element={ <Signin  />} /> 
             <Route path="/sign-up" element={ <Signup setUser={setUser} />} /> 
          </Route>
          <Route path="" element={<RootLayout user={user}  />}>

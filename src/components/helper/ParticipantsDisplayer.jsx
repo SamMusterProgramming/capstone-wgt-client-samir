@@ -122,14 +122,7 @@ const ParticipantsDisplayer = (props) => {
          } 
       })
 
-  const videoRef = ref(storage, generateUserFolder(selectedParticipant.email) + selectedParticipant.video_url);
-      getDownloadURL(videoRef)
-      .then((url) => {
-         setVideo_url(url)
-      })
-      .catch((error) => {
-       console.error(error);
-      });
+      // getMediaFireBase(selectedParticipant.video_url,setVideo_url)
 
       }, [])
   
@@ -139,16 +132,16 @@ const ParticipantsDisplayer = (props) => {
   
 
   useEffect(() => {
-        const imageRef = ref(storage, selectedParticipant.video_url); 
-        getDownloadURL(imageRef)
-        .then((url) => {
-          setVideo_url(url)
-        })
-        .catch((error) => {
-        console.error(error);
-        });
+        // const imageRef = ref(storage, selectedParticipant.video_url); 
+        // getDownloadURL(imageRef)
+        // .then((url) => {
+        //   setVideo_url(url)
+        // })
+        // .catch((error) => {
+        // console.error(error);
+        // });
        
-       getMediaFireBase(selectedParticipant.profile_img,setUserProfileImg)
+      //  getMediaFireBase(selectedParticipant.profile_img,setUserProfileImg)
        setLikesVotesData({like_count:selectedParticipant.likes,vote_count:selectedParticipant.votes})
        loadLikeVoteData(ids,setLikesVotesData)   
        getUserFriendsData(props.user._id,setUserFriendData)
@@ -265,7 +258,7 @@ useEffect(() => {
   useEffect(() => {
     if(props.user){
     getNotificationByUser(props.user._id , setNotifications)
-    console.log(notifications)  
+    // console.log(notifications)  
     }
   }, [])
   
@@ -520,7 +513,7 @@ useEffect(() => {
                     height="100%"
                     // autoPlay
                     // src={ BASE_URL + video_url}
-                    src={video_url}
+                    src={selectedParticipant.video_url}
                     muted={false}
                     controls />
                 

@@ -1,18 +1,19 @@
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import './Page.css'
 import axios from 'axios'
 import ParticipantsDisplayer from '../../components/helper/ParticipantsDisplayer'
 import { getUserParticipateChallenges } from '../../apiCalls'
 import { Link } from 'react-router-dom'
+import { AuthContent } from '../../context/AuthContent'
 
 const ParticipateChallenge = ({user}) => {
 
-    const [participateChallenges ,setParticipateChallenges] = useState([])  
+    const {participateChallenges ,setParticipateChallenges} = useContext(AuthContent)  
     const [video_url ,setVideo_url] = useState()
     useEffect(() => {
     // apiCalls.js
-    getUserParticipateChallenges(user._id,setParticipateChallenges) // 
-           
+   //  getUserParticipateChallenges(user._id,setParticipateChallenges) // 
+         //   console.log(participateChallenges)
     }, [])
     
       return (
