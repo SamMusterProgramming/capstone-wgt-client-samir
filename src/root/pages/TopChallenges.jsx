@@ -7,10 +7,10 @@ import { AuthContent } from '../../context/AuthContent'
 
 const TopChallenges = ({user}) => {
 
-const {topChallenges} = useContext(AuthContent)
+const {topChallenges,setTopChallenges} = useContext(AuthContent)
 
 useEffect(() => {
-       
+  getTopChallenges(user._id,setTopChallenges)
 }, [])
 
   return (

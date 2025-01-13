@@ -1,6 +1,6 @@
 
 import axios from 'axios'
-import { getDownloadURL, ref } from 'firebase/storage'
+import { deleteObject, getDownloadURL, ref } from 'firebase/storage'
 import { Navigate } from 'react-router-dom'
 import { generateUserFolder, storage } from './firebase'
 
@@ -107,27 +107,12 @@ export const getChallengeById = async(id,setChallenge)=>{
 
 // *********************************** new Challenge /top challenger *************************
 
-const loadChallengeData = (data) =>{
-    const pChallenges = data;
-    pChallenges.forEach(challenge => {
-    challenge.participants.forEach(participant => {
-    const videoRef = ref(storage,  participant.video_url);
-    getDownloadURL(videoRef)
-    .then((url) => {
-    participant.video_url = url
-    }) 
-    console.log(participant)
-  })
-  })
-return pChallenges
-}
-
 export const getUserChallenges = async( user_id , setChallenges)=>{
  
     try {
         await axios.get( BASE_URL + `/challenges/original/${user_id}`)
         .then(res => {
-            setChallenges(loadChallengeData(res.data)) 
+            setChallenges(res.data) 
         }
          )
     } catch (error) {
@@ -139,7 +124,7 @@ export const getUserChallenges = async( user_id , setChallenges)=>{
      try {
          await axios.get( BASE_URL + `/challenges/participate/${user_id}`)
          .then(res => {
-             setChallenges(loadChallengeData(res.data)) 
+             setChallenges(res.data) 
          }
           )
      } catch (error) {
@@ -154,7 +139,7 @@ export const getUserChallenges = async( user_id , setChallenges)=>{
      try {
          await axios.get( BASE_URL + `/challenges/top/${user_id}`)
          .then(res => {
-             setChallenges(loadChallengeData(res.data)) 
+             setChallenges(res.data) 
          }
           )
      } catch (error) {
@@ -164,15 +149,59 @@ export const getUserChallenges = async( user_id , setChallenges)=>{
   
   // quit a challenge 
   
-  export const quitChallenge = async(challenge_id, user_id)=> {
-      try {
-         await axios.patch(BASE_URL + `/challenges/quit/${challenge_id}`,{user_id:user_id}).
-         then(res => res.data)
-      } catch (error) {
-         console.log(error)
-      }
-  }
+  // export const quitChallenge = async(challenge_id, user_id,setParticipateChallenges)=> {
+  //     try {
+  //        await axios.patch(BASE_URL + `/challenges/quit/${challenge_id}`,{user_id:user_id}).
+  //        then(res =>  {
+            // getUserChallenges(user_id,setUserChallenges)
+            // getUserParticipateChallenges(user_id,setParticipateChallenges)
+  
+          // console.log(res.data)
+          // const deletedChallenge = userChallenges.find(challenge => challenge._id == challenge_id)
+          // const participant = deletedChallenge.participants.find(participant => participant.user_id == user_id)
+          // const fileRef = ref(storage,participant.video_url); 
+          // deleteObject(fileRef)
+          //   .then(() => {
+          //     console.log("File deleted successfully!");
+          //   })
+          //   .catch((error) => {
+          //     console.error("Error deleting file:", error);
+          //   });
 
+          // if(res.data === "deleted"){
+          //   const newChallenges = userChallenges.filter(challenge => challenge._id !== challenge._id )
+          //   setUserChallenges([...newChallenges])
+          // }
+          // if(res.data._id == challenge_id){
+          //   let updateChallenge = userChallenges.find(challenge => challenge._id == challenge._id)
+          //   updateChallenge.participants.filter(participant => participant.user_id !== user_id)
+          //   let newChallenges = userChallenges.filter(challenge => challenge._id !== challenge._id )
+          //   newChallenges.push(updateChallenge)
+          //   console.log(newChallenges)
+          //   setUserChallenges([...newChallenges])
+          // }
+       
+  //        })
+  //     } catch (error) {
+  //        console.log(error)
+  //     }
+  // }
+  
+  export const quitChallenge = async(challenge_id, user_id)=> {
+    try {
+       await axios.patch(BASE_URL + `/challenges/quit/${challenge_id}`,{user_id:user_id})
+    } catch (error) {
+       console.log(error)
+    }
+}
+   
+  export const deleteChallenge = async(challenge_id, user_id)=> {
+    try {
+       await axios.patch(BASE_URL + `/challenges/quit/${challenge_id}`,{user_id:user_id})
+    } catch (error) {
+       console.log(error)
+    }
+}
    // *********************************** likes and votes data *************************
 
      

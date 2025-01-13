@@ -6,7 +6,10 @@ import {  BASE_URL, getUserById,getFollowings, liked, loadLikeVoteData,
  getNotificationByUser,
  removeFriendRequest,
  unfriendRequest,
- acceptFriendRequest} from '../../apiCalls'
+ acceptFriendRequest,
+ getUserChallenges,
+ deleteChallenge,
+ getUserParticipateChallenges} from '../../apiCalls'
 import PostFooter from './PostFooter';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { Button, Select } from 'antd';
@@ -38,7 +41,11 @@ const ParticipantsDisplayer = (props) => {
   const[isFriend,setIsFriend]= useState(false)
   const[isPending,setIsPending]= useState(false)
   const[isAccept,setIsAccept]= useState(false)
-  const {notifications,setNotifications} = useContext(AuthContent)
+  const[isDeleted,setIsDeleted]= useState(false)
+  const[isQuit,setIsQuit]= useState(false)
+
+  const {notifications,setNotifications,userChallenges,setUserChallenges,
+        participateChallenges,setParticipateChallenges} = useContext(AuthContent)
 
 
 
@@ -106,14 +113,36 @@ const ParticipantsDisplayer = (props) => {
 
 
   const handleQuit = (e) => {
-      quitChallenge(props.challenge._id,props.user._id)
-      .then(data => { 
-        res =>  setTimeout(() => {
-          navigate('chpage/challenges')
-       }, 5000)  
-     
-    })
+          quitChallenge(props.challenge._id,props.user._id).
+          then(res => {
+                // getUserParticipateChallenges(props.user_id,setParticipateChallenges)
+                // getUserChallenges(props.user_id,setUserChallenges)
+                setTimeout(() => {
+                  navigate('/home')
+               }, 5000)  
+          })
+        
   }
+
+  useEffect(() => {
+    
+  }, [isDeleted])
+  
+
+  const handleDelete = (e) => {
+    deleteChallenge(props.challenge._id,props.user._id).
+    then(res => {
+      // getUserChallenges(props.user_id,setUserChallenges)
+      // getUserParticipateChallenges(props.user_id,setParticipateChallenges)
+      setTimeout(() => {
+        navigate('/home')
+        // navigate('/chpage/challenges')
+     }, 5000)  
+    })
+  
+    
+
+}
 
   useEffect(() => { //logic here is to disable the add challenge button if the user has already participated  
       props.participants.map(participant =>{
@@ -534,7 +563,7 @@ useEffect(() => {
                     <>
                     {props.participants.length == 1 ? 
                       (
-                        <DialogConfirm handleAction={handleQuit} style={{width:'90px',color:"white",textAlign:'center',
+                        <DialogConfirm handleAction={handleDelete} style={{width:'90px',color:"white",textAlign:'center',
                           backgroundColor:'#b81842',height:'100%',fontSize:"12px",fontWeight:"800",border:'none', fontFamily:'Arsenal SC serif'
                          }} action={"DELETE"} message ={'are you sure you want to delete  the challenge'} />
                       ):(

@@ -15,8 +15,7 @@ const [video_url ,setVideo_url] = useState()
 
  useEffect(() => {
   //apiCalls.js
-  // getUserChallenges(user._id,setChallenges) // get user challenges video when the page loads
-
+  getUserChallenges(user._id,setUserChallenges)
  },[])
  
        
@@ -43,7 +42,7 @@ const [video_url ,setVideo_url] = useState()
        ( <div  className='d-flex flex-column gap- align-items-center mt-auto justify-content-center '
        >
              
-                 <img style={{minHeight:'100%',width:'100%',objectFit:'fill'}} src="../../asset/material/empty.jpg" alt="" />
+                 <img style={{minHeight:'50%',width:'100%',objectFit:'fill'}} src="../../asset/material/empty.jpg" alt="" />
              
            <Link to="/newChallenge">
               <button style={{height:'45px',width:'240px',fontFamily:"Arsenal S ",backgroundColor:"lightblue",color:'black',borderRadius:'10px',fontSize:'13px'}} > create new challenge </button>

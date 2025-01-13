@@ -1,4 +1,4 @@
-import { useRef, useState ,useCallback, useEffect } from 'react';
+import { useRef, useState ,useCallback, useEffect, useContext } from 'react';
 import PostHeader from '../../components/helper/PostHeader';
 import './Page.css'
 import LiveWebcam from '../../components/helper/LiveWebcam';
@@ -6,14 +6,15 @@ import UploadVideo from '../../components/helper/UploadVideo';
 import axios from 'axios'
 import { Link, useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import { BASE_URL, getChallengeById } from '../../apiCalls';
-import { ref, uploadBytes } from 'firebase/storage';
+import { BASE_URL, getChallengeById, getUserChallenges, getUserParticipateChallenges } from '../../apiCalls';
+import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { v4 } from 'uuid';
 import { generateUserFolder, getMediaFireBase, storage } from '../../firebase';
 import { challengeType, privacyData } from '../../utilitise/typeSelectorData';
 import { Select } from 'antd';
 import { Toaster, toast } from 'sonner';
 import { borderRadius } from '@mui/system';
+import { AuthContent } from '../../context/AuthContent';
 
 
 
@@ -21,6 +22,7 @@ import { borderRadius } from '@mui/system';
 
 const NewChallenge = (props) => {
   
+  const {participateChallenges,setParticipateChallenges,userChallenges,setUserChallenges} = useContext(AuthContent)
   const [swicthUploadLive ,setSwitchUploadLive] = useState(false)
   const [videoSrc , setVideoSrc] = useState("");
   const [file,setFile] = useState(null)
@@ -44,52 +46,56 @@ const NewChallenge = (props) => {
     
     // const formData = new FormData();
     if(file){ // if video is recorded and ready to upload to data base
-      console.log(file)
+      // console.log(file)
       const newFile = v4()+file.name 
       const CHALLENGE_VIDEO_URL = generateUserFolder(props.user.email)+ newFile;
       const videoRef = ref(storage,CHALLENGE_VIDEO_URL)
 
       uploadBytes(videoRef,file).then(()=> {
-        toast.success('successfully added!',{
-          position: 'top-center',
-          duration: 5000,
-        });
+            const videoRef = ref(storage, CHALLENGE_VIDEO_URL);
+            getDownloadURL(videoRef)
+            .then((url) => {
+              let challenge = {
+                origin_id : props.user._id ,
+                description: description,
+                profile_img:props.user.profile_img,
+                user_id : props.user._id,
+                name:props.user.name,
+                video_url : url,
+                email:props.user.email,
+              }
+
+              if(!challenge_id){ // when user creates new challenge
+                challenge = {...challenge,
+                  type:selectedType,
+                  // category:selectedCategory,
+                  privacy:selectedPrivacy,
+                  // audience:selectedAudience,
+                  challengers:selectedChallenger,
+                  name:props.user.name
+                }
+                axios.post( BASE_URL + '/challenges/uploads', challenge).then( // when user challenge another user , we will insert his change to an existing challenge by challenge_id
+                  res =>  setTimeout(() => {
+                    // navigate('/chpage/challenges')
+                    navigate('/notifications')
+          
+                 }, 8000)  
+                )
+              }else{
+                 axios.post(BASE_URL +`/challenges/uploads/${challenge_id}`,challenge)
+                .then(   res =>  setTimeout(() => {
+                   navigate('/chpage/participatechallenges')
+                }, 8000)  
+                )
+              }
+
+
+             
+            })
+
       })
-      
-     let challenge = {
-       origin_id : props.user._id ,
-       description: description,
-       profile_img:props.user.profile_img,
-       user_id : props.user._id,
-       name:props.user.name,
-       video_url : CHALLENGE_VIDEO_URL,
-       email:props.user.email,
+
    
-     }
-
-    if(!challenge_id){ // when user creates new challenge
-      challenge = {...challenge,
-        type:selectedType,
-        // category:selectedCategory,
-        privacy:selectedPrivacy,
-        // audience:selectedAudience,
-        challengers:selectedChallenger,
-        name:props.user.name
-      }
-      await axios.post( BASE_URL + '/challenges/uploads', challenge).then( // when user challenge another user , we will insert his change to an existing challenge by challenge_id
-        res =>  setTimeout(() => {
-          // navigate('/chpage/challenges')
-          navigate('/notifications')
-
-       }, 8000)  
-      )
-    }else{
-      await axios.post(BASE_URL +`/challenges/uploads/${challenge_id}`,challenge)
-      .then(   res =>  setTimeout(() => {
-         navigate('/chpage/participatechallenges')
-      }, 8000)  
-      )
-    }
    
   }; 
 }

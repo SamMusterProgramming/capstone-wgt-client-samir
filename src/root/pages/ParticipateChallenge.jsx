@@ -12,8 +12,7 @@ const ParticipateChallenge = ({user}) => {
     const [video_url ,setVideo_url] = useState()
     useEffect(() => {
     // apiCalls.js
-   //  getUserParticipateChallenges(user._id,setParticipateChallenges) // 
-         //   console.log(participateChallenges)
+    getUserParticipateChallenges(user._id,setParticipateChallenges) 
     }, [])
     
       return (
