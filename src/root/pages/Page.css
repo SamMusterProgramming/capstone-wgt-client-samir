@@ -118,7 +118,7 @@
 
 
 .homepage {
-     min-height: 83%; 
+     height: 83%; 
      width: 100%;
     /* min-height:84%; */
     max-width: 500px;

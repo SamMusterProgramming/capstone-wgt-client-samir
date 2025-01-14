@@ -53,7 +53,7 @@ useEffect(() => {
              </div>
              {/* <hr style={{height:"2px"}} /> */}
              <div className="d-flex   justify-content-start align-items-end " 
-                style={{fontSize:'10px',width:'100%',minHeight:"60%"}}>
+                style={{fontSize:'10px',width:'100%',height:"60%"}}>
 
                 <div className="d-flex flex-column justify-content-center align-items-center gap-1  "
                      style={{fontSize:'10px',width:'30%',height:"100%",backgroundColor:"#45a3d6"}}>
@@ -103,7 +103,7 @@ useEffect(() => {
              </div>
 
              <div className="d-flex justify-content-evenly align-items-center "
-                        style={{fontSize:'10px',width:'100%',minHeight:"18%",backgroundColor:'#c2b680'
+                        style={{fontSize:'10px',width:'100%',height:"18%",backgroundColor:'#c2b680'
                            ,fontWeight:"500"
                         }}>
                      <Link to={"/chpage/challenges"}

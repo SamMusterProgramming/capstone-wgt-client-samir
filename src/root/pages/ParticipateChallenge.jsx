@@ -19,8 +19,8 @@ const ParticipateChallenge = ({user}) => {
 
 
        
-        <div className='d-flex flex-column  mt-0 justify-content-start align-items-center '
-         style={{width:"100%"}}>
+        <div className='d-flex flex-column  mt-0 justify-content-start align-items-center'
+         style={{width:"100%",height:"72%"}}>
             
             { (participateChallenges.length > 0)?
                 ( <>
@@ -35,7 +35,8 @@ const ParticipateChallenge = ({user}) => {
                ) } 
                </> ) 
               :
-           ( <div  className='d-flex flex-column gap-5 align-items-center mt-auto justify-content-center'>
+           ( <div  className='d-flex flex-column gap-5 align-items-center mt-auto justify-content-center'
+            >
               <div>
                  <img src="../../asset/material/empty.jpg" alt="" />
               </div>

@@ -23,7 +23,7 @@ const [video_url ,setVideo_url] = useState()
   return (
   
      <div className=' d-flex gap-2 flex-column mt-0 justify-content-start align-items-center '
-     style={{width:"100%"}}>
+     style={{width:"100%",height:"72%"}}>
        
        { (userChallenges.length > 0)?
        ( <>
@@ -39,8 +39,8 @@ const [video_url ,setVideo_url] = useState()
     ) } 
      </> ) 
        :
-       ( <div  className='d-flex flex-column gap- align-items-center mt-auto justify-content-center '
-       >
+       ( <div  className='d-flex flex-column gap- align-items-start mt-auto justify-content-center '
+             >
              
                  <img style={{minHeight:'50%',width:'100%',objectFit:'fill'}} src="../../asset/material/empty.jpg" alt="" />
              
