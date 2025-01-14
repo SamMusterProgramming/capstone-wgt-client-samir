@@ -15,7 +15,8 @@ useEffect(() => {
 
   return (
    
-    <div className=' d-flex gap-2 flex-wrap  mb-2 justify-content-center align-items-center ch-page'>
+    <div className=' d-flex gap-2 flex-wrap  mb-2 justify-content-center align-items-center '
+    style={{width:"100%"}}>
        
    
     { topChallenges.map((challenge,index)=>{

@@ -25,7 +25,7 @@ useEffect(() => {
   return (
     <>
         <div className="d-flex flex-column mb-0 mt-0 justify-content-evenly align-items-center"
-          style={{width:"100%",minHeight:'28%',backgroundColor:'black'}}>
+          style={{width:"100%",height:'28%',backgroundColor:'black'}}>
           
              <div className="d-flex   justify-content-between gap-0 align-items-center " 
                 style={{fontSize:'10px',width:'100%',height:"19%",padding:'10px',backgroundColor:'#f0aa7f'}}>
