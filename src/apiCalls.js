@@ -19,7 +19,7 @@ import { generateUserFolder, storage } from './firebase'
 
 
  
-export const BASE_URL =  baseURL_PRODUCTION
+export const BASE_URL =  baseURL_DEVOLOPMENT
 
 export const setLoadingBarAxios =(loadingRef) => {
   axios.interceptors.request.use((config) => {
