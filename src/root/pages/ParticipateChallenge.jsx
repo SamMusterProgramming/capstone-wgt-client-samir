@@ -20,7 +20,7 @@ const ParticipateChallenge = ({user}) => {
 
        
         <div className='d-flex flex-column  mt-0 justify-content-start align-items-center'
-         style={{width:"100%",height:"72%"}}>
+         style={{width:"100%",height:"65%"}}>
             
             { (participateChallenges.length > 0)?
                 ( <>

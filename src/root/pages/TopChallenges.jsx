@@ -16,14 +16,14 @@ useEffect(() => {
   return (
    
     <div className=' d-flex gap-2 flex-wrap  mb-0 justify-content-center align-items-center '
-    style={{width:"100%"}}>
+    style={{width:"100%",height:"65%"}}>
        
    
     { topChallenges.map((challenge,index)=>{
 
          return  ( 
                          <ParticipantsDisplayer user={user}  participants={challenge.participants} key={index}
-                         challenge={challenge}  />
+                         challenge={challenge} />
               ) 
              }
              )} 

@@ -177,9 +177,14 @@
   }
 
   .highlight {
-    text-decoration-line: underline ;
+    /* text-decoration-line: underline ; */
     font-weight: 900;
+    background-color:#14c1db ;
+    font-size: 11px;
+
   }
   .nohighlight{
     font-weight:600;
+    background-color:#149fdb;
+    font-size:9px;
   }

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link, Outlet } from 'react-router-dom'
 import ProfileHeader from '../../components/helper/ProfileHeader'
-import { Select } from 'antd'
+import { Button, Select } from 'antd'
 import { challengeType } from '../../utilitise/typeSelectorData'
 
 function ChallengePage(props) {
@@ -11,24 +11,33 @@ const [lineCreated,setLineCreated] = useState(true)
 const [lineParticipate,setLineParticipate] = useState(false)
 const [lineFriend,setLineFriend] = useState(false)
 
+
 useEffect(() => {
   if(lineCreated) {
    setLineParticipate(false)}
+   setLineFriend(false)
 }, [lineCreated])
 
 useEffect(() => {
    if(lineParticipate) {
     setLineCreated(false)
+    setLineFriend(false)
    }
  }, [lineParticipate])
+ useEffect(() => {
+   if(lineFriend) {
+    setLineCreated(false)
+    setLineParticipate(false)
+   }
+ }, [lineFriend])
 
   return (
     <>
         <div className="d-flex flex-column mb-0 mt-0 justify-content-evenly align-items-center"
-          style={{width:"100%",height:'28%',backgroundColor:'black'}}>
+          style={{width:"100%",height:'35%',backgroundColor:''}}>
           
              <div className="d-flex   justify-content-between gap-0 align-items-center " 
-                style={{fontSize:'10px',width:'100%',height:"19%",padding:'10px',backgroundColor:'#f0aa7f'}}>
+                style={{fontSize:'10px',width:'100%',height:"24%",padding:'10px',backgroundColor:'#f0aa7f'}}>
                   <div>
                       <p style={{fontSize:'12px',color:"#1f2426"}}> 
                       <span className="lead text" style={{fontSize:'12px',color:"#1877F2",fontWeight:'800', 
@@ -37,23 +46,23 @@ useEffect(() => {
                     </p>
                  </div>
                  <div>
-                   <p style={{fontSize:'10px',color:"#1f2426",fontWeight:'600', 
+                   <p style={{fontSize:'11px',color:"#1f2426",fontWeight:'600', 
                       fontFamily:'Arsenal SC'
-                    }}>|_ USER CHALLENGES _|
+                    }}>_ USER CHALLENGES _
                     </p>
                  </div>
                  <div>
                   <Link to={"/newchallenge"} style={{fontSize:'12px',color:"#1b78cf",fontWeight:'700', 
                       fontFamily:'Arsenal SC serif'
                     }}>
-                          Create New Challenge
+                           NEW CHALLENGE
                   </Link>
                  </div>
                
              </div>
              {/* <hr style={{height:"2px"}} /> */}
              <div className="d-flex   justify-content-start align-items-end " 
-                style={{fontSize:'10px',width:'100%',height:"60%"}}>
+                style={{fontSize:'10px',width:'100%',height:"50%"}}>
 
                 <div className="d-flex flex-column justify-content-center align-items-center gap-1  "
                      style={{fontSize:'10px',width:'30%',height:"100%",backgroundColor:"#45a3d6"}}>
@@ -102,31 +111,48 @@ useEffect(() => {
 
              </div>
 
-             <div className="d-flex justify-content-evenly align-items-center "
-                        style={{fontSize:'10px',width:'100%',height:"18%",backgroundColor:'#c2b680'
+             <div className="d-flex justify-content-start align-items-center "
+                        style={{fontSize:'10px',width:'100%',height:"24%",backgroundColor:'white'
                            ,fontWeight:"500"
                         }}>
-                     <Link to={"/chpage/challenges"}
-                           className={lineCreated ? "highlight" : "nohighlight"}
-                           onClick={(e)=>{setLineCreated(true)}}
-                           style={{fontSize:'11px',color:"#242a30",
-                              fontFamily:'Arsenal SC serif'}}>
-                                 Created By You
-                        </Link>
-                        <Link to={"/chpage/participatechallenges"}
-                           className={lineParticipate? "highlight" : "nohighlight"}
-                           onClick={(e)=>{setLineParticipate(true)}}
-                           style={{fontSize:'11px',color:"#242a30",
-                              fontFamily:'Arsenal SC serif'}}>
-                                 Participated In
-                        </Link>   
-                        <Link to={"/chpage/participatechallenges"}
-                           className={lineParticipate? "highlight" : "nohighlight"}
-                           onClick={(e)=>{setLineParticipate(true)}}
-                           style={{fontSize:'11px',color:"#242a30",
-                              fontFamily:'Arsenal SC serif'}}>
-                                 Private
-                        </Link>       
+                           <Link  to={"/chpage/challenges"}
+                                  className="d-flex justify-content-center align-items-center "
+                                  style={{fontSize:'10px',width:'33%',height:"100%",backgroundColor:''
+                                   ,fontWeight:"500" }}>
+                               <Button 
+                                   className={lineCreated ? "highlight" : "nohighlight"}
+                                   onClick={(e)=>{setLineCreated(true)}}
+                                   style={{width:'99%',height:"95%" ,fontFamily:'Arsenal SC serif'
+                                   ,borderRadius:"5px" ,color:"black"  }}>
+                                    
+                                          Posted By You
+                               </Button>
+                           </Link>
+                           <Link  to={"/chpage/participatechallenges"}
+                                  className="d-flex justify-content-center align-items-center "
+                                  style={{fontSize:'10px',width:'33%',height:"100%",backgroundColor:''
+                                    ,fontWeight:"500" }}>
+                               <Button className={lineParticipate ? "highlight" : "nohighlight"}
+                                  onClick={(e)=>{setLineParticipate(true)}}
+                                  style={{width:'99%',height:"95%" ,fontFamily:'Arsenal SC serif'
+                                  ,borderRadius:"5px" ,color:"black" }}>
+                                    
+                                          Participated In
+                               </Button>
+                           </Link>
+                           <Link  to={"/chpage/challenges"}
+                                  className="d-flex justify-content-center align-items-center "
+                                  style={{width:'34%',height:"100%",backgroundColor:''
+                                    ,fontWeight:"500" }}>
+                               <Button className={lineFriend ? "highlight" : "nohighlight"}
+                                  onClick={(e)=>{setLineFriend(true)}}
+                                  style={{width:'99%',height:"95%"
+                                  ,fontFamily:'Arsenal SC serif',borderRadius:"5px" ,color:"black"  }}>
+                                    
+                                          Posted By Friends
+                               </Button>
+                           </Link>
+                    
             </div>
 
            

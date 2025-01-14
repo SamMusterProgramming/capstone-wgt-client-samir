@@ -23,7 +23,7 @@ const [video_url ,setVideo_url] = useState()
   return (
   
      <div className=' d-flex gap-2 flex-column mt-0 justify-content-start align-items-center '
-     style={{width:"100%",height:"72%"}}>
+     style={{width:"100%",height:"65%"}}>
        
        { (userChallenges.length > 0)?
        ( <>

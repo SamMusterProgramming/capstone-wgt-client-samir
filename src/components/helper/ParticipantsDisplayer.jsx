@@ -9,11 +9,12 @@ import {  BASE_URL, getUserById,getFollowings, liked, loadLikeVoteData,
  acceptFriendRequest,
  getUserChallenges,
  deleteChallenge,
- getUserParticipateChallenges} from '../../apiCalls'
+ getUserParticipateChallenges,
+ getTopChallenges} from '../../apiCalls'
 import PostFooter from './PostFooter';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { Button, Select } from 'antd';
-import { getDownloadURL, ref } from 'firebase/storage';
+import { deleteObject, getDownloadURL, ref } from 'firebase/storage';
 import { generateUserFolder, getMediaFireBase, storage } from '../../firebase';
 import DialogConfirm from './DialogConfirm';
 import { AuthContent } from '../../context/AuthContent';
@@ -45,7 +46,7 @@ const ParticipantsDisplayer = (props) => {
   const[isQuit,setIsQuit]= useState(false)
 
   const {notifications,setNotifications,userChallenges,setUserChallenges,
-        participateChallenges,setParticipateChallenges} = useContext(AuthContent)
+        participateChallenges,setParticipateChallenges,setTopChallenges} = useContext(AuthContent)
 
 
 
@@ -115,11 +116,20 @@ const ParticipantsDisplayer = (props) => {
   const handleQuit = (e) => {
           quitChallenge(props.challenge._id,props.user._id).
           then(res => {
-                // getUserParticipateChallenges(props.user_id,setParticipateChallenges)
-                // getUserChallenges(props.user_id,setUserChallenges)
-                setTimeout(() => {
-                  navigate('/home')
-               }, 5000)  
+            const you = props.challenge.participants.find(participant => participant.user_id == props.user._id)
+             const fileRef = ref(storage,you.video_url); 
+             deleteObject(fileRef)
+              .then(() => {
+               console.log("File deleted successfully!");
+                navigate('/chpage/participatechallenges')
+               })
+              .catch((error) => {
+              console.error("Error deleting file:", error);
+               });  
+               getTopChallenges(props.user._id,setTopChallenges)
+               getUserParticipateChallenges(props.user_id,setParticipateChallenges)
+               navigate('/home')
+     
           })
         
   }
@@ -132,16 +142,21 @@ const ParticipantsDisplayer = (props) => {
   const handleDelete = (e) => {
     deleteChallenge(props.challenge._id,props.user._id).
     then(res => {
-      // getUserChallenges(props.user_id,setUserChallenges)
-      // getUserParticipateChallenges(props.user_id,setParticipateChallenges)
-      setTimeout(() => {
-        navigate('/home')
-        // navigate('/chpage/challenges')
-     }, 5000)  
+          const you = props.challenge.participants.find(participant => participant.user_id == props.user._id);
+          const fileRef = ref(storage,you.video_url); 
+          deleteObject(fileRef)
+            .then(() => {
+              console.log("File deleted successfully!");
+              navigate('/chpage/challenges')
+            })
+            .catch((error) => {
+              console.error("Error deleting file:", error);
+            });  
+            if(props.user._id == props.challenge.origin_id)getUserChallenges(props.user_id,setUserChallenges)  
+              else getUserParticipateChallenges(props.user_id,setParticipateChallenges)
+            navigate('/home')
     })
   
-    
-
 }
 
   useEffect(() => { //logic here is to disable the add challenge button if the user has already participated  

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 import { challengeType } from "../../utilitise/typeSelectorData"
 import { useEffect, useState } from "react"
-import { Select } from "antd"
+import { Button, Select } from "antd"
 
 
 
@@ -33,10 +33,10 @@ useEffect(() => {
 return (
 
     <div className="d-flex flex-column mt-0 mb-0 justify-content-evenly align-items-center bg-dark"
-          style={{width:"100%",height:'28%',backgroundColor:'lightgray'}}>
+          style={{width:"100%",height:'35%',backgroundColor:'lightgray'}}>
           
              <div className="d-flex   justify-content-between gap-0 align-items-center " 
-                style={{fontSize:'10px',width:'100%',height:"19%",padding:'10px',backgroundColor:'#f0aa7f'}}>
+                style={{fontSize:'10px',width:'100%',height:"24%",padding:'10px',backgroundColor:'#f0aa7f'}}>
                   <div>
                       <p style={{fontSize:'12px',color:"#1f2426"}}> 
                       <span className="lead text" style={{fontSize:'12px',color:"#1877F2",fontWeight:'800', 
@@ -61,7 +61,7 @@ return (
              </div>
              {/* <hr style={{height:"2px"}} /> */}
              <div className="d-flex   justify-content-start align-items-center bg-light border" 
-                style={{fontSize:'10px',width:'100%',minHeight:"60%"}}>
+                style={{fontSize:'10px',width:'100%',height:"50%"}}>
                  <div className="d-flex flex-column justify-content-center align-items-center gap-1  "
                      style={{fontSize:'10px',width:'30%',height:"100%",backgroundColor:"#b09dcf"}}>
                       <p style={{fontSize:'11px',color:"#1f2426"}}> 
@@ -111,10 +111,49 @@ return (
              </div>
 
                <div className="d-flex justify-content-evenly align-items-center "
-                        style={{fontSize:'10px',width:'100%',height:"18%",backgroundColor:'#b9cf9d'
+                        style={{fontSize:'10px',width:'100%',height:"24%",backgroundColor:'#b9cf9d'
                            ,fontWeight:"500"
                         }}>
-                      <Link to={""} className={lineAll ? "highlight" : "nohighlight"}
+
+                         <Link  to={""}
+                                  className="d-flex justify-content-center align-items-center "
+                                  style={{fontSize:'10px',width:'33%',height:"100%",backgroundColor:''
+                                   ,fontWeight:"500" }}>
+                               <Button 
+                                   className={lineAll ? "highlight" : "nohighlight"}
+                                   onClick={(e)=>{setLineAll(true)}}
+                                   style={{width:'99%',height:"95%" ,fontFamily:'Arsenal SC serif'
+                                   ,borderRadius:"5px" ,color:"black"  }}>
+                                    
+                                         All Challenges
+                               </Button>
+                           </Link>
+                           <Link  to={""}
+                                  className="d-flex justify-content-center align-items-center "
+                                  style={{fontSize:'10px',width:'33%',height:"100%",backgroundColor:''
+                                    ,fontWeight:"500" }}>
+                               <Button className={lineHot? "highlight" : "nohighlight"}
+                                  onClick={(e)=>{setLineHot(true)}}
+                                  style={{width:'99%',height:"95%" ,fontFamily:'Arsenal SC serif'
+                                  ,borderRadius:"5px" ,color:"black" }}>
+                                    
+                                      Hot Challenges
+                               </Button>
+                           </Link>
+                           <Link  to={""}
+                                  className="d-flex justify-content-center align-items-center "
+                                  style={{width:'34%',height:"100%",backgroundColor:''
+                                    ,fontWeight:"500" }}>
+                               <Button className={lineFriend ? "highlight" : "nohighlight"}
+                                  onClick={(e)=>{setLineFriend(true)}}
+                                  style={{width:'99%',height:"95%"
+                                  ,fontFamily:'Arsenal SC serif',borderRadius:"5px" ,color:"black"  }}>
+                                    
+                                       Private
+                               </Button>
+                           </Link>
+
+                      {/* <Link to={""} className={lineAll? "highlight" : "nohighlight"}
                         onClick={(e)=>{setLineAll(true)}}
                         style={{fontSize:'12px',color:"#191c16",
                             fontFamily:'Arsenal SC serif'}}>
@@ -131,7 +170,7 @@ return (
                         style={{fontSize:'12px',color:"#191c16",
                             fontFamily:'Arsenal SC serif'}}>
                           Friend Challenges
-                        </Link>
+                        </Link> */}
                </div>
 
 
