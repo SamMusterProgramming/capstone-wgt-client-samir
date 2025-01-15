@@ -14,8 +14,9 @@ const [lineFriend,setLineFriend] = useState(false)
 
 useEffect(() => {
   if(lineCreated) {
-   setLineParticipate(false)}
+   setLineParticipate(false)
    setLineFriend(false)
+  }
 }, [lineCreated])
 
 useEffect(() => {
@@ -77,7 +78,7 @@ useEffect(() => {
                      </Link>  
                 </div>
                 <div className="d-flex flex-column justify-content-start align-items-center "
-                     style={{fontSize:'10px',width:'70%',height:"100%",backgroundColor:'#a1e6b0'}}>
+                     style={{fontSize:'10px',width:'70%',height:"100%",backgroundColor:'#2a78d1'}}>
  
                      <div  className="d-flex justify-content-center text-center mt-2 align-items-center "
                         style={{fontSize:'10px',width:'90%',height:"30%",backgroundColor:''}} >   
@@ -119,38 +120,40 @@ useEffect(() => {
                                   className="d-flex justify-content-center align-items-center "
                                   style={{fontSize:'10px',width:'33%',height:"100%",backgroundColor:''
                                    ,fontWeight:"500" }}>
-                               <Button 
-                                   className={lineCreated ? "highlight" : "nohighlight"}
+                               <button 
+                                style={{width:'99%',height:"95%" ,fontFamily:'Arsenal SC serif'
+                                  ,borderRadius:"5px"   }}
                                    onClick={(e)=>{setLineCreated(true)}}
-                                   style={{width:'99%',height:"95%" ,fontFamily:'Arsenal SC serif'
-                                   ,borderRadius:"5px" ,color:"black"  }}>
+                                   className={lineCreated ? "highlight" : "nohighlight"}
+                                  >
                                     
                                           Posted By You
-                               </Button>
+                               </button>
                            </Link>
                            <Link  to={"/chpage/participatechallenges"}
                                   className="d-flex justify-content-center align-items-center "
-                                  style={{fontSize:'10px',width:'33%',height:"100%",backgroundColor:''
+                                  style={{fontSize:'10px',width:'33%',height:"100%"
                                     ,fontWeight:"500" }}>
-                               <Button className={lineParticipate ? "highlight" : "nohighlight"}
+                               <button 
+                                  className={lineParticipate ? "highlight" : "nohighlight"}
                                   onClick={(e)=>{setLineParticipate(true)}}
                                   style={{width:'99%',height:"95%" ,fontFamily:'Arsenal SC serif'
-                                  ,borderRadius:"5px" ,color:"black" }}>
+                                  ,borderRadius:"5px" }}>
                                     
                                           Participated In
-                               </Button>
+                               </button>
                            </Link>
                            <Link  to={"/chpage/challenges"}
                                   className="d-flex justify-content-center align-items-center "
-                                  style={{width:'34%',height:"100%",backgroundColor:''
+                                  style={{width:'34%',height:"100%"
                                     ,fontWeight:"500" }}>
-                               <Button className={lineFriend ? "highlight" : "nohighlight"}
+                               <button className={lineFriend ? "highlight" : "nohighlight"}
                                   onClick={(e)=>{setLineFriend(true)}}
                                   style={{width:'99%',height:"95%"
-                                  ,fontFamily:'Arsenal SC serif',borderRadius:"5px" ,color:"black"  }}>
+                                  ,fontFamily:'Arsenal SC serif ',borderRadius:"5px"  }}>
                                     
                                           Posted By Friends
-                               </Button>
+                               </button>
                            </Link>
                     
             </div>

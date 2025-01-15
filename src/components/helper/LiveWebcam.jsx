@@ -14,6 +14,7 @@ const LiveWebcam = (props) => {
   const [blob ,setBlob] = useState(null)   
   const [facingMode, setFacingMode] = useState('user'); // Default to front camera
   const [volume, setVolume] = useState(1);
+  const [isFullscreen, setIsFullscreen] = useState(false);
 
   const handleFlipCamera = () => {
     setFacingMode(facingMode === 'user' ? 'environment' : 'user');
@@ -26,6 +27,7 @@ const LiveWebcam = (props) => {
    
   const handleStartRecording = useCallback(()=>{
     setRecording(true);
+    setIsFullscreen(true);
     mediaRecorderRef.current = RecordRTC(webcamRef.current.stream,{
       mimeType: "video/webm"
     })
@@ -65,7 +67,12 @@ const LiveWebcam = (props) => {
       {!blob?(
         <>
          <Webcam
-         className='post-size'
+        //  className='post-size'
+        style={{
+          width: isFullscreen ? '100vw' : '100%',
+          height: isFullscreen ? '100vh' : '100%',
+          objectFit:"cover"
+        }}
         //  onUserMedia={handleUserMedia}
          ref={webcamRef}
          videoConstraints = {{
@@ -74,6 +81,8 @@ const LiveWebcam = (props) => {
          audio={true}
          controls   
         />
+  
+        
        
         </>
       ):(

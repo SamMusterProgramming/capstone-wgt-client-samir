@@ -5,6 +5,7 @@ import ParticipantsDisplayer from '../../components/helper/ParticipantsDisplayer
 import { getUserChallenges ,BASE_URL } from '../../apiCalls' 
 import {Link} from 'react-router-dom'
 import { AuthContent } from '../../context/AuthContent'
+import { Button } from 'antd'
 
 
 const Challenges = ({user}) => {
@@ -22,7 +23,7 @@ const [video_url ,setVideo_url] = useState()
 
   return (
   
-     <div className=' d-flex gap-2 flex-column mt-0 justify-content-start align-items-center '
+     <div className=' d-flex gap-0 flex-column mt-0 justify-content-start align-items-center '
      style={{width:"100%",height:"65%"}}>
        
        { (userChallenges.length > 0)?
@@ -39,16 +40,17 @@ const [video_url ,setVideo_url] = useState()
     ) } 
      </> ) 
        :
-       ( <div  className='d-flex flex-column gap- align-items-start mt-auto justify-content-center '
-             >
-             
-                 <img style={{minHeight:'50%',width:'100%',objectFit:'fill'}} src="../../asset/material/empty.jpg" alt="" />
-             
-           <Link to="/newChallenge">
-              <button style={{height:'45px',width:'240px',fontFamily:"Arsenal S ",backgroundColor:"lightblue",color:'black',borderRadius:'10px',fontSize:'13px'}} > create new challenge </button>
+       ( 
+        <> 
+           <img style={{minHeight:'86%',width:'100%',objectFit:'cover'}} src="../../asset/material/empty.jpg" alt="" />      
+           <Link  style={{height:'14%',width:'100%'}}
+            to="/newChallenge">
+               <Button style={{height:'100%',width:'100%',fontFamily:"Arsenal CS ",backgroundColor:"#6b3d4b",color:'white',borderRadius:'10px',fontSize:'13px'}} >
+                 Create New Challenge
+               </Button>
            </Link>
            
-         </div>
+        </>
         )
       }
     </div>

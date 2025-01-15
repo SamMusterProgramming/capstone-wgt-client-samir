@@ -135,20 +135,20 @@ useEffect(() => {
 
   return (
   
-    <div className="d-flex justify-content-start gap-0 align-items-center post-container">
+    <div className="d-flex justify-content-start gap-0 align-items-center  post-container">
 
      
 
       {(!challenge_id) ?  (
         <>
       <div className="d-flex flex-column mb-0 mt-0 justify-content-start align-items-center"
-          style={{width:"100%",height:'20%',backgroundColor:'white'}}>
+          style={{width:"100%",height:'25%',backgroundColor:'white'}}>
           
              <div className="d-flex  justify-content-between gap-0 align-items-center " 
-                style={{fontSize:'10px',width:'100%',height:"30%",padding:'10px',backgroundColor:'lightgray'}}>
+                style={{fontSize:'10px',width:'100%',height:"30%",padding:'10px',backgroundColor:'#ca9ded'}}>
                   <div>
                       <p style={{fontSize:'10px',color:"#1f2426"}}> 
-                      <span className="lead text" style={{fontSize:'12px',color:"#232324",fontWeight:'600', 
+                      <span className="lead text" style={{fontSize:'11px',color:"#232324",fontWeight:'600', 
                         fontFamily:'Arsenal SC serif'
                       }}>  {props.user.name.toUpperCase().slice(0,10)}</span>
                     </p>
@@ -159,7 +159,7 @@ useEffect(() => {
                     }}>|_ NEW CHALLENGE _|
                     </p>
                  </div>
-                 <div>
+                 <div className='d-flex align-items-center justify-content-center'>
                   <Link to={"/home"} style={{fontSize:'14px',color:"#1b78cf",fontWeight:'700', 
                       fontFamily:'Arsenal SC serif'
                     }}>
@@ -168,17 +168,17 @@ useEffect(() => {
                  </div>
                
              </div>
-             <div className="d-flex   justify-content-start align-items-center border" 
+             <div className="d-flex   justify-content-start align-items-center " 
                 style={{fontSize:'10px',width:'100%',height:"70%"}}>
                 <div className="d-flex justify-content-center align-items-center "
-                     style={{fontSize:'10px',width:'23%',height:"90%",borderRadius:'5px',backgroundColor:'lightblue'}}>
-                 <Link to={"/profile/"+`${props.user._id}`} style={{width:'95%',height:"95%"}}>
+                     style={{fontSize:'10px',width:'23%',height:"100%",borderRadius:'0px',backgroundColor:'#7d8bb0'}}>
+                 <Link to={"/profile/"+`${props.user._id}`} style={{width:'90%',height:"90%"}}>
                    <img   style={{fontSize:'10px',width:'100%',height:"100%",objectFit:'cover',borderRadius:'5px'}}
                      src={props.user.profile_img}  alt="" />
                  </Link>  
                 </div>
                 <div className="d-flex flex-column justify-content-start align-items-center "
-                     style={{fontSize:'10px',width:'77%',height:"100%",backgroundColor:''}}>
+                     style={{fontSize:'10px',width:'77%',height:"100%",backgroundColor:'#71acf0'}}>
 
                      <div  className="d-flex justify-content-end mt-2 align-items-center "
                      style={{fontSize:'10px',width:'90%',height:"35%",backgroundColor:''}} >
@@ -225,9 +225,9 @@ useEffect(() => {
                                         </div>            
                      </div>
                      <div className="d-flex justify-content-start align-items-center "
-                       style={{fontSize:'10px',width:'90%',minHeight:"35%",backgroundColor:'',pasdding:"12px"}} >
-                             <p style={{ color:'black',fontWeight:"600px",fontFamily:'Arsenal SC serif',fontSize:"9px"}}>
-                             Keep it fun,
+                       style={{fontSize:'10px',width:'100%',minHeight:"35%",backgroundColor:'#448cc7',pasdding:"12px",padding:"10px"}} >
+                             <p style={{ color:'black',fontWeight:"900px",fontFamily:'Arsenal SC serif',fontSize:"12px"}}>
+                             * Keep it fun,
                              no graphic or inappropriate content!</p> 
           
                      </div>
@@ -253,7 +253,7 @@ useEffect(() => {
                     </p>
                  </div>
                  <div>
-                   <p style={{fontSize:'12px',color:"#1f2426",fontWeight:'700', 
+                   <p style={{fontSize:'11px',color:"#1f2426",fontWeight:'700', 
                       fontFamily:'Arsenal SC serif'
                     }}>|_ REPLY TO CHALLENGE _|
                     </p>
@@ -268,7 +268,7 @@ useEffect(() => {
                
              </div>
              <div className="d-flex   justify-content-start align-items-center" 
-                style={{fontSize:'10px',width:'100%',height:"70%",background:"white"}}>
+                style={{fontSize:'10px',width:'100%',height:"70%",background:"#6da4d1"}}>
                 <div className="d-flex justify-content-center align-items-center "
                      style={{fontSize:'10px',width:'23%',height:"100%",borderRadius:'5px',backgroundColor:'lightblue'}}>
                     <Link to={"/profile/"+`${props.user._id}`} style={{width:'95%',height:"95%"}}>
@@ -280,30 +280,30 @@ useEffect(() => {
                      style={{fontSize:'10px',width:'85%',height:"100%",backgroundColor:''}}>
    
                      <div className="d-flex  justify-content-start align-items-start  "
-                       style={{fontSize:'10px',minWidth:'100%',minHeight:"50%",backgroundColor:'',padding:"10px"}}>
+                       style={{fontSize:'10px',minWidth:'100%',minHeight:"55%",backgroundColor:'',padding:"10px"}}>
                             <div className="d-flex flex-column justify-content-center align-items-start "
                               style={{fontSize:'10px',width:'30%',minHeight:"100%",backgroundColor:''}}>
-                                <p style={{fontSize:'10px', fontFamily:'Arsenal SC serif' ,border:"none",fontWeight:"300", color:'black'}}>Type 
+                                <p style={{fontSize:'10px', fontFamily:'Arsenal SC serif' ,border:"none",fontWeight:"700", color:'lightgray'}}>Type 
                                 </p>
-                                <span style={{fontSize:'10px', fontFamily:'Arsenal SC serif' ,border:"none",fontWeight:"700", color:'black'}}> {(challenge.type)}</span>
+                                <span style={{fontSize:'10px', fontFamily:'Arsenal SC serif' ,border:"none",fontWeight:"700", color:'#1e28e6'}}> {(challenge.type)}</span>
                             </div>
                             <div className="d-flex flex-column justify-content-center align-items-start "
                               style={{fontSize:'10px',width:'30%',minHeight:"100%",backgroundColor:''}}>
-                                <p style={{fontSize:'10px', fontFamily:'Arsenal SC serif' ,border:"none",fontWeight:"300", color:'black'}}>Privacy 
+                                <p style={{fontSize:'10px', fontFamily:'Arsenal SC serif' ,border:"none",fontWeight:"700", color:'lightgray'}}>Privacy 
                                 </p>
-                                <span style={{fontSize:'10px', fontFamily:'Arsenal SC serif' ,border:"none",fontWeight:"700", color:'black'}}> {(challenge.privacy)}</span>
+                                <span style={{fontSize:'10px', fontFamily:'Arsenal SC serif' ,border:"none",fontWeight:"700", color:'#1e28e6'}}> {(challenge.privacy)}</span>
                             </div>
                             <div className="d-flex flex-column justify-content-center align-items-start "
                               style={{fontSize:'10px',width:'40%',minHeight:"100%",backgroundColor:''}}>
-                                <p style={{fontSize:'10px', fontFamily:'Arsenal SC serif' ,border:"none",fontWeight:"300", color:'black'}}>Originated-By
+                                <p style={{fontSize:'10px', fontFamily:'Arsenal SC serif' ,border:"none",fontWeight:"700", color:'lightgray'}}>Originated-By
                                 </p>
-                                <span style={{fontSize:'10px', fontFamily:'Arsenal SC serif' ,border:"none",fontWeight:"700", color:'black'}}> {(challenge.name)}</span>
+                                <span style={{fontSize:'10px', fontFamily:'Arsenal SC serif' ,border:"none",fontWeight:"700", color:'#1e28e6'}}> {(challenge.name)}</span>
                             </div>
                      </div>
 
                      <div className="d-flex  justify-content-start align-items-center "
-                       style={{fontSize:'9px',width:'100%',minHeight:"45%",color:'black',fontWeight:"600"
-                       ,padding:"10px",fontFamily:'Arsenal SC serif',borderRadius:"10px",backgroundColor:"white"}}>
+                       style={{fontSize:'9px',width:'100%',minHeight:"40%",color:'black',fontWeight:"600"
+                       ,padding:"10px",fontFamily:'Arsenal SC serif',borderRadius:"0px",backgroundColor:"white"}}>
                            
                           Keep it fun, respectful, and within the context.
                           no graphic or inappropriate content! 

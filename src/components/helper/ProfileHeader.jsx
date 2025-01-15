@@ -119,38 +119,38 @@ return (
                                   className="d-flex justify-content-center align-items-center "
                                   style={{fontSize:'10px',width:'33%',height:"100%",backgroundColor:''
                                    ,fontWeight:"500" }}>
-                               <Button 
+                               <button 
                                    className={lineAll ? "highlight" : "nohighlight"}
                                    onClick={(e)=>{setLineAll(true)}}
                                    style={{width:'99%',height:"95%" ,fontFamily:'Arsenal SC serif'
                                    ,borderRadius:"5px" ,color:"black"  }}>
                                     
                                          All Challenges
-                               </Button>
+                               </button>
                            </Link>
                            <Link  to={""}
                                   className="d-flex justify-content-center align-items-center "
                                   style={{fontSize:'10px',width:'33%',height:"100%",backgroundColor:''
                                     ,fontWeight:"500" }}>
-                               <Button className={lineHot? "highlight" : "nohighlight"}
+                               <button className={lineHot? "highlight" : "nohighlight"}
                                   onClick={(e)=>{setLineHot(true)}}
                                   style={{width:'99%',height:"95%" ,fontFamily:'Arsenal SC serif'
                                   ,borderRadius:"5px" ,color:"black" }}>
                                     
                                       Hot Challenges
-                               </Button>
+                               </button>
                            </Link>
                            <Link  to={""}
                                   className="d-flex justify-content-center align-items-center "
                                   style={{width:'34%',height:"100%",backgroundColor:''
                                     ,fontWeight:"500" }}>
-                               <Button className={lineFriend ? "highlight" : "nohighlight"}
+                               <button className={lineFriend ? "highlight" : "nohighlight"}
                                   onClick={(e)=>{setLineFriend(true)}}
                                   style={{width:'99%',height:"95%"
                                   ,fontFamily:'Arsenal SC serif',borderRadius:"5px" ,color:"black"  }}>
                                     
                                        Private
-                               </Button>
+                               </button>
                            </Link>
 
                       {/* <Link to={""} className={lineAll? "highlight" : "nohighlight"}

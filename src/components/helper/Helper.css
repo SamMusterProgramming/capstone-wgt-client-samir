@@ -173,18 +173,20 @@
   }
 
   button:hover {
-    opacity: 70%;
+    opacity: 85%;
   }
 
   .highlight {
     /* text-decoration-line: underline ; */
     font-weight: 900;
-    background-color:#14c1db ;
-    font-size: 11px;
+    background-color:#ed912f ;
+    font-size: 12px;
+    color: #090a0a;
 
   }
   .nohighlight{
     font-weight:600;
     background-color:#149fdb;
-    font-size:9px;
+    font-size:10px;
+    color: #1f1f1b;
   }
