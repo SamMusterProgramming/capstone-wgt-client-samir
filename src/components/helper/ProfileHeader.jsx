@@ -32,15 +32,15 @@ useEffect(() => {
 
 return (
 
-    <div className="d-flex flex-column mt-0 mb-0 justify-content-evenly align-items-center star "
-          style={{width:"100%",height:'35%',backgroundColor:''}}>
+    <div className="d-flex flex-column mt-0 mb-0 justify-content-evenly align-items-center img-container "
+          style={{width:"100%",height:'45%',backgroundColor:''}}>
           
              <div className="d-flex   justify-content-evenly gap-0 align-items-center " 
-                style={{fontSize:'10px',width:'100%',height:"24%",padding:'0px',backgroundColor:''}}>
+                style={{fontSize:'10px',width:'100%',height:"20%",padding:'0px',backgroundColor:''}}>
 
                   <div className="d-flex  justify-content-center gap-0 align-items-center "
                   style={{width:"33%",height:'100%',backgroundColor:''}}>
-                      <img style={{width:"100%",height:'100%',objectFit:"cover", backgroundColor:''}}
+                      <img style={{width:"100%",height:'100%',objectFit:"fill", backgroundColor:''}}
                       src="../asset/material/challenge-logo.png" alt="" />
                  </div>
                  <div className="d-flex   justify-content-center gap-0 align-items-center "
@@ -51,7 +51,7 @@ return (
                  <Link to={"/newchallenge"} className="d-flex justify-content-center gap-0 align-items-center "
                   style={{width:"34%",height:'100%'}}>
                   <Button to={"/newchallenge"}
-                   style={{fontSize:'13px',color:"#1b78cf",fontWeight:'900', width:"98%",height:'95%'
+                   style={{fontSize:'13px',color:"#1b78cf",fontWeight:'900', width:"94%",height:'95%'
                      ,backgroundColor:'#403014',fontFamily:'Arsenal SC ',border:"none"
                     }}>
                          NEW CHALLENGE
@@ -61,33 +61,35 @@ return (
              </div>
              {/* <hr style={{height:"2px"}} /> */}
              <div className="d-flex   justify-content-start align-items-center " 
-                style={{fontSize:'10px',width:'100%',height:"50%"}}>
+                style={{fontSize:'10px',width:'100%',height:"60%"}}>
+
                  <div className="d-flex flex-column justify-content-center align-items-center gap-1  "
                      style={{fontSize:'10px',width:'30%',height:"100%",backgroundColor:""}}>
-                      <p style={{fontSize:'11px',color:"white"}}> 
+                     
                        <span className="lead text" style={{fontSize:'10px',color:"white",fontWeight:'800', 
                         fontFamily:'Arsenal SC serif'
                        }}>  {props.user.name.toUpperCase().slice(0,20)}...</span>
-                     </p>
-                     <Link to={"/profile/"+`${props.user._id}`} style={{width:'90%',height:"74%"}}>
+                 
+                     <Link to={"/profile/"+`${props.user._id}`} style={{width:'90%',height:"54%"}}>
                         <img   style={{fontSize:'10px',width:'100%',height:"100%",objectFit:'cover',borderRadius:'5px'}}
                            src={props.user.profile_img}  alt="" />
                      </Link>  
                 </div>
 
 
-                <div className="d-flex flex-column justify-content-start align-items-center "
+                <div className="d-flex flex-column justify-content-center align-items-center "
                      style={{fontSize:'10px',width:'70%',height:"100%",backgroundColor:''}}>
-                     <div  className="d-flex justify-content-center text-center mt-2 align-items-center "
-                        style={{fontSize:'10px',width:'90%',height:"40%",backgroundColor:''}} >   
+                     {/* <div  className="d-flex justify-content-center text-center mt-2 align-items-center " */}
+                        {/* style={{fontSize:'10px',width:'90%',height:"40%",backgroundColor:''}} >    */}
                          <h4 style={{fontSize:'14px',color:"white",fontWeight:'800', 
                         fontFamily:'Arsenal SC'
                       }}>Explore and find challenges </h4>
-                     </div> 
-                     <div  className="d-flex justify-content-center mt-2 align-items-center "
-                     style={{fontSize:'10px',width:'90%',height:"60%",backgroundColor:'#d19f15',borderRadius:"5px"}} >
+                     {/* </div>  */}
+                     <div  className="d-flex flex-column justify-content-end mt-2 align-items-center "
+                     style={{fontSize:'10px',width:'90%',height:"45%"
+                     ,borderRadius:"5px"}} >
                         <Select
-                            style={{width:"98%",height:"95%",border:"solid 3px black",fontSize:'11px' ,border:"none",
+                            style={{width:"98%",height:"75%",border:"solid 3px black",fontSize:'11px' ,border:"none",
                               fontWeight:"600", backgroundColor:'#d19f15',opacity:"70%",textAlign:"center"}}
                             defaultValue="ALL TYPE" 
                              >   

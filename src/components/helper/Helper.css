@@ -206,18 +206,18 @@
     background-color:#362906;
     font-size:13px;
     color: white;
-    opacity: 60%;
+    opacity: 40%;
   }
   .star {
-    background-image:  url('../asset/material/star-logo.jpg');
+    background-image:  url('../asset/material/star-sky.jpg');
     background-size: cover; 
-    background-position: center; 
+    background-position: bottom; 
     background-repeat: no-repeat; 
   }
   .img-container {
-    background-image:  url('../asset/material/star.jpg');
+    background-image:  url('../asset/material/star-sky.jpg');
     background-size: cover; 
-    background-position: center; 
+    background-position:bottom; 
     background-repeat: no-repeat; 
   }
   
