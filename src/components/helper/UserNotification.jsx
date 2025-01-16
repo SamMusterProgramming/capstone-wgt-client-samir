@@ -1,7 +1,8 @@
 import { Button, notification } from 'antd'
-import React, { useEffect, useState } from 'react'
-import { acceptFriendRequest, deleteUserNotification, getNotificationByUser, getUserFriendsData, removeFriendRequest, updateNotificationByUser } from '../../apiCalls'
+import React, { useContext, useEffect, useState } from 'react'
+import { acceptFriendRequest, deleteUserNotification, getChallengeById, getNotificationByUser, getUserFriendsData, removeFriendRequest, updateNotificationByUser } from '../../apiCalls'
 import { Link, useNavigate } from 'react-router-dom'
+import { AuthContent } from '../../context/AuthContent'
 
 
 
@@ -12,6 +13,9 @@ const UserNotification = (props) => {
   const [userFriendData,setUserFriendData] = useState(null)
   const [render,setRender] = useState(false)
   const [not,setNot] = useState(props.notification)
+
+  const {challenge,setChallenge} = useContext(AuthContent)
+
   const [bgColor,setBgColor] = useState(
     props.notification.isRead ? "white" :"lightblue" )
   const navigate = useNavigate() 
@@ -47,7 +51,9 @@ const UserNotification = (props) => {
   const handleView = ()=> {
     console.log(props.notification.content.challenge_id)
    updateNotificationByUser(props.notification._id,setNot)
-   navigate(`/viewchallenge/${props.notification._id}`)
+   setTimeout(() => {
+    navigate(`/viewchallenge/${props.notification.content.challenge_id}`)
+   }, 8000);
   }
 
   const deleteNotification =()=>{

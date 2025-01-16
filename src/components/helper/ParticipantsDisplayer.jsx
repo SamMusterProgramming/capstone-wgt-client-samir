@@ -63,7 +63,6 @@ const ParticipantsDisplayer = (props) => {
     
 
   useEffect(() => { 
-  //apiCall.js  , load the like and vote data when nloading 
   loadLikeVoteData(ids,setLikesVotesData)    
  
    },[] )
@@ -166,8 +165,6 @@ const ParticipantsDisplayer = (props) => {
          } 
       })
 
-      // getMediaFireBase(selectedParticipant.video_url,setVideo_url)
-
       }, [])
   
   useEffect(() => {
@@ -176,16 +173,6 @@ const ParticipantsDisplayer = (props) => {
   
 
   useEffect(() => {
-        // const imageRef = ref(storage, selectedParticipant.video_url); 
-        // getDownloadURL(imageRef)
-        // .then((url) => {
-        //   setVideo_url(url)
-        // })
-        // .catch((error) => {
-        // console.error(error);
-        // });
-       
-      //  getMediaFireBase(selectedParticipant.profile_img,setUserProfileImg)
        setLikesVotesData({like_count:selectedParticipant.likes,vote_count:selectedParticipant.votes})
        loadLikeVoteData(ids,setLikesVotesData)   
        getUserFriendsData(props.user._id,setUserFriendData)
@@ -302,7 +289,6 @@ useEffect(() => {
   useEffect(() => {
     if(props.user){
     getNotificationByUser(props.user._id , setNotifications)
-    // console.log(notifications)  
     }
   }, [])
   
@@ -333,6 +319,7 @@ useEffect(() => {
                  <span style={{fontSize:'10px',fontWeight:"600",marginTop:'-3px',color:'gold',fontFamily:'Arsenal SC '}}> {props.challenge.privacy}</span>      
             </div>
         </div>
+
          <div className='d-flex flex-column justify-content-start align-items-center bg-light'
            style={{width:"100%",height:"120px"}}>
 
