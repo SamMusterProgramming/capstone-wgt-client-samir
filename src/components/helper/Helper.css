@@ -179,14 +179,45 @@
   .highlight {
     /* text-decoration-line: underline ; */
     font-weight: 900;
-    background-color:#ed912f ;
-    font-size: 12px;
-    color: #090a0a;
+    background-color:#614310 ;
+    font-size: 14px;
+    color: white;
+    opacity: 75%;
 
   }
   .nohighlight{
-    font-weight:600;
-    background-color:#149fdb;
-    font-size:10px;
-    color: #1f1f1b;
+    font-weight:700;
+    background-color:#614310;
+    font-size:13px;
+    color: white;
+    opacity: 50%;
   }
+  .highlight1 {
+    /* text-decoration-line: underline ; */
+    font-weight: 900;
+    background-color:#362906 ;
+    font-size: 14px;
+    color: white;
+    opacity: 80%;
+
+  }
+  .nohighlight1{
+    font-weight:700;
+    background-color:#362906;
+    font-size:13px;
+    color: white;
+    opacity: 60%;
+  }
+  .star {
+    background-image:  url('../asset/material/star-logo.jpg');
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+  }
+  .img-container {
+    background-image:  url('../asset/material/star.jpg');
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+  }
+  

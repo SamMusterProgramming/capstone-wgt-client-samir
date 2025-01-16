@@ -129,7 +129,7 @@ useEffect(() => {
 
 useEffect(() => {
   if(challenge_id) {
-     getChallengeById(challenge_id,setChallenge)
+      getChallengeById(challenge_id ,setChallenge)
      }
 }, [])
 

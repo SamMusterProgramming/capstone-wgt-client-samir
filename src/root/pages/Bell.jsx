@@ -21,13 +21,13 @@ const Bell = () => {
 //   }
   return (
    <>
-
+           
             <div className="d-flex flex-column mb-0 mt-0 justify-content-start align-items-center "
-             style={{width:"100%",height:'25%',backgroundColor:'white'}}>
+             style={{width:"100%",height:'25%',backgroundColor:'black'}}>
 
-             <div className="d-flex  bg-light justify-content-between gap-0 align-items-center " 
-                style={{fontSize:'10px',width:'100%',height:"25%",padding:'10px'}}>
-                    <div>
+             <div className="d-flex   justify-content-between gap-0 align-items-center " 
+                style={{fontSize:'10px',width:'100%',height:"25%"}}>
+                {/* <div>
                         <p style={{fontSize:'12px',color:"#1f2426"}}> 
                         <span className="lead text" style={{fontSize:'12px',color:"#1877F2",fontWeight:'800', 
                         fontFamily:'Arsenal SC '
@@ -46,17 +46,38 @@ const Bell = () => {
                     }}>
                             Create New Challenge
                     </Link>
+                </div> */}
+
+                  <div>
+                        
+                        <h1
+                        >SOCIAL-CHALLENGE</h1>
+                   
                 </div>
+                 <div className="d-flex   justify-content-center gap-0 align-items-center "
+                  style={{width:"33%",height:'100%',backgroundColor:''}}>
+                    <img style={{width:"100%",height:'100%',objectFit:"cover", color:'red'}}
+                      src="../asset/material/notifications.jpg" alt="" />
+                 </div>
+                 <Link to={"/newchallenge"} className="d-flex justify-content-center gap-0 align-items-center "
+                  style={{width:"34%",height:'100%'}}>
+                  <Button to={"/newchallenge"}
+                   style={{fontSize:'14px',color:"#1b78cf",fontWeight:'900', width:"98%",height:'95%'
+                     ,backgroundColor:'#141314',fontFamily:'Arsenal SC serif',border:"none"
+                    }}>
+                         New Challenge
+                  </Button>
+                 </Link>
                 
             </div>
             <hr style={{height:"2px"}} />
             <div className="d-flex   justify-content-start align-items-end " 
                 style={{fontSize:'10px',width:'100%',minHeight:"75%"}}>
-                <div className="d-flex flex-column justify-content-end align-items-center gap-1 bg-light "
+                <div className="d-flex flex-column justify-content-end align-items-center gap-1  "
                     style={{fontSize:'10px',width:'30%',height:"100%"}}>
-                        <p style={{fontSize:'12px',color:"#1f2426"}}> 
+                        <p style={{fontSize:'12px',color:"white"}}> 
                         <span className="lead text" style={{fontSize:'10px',color:"#232324",fontWeight:'800', 
-                        fontFamily:'Arsenal SC serif'
+                        fontFamily:'Arsenal SC serif',color:"white"
                         }}>  {user.name.toUpperCase().slice(0,20)}...</span>
                     </p>
                     <Link to={"/profile/"+`${user._id}`} style={{width:'90%',height:"74%"}}>

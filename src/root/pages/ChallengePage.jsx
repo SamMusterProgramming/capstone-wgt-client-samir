@@ -34,75 +34,78 @@ useEffect(() => {
 
   return (
     <>
-        <div className="d-flex flex-column mb-0 mt-0 justify-content-evenly align-items-center"
-          style={{width:"100%",height:'35%',backgroundColor:''}}>
+        <div className="d-flex flex-column mb-0 mt-0 justify-content-evenly align-items-center star"
+          style={{width:"100%",height:'45%',backgroundColor:''}}>
           
              <div className="d-flex   justify-content-between gap-0 align-items-center " 
-                style={{fontSize:'10px',width:'100%',height:"24%",padding:'10px',backgroundColor:'#f0aa7f'}}>
-                  <div>
-                      <p style={{fontSize:'12px',color:"#1f2426"}}> 
-                      <span className="lead text" style={{fontSize:'12px',color:"#1877F2",fontWeight:'800', 
-                        fontFamily:'Arsenal SC '
-                      }}>SOCIAL-CHALLENGE</span>
-                    </p>
+                style={{fontSize:'10px',width:'100%',height:"20%",backgroundColor:''}}>
+          
+                 <div className="d-flex  justify-content-center gap-0 align-items-center "
+                    style={{width:"33%",height:'100%',backgroundColor:''}}>
+                      <img style={{width:"100%",height:'100%',objectFit:"fill", backgroundColor:'transparent'}}
+                      src="../asset/material/challenge-logo.png" alt="" />
                  </div>
-                 <div>
-                   <p style={{fontSize:'11px',color:"#1f2426",fontWeight:'600', 
-                      fontFamily:'Arsenal SC'
-                    }}>_ USER CHALLENGES _
-                    </p>
+                 <div className="d-flex   justify-content-center gap-0 align-items-center "
+                  style={{width:"33%",height:'100%',backgroundColor:''}}>
+                    <img style={{width:"100%",height:'100%',objectFit:"cover", color:'red'}}
+                      src="../asset/material/timeline1.webp" alt="" />
                  </div>
-                 <div>
-                  <Link to={"/newchallenge"} style={{fontSize:'12px',color:"#1b78cf",fontWeight:'700', 
-                      fontFamily:'Arsenal SC serif'
+                 <Link to={"/newchallenge"} className="d-flex justify-content-center gap-0 align-items-center "
+                  style={{width:"34%",height:'100%'}}>
+                  <Button to={"/newchallenge"}
+                   style={{fontSize:'12px',color:"#aec9f5",fontWeight:'600', width:"98%",height:'95%',borderRadius:"10px",
+                     backgroundColor:'#403014',fontFamily:'Arsenal SC serif',border:"none",opacity:"60%"
                     }}>
-                           NEW CHALLENGE
-                  </Link>
-                 </div>
+                         NEW CHALLENGE
+                  </Button>
+                 </Link>
                
              </div>
              {/* <hr style={{height:"2px"}} /> */}
-             <div className="d-flex   justify-content-start align-items-end " 
-                style={{fontSize:'10px',width:'100%',height:"50%"}}>
+             <div className="d-flex   justify-content-start align-items-end  " 
+                style={{fontSize:'10px',width:'100%',height:"60%"}}>
 
-                <div className="d-flex flex-column justify-content-center align-items-center gap-1  "
-                     style={{fontSize:'10px',width:'30%',height:"100%",backgroundColor:"#45a3d6"}}>
-                      <p style={{fontSize:'11px',color:"#1f2426"}}> 
-                      <span className="lead text" style={{fontSize:'11px',color:"#232324",fontWeight:'800', 
-                        fontFamily:'Arsenal SC serif'
-                      }}>  {props.user.name.slice(0,17)}...</span>
-                    </p>
-                     <Link to={"/profile/"+`${props.user._id}`} style={{width:'90%',height:"74%"}}>
+                <div className="d-flex flex-column justify-content-center align-items-center gap-2 "
+                     style={{fontSize:'10px',width:'30%',height:"100%"}}>
+
+                      <h4 style={{fontSize:'13px',color:"white",fontWeight:'900', 
+                        fontFamily:'Arsenal SC'
+                      }}>{props.user.name.slice(0,15)}</h4>
+                  
+                     <Link to={"/profile/"+`${props.user._id}`} style={{width:'90%',height:"54%"}}>
                         <img   style={{fontSize:'10px',width:'100%',height:"100%",objectFit:'cover',borderRadius:'5px'}}
                            src={props.user.profile_img}  alt="" />
                      </Link>  
                 </div>
-                <div className="d-flex flex-column justify-content-start align-items-center "
-                     style={{fontSize:'10px',width:'70%',height:"100%",backgroundColor:'#2a78d1'}}>
+                <div className="d-flex flex-column justify-content-center gap-0  align-items-center  "
+                     style={{fontSize:'10px',width:'70%',height:"100%"}}>
  
-                     <div  className="d-flex justify-content-center text-center mt-2 align-items-center "
-                        style={{fontSize:'10px',width:'90%',height:"30%",backgroundColor:''}} >   
-                         <h4 style={{fontSize:'12px',color:"#232324",fontWeight:'800', 
+                     <div  className="d-flex justify-content-center text-center  align-items-center "
+                        style={{fontSize:'10px',width:'90%',height:"35%",backgroundColor:''}} >   
+                         <h4 style={{fontSize:'15px',color:"#f3f2f7",fontWeight:'1000', 
                         fontFamily:'Arsenal SC'
                       }}>Explore your challenges in this section</h4>
                      </div> 
                      <div  className="d-flex justify-content-end mt-2 align-items-center "
-                     style={{fontSize:'10px',width:'90%',height:"30%",backgroundColor:''}} >
+                     style={{fontSize:'10px',width:'90%',height:"30%",backgroundColor:'gold',opacity:"70%",borderRadius:"5px"}} >
                         <Select
-                            style={{width:"100%",height:"100%",fontSize:'11px' ,border:"none",fontWeight:"600", backgroundColor:'',textAlign:"center"}}
-                            defaultValue="ALL TYPE" 
+                            style={{width:"100%",height:"100%",fontSize:'13px' ,color:"black",
+                              border:"none",fontWeight:"1400", 
+                               backgroundColor:'',textAlign:"center",opacity:"70%", fontFamily:'Arsenal SC'}}
+                            defaultValue="Adventure" 
                              >   
                             <Select.Option value = {"ALL CHALLENGES"} 
-                                        style={{ color:'black',
-                                        backgroundColor:"lightgray",width:"100%",height:"30px" }} >
-                                       <p style={{ color:'black'}}>ALL TYPES</p> 
+                                        style={{ color:'black', fontFamily:'Arsenal SC',
+                                        backgroundColor:"",width:"100%",height:"30px",opacity:"70%" }} >
+                                       <p style={{ color:'white'}}>ALL TYPES</p> 
                              </Select.Option>
                             {challengeType.map((selection,index)=>{   
                                 return ( 
                                    <Select.Option key={index} value = {selection.type}
-                                        style={{ color:'black',
-                                        backgroundColor:"lightgray",width:"100%",height:"30px" }} >
-                                       <p style={{ color:'black'}}>{selection.type}</p> 
+                                        style={{ borderRadius:"0px",color:'black',
+                                        backgroundColor:"", width:"100%",height:"100%" ,opacity:"70%"}} >
+                                       <p style={{ color:'black', fontFamily:'Arsenal SC serif',fontWeight:"900",
+                                        backgroundColor:"", width:"100%",fontSize:"17px"}}>{selection.type}</p> 
                                     </Select.Option> )
                             })} 
                         </Select>
@@ -112,13 +115,13 @@ useEffect(() => {
 
              </div>
 
-             <div className="d-flex justify-content-start align-items-center "
-                        style={{fontSize:'10px',width:'100%',height:"24%",backgroundColor:'white'
+             <div className="d-flex justify-content-center gap-2 align-items-center "
+                        style={{fontSize:'10px',width:'100%',height:"20%",backgroundColor:''
                            ,fontWeight:"500"
                         }}>
                            <Link  to={"/chpage/challenges"}
                                   className="d-flex justify-content-center align-items-center "
-                                  style={{fontSize:'10px',width:'33%',height:"100%",backgroundColor:''
+                                  style={{fontSize:'10px',width:'31%',height:"100%",backgroundColor:''
                                    ,fontWeight:"500" }}>
                                <button 
                                 style={{width:'99%',height:"95%" ,fontFamily:'Arsenal SC serif'
@@ -127,12 +130,12 @@ useEffect(() => {
                                    className={lineCreated ? "highlight" : "nohighlight"}
                                   >
                                     
-                                          Posted By You
+                                          CHALLENGES
                                </button>
                            </Link>
                            <Link  to={"/chpage/participatechallenges"}
                                   className="d-flex justify-content-center align-items-center "
-                                  style={{fontSize:'10px',width:'33%',height:"100%"
+                                  style={{fontSize:'10px',width:'31%',height:"100%"
                                     ,fontWeight:"500" }}>
                                <button 
                                   className={lineParticipate ? "highlight" : "nohighlight"}
@@ -140,19 +143,19 @@ useEffect(() => {
                                   style={{width:'99%',height:"95%" ,fontFamily:'Arsenal SC serif'
                                   ,borderRadius:"5px" }}>
                                     
-                                          Participated In
+                                       PARTICIPATES
                                </button>
                            </Link>
                            <Link  to={"/chpage/challenges"}
                                   className="d-flex justify-content-center align-items-center "
-                                  style={{width:'34%',height:"100%"
+                                  style={{width:'31%',height:"100%"
                                     ,fontWeight:"500" }}>
                                <button className={lineFriend ? "highlight" : "nohighlight"}
                                   onClick={(e)=>{setLineFriend(true)}}
                                   style={{width:'99%',height:"95%"
                                   ,fontFamily:'Arsenal SC serif ',borderRadius:"5px"  }}>
                                     
-                                          Posted By Friends
+                                      PRIVATE
                                </button>
                            </Link>
                     

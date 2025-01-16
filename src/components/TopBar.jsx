@@ -60,7 +60,7 @@ const TopBar = (props) => {
                 </div>
                 <div className="d-flex flex-row text-center menu-item ">
                  
-                  <Link to={'/notifications'}>
+                  <Link to={'/notifications'} style={{backgroundColor:''}}>
                    <Badge badgeContent={notCount} color="error">
                     <img style={{backgroundColor:'#bda42b'}} className="challenge-logo" src="/asset/material/bell.png" alt="" />
                    </Badge>    
