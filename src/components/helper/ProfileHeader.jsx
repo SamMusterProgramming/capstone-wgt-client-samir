@@ -40,13 +40,8 @@ return (
 
                   <div className="d-flex  justify-content-center gap-0 align-items-center "
                   style={{width:"33%",height:'100%',backgroundColor:''}}>
-                      <img style={{width:"100%",height:'100%',objectFit:"fill", backgroundColor:''}}
+                      <img style={{width:"60%",height:'70%',objectFit:"fill", backgroundColor:''}}
                       src="../asset/material/challenge-logo.png" alt="" />
-                 </div>
-                 <div className="d-flex   justify-content-center gap-0 align-items-center "
-                  style={{width:"33%",height:'100%',backgroundColor:''}}>
-                    <img style={{width:"100%",height:'100%',objectFit:"cover", color:'red'}}
-                      src="../asset/material/timeline1.webp" alt="" />
                  </div>
                  <Link to={"/newchallenge"} className="d-flex justify-content-center gap-0 align-items-center "
                   style={{width:"34%",height:'100%'}}>
@@ -57,6 +52,12 @@ return (
                          NEW CHALLENGE
                   </Button>
                  </Link>
+                 <div className="d-flex   justify-content-center gap-0 align-items-center "
+                  style={{width:"33%",height:'100%',backgroundColor:''}}>
+                    <img style={{width:"60%",height:'70%',objectFit:"cover", color:'red'}}
+                      src="../asset/material/timeline1.webp" alt="" />
+                 </div>
+                 
                
              </div>
              {/* <hr style={{height:"2px"}} /> */}

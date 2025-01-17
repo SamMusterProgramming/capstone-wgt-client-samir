@@ -42,13 +42,8 @@ useEffect(() => {
           
                  <div className="d-flex  justify-content-center gap-0 align-items-center "
                     style={{width:"33%",height:'100%',backgroundColor:''}}>
-                      <img style={{width:"100%",height:'100%',objectFit:"fill", backgroundColor:'transparent'}}
+                      <img style={{width:"60%",height:'70%',objectFit:"fill", backgroundColor:'transparent'}}
                       src="../asset/material/challenge-logo.png" alt="" />
-                 </div>
-                 <div className="d-flex   justify-content-center gap-0 align-items-center "
-                  style={{width:"33%",height:'100%',backgroundColor:''}}>
-                    <img style={{width:"100%",height:'100%',objectFit:"cover", color:'red'}}
-                      src="../asset/material/timeline1.webp" alt="" />
                  </div>
                  <Link to={"/newchallenge"} className="d-flex justify-content-center gap-0 align-items-center "
                   style={{width:"34%",height:'100%'}}>
@@ -59,6 +54,12 @@ useEffect(() => {
                          NEW CHALLENGE
                   </Button>
                  </Link>
+                 <div className="d-flex   justify-content-center gap-0 align-items-center "
+                  style={{width:"33%",height:'100%',backgroundColor:''}}>
+                    <img style={{width:"50%",height:'80%',objectFit:"fill", color:'red'}}
+                      src="../asset/material/social-challenge.png" alt="" />
+                 </div>
+                 
                
              </div>
              {/* <hr style={{height:"2px"}} /> */}

@@ -297,7 +297,7 @@ useEffect(() => {
     <div className="d-flex flex-column mb-3 mt-0 justify-content-start align-items-center challenges">
          
           <div className='d-flex justify-content-start  align-items-center '
-          style={{minHeight:"40px",minWidth:"100%"}}>
+          style={{minHeight:"40px",minWidth:"100%",backgroundColor:"#0352fc"}}>
             <div className='d-flex flex-column justify-content-center  align-items-center'
                style={{height:"100%",minWidth:"25%",backgroundColor:""}}>
                 <span style={{fontSize:'9px',fontWeight:"600",marginTop:'0px', fontFamily:'Arsenal SC'}}>By</span>

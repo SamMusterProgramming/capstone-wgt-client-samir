@@ -11,7 +11,7 @@ import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { v4 } from 'uuid';
 import { generateUserFolder, getMediaFireBase, storage } from '../../firebase';
 import { challengeType, privacyData } from '../../utilitise/typeSelectorData';
-import { Select } from 'antd';
+import { Button, Select } from 'antd';
 import { Toaster, toast } from 'sonner';
 import { borderRadius } from '@mui/system';
 import { AuthContent } from '../../context/AuthContent';
@@ -135,56 +135,60 @@ useEffect(() => {
 
   return (
   
-    <div className="d-flex justify-content-start gap-0 align-items-center  post-container">
+    <div className="d-flex justify-content-start gap-0 align-items-center  post-container star">
 
      
 
       {(!challenge_id) ?  (
         <>
-      <div className="d-flex flex-column mb-0 mt-0 justify-content-start align-items-center"
+      <div className="d-flex flex-column mb-0 mt-0 justify-content-start align-items-center star"
           style={{width:"100%",height:'25%',backgroundColor:'white'}}>
           
              <div className="d-flex  justify-content-between gap-0 align-items-center " 
-                style={{fontSize:'10px',width:'100%',height:"30%",padding:'10px',backgroundColor:'#ca9ded'}}>
-                  <div>
-                      <p style={{fontSize:'10px',color:"#1f2426"}}> 
-                      <span className="lead text" style={{fontSize:'11px',color:"#232324",fontWeight:'600', 
-                        fontFamily:'Arsenal SC serif'
-                      }}>  {props.user.name.toUpperCase().slice(0,10)}</span>
+                style={{fontSize:'10px',width:'100%',height:"30%",padding:'10px',backgroundColor:''}}>
+              
+                  <div className="d-flex text-center justify-content-center gap-0 align-items-center "
+                    style={{width:"33%",height:'100%',backgroundColor:''}}>
+                      <p style={{fontSize:'9px',color:"#1f2426"}}> 
+                      <span className="lead text" style={{fontSize:'10px',color:"#232324",fontWeight:'600', 
+                        fontFamily:'Arsenal SC serif',color:"white"
+                      }}>  {props.user.name.toUpperCase().slice(0,15)}
+                      </span>
                     </p>
                  </div>
-                 <div>
-                   <p style={{fontSize:'10px',color:"#1f2426",fontWeight:'700', 
-                      fontFamily:'Arsenal SC serif'
-                    }}>|_ NEW CHALLENGE _|
-                    </p>
-                 </div>
-                 <div className='d-flex align-items-center justify-content-center'>
-                  <Link to={"/home"} style={{fontSize:'14px',color:"#1b78cf",fontWeight:'700', 
-                      fontFamily:'Arsenal SC serif'
-                    }}>
-                          Home
-                  </Link>
+                 <Link to={"/home"} className="d-flex justify-content-center gap-0 align-items-center "
+                  style={{width:"34%",height:'100%'}}>
+                      <p style={{fontSize:'9px',color:"#1f2426"}}> 
+                      <span className="lead text" style={{fontSize:'12px',color:"#232324",fontWeight:'600', 
+                        fontFamily:'Arsenal SC serif',color:"white"
+                      }}>  HOME
+                      </span>
+                      </p>
+                 </Link>
+                 <div className="d-flex   justify-content-center gap-0 align-items-center "
+                  style={{width:"33%",height:'100%',backgroundColor:''}}>
+                    <img style={{width:"50%",height:'100%',objectFit:"fill", color:'red'}}
+                      src="../asset/material/newchallenge.png" alt="" />
                  </div>
                
              </div>
              <div className="d-flex   justify-content-start align-items-center " 
                 style={{fontSize:'10px',width:'100%',height:"70%"}}>
                 <div className="d-flex justify-content-center align-items-center "
-                     style={{fontSize:'10px',width:'23%',height:"100%",borderRadius:'0px',backgroundColor:'#7d8bb0'}}>
+                     style={{fontSize:'10px',width:'23%',height:"100%",borderRadius:'0px',backgroundColor:''}}>
                  <Link to={"/profile/"+`${props.user._id}`} style={{width:'90%',height:"90%"}}>
                    <img   style={{fontSize:'10px',width:'100%',height:"100%",objectFit:'cover',borderRadius:'5px'}}
                      src={props.user.profile_img}  alt="" />
                  </Link>  
                 </div>
                 <div className="d-flex flex-column justify-content-start align-items-center "
-                     style={{fontSize:'10px',width:'77%',height:"100%",backgroundColor:'#71acf0'}}>
+                     style={{fontSize:'10px',width:'77%',height:"100%",backgroundColor:''}}>
 
                      <div  className="d-flex justify-content-end mt-2 align-items-center "
-                     style={{fontSize:'10px',width:'90%',height:"35%",backgroundColor:''}} >
+                     style={{fontSize:'10px',width:'60%',height:"35%",backgroundColor:''}} >
                         <Select onChange={handleSelectedType}
-                            style={{width:"100%",height:"100%",fontSize:'11px',border:"none",fontWeight:"600", backgroundColor:'',textAlign:"center"
-                             , color:'black',fontWeight:"600px",fontFamily:'Arsenal SC serif',fontSize:"11px"
+                            style={{width:"100%",height:"100%",fontSize:'12px',border:"none",fontWeight:"1200", backgroundColor:'',textAlign:"center"
+                             , color:'black',fontWeight:"600px",fontFamily:'Arsenal SC serif',fontSize:"12px",opacity:"50%"
                             }}
                             defaultValue="Adventure" 
                              >   
@@ -192,41 +196,42 @@ useEffect(() => {
                                 return ( 
                                    <Select.Option key={index} value = {selection.type}
                                         style={{ color:'black',fontFamily:'Arsenal SC serif',
-                                        backgroundColor:"lightgray",width:"100%",height:"30px" }} >
-                                       <p style={{ color:'black',fontWeight:"600px",fontFamily:'Arsenal SC serif',fontSize:"11px"}}>{selection.type}</p> 
+                                        backgroundColor:"",width:"100%",height:"30px" }} >
+                                       <p style={{ color:'black',fontWeight:"800px",fontFamily:'Arsenal SC serif',fontSize:"12px"}}>{selection.type}</p> 
                                     </Select.Option> )
                             })} 
                         </Select>
                      </div>
-                     <div className="d-flex justify-content-evenly align-items-center "
-                       style={{fontSize:'10px',width:'96%',height:"30%",backgroundColor:''}} >
+                     <div className="d-flex justify-content-evenly align-items-end "
+                       style={{fontSize:'10px',width:'96%',height:"40%",backgroundColor:''}} >
           
                                         <div className="d-flex justify-content-center align-items-center gap-2">
-                                        <input   style={{fontSize:'10px',width:"10px", height:"20px"}}
+                                        <input   style={{fontSize:'10px',width:"15px", height:"20px"}}
                                             type="radio" 
                                               value="PUBLIC" 
                                               checked={selectedPrivacy === 'PUBLIC'} 
                                               onChange={handleSelectedPrivacy} 
                                             />
-                                        <label style={{fontSize:'10px',color:"black",fontWeight:'700',marginTop:'3px'}}>
+                                        <label style={{fontSize:'10px',color:"white",fontWeight:'700',marginTop:'3px'}}>
                                               Public
                                           </label >
                                         </div>
                                         <div className="d-flex justify-content-center align-items-center gap-2">
-                                        <input style={{fontSize:'10px',width:"10px", height:"20px"}}
+                                        <input style={{fontSize:'10px',width:"15px", height:"20px"}}
                                               type="radio" 
                                               value="PRIVATE" 
                                               checked={selectedPrivacy === 'PRIVATE'} 
                                               onChange={handleSelectedPrivacy} 
                                             />
-                                        <label style={{fontSize:'10px',color:"black",fontWeight:'700',marginTop:'3px'}}>
+                                        <label style={{fontSize:'10px',color:"white",fontWeight:'700',marginTop:'3px'}}>
                                               Private
                                           </label >
                                         </div>            
                      </div>
                      <div className="d-flex justify-content-start align-items-center "
-                       style={{fontSize:'10px',width:'100%',minHeight:"35%",backgroundColor:'#448cc7',pasdding:"12px",padding:"10px"}} >
-                             <p style={{ color:'black',fontWeight:"900px",fontFamily:'Arsenal SC serif',fontSize:"12px"}}>
+                       style={{fontSize:'10px',width:'100%',minHeight:"20%",backgroundColor:''
+                       ,opacity:"80%",pasdding:"12px",padding:"10px"}} >
+                             <p style={{ color:'white',fontWeight:"900px",fontFamily:'Arsenal SC serif',fontSize:"12px"}}>
                              * Keep it fun,
                              no graphic or inappropriate content!</p> 
           
@@ -240,38 +245,41 @@ useEffect(() => {
       ):(
         <>
 
-          <div className="d-flex flex-column mb-0 mt-0 justify-content-start align-items-center"
+          <div className="d-flex flex-column mb-0 mt-0 justify-content-start align-items-center star"
           style={{width:"100%",height:'20%',backgroundColor:'gray'}}>
           
              <div className="d-flex  justify-content-between gap-0 align-items-center " 
-                style={{fontSize:'10px',minWidth:'100%',minHeight:"30%",padding:'10px',backgroundColor:'lightgray'}}>
-                  <div>
-                      <p style={{fontSize:'10px',color:"#1f2426"}}> 
-                      <span className="lead text" style={{fontSize:'10px',color:"#232324",fontWeight:'800', 
-                        fontFamily:'monospace'
-                      }}>  {props.user.name.toUpperCase()}</span>
+                style={{fontSize:'10px',minWidth:'100%',minHeight:"30%",padding:'10px'}}>
+                    <div className="d-flex text-center justify-content-center gap-0 align-items-center "
+                    style={{width:"33%",height:'100%',backgroundColor:''}}>
+                      <p style={{fontSize:'9px',color:"#1f2426"}}> 
+                      <span className="lead text" style={{fontSize:'10px',color:"#232324",fontWeight:'600', 
+                        fontFamily:'Arsenal SC serif',color:"white"
+                      }}>  {props.user.name.toUpperCase().slice(0,15)}
+                      </span>
                     </p>
                  </div>
-                 <div>
-                   <p style={{fontSize:'11px',color:"#1f2426",fontWeight:'700', 
-                      fontFamily:'Arsenal SC serif'
-                    }}>|_ REPLY TO CHALLENGE _|
-                    </p>
-                 </div>
-                 <div>
-                  <Link to={"/home"} style={{fontSize:'14px',color:"#1b78cf",fontWeight:'500', 
-                      fontFamily:'Arsenal SC serif'
-                    }}>
-                          Home
-                  </Link>
+                 <Link to={"/home"} className="d-flex justify-content-center gap-0 align-items-center "
+                  style={{width:"34%",height:'100%'}}>
+                      <p style={{fontSize:'9px',color:"#1f2426"}}> 
+                      <span className="lead text" style={{fontSize:'12px',color:"#232324",fontWeight:'600', 
+                        fontFamily:'Arsenal SC serif',color:"white"
+                      }}>  HOME
+                      </span>
+                      </p>
+                 </Link>
+                 <div className="d-flex   justify-content-center gap-0 align-items-center "
+                  style={{width:"33%",height:'100%',backgroundColor:''}}>
+                    <img style={{width:"50%",height:'100%',objectFit:"fill", color:'red'}}
+                      src="../asset/material/newchallenge.png" alt="" />
                  </div>
                
              </div>
              <div className="d-flex   justify-content-start align-items-center" 
-                style={{fontSize:'10px',width:'100%',height:"70%",background:"#6da4d1"}}>
+                style={{fontSize:'10px',width:'100%',height:"70%",background:""}}>
                 <div className="d-flex justify-content-center align-items-center "
-                     style={{fontSize:'10px',width:'23%',height:"100%",borderRadius:'5px',backgroundColor:'lightblue'}}>
-                    <Link to={"/profile/"+`${props.user._id}`} style={{width:'95%',height:"95%"}}>
+                     style={{fontSize:'10px',width:'23%',height:"100%",borderRadius:'5px',backgroundColor:''}}>
+                    <Link to={"/profile/"+`${props.user._id}`} style={{width:'90%',height:"85%"}}>
                       <img   style={{fontSize:'10px',width:'100%',height:"100%",objectFit:'cover',borderRadius:'5px'}}
                         src={props.user.profile_img}  alt="" />
                     </Link>  
@@ -281,31 +289,31 @@ useEffect(() => {
    
                      <div className="d-flex  justify-content-start align-items-start  "
                        style={{fontSize:'10px',minWidth:'100%',minHeight:"55%",backgroundColor:'',padding:"10px"}}>
-                            <div className="d-flex flex-column justify-content-center align-items-start "
+                            <div className="d-flex flex-column justify-content-center align-items-center "
                               style={{fontSize:'10px',width:'30%',minHeight:"100%",backgroundColor:''}}>
                                 <p style={{fontSize:'10px', fontFamily:'Arsenal SC serif' ,border:"none",fontWeight:"700", color:'lightgray'}}>Type 
                                 </p>
-                                <span style={{fontSize:'10px', fontFamily:'Arsenal SC serif' ,border:"none",fontWeight:"700", color:'#1e28e6'}}> {(challenge.type)}</span>
+                                <span style={{fontSize:'10px', fontFamily:'Arsenal SC serif' ,border:"none",fontWeight:"700", color:'#f7f5f5'}}> {(challenge.type)}</span>
                             </div>
-                            <div className="d-flex flex-column justify-content-center align-items-start "
+                            <div className="d-flex flex-column justify-content-center align-items-center "
                               style={{fontSize:'10px',width:'30%',minHeight:"100%",backgroundColor:''}}>
                                 <p style={{fontSize:'10px', fontFamily:'Arsenal SC serif' ,border:"none",fontWeight:"700", color:'lightgray'}}>Privacy 
                                 </p>
-                                <span style={{fontSize:'10px', fontFamily:'Arsenal SC serif' ,border:"none",fontWeight:"700", color:'#1e28e6'}}> {(challenge.privacy)}</span>
+                                <span style={{fontSize:'10px', fontFamily:'Arsenal SC serif' ,border:"none",fontWeight:"700", color:'#f7f5f5'}}> {(challenge.privacy)}</span>
                             </div>
-                            <div className="d-flex flex-column justify-content-center align-items-start "
+                            <div className="d-flex flex-column justify-content-center align-items-center "
                               style={{fontSize:'10px',width:'40%',minHeight:"100%",backgroundColor:''}}>
                                 <p style={{fontSize:'10px', fontFamily:'Arsenal SC serif' ,border:"none",fontWeight:"700", color:'lightgray'}}>Originated-By
                                 </p>
-                                <span style={{fontSize:'10px', fontFamily:'Arsenal SC serif' ,border:"none",fontWeight:"700", color:'#1e28e6'}}> {(challenge.name)}</span>
+                                <span style={{fontSize:'10px', fontFamily:'Arsenal SC serif' ,border:"none",fontWeight:"700", color:'#f7f5f5'}}> {(challenge.name)}</span>
                             </div>
                      </div>
 
                      <div className="d-flex  justify-content-start align-items-center "
-                       style={{fontSize:'9px',width:'100%',minHeight:"40%",color:'black',fontWeight:"600"
-                       ,padding:"10px",fontFamily:'Arsenal SC serif',borderRadius:"0px",backgroundColor:"white"}}>
+                       style={{fontSize:'9px',width:'100%',minHeight:"40%",color:'#f7f5f5',fontWeight:"600"
+                       ,padding:"10px",fontFamily:'Arsenal SC serif',borderRadius:"0px",backgroundColor:""}}>
                            
-                          Keep it fun, respectful, and within the context.
+                         * Keep it fun, respectful, and within the context.
                           no graphic or inappropriate content! 
                        
                      </div>
@@ -318,20 +326,18 @@ useEffect(() => {
 
         </>
       )}
-          {(!challenge_id) ?  
+          {/* {(!challenge_id) ?  
              (
-              <textarea style={{fontWeight:600, width:'100%',height:'45px',fontFamily:"Arsenal SC serif",border:'none'}}
-              className="description " onChange={addDescrition}  name='description' placeholder='add title to your challenge'>
+              <textarea style={{fontWeight:600,textAlign:"center", width:'100%',height:'45px',fontSize:"13px",fontFamily:"Arsenal SC serif",padding:"10px",
+                border:'0px solid black',backgroundColor:"transparent"}}
+              className="descriptio" onChange={addDescrition}  name='description' placeholder='add title to your challenge'>
              </textarea>
              ):(
-              <textarea disabled style={{fontWeight:600, width:'100%',height:'45px',fontFamily:"Arsenal SC serif",border:'none'}}
-              className="description " onChange={addDescrition}  name='description' value={challenge.desc} placeholder='add title to your challenge'>
+              <textarea disabled style={{fontWeight:600, width:'100%',height:'45px',fontFamily:"Arsenal SC serif",border:'0px solid black'}}
+              className="descriptio" onChange={addDescrition}  name='description' value={challenge.desc} placeholder='add title to your challenge'>
              </textarea>
-             )}
+             )} */}
           
-          {/* <textarea style={{fontWeight:600, width:'100%',height:'45px',fontFamily:"Arsenal SC serif",border:'none'}}
-           className="description " onChange={addDescrition}  name='description' placeholder='add title to your challenge'>
-          </textarea> */}
          
 
               { !swicthUploadLive ? (
@@ -350,10 +356,26 @@ useEffect(() => {
                 )
           
               }
-              
-          <button onClick={handleUploading} className='mt-1 mb-3 submit-button'>
-             <img style={{backgroundColor:'transparent',width:"100%",height:"100%",borderRadius:'10px'}} 
-             src="../../asset/material/submit.png" alt="" />
+
+                {(!challenge_id) ?  
+             (
+              <input style={{fontWeight:600,textAlign:"center", width:'100%',height:'45px',fontFamily:"Arsenal SC serif",backgroundColor:"transparent",padding:"10px",
+                border:'none',textDecoration:"none",fontFamily:"Arsenal SC serif"}}
+              className="description" onChange={addDescrition}  name='description'  placeholder='Add title to your challenge'/>
+            //   <textarea style={{fontWeight:600,textAlign:"center", width:'100%',height:'45px',fontSize:"13px",fontFamily:"Arsenal SC serif",padding:"10px",
+            //     border:'0px solid black',backgroundColor:"transparent"}}
+            //   className="descriptio" onChange={addDescrition}  name='description' placeholder='add title to your challenge'>
+            //  </textarea>
+             ):(
+              <input style={{fontWeight:600,textAlign:"center", width:'100%',height:'45px',fontFamily:"Arsenal SC serif",backgroundColor:"transparent",padding:"10px",
+                border:'none',textDecoration:"none"}}
+              className="description" onChange={addDescrition}  name='description' value={challenge.desc} />
+            //  </input>
+             )}
+          <button onClick={handleUploading} className='mt-1 mb-3 submit-button cloud-bg'>
+             {/* <img style={{backgroundColor:'transparent',width:"100%",height:"100%",borderRadius:'10px'}} 
+             src="../../asset/material/submit.png" alt="" /> */}
+             submit
           </button>
 
     </div> 

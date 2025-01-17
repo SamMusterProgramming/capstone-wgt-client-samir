@@ -208,6 +208,18 @@
     color: white;
     opacity: 40%;
   }
+  .sky-bg {
+    background-image:  url('../asset/material/blue-sky.jpg');
+    background-size: cover; 
+    background-position: bottom; 
+    background-repeat: no-repeat; 
+  }
+  .cloud-bg {
+    background-image:  url('../asset/material/cloud.jpg');
+    background-size: cover; 
+    background-position: bottom; 
+    background-repeat: no-repeat; 
+  }
   .star {
     background-image:  url('../asset/material/star-sky.jpg');
     background-size: cover; 
@@ -220,4 +232,6 @@
     background-position:bottom; 
     background-repeat: no-repeat; 
   }
-  
+  .description:focus{
+    outline: none;
+}

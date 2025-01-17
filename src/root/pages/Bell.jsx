@@ -22,79 +22,58 @@ const Bell = () => {
   return (
    <>
            
-            <div className="d-flex flex-column mb-0 mt-0 justify-content-start align-items-center "
-             style={{width:"100%",height:'25%',backgroundColor:'black'}}>
+            <div className="d-flex flex-column mb-0 mt-0 justify-content-start align-items-center star "
+             style={{width:"100%",height:'35%',backgroundColor:''}}>
 
-             <div className="d-flex   justify-content-between gap-0 align-items-center " 
+             <div className="d-flex   justify-content-between gap-0 align-items-center sky-blue " 
                 style={{fontSize:'10px',width:'100%',height:"25%"}}>
-                {/* <div>
-                        <p style={{fontSize:'12px',color:"#1f2426"}}> 
-                        <span className="lead text" style={{fontSize:'12px',color:"#1877F2",fontWeight:'800', 
-                        fontFamily:'Arsenal SC '
-                        }}>SOCIAL-CHALLENGE</span>
-                    </p>
-                </div>
-                <div>
-                    <p style={{fontSize:'10px',color:"#1f2426",fontWeight:'600', 
-                        fontFamily:'Arsenal SC'
-                    }}>|_ USER NOTIFICATIONS _|
-                    </p>
-                </div>
-                <div>
-                    <Link to={"/newchallenge"} style={{fontSize:'12px',color:"#1b78cf",fontWeight:'700', 
-                        fontFamily:'Arsenal SC serif'
-                    }}>
-                            Create New Challenge
-                    </Link>
-                </div> */}
 
-                  <div>
-                        
-                        <h1
-                        >SOCIAL-CHALLENGE</h1>
-                   
-                </div>
-                 <div className="d-flex   justify-content-center gap-0 align-items-center "
+                 <Link to="/home" className="d-flex  justify-content-center gap-0 align-items-center "
                   style={{width:"33%",height:'100%',backgroundColor:''}}>
-                    <img style={{width:"100%",height:'100%',objectFit:"cover", color:'red'}}
-                      src="../asset/material/notifications.jpg" alt="" />
-                 </div>
+                      <img style={{width:"60%",height:'70%',objectFit:"fill", backgroundColor:''}}
+                      src="../asset/material/challenge-logo.png" alt="" />
+                 </Link>
                  <Link to={"/newchallenge"} className="d-flex justify-content-center gap-0 align-items-center "
-                  style={{width:"34%",height:'100%'}}>
+                  style={{width:"33%",height:'100%'}}>
                   <Button to={"/newchallenge"}
                    style={{fontSize:'14px',color:"#1b78cf",fontWeight:'900', width:"98%",height:'95%'
-                     ,backgroundColor:'#141314',fontFamily:'Arsenal SC serif',border:"none"
+                     ,backgroundColor:'#403014',fontFamily:'Arsenal SC serif',border:"none"
                     }}>
                          New Challenge
                   </Button>
                  </Link>
+                 <div className="d-flex   justify-content-center gap-0 align-items-center "
+                  style={{width:"33%",height:'100%',backgroundColor:''}}>
+                    <img style={{width:"60%",height:'70%',objectFit:"fill", color:'red'}}
+                      src="../asset/material/notification.png" alt="" />
+                 </div>
+               
                 
             </div>
-            <hr style={{height:"2px"}} />
             <div className="d-flex   justify-content-start align-items-end " 
                 style={{fontSize:'10px',width:'100%',minHeight:"75%"}}>
-                <div className="d-flex flex-column justify-content-end align-items-center gap-1  "
+                <div className="d-flex flex-column justify-content-center align-items-center gap-1  "
                     style={{fontSize:'10px',width:'30%',height:"100%"}}>
-                        <p style={{fontSize:'12px',color:"white"}}> 
+                        {/* <p style={{fontSize:'12px',color:"white"}}>  */}
                         <span className="lead text" style={{fontSize:'10px',color:"#232324",fontWeight:'800', 
                         fontFamily:'Arsenal SC serif',color:"white"
                         }}>  {user.name.toUpperCase().slice(0,20)}...</span>
-                    </p>
-                    <Link to={"/profile/"+`${user._id}`} style={{width:'90%',height:"74%"}}>
+                    
+                    <Link to={"/profile/"+`${user._id}`} style={{width:'90%',height:"54%"}}>
                         <img   style={{fontSize:'10px',width:'100%',height:"100%",objectFit:'cover',borderRadius:'5px'}}
                             src={user.profile_img}  alt="" />
                     </Link>  
                 </div>
-                <div className="d-flex flex-column justify-content-start align-items-center "
+                <div className="d-flex flex-column justify-content-center align-items-center "
                     style={{fontSize:'10px',width:'70%',height:"100%",backgroundColor:''}}>
 
                     <div  className="d-flex justify-content-center text-center mt-2 align-items-center "
-                        style={{fontSize:'10px',width:'90%',height:"30%",backgroundColor:''}} >   
-                        <h4 style={{fontSize:'12px',color:"#232324",fontWeight:'800', 
+                        style={{fontSize:'10px',width:'90%',height:"100%",backgroundColor:''}} >   
+                        <h4 style={{fontSize:'13px',color:"white",fontWeight:'800', 
                         fontFamily:'Arsenal SC'
                         }}>Explore your Notifications in this section</h4>
                     </div> 
-                    <div  className="d-flex justify-content-end mt-2 align-items-center "
+                    {/* <div  className="d-flex justify-content-end mt-2 align-items-center "
                     style={{fontSize:'10px',width:'90%',height:"30%",backgroundColor:''}} >
                         <Select
                             style={{width:"100%",height:"100%",fontSize:'11px' ,border:"none",fontWeight:"600", backgroundColor:'',textAlign:"center"}}
@@ -114,18 +93,18 @@ const Bell = () => {
                                     </Select.Option> )
                             })} 
                         </Select>
-                    </div>
-                    <div className="d-flex justify-content-evenly align-items-end "
+                    </div> */}
+                    {/* <div className="d-flex justify-content-evenly align-items-end "
                     style={{fontSize:'10px',width:'96%',height:"40%",backgroundColor:''}} >
                     
                         
-                    </div>
+                    </div> */}
                 </div>
             </div>
             
             </div>
 
-   <div className='d-flex flex-column mt-1 justify-content-start align-items-center'
+   <div className='d-flex flex-column mt-0 justify-content-start align-items-center star'
     style={{width:"100%",minHeight:"75%"}}>
 
     {notifications && notifications.map((notification,index)=>{

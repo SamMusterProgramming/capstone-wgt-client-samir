@@ -16,8 +16,12 @@ const UserNotification = (props) => {
 
   const {challenge,setChallenge} = useContext(AuthContent)
 
-  const [bgColor,setBgColor] = useState(
-    props.notification.isRead ? "white" :"lightblue" )
+  const [notificationClass,setNotificationClass] = useState(
+    props.notification.isRead ? "d-flex flex-column mt-0 justify-content-start align-items-center sky-bg " :
+                               "d-flex flex-column mt-0 justify-content-start align-items-center cloud-bg" )
+  const [color,setColor] = useState(!props.notification.isRead ? 
+           "black" :"white" )      
+
   const navigate = useNavigate() 
 
   useEffect(() => {   
@@ -62,34 +66,35 @@ const UserNotification = (props) => {
 
   useEffect(() => {
     getNotificationByUser(props.user._id,props.setNotifications)
-    props.notification.isRead ? setBgColor("white") : setBgColor("lightblue") 
+    // props.notification.isRead ? setIsRead(true) : setIsRead(false) 
   }, [not,userFriendData])
   
   return (
-    <div className='d-flex flex-column mt-0 justify-content-start align-items-center'
-    style={{width:"100%",height:"60px",backgroundColor:{bgColor},border:"1px solid gray",borderRadius:"0px"}}>
+    <div className={notificationClass}
+    style={{width:"100%",height:"60px",backgroundColor:"",border:"3px solid black",borderRadius:"0px"}}>
 
         <div className='d-flex align-items-center justify-content-between text-center' 
-             style={{width:"97%",height:"30%",padding:"5px",backgroundColor:"lightblue"}}>
-           <p style={{color:"black",fontSize:'10px'}}>{
+             style={{width:"100%",height:"30%",padding:"5px",backgroundColor:"#2866e0"}}>
+           <p style={{color:"white",fontSize:'10px', fontFamily:'Arsenal SC serif '}}>{
            props.notification.type} </p>   
-           <p style={{color:"black",fontSize:'10px'}}>
+           <p style={{color:"white",fontSize:'10px', fontFamily:'Arsenal SC serif'}}>
            Date: {props.notification.createdAt.slice(0,10)} </p> 
         </div>
-        <div className='d-flex align-items-center  justify-content-start text-center' 
-          style={{width:"97%",height:"70%",backgroundColor:`${bgColor}`}}>
+       
+        <div className='d-flex align-items-center justify-content-evenly text-center' 
+          style={{width:"100%",height:"70%"}}>
            <Link to={`/userprofile/${props.notification.content.sender_id}`}>
               <img style={{height:"30px",width:"30px",borderRadius:"50px",objectFit:"cover"}} 
               src={props.notification.content.profile_img} alt="" />
            </Link>     
             <div className='d-flex flex-column align-items-center  justify-content-center text-center'
                style={{width:"25%",height:"100%"}} >
-                  <p style={{color:"black",fontSize:'10px',fontWeight:"700", fontFamily:'Arsenal SC '}}>
+                  <p style={{color:`${color}`,fontSize:'10px',fontWeight:"700", fontFamily:'Arsenal SC '}}>
                    {props.notification.content.name.slice(0,14)}</p>
             </div>
             <div className='d-flex  align-items-center  justify-content-center text-center'
                style={{width:"35%",height:"100%"}} >
-                  <p style={{color:"black",fontSize:'10px',fontWeight:"500", fontFamily:'Arsenal SC serif'}}>
+                  <p style={{color:`${color}`,fontSize:'10px',fontWeight:"500", fontFamily:'Arsenal SC serif'}}>
                    {props.notification.message}</p>
             </div>
             <div className='d-flex align-items-center  justify-content-evenly text-center'
@@ -110,14 +115,14 @@ const UserNotification = (props) => {
                  {props.notification.type === "followers" && (
                   <>
                      <Button
-                     style={{color:"white",fontSize:'10px',fontWeight:"500", fontFamily:'Arsenal SC serif',
-                       width:"40px",height:"25px",backgroundColor:"gray"}}
+                     style={{color:"white",fontSize:'10px',fontWeight:"700", fontFamily:'Arsenal SC serif',
+                       width:"40px",height:"25px",backgroundColor:"lightgreen",color:"black"}}
                        onClick={handleView}>
                         View
                      </Button>
                      <Button
-                     style={{color:"white",fontSize:'10px',fontWeight:"500", fontFamily:'Arsenal SC serif',
-                       width:"40px",height:"25px",backgroundColor:"gray"}}
+                     style={{color:"white",fontSize:'10px',fontWeight:"700", fontFamily:'Arsenal SC serif',
+                       width:"40px",height:"25px",backgroundColor:"#d98693",color:"black"}}
                        onClick={deleteNotification}>
                         Ignore
                      </Button>

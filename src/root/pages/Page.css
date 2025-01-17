@@ -72,18 +72,18 @@
 .description {
 
     padding: 5px;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 400;
     color: rgb(240, 231, 231);
     width: 100%;
-    background-color: #537582;  
+    /* background-color: #537582;   */
     /* margin-top: -25px; */
 }
 .postholder {
     max-width: 500px;
     width: 100%;
     height: 60%;
-    background-color: rgb(10, 11, 11);
+    /* background-color: rgb(10, 11, 11); */
     border-radius: 15px;
 }
 .post-size {
@@ -93,6 +93,7 @@
     object-fit: cover;
     border-radius: 5px;
     background-color: rgb(19, 20, 20);
+    opacity: 80%;
 }
 .postfooter{
     width: 100%;
@@ -104,6 +105,7 @@
 .postfooter button {
   font-size: 15px;
   cursor: pointer;
+  color: #1f1e15;
 }
 .submit-button{
     /* background-color: green; */
@@ -112,6 +114,10 @@
     border-radius: 10px;
     font-weight: 500;
     font-size: 10px;
+    color: #545454;
+    opacity: 50%;
+    font-size: 13px;
+    font-weight: 1000;
 }
 
 /* ************************** homepage ****************************************** */
