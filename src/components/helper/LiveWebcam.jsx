@@ -27,7 +27,7 @@ const LiveWebcam = (props) => {
    
   const handleStartRecording = useCallback(()=>{
     setRecording(true);
-    setIsFullscreen(true);
+    // setIsFullscreen(true);
     mediaRecorderRef.current = RecordRTC(webcamRef.current.stream,{
       mimeType: "video/webm"
     })
@@ -67,12 +67,12 @@ const LiveWebcam = (props) => {
       {!blob?(
         <>
          <Webcam
-        //  className='post-size'
-        style={{
-          width: isFullscreen ? '100vw' : '100%',
-          height: isFullscreen ? '100vh' : '100%',
-          objectFit:"cover"
-        }}
+         className='post-size'
+        // style={{
+        //   width: isFullscreen ? '100vw' : '100%',
+        //   height: isFullscreen ? '100vh' : '100%',
+        //   objectFit:"cover"
+        // }}
         //  onUserMedia={handleUserMedia}
          ref={webcamRef}
          videoConstraints = {{
