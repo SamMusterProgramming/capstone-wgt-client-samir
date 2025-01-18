@@ -15,12 +15,14 @@ const AuthLayout = ({user}) => {
 return (
    <>
      { isAuthenticated ? ( < Navigate to ="/notifications" /> ):
-     (<div className="homelayout"> 
+     ( 
+     <div className="homelayout"> 
      <TopBar/>
         <TopLoadingBar/>
         <Outlet />
       <RightSideBar/>
-     </div>)
+     </div>
+     )
      }
    </>
   )

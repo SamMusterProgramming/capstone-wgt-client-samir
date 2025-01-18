@@ -15,11 +15,26 @@
 
 }
 .menu-item {
-    align-items: center;
-    height: 100%;
+    /* align-items: center; */
+    height: 80%;
+    background-color:transparent;
+    width: 13%;
+    border-radius: 15px;
     /* max-width: 500px;
     width: 100%; */
 }
+.menu-item-selected {
+    /* align-items: center; */
+    height: 80%;
+    background-color:#2152a6;
+    width: 13%;
+    opacity: 100%;
+    border-radius: 5px;
+    /* max-width: 500px;
+    width: 100%; */
+}
+
+
 .menu-logo {
     width: 40px;
     height: 80%;
@@ -90,10 +105,18 @@
   font-size: 13px;
 }
 .challenge-logo {
-    width: 40px;
-    height: 70%;
+    width: 75%;
+    /* height: 70%; */
     border-radius: 20%;
     cursor: pointer;
-    object-fit: cover;
-    background-color: #9790e4;
+    object-fit: fill;
+    /* background-color: #9790e4; */
+}
+.challenge-logo-selected {
+    width: 80%;
+    /* height: 70%; */
+    border-radius: 20%;
+    cursor: pointer;
+    object-fit: fill;
+    /* background-color: #9790e4; */
 }

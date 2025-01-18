@@ -5,7 +5,40 @@ import { useEffect, useRef, useState } from "react"
 
 const RightSideBar = ({user}) => {
 
+ const [isHome,setIsHome]= useState(true)
+ const [isTalent,setIsTalent]= useState(false)
+ const [isChallenge,setIsChallenge]= useState(false)
+ const [isGuiness,setIsGuiness]= useState(false)
 
+useEffect(() => {
+  if (isHome) {
+    setIsTalent(false)
+    setIsChallenge(false)
+    setIsGuiness(false)
+  }
+}, [isHome])
+useEffect(() => {
+  if (isTalent) {
+    setIsHome(false)
+    setIsChallenge(false)
+    setIsGuiness(false)
+  }
+}, [isTalent])
+useEffect(() => {
+  if (isChallenge) {
+    setIsHome(false)
+    setIsTalent(false)
+    setIsGuiness(false)
+  }
+}, [isChallenge])
+
+useEffect(() => {
+  if (isGuiness) {
+    setIsHome(false)
+    setIsTalent(false)
+    setIsChallenge(false)
+  }
+}, [isGuiness])
   
   return (
 
@@ -15,48 +48,63 @@ const RightSideBar = ({user}) => {
 
          {/* <div className="col-sm-auto bg-dark   sticky-top"> */}
        
-            <div  className=" d-flex  justify-content-evenly align-items-center gap-0 footer ">
+            <div  className=" d-flex  justify-content-between align-items-center gap-0 footer ">
           
-                <div  className="d-flex flex-row text-center menu-item ">
-                  <Link to='/home'>
-                    <img  data-toggle="tooltip" title="HOME" style={{backgroundColor:'lightblue'}} className="challenge-logo" src=  "/asset/material/home.png" alt="" />
-                  </Link>   
+                <Link to='/home' onClick={(e)=>{setIsHome(true)}}
+                    className = {isHome ?
+                    "d-flex flex-column justify-content-center align-items-center text-center menu-item-selected" :
+                    "d-flex flex-column justify-content-center align-items-center text-center menu-item" }>
+                    <img  data-toggle="tooltip" title="HOME"
+                     style={{color:'lightblue'}}
+                          className= {isHome ?"challenge-logo-selected":"challenge-logo"}
+                          src=  "/asset/material/home.png" alt="" />  
+                </Link>
+                <Link data-toggle = "tooltip" title="talent" to='/home' onClick={(e)=>{setIsTalent(true)}}
+                 className={isTalent ?
+                  "d-flex flex-column justify-content-center align-items-center text-center menu-item-selected" :
+                  "d-flex flex-column justify-content-center align-items-center text-center menu-item" }>
+                  <img
+                      //  style={{backgroundColor:'#0c77c9'}} 
+                       className= {isTalent ?"challenge-logo-selected":"challenge-logo"}
+                       src="/asset/material/talent.png" alt="" />
+                </Link>   
                 
-                </div>
-                <div  className="d-flex flex-row text-center menu-item ">
-                  <Link data-toggle="tooltip" title="talent" to='/talent'>
-                    <img style={{backgroundColor:'#0c77c9'}} className="challenge-logo" src="/asset/material/talent.png" alt="" />
-                  </Link>   
-                
-                </div>
+             
 
-                <div className="d-flex flex-row text-center menu-item ">
-                  <Link to='/chpage/challenges'>
-                    <img data-toggle="tooltip" title="CHALLENGE" className="challenge-logo" src="/asset/material/chalenge.png" alt="" />
-                  </Link>    
-                </div>
+                <Link data-toggle = "tooltip" title="talent" to='/chpage/challenges' onClick={(e)=>{setIsChallenge(true)}}
+                 className={isChallenge ?
+                  "d-flex flex-column justify-content-center align-items-center text-center menu-item-selected" :
+                  "d-flex flex-column justify-content-center align-items-center text-center menu-item" } >           
+                  <img data-toggle="tooltip" title="CHALLENGE" 
+                       className= {isChallenge ?"challenge-logo-selected":"challenge-logo"}
+                       src="/asset/material/challenge-logo.png" alt="" />
+                </Link>    
+             
 
-                <div className="d-flex flex-row text-center  menu-item ">
-                  <Link data-toggle="tooltip" title="GUINESS" to={'/'}>
-                    <img  style={{backgroundColor:'red'}} className="challenge-logo" src="/asset/material/guiness.jpg" alt="" />
-                  </Link>    
-                </div>
-                <div  className="d-flex menu-item ">
-                {user ? (
+                <Link data-toggle="tooltip" title="GUINESS" to={'/'} onClick={(e)=>{setIsGuiness(true)}}
+                    className={isGuiness ?
+                      "d-flex flex-column justify-content-center align-items-center text-center menu-item-selected" :
+                      "d-flex flex-column justify-content-center align-items-center text-center menu-item" }>
+                  <img 
+                  //  style={{backgroundColor:'red'}}
+                       className= {isGuiness ?"challenge-logo-selected":"challenge-logo"}
+                       src="/asset/material/trophy.png" alt="" />
+                </Link>    
               
-                    <Link to={`/profile/${user._id}` }  style={{height:'70%'}} >
+    
+                {user ? (
+                    <Link to={`/profile/${user._id}` }  
+                    className="d-flex flex-column justify-content-center align-items-center text-center menu-item">
                       <img style={{height:'100%' ,backgroundColor:'#1ca1c9'}} className="challenge-logo" 
                        src="/asset/material/logout.png" alt="" />
                     </Link> 
          
                     ):(
-                    
-                    <Link
-                      to= "/sign-in">
-                      <img className="menu-logo" style={{backgroundColor:'#1ca1c9'}} src={"/asset/material/login.png"} alt="" />
+                    <Link  to= "/sign-in" className="d-flex flex-column justify-content-center align-items-center text-center menu-item">
+                      <img className="challenge-logo" style={{backgroundColor:'#1ca1c9'}} src={"/asset/material/login.png"} alt="" />
                     </Link>   
                       )}
-                </div>      
+                   
 
                
           

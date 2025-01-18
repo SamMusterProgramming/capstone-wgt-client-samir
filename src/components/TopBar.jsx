@@ -35,18 +35,17 @@ const TopBar = (props) => {
        <div className=" d-flex align-items-center justify-content-evenly  footer">  
         
                     
-<              div  className="d-flex flex-row text-center menu-item ">
-                  <Link to='/demo'>
-                    <img style={{backgroundColor:'#4674d1'}} className="challenge-logo" src=  "/asset/material/badge.svg" alt="" />
-                  </Link>   
-                
-                </div>
+                <Link to='/demo' 
+                className="d-flex flex-column justify-content-center align-items-center  menu-item"
+                   >
+                    <img style={{backgroundColor:''}} className="challenge-logo-selected" src=  "/asset/material/badge.png" alt="" />
+                </Link>
               
-                <div className="d-flex flex-row text-center menu-item ">
-                  <Link to='/search'>
+                <Link to='/search' className="d-flex flex-column justify-content-center align-items-center  menu-item"
+                   >
                     <img className="challenge-logo" src="/asset/material/chat.png" alt="" />
-                  </Link>    
-                </div>
+                </Link>    
+        
                 <div  className="d-flex flex-row text-center menu-item ">
                    <button onClick={(e)=>{ e.preventDefault();setSearchDisplay(!searchDisplay)}} type="button">
                       <img style={{backgroundColor:'tomato'}} className="challenge-logo" src="/asset/material/search.png" alt="" /> 
@@ -58,29 +57,29 @@ const TopBar = (props) => {
                     )}
                 
                 </div>
-                <div className="d-flex flex-row text-center menu-item ">
-                 
-                  <Link to={'/notifications'} style={{backgroundColor:''}}>
+                <Link to={'/notifications'}
+                className="d-flex flex-column justify-content-center align-items-center  menu-item"
+                   >   
                    <Badge badgeContent={notCount} color="error">
-                    <img style={{backgroundColor:'#bda42b'}} className="challenge-logo" src="/asset/material/bell.png" alt="" />
+                    <img style={{backgroundColor:''}} className="challenge-logo" src="/asset/material/bells.png" alt="" />
                    </Badge>    
-                  </Link>  
-             
-                </div>
+                </Link>  
+            
                 
                 {props.user ? (
-                      <div  className="d-flex menu-item ">
-                    <Link to={`/profile/${props.user._id}`}  style={{height:'70%'}} >
+                      <Link  to={`/profile/${props.user._id}`}  style={{height:'70%'}}
+                      className="d-flex flex-column justify-content-center align-items-center  menu-item"
+                         >          
                       <img style={{height:'100%'}} className="challenge-logo" src={ props.user.profile_img} alt="" />
                     </Link> 
-                     </div>
                     ):(
-                 <div  className="d-flex menu-item ">
-                    <Link
-                      to= "/sign-in">
+                      <Link  style={{height:'70%'}} to= "/sign-in"
+                      className="d-flex flex-column justify-content-center align-items-center  menu-item"
+                         >       
+                    
                       <img className="menu-logo" src={"/asset/material/avatar.jpg"} alt="" />
                     </Link>   
-                 </div> 
+               
           )}
 
         

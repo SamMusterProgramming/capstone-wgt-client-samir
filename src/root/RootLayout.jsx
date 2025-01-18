@@ -22,10 +22,10 @@ function RootLayout(props) {
  
   
 
-  const isAuthenticated = user? true : false ; 
+  const isAuthenticated = user ? true : false ; 
 
   useEffect(() => {
-   if (isLoading) {
+   if (isLoading && user) {
     console.log("i am here")
     getUserChallenges(user._id ,setUserChallenges)
     getUserParticipateChallenges(user._id,setParticipateChallenges)  
