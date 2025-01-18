@@ -77,12 +77,12 @@ import { AuthContent } from '../../context/AuthContent'
  
 return (    
 
- <div className="d-flex flex-column justify-content-center gap-1 align-items-center h-100 homepage "
+ <div className="d-flex flex-column justify-content-center gap-1 align-items-center h-100 homepage cloud-bg"
  style={{backgroundColor:"#084569"}}>
     
    
      
-     <div className="user_card"> 
+     <div className="user_card star"> 
        <div className ='logo-header text-center'>
          <h1>Challengify</h1>
        </div>

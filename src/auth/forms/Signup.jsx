@@ -116,9 +116,9 @@ export const Signup = (props) => {
      
   
   return (
-	<div className="d-flex flex-column justify-content-center gap-1 align-items-center h-100 homepage "
+	<div className="d-flex flex-column justify-content-center gap-1 align-items-center h-100 homepage cloud-bg "
 	style={{backgroundColor:"#084569"}}>
-		       	<div className="user_card text-center">	
+		       	<div className="user_card star text-center">	
 				  <div   className ='logo-header'>
                     <h1>Challengify</h1>
                   </div>
