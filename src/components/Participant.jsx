@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { addFollowing, getFollowings, getNotificationByUser, getUserFriendsData, loadLikeVoteData, unFollowings } from '../apiCalls'
+import { addFollowing, getFollowings, getNotificationByUser, getUserFriendsData, liked, loadLikeVoteData, unFollowings, voted } from '../apiCalls'
 import DialogConfirm from './helper/DialogConfirm'
 import { AuthContent } from '../context/AuthContent'
 import PostFooter from './helper/PostFooter'
@@ -75,7 +75,7 @@ const Participant = (props) => {
      },[] )  
 
     const handleLikes = async(e) => {
-          liked(ids,setLikesVotesData,likesVotesData)  
+           liked(ids,setLikesVotesData,likesVotesData)  
         }
          
     const handleVotes = async(e)=> {

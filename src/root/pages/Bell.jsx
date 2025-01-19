@@ -12,6 +12,7 @@ const Bell = () => {
 
   useEffect(() => {
     getNotificationByUser(user._id,setNotifications)
+    console.log(notifications)
   }, [])
 
 

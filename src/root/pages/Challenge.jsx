@@ -20,7 +20,7 @@ const Challenge = () => {
    
   useEffect(() => { //logic here is to disable the add challenge button if the user has already participated  
      challenge && challenge.participants.map(participant =>{
-      if(participant.user_id === props.user._id) {
+      if(participant.user_id === user._id) {
           setOwnChallenge( prev => !prev)
        } 
     })

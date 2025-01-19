@@ -53,11 +53,13 @@ const UserNotification = (props) => {
     // navigate(`/userProfile/${props.notification.content.sender_id}`)
   }
   const handleView = ()=> {
-    console.log(props.notification.content.challenge_id)
+   console.log(props.notification._id)
    updateNotificationByUser(props.notification._id,setNot)
    setTimeout(() => {
     navigate(`/viewchallenge/${props.notification.content.challenge_id}`)
-   }, 8000);
+   }, 1000);
+
+ 
   }
 
   const deleteNotification =()=>{
