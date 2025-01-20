@@ -24,7 +24,6 @@ import { AuthContent } from '../../context/AuthContent';
 
 const ParticipantsDisplayer = (props) => {
 
-
   const [followings,setFollowings] = useState ([])
   const [video_url ,setVideo_url] = useState(props.participants[0].video_url)
   const [selectedUser ,setSelectedUser] = useState (props.participants[0])
@@ -44,7 +43,7 @@ const ParticipantsDisplayer = (props) => {
   const[isAccept,setIsAccept]= useState(false)
   const[isDeleted,setIsDeleted]= useState(false)
   const[isQuit,setIsQuit]= useState(false)
-
+  const [isExpired,setIsExpired] = useState(false)
   const {notifications,setNotifications,userChallenges,setUserChallenges,
         participateChallenges,setParticipateChallenges,setTopChallenges} = useContext(AuthContent)
 
@@ -57,14 +56,13 @@ const ParticipantsDisplayer = (props) => {
       props.challenge._id
       ]
 
-    const [likesVotesData,setLikesVotesData] = useState({})  
+  const [likesVotesData,setLikesVotesData] = useState({})  
 
-    const navigate = useNavigate()
+  const navigate = useNavigate()
     
 
   useEffect(() => { 
-  loadLikeVoteData(ids,setLikesVotesData)    
- 
+  loadLikeVoteData(ids,setLikesVotesData,isExpired)    
    },[] )
 
   useEffect(() => { // get top challenger for the challenge
@@ -83,12 +81,12 @@ const ParticipantsDisplayer = (props) => {
     setTopChallenger({...obj})
   },[] )
   
-
+     
   useEffect(() => { // get top challenger for the challenge
     let obj = {
       topChallenger : props.participants[0].name,
       votes : props.participants[0].votes
-    } 
+    }       
     props.participants.forEach(participant => {
       if(participant.votes > obj.votes) obj = {
           ...obj,
@@ -102,13 +100,13 @@ const ParticipantsDisplayer = (props) => {
     
   const handleLikes = async(e) => {
     //apiCall.js , when user click like button 
-      liked(ids,setLikesVotesData,likesVotesData)
+      liked(ids,setLikesVotesData,likesVotesData,setIsExpired)
   
     }
      
   const handleVotes = async(e)=> {
        //apiCall.js , when user vote like button
-      voted(ids,setLikesVotesData,likesVotesData)   
+      voted(ids,setLikesVotesData,likesVotesData,setIsExpired)   
     }
 
 
@@ -134,8 +132,10 @@ const ParticipantsDisplayer = (props) => {
   }
 
   useEffect(() => {
-    
-  }, [isDeleted])
+      if(isExpired) {
+
+      }
+  }, [isExpired])
   
 
   const handleDelete = (e) => {
@@ -164,7 +164,6 @@ const ParticipantsDisplayer = (props) => {
             setOwnChallenge( prev => !prev)
          } 
       })
-
       }, [])
   
   useEffect(() => {
@@ -174,7 +173,7 @@ const ParticipantsDisplayer = (props) => {
 
   useEffect(() => {
        setLikesVotesData({like_count:selectedParticipant.likes,vote_count:selectedParticipant.votes})
-       loadLikeVoteData(ids,setLikesVotesData)   
+       loadLikeVoteData(ids,setLikesVotesData,setIsExpired)   
        getUserFriendsData(props.user._id,setUserFriendData)
        getUserFriendsData(selectedParticipant.user_id,setParticipantFriendData)
     }, [selectedParticipant])

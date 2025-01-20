@@ -74,19 +74,19 @@ const Participant = (props) => {
      },[ids] )  
 
     const handleLikes = async(e) => {
-          liked(ids,setLikesVotesData,likesVotesData)  
+        liked(ids,setLikesVotesData,likesVotesData)  
         }
          
     const handleVotes = async(e)=> {
           voted(ids,setLikesVotesData,likesVotesData)   
         }
-    
+        
     useEffect(() => {
             getUserFriendsData(props.user._id,setUserFriendData)
         }, [])
-     
+                  
     useEffect(() => {
-
+     
         if(participantFriendData){ 
               if(participantFriendData.friend_request_received)
               participantFriendData.friend_request_received.find(data => data.sender_id == props.user._id)

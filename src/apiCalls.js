@@ -167,7 +167,7 @@ export const getUserChallenges = async( user_id , setChallenges)=>{
    // *********************************** likes and votes data *************************
 
      
-    export const loadLikeVoteData= async(ids,setLikesVotesData)=> {
+    export const loadLikeVoteData= async(ids,setLikesVotesData,setIsExpired)=> {
 
     try {
       await axios.get( BASE_URL + '/challenges/load/like/', {
@@ -175,33 +175,40 @@ export const getUserChallenges = async( user_id , setChallenges)=>{
             ids: ids.join(',')
         }
      } )
-      .then(res => setLikesVotesData({...res.data}) )
+      .then(res => { if(res.data === "post expired") setIsExpired(true)
+         else setLikesVotesData({...res.data}) 
+    })
     } catch (error) {
       console.log(error)
     }
   }
 
-  export const liked = async(ids,setLikesVotesData,likesVotesData)=>{
+  export const liked = async(ids,setLikesVotesData,likesVotesData, setIsExpired)=>{
     try {
         await axios.get( BASE_URL + `/challenges/challenge/like/`, {
           params:{
               ids: ids.join(',')
           }
        } )
-        .then(res =>  { setLikesVotesData({...likesVotesData,isLiked:res.data.isLiked,like_count:res.data.like_count})} )
+        .then(res => { if(res.data === "post expired") setIsExpired(true)
+          else
+          setLikesVotesData({...likesVotesData,isLiked:res.data.isLiked,like_count:res.data.like_count})
+        } )
       } catch (error) {
         console.log(error)
       }
   }
 
-  export const voted = async(ids,setLikesVotesData,likesVotesData)=>{
+  export const voted = async(ids,setLikesVotesData,likesVotesData,setIsExpired)=>{
     try {
         await axios.get( BASE_URL + `/challenges/challenge/vote/`, {
           params:{
               ids: ids.join(',')
           }
        } )
-        .then(res =>  { setLikesVotesData({...likesVotesData,isVoted:res.data.isVoted,vote_count:res.data.vote_count})} )
+        .then(res =>  { if(res.data === "post expired") setIsExpired(true)
+          else
+          setLikesVotesData({...likesVotesData,isVoted:res.data.isVoted,vote_count:res.data.vote_count})} )
       } catch (error) {
         console.log(error)
       }
