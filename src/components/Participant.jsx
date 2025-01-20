@@ -25,7 +25,7 @@ const Participant = (props) => {
     const[isFriend,setIsFriend]= useState(false)
     const[isPending,setIsPending]= useState(false)
     const[isAccept,setIsAccept]= useState(false)
-    const[isDeleted,setIsDeleted]= useState(false)
+    const[isExpired,setIsExpired]= useState(false)
     const[isQuit,setIsQuit]= useState(false)
 
     const {notifications,setNotifications,userChallenges,setUserChallenges,
@@ -70,21 +70,29 @@ const Participant = (props) => {
       
      
     useEffect(() => { 
-        loadLikeVoteData(ids,setLikesVotesData)    
-     },[ids] )  
+        loadLikeVoteData(ids,setLikesVotesData,setIsExpired)    
+     },[] )  
 
     const handleLikes = async(e) => {
-        liked(ids,setLikesVotesData,likesVotesData)  
+        liked(ids,setLikesVotesData,likesVotesData,setIsExpired)  
         }
          
     const handleVotes = async(e)=> {
-          voted(ids,setLikesVotesData,likesVotesData)   
+          voted(ids,setLikesVotesData,likesVotesData,setIsExpired)   
         }
         
     useEffect(() => {
             getUserFriendsData(props.user._id,setUserFriendData)
         }, [])
-                  
+       
+    useEffect(() => {
+          if(isExpired) {
+              setIsExpired(prev => !prev)  
+              // console.log(isExpired)
+              navigate("/")
+          }
+      }, [isExpired])   
+
     useEffect(() => {
      
         if(participantFriendData){ 

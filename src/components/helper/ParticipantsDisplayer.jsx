@@ -133,7 +133,8 @@ const ParticipantsDisplayer = (props) => {
 
   useEffect(() => {
       if(isExpired) {
-
+          setIsExpired(false)  
+          navigate("/")
       }
   }, [isExpired])
   
