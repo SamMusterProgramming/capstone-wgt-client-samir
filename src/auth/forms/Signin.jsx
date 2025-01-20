@@ -77,7 +77,7 @@ import { AuthContent } from '../../context/AuthContent'
  
 return (    
 
- <div className="d-flex flex-column justify-content-center gap-1 align-items-center h-100 homepage cloud-bg"
+ <div className="d-flex flex-column justify-content-center gap-1 align-items-center h-100 homepage sky-bg"
  style={{backgroundColor:"#084569"}}>
     
    

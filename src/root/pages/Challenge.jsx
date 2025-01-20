@@ -16,7 +16,7 @@ const Challenge = () => {
   
   useEffect(() => {
    challenge_id && getChallengeById(challenge_id,setChallenge)
-  }, [])
+  }, [])   
    
   useEffect(() => { //logic here is to disable the add challenge button if the user has already participated  
      challenge && challenge.participants.map(participant =>{
@@ -24,8 +24,8 @@ const Challenge = () => {
           setOwnChallenge( prev => !prev)
        } 
     })
-
-    }, [])
+          
+    }, [])   
 
   useEffect(() => { 
     if(challenge){
@@ -150,7 +150,8 @@ const Challenge = () => {
         ): 
         (
           <div>
-            does't exist
+            expired
+            <Navigate to="/home" />
           </div>
         )}
          

@@ -44,7 +44,7 @@ const Participant = (props) => {
       const videoRef = useRef(null);
       const [isPlaying, setIsPlaying] = useState(false);
     
-      useEffect(() => {
+    useEffect(() => {
         const observer = new IntersectionObserver(
           ([entry]) => {
             if (entry.isIntersecting) {
@@ -60,7 +60,7 @@ const Participant = (props) => {
           observer.observe(videoRef.current);
         }
     
-        return () => {
+        return () => {   
           if (videoRef.current) {
             observer.unobserve(videoRef.current);
           }
@@ -68,14 +68,13 @@ const Participant = (props) => {
       }, []);
 
       
-  
+     
     useEffect(() => { 
-    loadLikeVoteData(ids,setLikesVotesData)    
-   
-     },[] )  
+        loadLikeVoteData(ids,setLikesVotesData)    
+     },[ids] )  
 
     const handleLikes = async(e) => {
-           liked(ids,setLikesVotesData,likesVotesData)  
+          liked(ids,setLikesVotesData,likesVotesData)  
         }
          
     const handleVotes = async(e)=> {
