@@ -95,10 +95,14 @@ export const updateUser = async(user_id,rawBody,setUser,user)=> {
 // *********************************** getChallenge by id *************************
 
 
-export const getChallengeById = async(id,setChallenge)=>{
+export const getChallengeById = async(id,setChallenge,setIsExpired)=>{
    try {
     await axios.get(BASE_URL+ `/challenges/find/${id}`)
-    .then(res => {setChallenge(res.data)} )
+    .then(res =>
+       {
+        if(res.data === "post expired") setIsExpired(true)
+          else setChallenge(res.data)
+      } )
    } catch (error) {
       console.log(error)
    }

@@ -54,7 +54,7 @@ const UserNotification = (props) => {
   }
   const handleView = ()=> {   
    console.log(props.notification.content.challenge_id)
-  //  updateNotificationByUser(props.notification._id,setNot)
+   updateNotificationByUser(props.notification._id,setNot)
     navigate(`/viewchallenge/${props.notification.content.challenge_id.toString()}`)
   }
 
@@ -129,6 +129,17 @@ const UserNotification = (props) => {
                 </>
               ):(
                 <>
+                       {props.notification.type === "followers" && (
+                  <>
+                     <Button
+                     style={{color:"white",fontSize:'10px',fontWeight:"700", fontFamily:'Arsenal SC serif',
+                       width:"40px",height:"25px",backgroundColor:"lightgreen",color:"black"}}
+                       onClick={handleView}>
+                        View
+                     </Button>
+                    
+                   </>
+                  )}
                      <Button
                        style={{color:"white",fontSize:'10px',fontWeight:"500", fontFamily:'Arsenal SC serif',
                         width:"40px",height:"25px",backgroundColor:"gray"}}

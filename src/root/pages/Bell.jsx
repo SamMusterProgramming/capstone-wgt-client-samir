@@ -23,7 +23,7 @@ const Bell = () => {
   return (
    <>
            
-            <div className="d-flex flex-column mb-0 mt-0 justify-content-start align-items-center star "
+            <div className="d-flex flex-column mb-0 mt-0 justify-content-start align-items-center star"
              style={{width:"100%",height:'35%',backgroundColor:''}}>
 
              <div className="d-flex   justify-content-between gap-0 align-items-center sky-blue " 
@@ -74,38 +74,13 @@ const Bell = () => {
                         fontFamily:'Arsenal SC'
                         }}>Explore your Notifications in this section</h4>
                     </div> 
-                    {/* <div  className="d-flex justify-content-end mt-2 align-items-center "
-                    style={{fontSize:'10px',width:'90%',height:"30%",backgroundColor:''}} >
-                        <Select
-                            style={{width:"100%",height:"100%",fontSize:'11px' ,border:"none",fontWeight:"600", backgroundColor:'',textAlign:"center"}}
-                            defaultValue="ALL TYPE" 
-                            >   
-                            <Select.Option value = {"ALL CHALLENGES"} 
-                                        style={{ color:'black',
-                                        backgroundColor:"lightgray",width:"100%",height:"30px" }} >
-                                        <p style={{ color:'black'}}>ALL TYPES</p> 
-                            </Select.Option>
-                            {challengeType.map((selection,index)=>{   
-                                return ( 
-                                    <Select.Option key={index} value = {selection.type}
-                                        style={{ color:'black',
-                                        backgroundColor:"lightgray",width:"100%",height:"30px" }} >
-                                        <p style={{ color:'black'}}>{selection.type}</p> 
-                                    </Select.Option> )
-                            })} 
-                        </Select>
-                    </div> */}
-                    {/* <div className="d-flex justify-content-evenly align-items-end "
-                    style={{fontSize:'10px',width:'96%',height:"40%",backgroundColor:''}} >
-                    
-                        
-                    </div> */}
+                
                 </div>
             </div>
             
             </div>
 
-   <div className='d-flex flex-column mt-0 justify-content-start align-items-center star'
+   <div className='d-flex flex-column mt-0 justify-content-start align-items-center colorfull-bg'
     style={{width:"100%",minHeight:"75%"}}>
 
     {notifications && notifications.map((notification,index)=>{

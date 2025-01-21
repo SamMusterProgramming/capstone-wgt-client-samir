@@ -209,13 +209,19 @@
     opacity: 40%;
   }
   .sky-bg {
-    background-image:  url('../asset/material/blue-sky.jpg');
-    background-size: cover; 
+    background-image:  url('../asset/material/blue-sky.jpeg');
+    background-size: fill; 
     background-position: bottom; 
     background-repeat: no-repeat; 
   }
   .cloud-bg {
     background-image:  url('../asset/material/cloud.jpg');
+    background-size: cover; 
+    background-position: bottom; 
+    background-repeat: no-repeat; 
+  }
+  .colorfull-bg {
+    background-image:  url('../asset/material/colorfull.jpg');
     background-size: cover; 
     background-position: bottom; 
     background-repeat: no-repeat; 

@@ -27,6 +27,7 @@ import Demo from './root/pages/Demo.jsx'
 import { getNotificationByUser } from './apiCalls.js'
 import Bell from './root/pages/Bell.jsx'
 import UserProfile from './root/pages/UserProfile.jsx'
+import Expired from './root/pages/Expired.jsx'
 
 
 export default function App() {
@@ -50,6 +51,7 @@ export default function App() {
               <Route path="/" element={ <Homepage user = {user}/>} >
                   {/* <Route path="home" element={ <Home user={user}/> } /> */}
                   <Route path="notifications" element={ <Bell />} /> 
+                  <Route path="expired" element={ <Expired />} /> 
                   <Route path="home" element={ <TimeLine user={user}/> } />
                   <Route path='chpage' element={ <ChallengePage user={user}/> }>
                     <Route path="challenges" element ={<Challenges user={user}/>} /> 

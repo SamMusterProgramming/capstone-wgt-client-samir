@@ -13,13 +13,24 @@ const Challenge = () => {
   const [ownChallenge , setOwnChallenge ] = useState(false)
   const [reRender,setReRender] = useState(false)
   const [challenge,setChallenge] = useState(null)
+  const[isExpired,setIsExpired]= useState(false)
+
   const navigate = useNavigate("")
 
   
   useEffect(() => {
     console.log(challenge_id)
-   challenge_id && getChallengeById(challenge_id,setChallenge)
+   challenge_id && getChallengeById(challenge_id,setChallenge,setIsExpired)
   }, [])   
+  useEffect(() => { //logic here is to disable the add challenge button if the user has already participated  
+    if(isExpired) { 
+      navigate('/expired')
+      setTimeout(() => {
+          navigate('/notifications')
+      }, 2000);
+    }
+         
+   }, [isExpired]) 
    
   useEffect(() => { //logic here is to disable the add challenge button if the user has already participated  
      challenge && challenge.participants.map(participant =>{
@@ -154,8 +165,8 @@ const Challenge = () => {
         ): 
         (
           <div>
-            expired
-            {/* <Navigate to="/home" /> */}
+        
+             {/* <Navigate ;to="/home" />  */}
           </div>
         )}
          

@@ -93,9 +93,10 @@ const Participant = (props) => {
        
     useEffect(() => {
           if(isExpired) {
-              setIsExpired(prev => !prev)  
-              // console.log(isExpired)
-              // navigate("/")
+            navigate('/expired')
+            setTimeout(() => {
+              navigate(`/viewchallenge/${props.challenge_id}`)
+            }, 2000);  
           }
       }, [isExpired])   
 
