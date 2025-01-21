@@ -19,27 +19,26 @@ const Challenge = () => {
 
   
   useEffect(() => {
-    console.log(challenge_id)
    challenge_id && getChallengeById(challenge_id,setChallenge,setIsExpired)
-  }, [])   
+  }, [])  
+
   useEffect(() => { //logic here is to disable the add challenge button if the user has already participated  
     if(isExpired) { 
       navigate('/expired')
       setTimeout(() => {
           navigate('/notifications')
       }, 2000);
-    }
-         
+    }        
    }, [isExpired]) 
    
   useEffect(() => { //logic here is to disable the add challenge button if the user has already participated  
      challenge && challenge.participants.map(participant =>{
       if(participant.user_id === user._id) {
-          setOwnChallenge( prev => !prev)
+          setOwnChallenge(true)
        } 
     })
           
-    }, [])   
+    }, [challenge])   
   
   useEffect(() => { 
     if(challenge){
@@ -113,12 +112,12 @@ const Challenge = () => {
             style={{height:'42px',width:'100%',backgroundColor:'#0352fc'}} >
               
                    {!ownChallenge? (    
-                     <DialogConfirm handleAction={(e)=> navigate(`/matchchallenge/${challenge._id}`)} style={{width:'90px',color:"lightgreen",textAlign:'center',
-                      backgroundColor:'#c29311',height:'100%',fontSize:"12px",fontWeight:"800",border:'none', fontFamily:'Arsenal SC serif'
-                    }}   action={"REPLAY"} message ={'are you sure you want to replay to the challenge'}  />
+                     <DialogConfirm handleAction={(e)=> navigate(`/matchchallenge/${challenge._id}`)} style={{width:'90px',color:"white",textAlign:'center',
+                      backgroundColor:'#0ddb82',height:'100%',fontSize:"12px",fontWeight:"800",border:'none', fontFamily:'Arsenal SC serif'
+                    }}   action={"JOIN"} message ={'are you sure you want to replay to the challenge'}  />
                   ):(
                     <>
-                    {props.challenge.participants.length == 1 ? 
+                    {challenge.participants.length == 1 ? 
                       (
                         <DialogConfirm 
                         // handleAction={handleDelete} 

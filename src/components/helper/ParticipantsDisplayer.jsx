@@ -296,22 +296,22 @@ useEffect(() => {
 
     <div className="d-flex flex-column mb-3 mt-0 justify-content-start align-items-center challenges">
          
-          <div className='d-flex justify-content-start  align-items-center '
-          style={{minHeight:"40px",minWidth:"100%",backgroundColor:"#0352fc"}}>
+          <div className='d-flex justify-content-start  align-items-center sky-bg'
+          style={{minHeight:"40px",minWidth:"100%",backgroundColor:""}}>
             <div className='d-flex flex-column justify-content-center  align-items-center'
                style={{height:"100%",minWidth:"25%",backgroundColor:""}}>
-                <span style={{fontSize:'9px',fontWeight:"600",marginTop:'0px', fontFamily:'Arsenal SC'}}>By</span>
+                <span style={{fontSize:'9px',fontWeight:"600",marginTop:'0px', fontFamily:'Arsenal SC serif'}}>Initiated By</span>
                 <p style={{fontSize:'10px',fontWeight:"600",marginTop:'-3px',color:'gold',fontFamily:'Arsenal SC serif'}}>{props.challenge.name}</p>
             </div>
             <div className='d-flex flex-column justify-content-center gap align-items-center'
                style={{height:"100%",minWidth:"25%",backgroundColor:""}}>
-                <span style={{fontSize:'10px',fontWeight:"600", fontFamily:'Arsenal SC'}}>Top </span>
+                <span style={{fontSize:'10px',fontWeight:"600", fontFamily:'Arsenal SC serif'}}>Top Challenger </span>
                 <p style={{fontSize:'10px',fontWeight:"600",marginTop:'-3px',color:'gold',fontFamily:'Arsenal SC serif'}}>{topChallenger.topChallenger}</p>
             </div>
             <div className='d-flex flex-column justify-content-center gap align-items-center'
                style={{height:"100%",minWidth:"25%",backgroundColor:""}}>
-                <span style={{fontSize:'10px',fontWeight:"600",marginTop:'0px', fontFamily:'Arsenal SC'}}>{props.participants.length}</span>
-                <p style={{fontSize:'10px',fontWeight:"600",marginTop:'-3px',color:'gold',fontFamily:'Arsenal SC serif'}}>Challengers</p>
+                <span style={{fontSize:'10px',fontWeight:"600",marginTop:'0px', fontFamily:'Arsenal SC serif'}}>{props.participants.length}</span>
+                <p style={{fontSize:'10px',fontWeight:"600",marginTop:'-3px',color:'gold',fontFamily:'Arsenal SC serif'}}>Participants</p>
             </div>
             <div className='d-flex flex-column  justify-content-center  align-items-center'
                style={{height:"100%",minWidth:"25%",backgroundColor:""}}>
@@ -320,20 +320,22 @@ useEffect(() => {
             </div>
         </div>
 
-         <div className='d-flex flex-column justify-content-start align-items-center bg-light'
-           style={{width:"100%",height:"120px"}}>
+         <div className='d-flex flex-column justify-content-start align-items-center star'
+           style={{width:"100%",height:"130px"}}>
 
-              <div className='d-flex mt-0 justify-content-start align-items-center bg-dark'
-                 style={{width:"100%",height:"30px"}}> 
-                  <div className='d-flex mt-0 justify-content-start align-items-center'
-                      style={{width:"25%",height:"30px",padding:'10px' ,backgroundColor:"#3f7f8c"}}>
+              <div className='d-flex mt-0 justify-content-start align-items-center '
+                 style={{width:"100%",height:"40px"}}> 
+                  <Link to={`/viewchallenge/${props.challenge._id}`} className='d-flex mt-0 justify-content-start align-items-center'
+                      style={{width:"25%",height:"40px",padding:'10px' ,backgroundColor:""}}>
                       <span style={{fontSize:'13px', color:'lightblue', fontFamily:'Arsenal SC serif',fontWeight:'900'}} >
                         Challenge
                       </span>
-                  </div>
-                  <div className='d-flex mt-0 justify-content-start align-items-center'
-                    style={{width:"75%",height:"30px",padding:'10px',backgroundColor:'lightgray'}}>
-                        <p style={{fontSize:'12px',color:"black",fontFamily:'Arsenal SC serif'}}> {props.challenge.desc}</p>
+                  </Link>
+                  <div className='d-flex mt-0 justify-content-center align-items-center cloud-bg'
+                    style={{width:"75%",height:"40px",padding:'10px',backgroundColor:''}}>
+                        <p style={{fontSize:'12px',color:"black",fontFamily:'Arsenal SC serif',
+                          fontWeight:"700px"
+                        }}> {props.challenge.desc}</p>
                   </div>
               </div>
               <div className="d-flex  justify-content-start align-items-center  " 
@@ -346,25 +348,28 @@ useEffect(() => {
                             </Link>
                       </div>
                       <div className="d-flex flex-column justify-content-start align-items-center " 
-                          style={{height:'90px',width:'75%',backgroundColor:'white'}}>
+                          style={{height:'90px',width:'75%',backgroundColor:''}}>
                             
                             
-                             <div className='d-flex mt-0 justify-content-center participantdisplayer'> 
+                             <div className='d-flex mt-0 justify-content-center participantdisplayer star'
+                             style={{borderRadius:"5px"}}> 
                                 <Select
-                                  style={{width:"100%",height:"30px",fontSize:' 25px' ,borderRadius:"0px",fontWeight:"800", backgroundColor:'',textAlign:"center"}}
+                                  style={{width:"100%",height:"30px",fontSize:' 25px' ,borderRadius:"0px",opacity:"100%",
+                                    fontWeight:"800", color:'white',textAlign:"center"}}
                                     defaultValue="Select a Participant"
                                     onChange={handleChange} value={selectedParticipant.user_id}
                                       >   
                                       {props.participants.map((participant,index)=>{    
-                                        return  (<Select.Option key={index} style={{ color:'black',fontWeight:"500",
-                                          backgroundColor:"lightgray",width:"100%",height:"35px"
+                                        return  (<Select.Option  key={index} style={{ color:'white',fontWeight:"700",
+                                          backgroundColor:"",width:"100%",height:"35px",borderRadius:"0px"
                                         }}  value = {participant.user_id} autoFocus
-                                        className="d-flex flex-row align-items-start gap3"
+                                        className="d-flex flex-row align-items-start gap3 star"
                                         >
                                           <div  className="d-flex flex-row justify-content-center  align-items-center gap-2">
                                               <div className="chip">
                                                     {/* <img src={participant.profile_img} alt="" /> */}
-                                                    <p style={{marginTop:'-10px', fontFamily:'Arsenal SC serif'}} > {(props.user._id===participant.user_id)? participant.name + " - YOU": participant.name} </p> 
+                                                    <p style={{marginTop:'-10px',opacity:"100%", color:'tomato',fontWeight:"700", fontFamily:'Arsenal SC serif'}} > 
+                                                      {(props.user._id===participant.user_id)? participant.name + " - YOU": participant.name} </p> 
                                               </div>
                                           </div>
                                           
@@ -554,13 +559,13 @@ useEffect(() => {
                />
         </div> 
 
-        <div className='d-flex flex-row  justify-content-between align-items-center '  //#1f1e15
-            style={{height:'42px',width:'100%',backgroundColor:'#0352fc'}} >
+        <div className='d-flex flex-row  justify-content-between align-items-center sky-bg ' 
+            style={{height:'42px',width:'100%',backgroundColor:''}} >
               
                    {!ownChallenge? (    
-                     <DialogConfirm handleAction={(e)=> navigate(`/matchchallenge/${props.challenge._id}`)} style={{width:'90px',color:"lightgreen",textAlign:'center',
-                      backgroundColor:'#c29311',height:'100%',fontSize:"12px",fontWeight:"800",border:'none', fontFamily:'Arsenal SC serif'
-                    }}   action={"REPLAY"} message ={'are you sure you want to replay to the challenge'}  />
+                     <DialogConfirm handleAction={(e)=> navigate(`/matchchallenge/${props.challenge._id}`)} style={{width:'90px',color:"white",textAlign:'center',
+                      backgroundColor:'#0ddb82',height:'100%',fontSize:"12px",fontWeight:"800",border:'none', fontFamily:'Arsenal SC serif'
+                    }}   action={"JOIN"} message ={'are you sure you want to join  the challenge'}  />
                   ):(
                     <>
                     {props.participants.length == 1 ? 
