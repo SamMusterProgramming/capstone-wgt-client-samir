@@ -52,14 +52,10 @@ const UserNotification = (props) => {
     setRender(prev => !prev)
     // navigate(`/userProfile/${props.notification.content.sender_id}`)
   }
-  const handleView = ()=> {
-   console.log(props.notification._id)
-   updateNotificationByUser(props.notification._id,setNot)
-   setTimeout(() => {
-    navigate(`/viewchallenge/${props.notification.content.challenge_id}`)
-   }, 1000);
-
- 
+  const handleView = ()=> {   
+   console.log(props.notification.content.challenge_id)
+  //  updateNotificationByUser(props.notification._id,setNot)
+    navigate(`/viewchallenge/${props.notification.content.challenge_id.toString()}`)
   }
 
   const deleteNotification =()=>{

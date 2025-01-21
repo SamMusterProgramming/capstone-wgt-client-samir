@@ -62,7 +62,7 @@ const ParticipantsDisplayer = (props) => {
     
 
   useEffect(() => { 
-  loadLikeVoteData(ids,setLikesVotesData,isExpired)    
+  loadLikeVoteData(ids,setLikesVotesData,likesVotesData, isExpired)    
    },[] )
 
   useEffect(() => { // get top challenger for the challenge
@@ -174,7 +174,7 @@ const ParticipantsDisplayer = (props) => {
 
   useEffect(() => {
        setLikesVotesData({like_count:selectedParticipant.likes,vote_count:selectedParticipant.votes})
-       loadLikeVoteData(ids,setLikesVotesData,setIsExpired)   
+       loadLikeVoteData(ids,setLikesVotesData,likesVotesData,setIsExpired)   
        getUserFriendsData(props.user._id,setUserFriendData)
        getUserFriendsData(selectedParticipant.user_id,setParticipantFriendData)
     }, [selectedParticipant])

@@ -7,14 +7,17 @@ import DialogConfirm from '../../components/helper/DialogConfirm';
 import { Button } from 'antd';
 
 const Challenge = () => {
-  const {user,challenge,setChallenge} = useContext(AuthContent)
+  const {user} = useContext(AuthContent)
   const  challenge_id  = useParams().id;
   const [topChallenger ,setTopChallenger] = useState("")
   const [ownChallenge , setOwnChallenge ] = useState(false)
+  const [reRender,setReRender] = useState(false)
+  const [challenge,setChallenge] = useState(null)
   const navigate = useNavigate("")
 
   
   useEffect(() => {
+    console.log(challenge_id)
    challenge_id && getChallengeById(challenge_id,setChallenge)
   }, [])   
    
@@ -26,7 +29,7 @@ const Challenge = () => {
     })
           
     }, [])   
-
+  
   useEffect(() => { 
     if(challenge){
     let obj = {
@@ -51,7 +54,7 @@ const Challenge = () => {
         {challenge ? 
         (
         <>  
-          <div className='d-flex justify-content-start  align-items-center '
+        <div className='d-flex justify-content-start  align-items-center '
           style={{minHeight:"40px",minWidth:"100%"}}>
             <div className='d-flex flex-column justify-content-center  align-items-center'
                style={{height:"100%",minWidth:"25%",backgroundColor:""}}>
@@ -90,7 +93,8 @@ const Challenge = () => {
         </div>
 
         {challenge.participants.map( participant =>{
-            return <Participant participant={participant} user={user} challenge_id ={challenge_id} challenge={challenge} />
+            return <Participant participant={participant} setReRender ={setReRender} reRender={reRender}
+            user={user} challenge_id ={challenge_id} challenge={challenge} />
         })
         }
 
@@ -151,7 +155,7 @@ const Challenge = () => {
         (
           <div>
             expired
-            <Navigate to="/home" />
+            {/* <Navigate to="/home" /> */}
           </div>
         )}
          

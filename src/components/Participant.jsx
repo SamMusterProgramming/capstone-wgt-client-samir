@@ -15,13 +15,12 @@ const Participant = (props) => {
     const [ownChallenge , setOwnChallenge ] = useState(false)
     const [isVotedColor,setIsVotedColor] = useState("lightpink")
     const [isLikedColor,setIsLikedColor] = useState("lightblue")
-    const [topChallenger ,setTopChallenger] = useState("")
     const [userProfileImg,setUserProfileImg] = useState(props.user.profile_img)
   
     const [addFriendRequest , setAddFriendRequest] = useState(null)
     const [participantFriendData,setParticipantFriendData] = useState(null)
     const [userFriendData,setUserFriendData] = useState(null)
-  
+    
     const[isFriend,setIsFriend]= useState(false)
     const[isPending,setIsPending]= useState(false)
     const[isAccept,setIsAccept]= useState(false)
@@ -37,7 +36,7 @@ const Participant = (props) => {
         props.challenge_id
         ]
   
-      const [likesVotesData,setLikesVotesData] = useState({})  
+      const [likesVotesData,setLikesVotesData] = useState(null)  
   
       const navigate = useNavigate()
     
@@ -45,34 +44,41 @@ const Participant = (props) => {
       const [isPlaying, setIsPlaying] = useState(false);
     
     useEffect(() => {
-        const observer = new IntersectionObserver(
-          ([entry]) => {
-            if (entry.isIntersecting) {
-              setIsPlaying(true);
-            } else {
-              setIsPlaying(false);
-            }
-          },
-          { threshold: 0.3 } // Adjust threshold as needed
-        );
+        // const observer = new IntersectionObserver(
+        //   ([entry]) => {
+        //     if (entry.isIntersecting) {
+        //       setIsPlaying(true);
+        //     } else {
+        //       setIsPlaying(false);
+        //     }
+        //   },
+        //   { threshold: 0.3 } 
+        // );
     
-        if (videoRef.current) {
-          observer.observe(videoRef.current);
-        }
+        // if (videoRef.current) {
+        //   observer.observe(videoRef.current);
+        // }
     
-        return () => {   
-          if (videoRef.current) {
-            observer.unobserve(videoRef.current);
-          }
-        };
-      }, []);
+        // return () => {   
+        //   if (videoRef.current) {
+        //     observer.unobserve(videoRef.current);
+        //   }
+        // };    
+        console.log(ids)
+      }, []);  
 
       
      
     useEffect(() => { 
-        loadLikeVoteData(ids,setLikesVotesData,setIsExpired)    
+      console.log("i am here   cdcdc   dcdcdc d cdcdc")
+        loadLikeVoteData(ids,setLikesVotesData,likesVotesData,setIsExpired)    
      },[] )  
 
+    useEffect(() => { 
+      console.log(likesVotesData)
+       props.setReRender(!props.reRender)  
+    },[likesVotesData] )  
+  
     const handleLikes = async(e) => {
         liked(ids,setLikesVotesData,likesVotesData,setIsExpired)  
         }
@@ -89,7 +95,7 @@ const Participant = (props) => {
           if(isExpired) {
               setIsExpired(prev => !prev)  
               // console.log(isExpired)
-              navigate("/")
+              // navigate("/")
           }
       }, [isExpired])   
 
@@ -120,12 +126,14 @@ const Participant = (props) => {
     , [participantFriendData,userFriendData])    
 
     useEffect(() => {
+      if(likesVotesData){
         likesVotesData.isLiked ? 
              setIsLikedColor("blue")   
              : setIsLikedColor("lightblue")
         likesVotesData.isVoted ? 
              setIsVotedColor("red")   
-             : setIsVotedColor("lightpink")    
+             : setIsVotedColor("lightpink") 
+      }   
       }, [likesVotesData])
       
       
@@ -135,8 +143,8 @@ const Participant = (props) => {
       
     const handleFollowing =  ()=> {
         const rawBody = {
-          following_id : selectedParticipant.user_id,
-          following_email:selectedParticipant.email
+          following_id : props.participant.user_id,
+          following_email:props.participant.email
        }
       addFollowing(props.user._id,rawBody, setFollowings)
       // setFollowings((prevItems) => [...prevItems,rawBody])
@@ -144,8 +152,8 @@ const Participant = (props) => {
       
     const handleUnFollowing =  ()=> {
         const rawBody = {
-          following_id : selectedParticipant.user_id,
-          following_email:selectedParticipant.email
+          following_id : props.participant.user_id,
+          following_email:props.participant.email
        }
        unFollowings(props.user._id,rawBody, setFollowings)
       }
@@ -162,11 +170,14 @@ const Participant = (props) => {
         }, [])  
       
 
-return (
-    <>
-       <div className='d-flex flex-column justify-content-start align-items-center bg-lig'
+return (<>
+    {likesVotesData &&
+         
+    (
+     <>
+      <div className='d-flex flex-column justify-content-start align-items-center bg-lig'
            style={{width:"100%",height:"120px"}}>
-
+              
               <div className="d-flex  justify-content-start align-items-center  " 
                     style={{height:'90px',width:'100%'}}>
                       <div className="d-flex flex-column justify-content-center align-items-center  " 
@@ -349,6 +360,7 @@ return (
                       </div>
                </div>
             </div>
+        
 
             <div className=" d-flex flex-column videopost">
             <div className='videodisplayer'>
@@ -367,9 +379,15 @@ return (
             <PostFooter challenge={props.challenge} likesVotesData={likesVotesData} handleLikes={handleLikes}
               handleVotes={handleVotes}  isLikedColor={isLikedColor} isVotedColor={isVotedColor} user={props.user}
                />
-        </div> 
+         </div> 
+
+     </>
+    )
+    }
+              
+       </>
     
-    </>
+  
   )
 }
 

@@ -167,7 +167,7 @@ export const getUserChallenges = async( user_id , setChallenges)=>{
    // *********************************** likes and votes data *************************
 
      
-    export const loadLikeVoteData= async(ids,setLikesVotesData,setIsExpired)=> {
+    export const loadLikeVoteData= async(ids,setLikesVotesData,likesVotesData,setIsExpired)=> {
 
     try {
       await axios.get( BASE_URL + '/challenges/load/like/', {
@@ -175,8 +175,11 @@ export const getUserChallenges = async( user_id , setChallenges)=>{
             ids: ids.join(',')
         }
      } )
-      .then(res => { if(res.data === "post expired") setIsExpired(true)
-         else setLikesVotesData({...res.data}) 
+      .then(res => {
+        //  console.log(res.data)
+         if(res.data === "post expired") setIsExpired(true)
+         else setLikesVotesData({...likesVotesData,isLiked:res.data.isLiked,like_count:res.data.like_count,
+        isVoted:res.data.isVoted,vote_count:res.data.vote_count}) 
     })
     } catch (error) {
       console.log(error)

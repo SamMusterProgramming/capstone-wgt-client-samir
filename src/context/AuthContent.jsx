@@ -10,13 +10,13 @@ export const AuthContentProvider = ({ children }) => {
   const [participateChallenges ,setParticipateChallenges] = useState([])  
   const [userChallenges ,setUserChallenges] = useState([])  
   const [topChallenges ,setTopChallenges] = useState([])  
-  const [challenge ,setChallenge] = useState(null)  
+  // const [challenge ,setChallenge] = useState(null)  
 
 
   const [isLoading,setIsLoading] = useState(false)  
 
   return (
-    <AuthContent.Provider value={{user, setUser,challenge,setChallenge,notifications,setNotifications ,setIsLoading,isLoading,
+    <AuthContent.Provider value={{user, setUser,notifications,setNotifications ,setIsLoading,isLoading,
     participateChallenges,setParticipateChallenges,userChallenges,setUserChallenges,topChallenges,setTopChallenges}}>
       {children}
     </AuthContent.Provider>
