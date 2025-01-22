@@ -135,7 +135,7 @@ useEffect(() => {
 
   return (
   
-    <div className="d-flex justify-content-start gap-0 align-items-center  post-container star">
+    <div className="d-flex justify-content-start gap-0 align-items-center  post-container ">
 
      
 

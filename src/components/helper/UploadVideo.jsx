@@ -41,30 +41,20 @@ const UploadVideo = (props) => {
                     className='post-size'
                     src= "" //{videoSrc}
                     // fluid="true"  
-                    width="100%"  
-                    height='100%'
+                   
                     controls
                    
                 />
             ) 
            
             }
-             {/* <input
-             style={{width:"100%"}}
-            type="range"
-            min="0"
-            max="1"
-            step="0.01"
-            value={volume}
-            onChange={handleVolumeChange}
-          />  */}
+     
          </div>
-         <div className='container-fluid d-flex  justify-content-between
+         <div className=' d-flex  justify-content-between
               align-items-center postfooter'
-              style={{width:"90%", height:"10%"}}>
+              style={{width:"90%", height:"5%"}}>
                   <VideoUploader  onChange={props.handleUpload} /> 
                   <VideoRecorder   setSwitchUploadLive={props.setSwitchUploadLive}/>
-
          </div>
    
       </>

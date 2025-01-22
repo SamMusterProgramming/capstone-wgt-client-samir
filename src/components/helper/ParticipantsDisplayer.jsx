@@ -294,7 +294,7 @@ useEffect(() => {
   
   return (
 
-    <div className="d-flex flex-column mb-3 mt-0 justify-content-start align-items-center border challenges">
+    <div className="d-flex flex-column mb-3 mt-0 justify-content-start align-items-center challenges">
          
           <div className='d-flex justify-content-start  align-items-center sky-bg'
           style={{minHeight:"40px",minWidth:"100%",backgroundColor:""}}>
@@ -363,12 +363,12 @@ useEffect(() => {
                                         return  (<Select.Option  key={index} style={{ color:'white',fontWeight:"700",
                                           backgroundColor:"",width:"100%",height:"37px",borderRadius:"0px"
                                         }}  value = {participant.user_id} autoFocus
-                                        className="d-flex flex-row align-items-start gap3 star"
+                                        className="d-flex flex-row align-items-start gap3"
                                         >
                                           <div  className="d-flex flex-row justify-content-center  align-items-center gap-2">
                                               <div className="chip">
                                                     {/* <img src={participant.profile_img} alt="" /> */}
-                                                    <p style={{marginTop:'-10px',opacity:"100%", color:'tomato',fontWeight:"700", fontFamily:'Arsenal SC serif'}} > 
+                                                    <p style={{marginTop:'-10px',opacity:"100%", color:'black',fontWeight:"700", fontFamily:'Arsenal SC serif'}} > 
                                                       {(props.user._id===participant.user_id)? participant.name + " - YOU": participant.name} </p> 
                                               </div>
                                           </div>
@@ -564,7 +564,7 @@ useEffect(() => {
               
                    {!ownChallenge? (    
                      <DialogConfirm handleAction={(e)=> navigate(`/matchchallenge/${props.challenge._id}`)} style={{width:'90px',color:"white",textAlign:'center',
-                      backgroundColor:'#0ddb82',height:'100%',fontSize:"12px",fontWeight:"800",border:'none', fontFamily:'Arsenal SC serif'
+                      backgroundColor:'#269e32',height:'100%',fontSize:"12px",fontWeight:"800",border:'none', fontFamily:'Arsenal SC serif'
                     }}   action={"JOIN"} message ={'are you sure you want to join  the challenge'}  />
                   ):(
                     <>
