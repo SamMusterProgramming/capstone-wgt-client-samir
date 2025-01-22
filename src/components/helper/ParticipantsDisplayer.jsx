@@ -294,7 +294,7 @@ useEffect(() => {
   
   return (
 
-    <div className="d-flex flex-column mb-3 mt-0 justify-content-start align-items-center challenges">
+    <div className="d-flex flex-column mb-3 mt-0 justify-content-start align-items-center border challenges">
          
           <div className='d-flex justify-content-start  align-items-center sky-bg'
           style={{minHeight:"40px",minWidth:"100%",backgroundColor:""}}>
@@ -321,7 +321,7 @@ useEffect(() => {
         </div>
 
          <div className='d-flex flex-column justify-content-start align-items-center star'
-           style={{width:"100%",height:"130px"}}>
+           style={{width:"100%",height:"160px"}}>
 
               <div className='d-flex mt-0 justify-content-start align-items-center '
                  style={{width:"100%",height:"40px"}}> 
@@ -339,29 +339,29 @@ useEffect(() => {
                   </div>
               </div>
               <div className="d-flex  justify-content-start align-items-center  " 
-                    style={{height:'90px',width:'100%'}}>
+                    style={{height:'120px',width:'100%'}}>
                       <div className="d-flex flex-column justify-content-center align-items-center  " 
-                          style={{height:'90px',width:'25%',backgroundColor:'lightblue'}}>
-                            <Link  style={{height:'80px',width:'93%'}}
+                          style={{minHeight:'120px',width:'25%',backgroundColor:'lightblue'}}>
+                            <Link  style={{height:'110px',width:'93%'}}
                              to = {(props.user._id === selectedParticipant.user_id)?`/profile/${selectedParticipant.user_id}`:`/userprofile/${selectedParticipant.user_id}`} > 
                               <img  style={{height:'100%',width:'100%',borderRadius:'15px',objectFit:"cover"}} src={selectedParticipant.profile_img} alt="" />
                             </Link>
                       </div>
                       <div className="d-flex flex-column justify-content-start align-items-center " 
-                          style={{height:'90px',width:'75%',backgroundColor:''}}>
+                          style={{height:'120px',width:'75%',backgroundColor:''}}>
                             
                             
                              <div className='d-flex mt-0 justify-content-center participantdisplayer star'
-                             style={{borderRadius:"5px"}}> 
+                             style={{height:'40px',width:'100%',backgroundColor:''}}> 
                                 <Select
-                                  style={{width:"100%",height:"30px",fontSize:' 25px' ,borderRadius:"0px",opacity:"100%",
+                                  style={{width:"100%",height:"39px",fontSize:' 25px' ,borderRadius:"0px",opacity:"100%",
                                     fontWeight:"800", color:'white',textAlign:"center"}}
                                     defaultValue="Select a Participant"
                                     onChange={handleChange} value={selectedParticipant.user_id}
                                       >   
                                       {props.participants.map((participant,index)=>{    
                                         return  (<Select.Option  key={index} style={{ color:'white',fontWeight:"700",
-                                          backgroundColor:"",width:"100%",height:"35px",borderRadius:"0px"
+                                          backgroundColor:"",width:"100%",height:"37px",borderRadius:"0px"
                                         }}  value = {participant.user_id} autoFocus
                                         className="d-flex flex-row align-items-start gap3 star"
                                         >
@@ -383,17 +383,17 @@ useEffect(() => {
 
                             
                              <div className='d-flex justify-content-start align-items-center '
-                                style={{height:'30px',width:'100%'}}>
+                                style={{height:'40px',width:'100%'}}>
                                        <div className='d-flex justify-content-between align-items-center text-dark '
-                                           style={{height:'30px',width:'50%',backgroundColor:"lightpink"}}>
+                                           style={{height:'40px',width:'50%',backgroundColor:"lightpink"}}>
                                               <div className='d-flex justify-content-center align-items-center text-dark '
-                                                style={{height:'30px',minWidth:'50%'}}>
+                                                style={{height:'40px',minWidth:'50%'}}>
                                                      <p style={{ fontFamily:'Arsenal SC serif',
                                                       fontSize:'13px',border:'none',fontWeight:"600",borderRadius:'0px'}}
                                                       >{selectedParticipant.votes}</p> 
                                                </div>
                                                <div className='d-flex justify-content-center gap-1 align-items-center  '
-                                                 style={{height:'30px',minWidth:'50%'}}>
+                                                 style={{height:'40px',minWidth:'50%'}}>
                                                       <p style={{ fontFamily:'Arsenal SC serif',
                                                       fontSize:'10px',border:'none',fontWeight:"600",borderRadius:'0px'}}>VOTES</p> 
                                                       <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor"color='red' className="bi bi-heart-fill" viewBox="0 0 16 16">
@@ -403,15 +403,15 @@ useEffect(() => {
                                                     
                                         </div>
                                         <div className='d-flex justify-content-between align-items-center text-dark '
-                                           style={{height:'30px',width:'50%',backgroundColor:"lightblue"}}>
+                                           style={{height:'40px',width:'50%',backgroundColor:"lightblue"}}>
                                               <div className='d-flex justify-content-center align-items-center text-dark '
-                                                style={{height:'30px',minWidth:'50%'}}>
+                                                style={{height:'40px',minWidth:'50%'}}>
                                                      <p style={{ fontFamily:'Arsenal SC serif',
                                                       fontSize:'13px',border:'none',fontWeight:"600",borderRadius:'0px'}}
                                                       >{selectedParticipant.likes}</p> 
                                                </div>
                                                <div className='d-flex justify-content-center gap-1 align-items-center  '
-                                                 style={{height:'30px',minWidth:'50%'}}>
+                                                 style={{height:'40px',minWidth:'50%'}}>
                                                       <p style={{ fontFamily:'Arsenal SC serif',
                                                       fontSize:'10px',border:'none',fontWeight:"600",borderRadius:'0px'}}>LIKES</p> 
                                                        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="blue" className="bi bi-hand-thumbs-up-fill" viewBox="0 0 16 16">
@@ -423,7 +423,7 @@ useEffect(() => {
                              </div>
 
                              <div className='d-flex justify-content-start align-items-center '
-                                style={{height:'30px',width:'100%'}}>
+                                style={{height:'40px',width:'100%'}}>
                     
                               
                                   <div className='d-flex flex-column justify-content-center gap align-items-center'

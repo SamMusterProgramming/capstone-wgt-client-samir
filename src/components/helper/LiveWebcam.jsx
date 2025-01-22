@@ -78,7 +78,7 @@ const LiveWebcam = (props) => {
          videoConstraints = {{
           facingMode: facingMode
         }}
-         audio={true}
+        //  audio={true}
          controls   
         />
   
@@ -105,14 +105,15 @@ const LiveWebcam = (props) => {
           
      
     </div>
-              <div className='container-fluid d-flex gap-2 justify-content-between 
-              align-items-center postfooter'>
+              <div className=' d-flex  justify-content-between 
+              align-items-center postfooter'
+              style={{width:"90%", height:"10%"}}>
                  
                    { recording ?
                      (
                      <button id='stopCapture' onClick={handleStopRecording}
                         >
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" color="lightgreen" className="bi bi-camera-video-off-fill" viewBox="0 0 16 16">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" color="lightgreen" className="bi bi-camera-video-off-fill" viewBox="0 0 16 16">
                            <path d="M6 3a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
                            <path d="M9 6a3 3 0 1 1 0-6 3 3 0 0 1 0 6"/>
                            <path d="M9 6h.5a2 2 0 0 1 1.983 1.738l3.11-1.382A1 1 0 0 1 16 7.269v7.462a1 1 0 0 1-1.406.913l-3.111-1.382A2 2 0 0 1 9.5 16H2a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z"/>
@@ -121,7 +122,7 @@ const LiveWebcam = (props) => {
                      ):(
                        <button id='startCapture'  onClick={handleStartRecording}
                        >
-                       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="red" className="bi bi-play" color='red'  viewBox="0 0 16 16">
+                       <svg xmlns="http://www.w3.org/2000/svg" width="40" height="30" fill="red" className="bi bi-play" color='red'  viewBox="0 0 16 16">
                          <path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2M6 5.883a.5.5 0 0 1 .757-.429l3.528 2.117a.5.5 0 0 1 0 .858l-3.528 2.117a.5.5 0 0 1-.757-.43V5.884z"/>
                        </svg>
                       </button>
@@ -130,13 +131,14 @@ const LiveWebcam = (props) => {
 
                       <button   onClick={handleFlipCamera}
                       style={{color:'white'}}>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" className="bi bi-phone-flip" viewBox="0 0 16 16">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="30" fill="white" className="bi bi-phone-flip" viewBox="0 0 16 16">
                           <path fill-rule="evenodd" d="M11 1H5a1 1 0 0 0-1 1v6a.5.5 0 0 1-1 0V2a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v6a.5.5 0 0 1-1 0V2a1 1 0 0 0-1-1m1 13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-2a.5.5 0 0 0-1 0v2a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-2a.5.5 0 0 0-1 0zM1.713 7.954a.5.5 0 1 0-.419-.908c-.347.16-.654.348-.882.57C.184 7.842 0 8.139 0 8.5c0 .546.408.94.823 1.201.44.278 1.043.51 1.745.696C3.978 10.773 5.898 11 8 11q.148 0 .294-.002l-1.148 1.148a.5.5 0 0 0 .708.708l2-2a.5.5 0 0 0 0-.708l-2-2a.5.5 0 1 0-.708.708l1.145 1.144L8 10c-2.04 0-3.87-.221-5.174-.569-.656-.175-1.151-.374-1.47-.575C1.012 8.639 1 8.506 1 8.5c0-.003 0-.059.112-.17.115-.112.31-.242.6-.376Zm12.993-.908a.5.5 0 0 0-.419.908c.292.134.486.264.6.377.113.11.113.166.113.169s0 .065-.13.187c-.132.122-.352.26-.677.4-.645.28-1.596.523-2.763.687a.5.5 0 0 0 .14.99c1.212-.17 2.26-.43 3.02-.758.38-.164.713-.357.96-.587.246-.229.45-.537.45-.919 0-.362-.184-.66-.412-.883s-.535-.411-.882-.571M7.5 2a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1z"/>
                         </svg>
                       </button>
                   
                    <VideoRecorder   setSwitchUploadLive={props.setSwitchUploadLive}/>
                   </div>
+              
                 </>  
   )
 }

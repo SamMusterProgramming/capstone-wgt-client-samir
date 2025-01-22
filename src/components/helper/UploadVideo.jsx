@@ -59,8 +59,9 @@ const UploadVideo = (props) => {
             onChange={handleVolumeChange}
           />  */}
          </div>
-         <div className='container-fluid d-flex gap-5 mt-2 justify-content-between 
-              align-items-center postfooter'>
+         <div className='container-fluid d-flex  justify-content-between
+              align-items-center postfooter'
+              style={{width:"90%", height:"10%"}}>
                   <VideoUploader  onChange={props.handleUpload} /> 
                   <VideoRecorder   setSwitchUploadLive={props.setSwitchUploadLive}/>
 
