@@ -179,34 +179,34 @@
   .highlight {
     /* text-decoration-line: underline ; */
     font-weight: 900;
-    background-color:#614310 ;
-    font-size: 14px;
+    background-color:#2e8ff0 ;
+    font-size: 11px;
     color: white;
-    opacity: 75%;
+    opacity: 90%;
 
   }
   .nohighlight{
     font-weight:700;
-    background-color:#614310;
-    font-size:13px;
+    background-color:#2e8ff0;
+    font-size:10px;
     color: white;
     opacity: 50%;
   }
   .highlight1 {
     /* text-decoration-line: underline ; */
     font-weight: 900;
-    background-color:#362906 ;
-    font-size: 14px;
+    background-color:#2e8ff0 ;
+    font-size: 11px;
     color: white;
-    opacity: 80%;
+    opacity: 90%;
 
   }
   .nohighlight1{
     font-weight:700;
-    background-color:#362906;
-    font-size:13px;
+    background-color:#2e8ff0;
+    font-size:10px;
     color: white;
-    opacity: 40%;
+    opacity: 50%;
   }
   .sky-bg {
     background-image:  url('../asset/material/blue-sky.jpeg');
