@@ -11,6 +11,7 @@ const RightSideBar = ({user}) => {
  const [isTalent,setIsTalent]= useState(false)
  const [isChallenge,setIsChallenge]= useState(false)
  const [isGuiness,setIsGuiness]= useState(false)
+ const [isProfile,setIsProfile]= useState(false)
  const [notCount,setNotCount] = useState(0)
  const {notifications,setNotifications} = useContext(AuthContent)
 
@@ -30,6 +31,7 @@ useEffect(() => {
     setIsTalent(false)
     setIsChallenge(false)
     setIsGuiness(false)
+    setIsProfile(false)
   }
 }, [isHome])
 useEffect(() => {
@@ -37,6 +39,7 @@ useEffect(() => {
     setIsHome(false)
     setIsChallenge(false)
     setIsGuiness(false)
+    setIsProfile(false)
   }
 }, [isTalent])
 useEffect(() => {
@@ -44,6 +47,7 @@ useEffect(() => {
     setIsHome(false)
     setIsTalent(false)
     setIsGuiness(false)
+    setIsProfile(false)
   }
 }, [isChallenge])
 
@@ -52,8 +56,18 @@ useEffect(() => {
     setIsHome(false)
     setIsTalent(false)
     setIsChallenge(false)
+    setIsProfile(false)
   }
 }, [isGuiness])
+useEffect(() => {
+  if (isProfile) {
+    setIsHome(false)
+    setIsTalent(false)
+    setIsChallenge(false)
+    setIsGuiness(false)
+  }
+}, [isProfile])
+  
   
   return (
 
@@ -74,17 +88,6 @@ useEffect(() => {
                           className= {isHome ?"challenge-logo-selected":"challenge-logo"}
                           src=  "/asset/material/home.png" alt="" />  
                 </Link>
-                {/* <Link data-toggle = "tooltip" title="talent" to='/home' onClick={(e)=>{setIsTalent(true)}}
-                 className={isTalent ?
-                  "d-flex flex-column justify-content-center align-items-center text-center menu-item-selected" :
-                  "d-flex flex-column justify-content-center align-items-center text-center menu-item" }>
-                  <img
-                      //  style={{backgroundColor:'#0c77c9'}} 
-                       className= {isTalent ?"challenge-logo-selected":"challenge-logo"}
-                       src="/asset/material/talent.png" alt="" />
-                </Link>    */}
-                
-             
 
                 <Link data-toggle = "tooltip" title="talent" to='/chpage/challenges' onClick={(e)=>{setIsChallenge(true)}}
                  className={isChallenge ?
@@ -94,6 +97,15 @@ useEffect(() => {
                        className= {isChallenge ?"challenge-logo-selected":"challenge-logo"}
                        src="/asset/material/challenge-logo.png" alt="" />
                 </Link>    
+                <Link data-toggle="tooltip" title="GUINESS" to={'/'} onClick={(e)=>{setIsGuiness(true)}}
+                    className={isGuiness ?
+                      "d-flex flex-column justify-content-center align-items-center text-center menu-item-selected" :
+                      "d-flex flex-column justify-content-center align-items-center text-center menu-item" }>
+                  <img 
+    
+                       className= {isGuiness ?"challenge-logo-selected":"challenge-logo"}
+                       src="/asset/material/trophy.png" alt="" />
+                </Link>    
                 
                 <Link data-toggle = "tooltip" title="talent" to={'/notifications'} onClick={(e)=>{setIsTalent(true)}}
                  className={isTalent ?
@@ -101,25 +113,39 @@ useEffect(() => {
                   "d-flex  justify-content-center align-items-center text-center menu-item" }
                    >
                    <Badge badgeContent={notCount} color="error"
-                     className= {isTalent ?"challenge-logo-selected":"challenge-logo"}>
+                     className= {isTalent ?"challenge-logo-selected":"challenge-logo"}
+                     style={{height:"60%",objectFit:"cover",marginLeft:"20%"}}>
                     <img 
-                   
-                     src="/asset/material/bells.png" alt=""
-                     style={{marginLeft:"5px"}} />
+                    //  style={{height:"70%",objectFit:"cover"}}
+                     src="/asset/material/notification.png" alt=""
+                      />
                    </Badge>    
                 </Link>  
 
-                <Link data-toggle="tooltip" title="GUINESS" to={'/'} onClick={(e)=>{setIsGuiness(true)}}
-                    className={isGuiness ?
-                      "d-flex flex-column justify-content-center align-items-center text-center menu-item-selected" :
-                      "d-flex flex-column justify-content-center align-items-center text-center menu-item" }>
-                  <img 
-                  //  style={{backgroundColor:'red'}}
-                       className= {isGuiness ?"challenge-logo-selected":"challenge-logo"}
-                       src="/asset/material/trophy.png" alt="" />
-                </Link>    
+             
+                {user ? (
+                      <Link  to={`/profile/${user._id}`}  
+                        data-toggle="tooltip" title="PROFILE"  onClick={(e)=>{setIsProfile(true)}}
+                        className={isProfile ?
+                        "d-flex flex-column justify-content-center align-items-center text-center menu-item-selected" :
+                        "d-flex flex-column justify-content-center align-items-center text-center menu-item" }
+                        >
+                      
+                        <img   className= { isProfile ? "challenge-logo-selected":"challenge-logo"}
+                          style={{height:"70%",objectFit:"cover"}}
+                          src={ user.profile_img}  alt="" />
+                    </Link> 
+                    ):(
+                      <Link  style={{height:'70%'}} to= "/sign-in"
+                      className="d-flex flex-column justify-content-center align-items-center  menu-item"
+                         >       
+                    
+                      <img className="menu-logo" src={"/asset/material/avatar.jpg"} alt="" />
+                    </Link>   
+               
+                  )}
+                
               
-    
                 {user ? (
                     <Link to={`/profile/${user._id}` }  
                     className="d-flex flex-column justify-content-center align-items-center text-center menu-item">

@@ -33,7 +33,7 @@ useEffect(() => {
 return (
 
     <div className="d-flex flex-column mt-0 mb-0 justify-content-evenly align-items-center img-container "
-          style={{width:"100%",height:'35%',backgroundColor:''}}>
+          style={{width:"100%",height:'29%',backgroundColor:''}}>
         
              {/* <hr style={{height:"2px"}} /> */}
              <div className="d-flex  justify-content-start align-items-center " 
@@ -115,38 +115,13 @@ return (
 
              </div>
 
-             {/* <div className="d-flex   justify-content-evenly gap-0 align-items-center " 
-                style={{fontSize:'10px',width:'100%',height:"20%",padding:'0px',backgroundColor:''}}>
-
-                  <div className="d-flex  justify-content-center gap-0 align-items-center "
-                  style={{width:"33%",height:'100%',backgroundColor:''}}>
-                      <img style={{width:"60%",height:'70%',objectFit:"fill", backgroundColor:''}}
-                      src="../asset/material/challenge-logo.png" alt="" />
-                 </div>
-                 <Link to={"/newchallenge"} className="d-flex justify-content-center gap-0 align-items-center "
-                  style={{width:"34%",height:'100%'}}>
-                  <Button to={"/newchallenge"}
-                   style={{fontSize:'13px',color:"#1b78cf",fontWeight:'900', width:"94%",height:'95%'
-                     ,backgroundColor:'#403014',fontFamily:'Arsenal SC ',border:"none"
-                    }}>
-                         NEW CHALLENGE
-                  </Button>
-                 </Link>
-                 <div className="d-flex   justify-content-center gap-0 align-items-center "
-                  style={{width:"33%",height:'100%',backgroundColor:''}}>
-                    <img style={{width:"60%",height:'70%',objectFit:"cover", color:'red'}}
-                      src="../asset/material/timeline1.webp" alt="" />
-                 </div>
-                 
-             </div> */}
-
                <div className="d-flex justify-content-evenly align-items-center "
-                        style={{fontSize:'10px',width:'100%',height:"24%",backgroundColor:''
+                        style={{fontSize:'10px',width:'100%',height:"22%",backgroundColor:''
                            ,fontWeight:"500"
                         }}>
 
                          <Link  to={""}
-                                  className="d-flex justify-content-center align-items-center "
+                                  className="d-flex justify-content-center align-items-center  "
                                   style={{fontSize:'10px',width:'31%',height:"100%",backgroundColor:''
                                    ,fontWeight:"500" }}>
                                <button 
@@ -183,24 +158,6 @@ return (
                                </button>
                            </Link>
 
-                      {/* <Link to={""} className={lineAll? "highlight" : "nohighlight"}
-                        onClick={(e)=>{setLineAll(true)}}
-                        style={{fontSize:'12px',color:"#191c16",
-                            fontFamily:'Arsenal SC serif'}}>
-                             All Challenges
-                        </Link>
-                        <Link to={""} className={lineHot ? "highlight" : "nohighlight"}
-                        onClick={(e)=>{setLineHot(true)}}
-                        style={{fontSize:'12px',color:"#191c16" ,
-                            fontFamily:'Arsenal SC serif' }}>
-                            <span>Hot Challenges</span> 
-                        </Link>
-                        <Link to={""} className={lineFriend ? "highlight" : "nohighlight"}
-                        onClick={(e)=>{setLineFriend(true)}}
-                        style={{fontSize:'12px',color:"#191c16",
-                            fontFamily:'Arsenal SC serif'}}>
-                          Friend Challenges
-                        </Link> */}
                </div>
 
 

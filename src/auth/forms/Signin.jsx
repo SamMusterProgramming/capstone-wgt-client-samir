@@ -78,7 +78,7 @@ import { AuthContent } from '../../context/AuthContent'
 return (    
 
  <div className="d-flex flex-column justify-content-center gap-1 align-items-center h-100 homepage sky-bg"
- style={{backgroundColor:"#084569"}}>
+ style={{backgroundColor:""}}>
     
    
      
@@ -98,7 +98,7 @@ return (
               ref={holdEmail}
               onChange={handleEmailChange}
                className= {'form-control input_user ' + (isEmailWrong ? 'shake-email' : '') }
-            defaultValue="dummy@gmail.com" placeholder="email" 
+            defaultValue="samirhaddadi@gmail.com" placeholder="email" 
            />
          </div>
          <div className="input-group gap-3 p-2  ">
@@ -106,7 +106,7 @@ return (
                 className= {'form-control input_pass ' + (isPasswordWrong ? 'shake-password' : '')  }
                   ref={holdPassword}
                   onChange={handlePasswordChange}
-                   defaultValue="Sberber@" placeholder="password" 
+                   defaultValue="Samir@" placeholder="password" 
                   />
          </div>  
          <div className="form-group mt-3 d-flex align-items-center justify-content-start"
@@ -122,7 +122,7 @@ return (
            <button type="button" onClick={handleSubmit} name="button" className="btn login_btn">Login</button>
          </div>
          {message && (
-            <p className='mt-2' style={{color:'red',fontSize:'11px'}}>{message}</p>
+            <p className='mt-2' style={{color:'gray',fontSize:'11px',fontWeight:"900",fontFamily:""}}>{message}</p>
              )}
        </form>     
      </div>

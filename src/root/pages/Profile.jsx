@@ -106,7 +106,7 @@ const Profile = (props) => {
     <div className='d-flex flex-column justify-content-start align-items-center '
       style={{backgroundColor:"lightgray", width:'100%',overflow:'scroll',height:"100%"}}>
 
-      <div className=' d-flex flex-column justify-content-start align-items-center'
+      <div className=' d-flex flex-column justify-content-start align-items-center star'
         style={{maxWidth:'500px', height:'210px', width:'100%', backgroundColor:"rgb(25, 33, 39)"}}>
            
                <img style={{width:"100%",height:"150px",objectFit:"cover"}} src={user.cover_img} alt="" />
@@ -116,8 +116,8 @@ const Profile = (props) => {
               {/* </div> */}
       </div>   
     
-      <div className='d-flex flex-column mt-0 gap-2 justify-content-start align-items-center  '
-       style={{height:'700px' ,width:'100%', backgroundColor:"rgb(25, 33, 39)"}}>
+      <div className='d-flex flex-column mt-0 gap-2 justify-content-start align-items-center star '
+       style={{height:'700px' ,width:'100%'}}>
 
                <div className="d-flex flex-column mt-2  justify-content-start align-items-center">
                     <span style={{fontSize:'14px',fontWeight:"300",color:'white',fontFamily:'Arsenal SC serif'}}>{user.name}</span> 

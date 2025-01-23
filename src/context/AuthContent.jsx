@@ -17,7 +17,8 @@ export const AuthContentProvider = ({ children }) => {
 
   return (
     <AuthContent.Provider value={{user, setUser,notifications,setNotifications ,setIsLoading,isLoading,
-    participateChallenges,setParticipateChallenges,userChallenges,setUserChallenges,topChallenges,setTopChallenges}}>
+    participateChallenges,setParticipateChallenges,userChallenges,setUserChallenges,topChallenges,setTopChallenges
+    }}>
       {children}
     </AuthContent.Provider>
   );

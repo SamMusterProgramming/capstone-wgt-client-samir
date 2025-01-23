@@ -35,7 +35,7 @@ useEffect(() => {
   return (
     <>
         <div className="d-flex flex-column mb-0 mt-0 justify-content-evenly align-items-center star"
-          style={{width:"100%",height:'35%',backgroundColor:''}}>
+          style={{width:"100%",height:'29%',backgroundColor:''}}>
           
           
              <div className="d-flex   justify-content-start align-items-end  " 
@@ -122,11 +122,11 @@ useEffect(() => {
       
 
              <div className="d-flex justify-content-center gap-2 align-items-center "
-                        style={{fontSize:'10px',width:'100%',height:"24%",backgroundColor:''
+                        style={{fontSize:'10px',width:'100%',height:"22%",backgroundColor:''
                            ,fontWeight:"500"
                         }}>
                            <Link  to={"/chpage/challenges"}
-                                  className="d-flex justify-content-center align-items-center "
+                                  className="d-flex justify-content-center align-items-center dark-bg "
                                   style={{fontSize:'10px',width:'31%',height:"100%",backgroundColor:''
                                    ,fontWeight:"500" }}>
                                <button 

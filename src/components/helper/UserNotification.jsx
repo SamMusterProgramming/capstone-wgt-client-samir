@@ -17,7 +17,7 @@ const UserNotification = (props) => {
   const {challenge,setChallenge} = useContext(AuthContent)
 
   const [notificationClass,setNotificationClass] = useState(
-    props.notification.isRead ? "d-flex flex-column mt-0 justify-content-start align-items-center sky-bg " :
+    props.notification.isRead ? "d-flex flex-column mt-0 justify-content-start align-items-center sky-bg" :
                                "d-flex flex-column mt-0 justify-content-start align-items-center cloud-bg" )
   const [color,setColor] = useState(!props.notification.isRead ? 
            "black" :"white" )      

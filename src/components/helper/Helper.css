@@ -179,10 +179,10 @@
   .highlight {
     /* text-decoration-line: underline ; */
     font-weight: 900;
-    background-color:#2e8ff0 ;
+    /* background-color:#2e8ff0 ; */
     font-size: 11px;
     color: white;
-    opacity: 90%;
+    opacity: 100%;
 
   }
   .nohighlight{
@@ -195,7 +195,7 @@
   .highlight1 {
     /* text-decoration-line: underline ; */
     font-weight: 900;
-    background-color:#2e8ff0 ;
+    /* background-color:#2e8ff0 ; */
     font-size: 11px;
     color: white;
     opacity: 90%;
@@ -209,13 +209,19 @@
     opacity: 50%;
   }
   .sky-bg {
-    background-image:  url('../asset/material/blue-sky.jpeg');
+    background-image:  url('../asset/material/star-sky.jpg');
     background-size: cover; 
     background-position: bottom; 
     background-repeat: no-repeat; 
   }
   .cloud-bg {
     background-image:  url('../asset/material/cloud.jpg');
+    background-size: cover; 
+    background-position: bottom; 
+    background-repeat: no-repeat; 
+  }
+  .dark-bg {
+    background-image:  url('../asset/material/dark.jpeg');
     background-size: cover; 
     background-position: bottom; 
     background-repeat: no-repeat; 
@@ -227,7 +233,7 @@
     background-repeat: no-repeat; 
   }
   .star {
-    background-image:  url('../asset/material/star-sky.jpg');
+    background-image:  url('../asset/material/dark-sky.jpg');
     background-size: cover; 
     background-position: bottom; 
     background-repeat: no-repeat; 

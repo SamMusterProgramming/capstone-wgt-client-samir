@@ -163,7 +163,7 @@ export const Signup = (props) => {
 						<div className="d-flex justify-content-center mt-3 login_container">
 				         	<button type="button" onClick={handleSubmit} name="button" className="btn login_btn"> Register</button>
 				        </div>  
-						<p style={{color:'red',fontSize:12}} >{errorMessage}</p>
+						<p style={{color:'gray',fontSize:12}} >{errorMessage}</p>
 				  </form>    
 				 
 				</div>
