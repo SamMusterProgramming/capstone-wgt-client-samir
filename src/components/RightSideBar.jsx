@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom"
 import './Components.css' 
 import { BASE_URL } from "../apiCalls"
-import { useEffect, useRef, useState } from "react"
+import { useContext, useEffect, useRef, useState } from "react"
+import { AuthContent } from "../context/AuthContent"
+import { Badge } from "antd"
 
 const RightSideBar = ({user}) => {
 
@@ -9,7 +11,19 @@ const RightSideBar = ({user}) => {
  const [isTalent,setIsTalent]= useState(false)
  const [isChallenge,setIsChallenge]= useState(false)
  const [isGuiness,setIsGuiness]= useState(false)
+ const [notCount,setNotCount] = useState(0)
+ const {notifications,setNotifications} = useContext(AuthContent)
 
+useEffect(() => {
+  if(notifications) {
+    const notifs = [] 
+    notifications.forEach(notif =>
+      {
+        if (!notif.isRead) notifs.push(notif)
+      }) 
+    setNotCount(notifs.length)
+  }
+}, [notifications])
 useEffect(() => {
   if (isHome) {
     setIsTalent(false)
@@ -59,7 +73,7 @@ useEffect(() => {
                           className= {isHome ?"challenge-logo-selected":"challenge-logo"}
                           src=  "/asset/material/home.png" alt="" />  
                 </Link>
-                <Link data-toggle = "tooltip" title="talent" to='/home' onClick={(e)=>{setIsTalent(true)}}
+                {/* <Link data-toggle = "tooltip" title="talent" to='/home' onClick={(e)=>{setIsTalent(true)}}
                  className={isTalent ?
                   "d-flex flex-column justify-content-center align-items-center text-center menu-item-selected" :
                   "d-flex flex-column justify-content-center align-items-center text-center menu-item" }>
@@ -67,7 +81,7 @@ useEffect(() => {
                       //  style={{backgroundColor:'#0c77c9'}} 
                        className= {isTalent ?"challenge-logo-selected":"challenge-logo"}
                        src="/asset/material/talent.png" alt="" />
-                </Link>   
+                </Link>    */}
                 
              
 
@@ -79,7 +93,18 @@ useEffect(() => {
                        className= {isChallenge ?"challenge-logo-selected":"challenge-logo"}
                        src="/asset/material/challenge-logo.png" alt="" />
                 </Link>    
-             
+                
+                <Link to={'/notifications'} onClick={(e)=>{setIsTalent(true)}}
+                 className={isTalent ?
+                  "d-flex flex-column justify-content-center align-items-center text-center menu-item-selected" :
+                  "d-flex  justify-content-center align-items-center text-center menu-item" }
+                   >
+                   <Badge badgeContent={notCount} color="error">
+                    <img className= {isTalent ?"challenge-logo-selected":"challenge-logo"}
+                     src="/asset/material/bells.png" alt=""
+                     style={{marginLeft:"5px"}} />
+                   </Badge>    
+                </Link>  
 
                 <Link data-toggle="tooltip" title="GUINESS" to={'/'} onClick={(e)=>{setIsGuiness(true)}}
                     className={isGuiness ?
@@ -95,7 +120,7 @@ useEffect(() => {
                 {user ? (
                     <Link to={`/profile/${user._id}` }  
                     className="d-flex flex-column justify-content-center align-items-center text-center menu-item">
-                      <img style={{height:'100%' ,backgroundColor:'#1ca1c9'}} className="challenge-logo" 
+                      <img style={{height:'80%' ,backgroundColor:'#1ca1c9'}} className="challenge-logo" 
                        src="/asset/material/logout.png" alt="" />
                     </Link> 
          

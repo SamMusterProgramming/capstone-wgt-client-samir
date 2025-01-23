@@ -47,7 +47,7 @@ function RootLayout(props) {
     { ( isAuthenticated) ? (
  
         <div className=" homelayout">
-          <TopBar user={user} /> 
+          {/* <TopBar user={user} />  */}
           <TopLoadingBar />
           <Outlet />
           <RightSideBar user={user}/>

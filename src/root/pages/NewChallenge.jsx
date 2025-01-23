@@ -130,12 +130,13 @@ useEffect(() => {
 useEffect(() => {
   if(challenge_id) {
       getChallengeById(challenge_id ,setChallenge)
+      setDescription(challenge.desc)
      }
 }, [])
 
   return (
   
-    <div className="d-flex justify-content-start gap-0 align-items-center  post-container ">
+    <div className="d-flex justify-content-start gap-0 align-items-center  post-container">
 
      
 
@@ -224,8 +225,8 @@ useEffect(() => {
            
           </div>
           <div className="d-flex  mb-0 mt-0 justify-content-start align-items-center star"
-          style={{width:"100%",height:'6%',backgroundColor:'white'}}>
-               <div className="d-flex  mb-0 mt-0 justify-content-start align-items-center cloud-bg"
+              style={{width:"100%",height:'6%',backgroundColor:'white'}}>
+                <div className="d-flex  mb-0 mt-0 justify-content-start align-items-center cloud-bg"
                    style={{width:"80%",height:'100%',backgroundColor:'white'}}>
                    {(!challenge_id) ?  
                     (
@@ -242,8 +243,8 @@ useEffect(() => {
                 </div>   
                 <div className="d-flex  mb-0 mt-0 justify-content-start align-items-center"
                    style={{width:"20%",height:'100%',backgroundColor:'lightgreen'}}>
-                     <button onClick={handleUploading} className=' submit-button cloud-bg'
-                     style={{width:"100%",height:'100%',borderRadius:"2px", backgroundColor:'lightgreen'}}>
+                     <button onClick={handleUploading} className=' submit-button'
+                     style={{width:"100%",height:'100%',borderRadius:"2px", backgroundColor:'#1ee635'}}>
                                 Submit
                       </button>
                 </div> 
@@ -253,12 +254,12 @@ useEffect(() => {
         <>
 
           <div className="d-flex flex-column mb-0 mt-0 justify-content-start align-items-center star"
-          style={{width:"100%",height:'20%',backgroundColor:'gray'}}>
-          
+          style={{width:"100%",height:'25%',backgroundColor:'gray'}}>
+{/*           
              <div className="d-flex  justify-content-between gap-0 align-items-center " 
-                style={{fontSize:'10px',minWidth:'100%',minHeight:"30%",padding:'10px'}}>
-                    <div className="d-flex text-center justify-content-center gap-0 align-items-center "
-                    style={{width:"33%",height:'100%',backgroundColor:''}}>
+                style={{fontSize:'10px',minWidth:'100%',minHeight:"0%",padding:'10px'}}> */}
+                    {/* <div className="d-flex text-center justify-content-center gap-0 align-items-center "
+                       style={{width:"33%",height:'100%',backgroundColor:''}}>
                       <p style={{fontSize:'9px',color:"#1f2426"}}> 
                       <span className="lead text" style={{fontSize:'10px',color:"#232324",fontWeight:'600', 
                         fontFamily:'Arsenal SC serif',color:"white"
@@ -279,20 +280,24 @@ useEffect(() => {
                   style={{width:"33%",height:'100%',backgroundColor:''}}>
                     <img style={{width:"50%",height:'100%',objectFit:"fill", color:'red'}}
                       src="../asset/material/newchallenge.png" alt="" />
-                 </div>
+                 </div> */}
                
-             </div>
+             {/* </div> */}
              <div className="d-flex   justify-content-start align-items-center" 
                 style={{fontSize:'10px',width:'100%',height:"70%",background:""}}>
-                <div className="d-flex justify-content-center align-items-center "
-                     style={{fontSize:'10px',width:'23%',height:"100%",borderRadius:'5px',backgroundColor:''}}>
-                    <Link to={"/profile/"+`${props.user._id}`} style={{width:'90%',height:"85%"}}>
+                <div className="d-flex flex-column justify-content-center align-items-center "
+                     style={{fontSize:'8px',width:'26%',height:"100%",borderRadius:'5px',backgroundColor:''}}>
+                      <span className="" style={{fontSize:'10px',color:"#232324",fontWeight:'600', 
+                        fontFamily:'Arsenal SC serif',color:"white"
+                      }}>  {props.user.name.slice(0,15)}
+                      </span>
+                    <Link to={"/profile/"+`${props.user._id}`} style={{width:'90%',height:"75%"}}>
                       <img   style={{fontSize:'10px',width:'100%',height:"100%",objectFit:'cover',borderRadius:'5px'}}
                         src={props.user.profile_img}  alt="" />
                     </Link>  
                 </div>
                 <div className="d-flex flex-column  justify-content-start align-items-center "
-                     style={{fontSize:'10px',width:'85%',height:"100%",backgroundColor:''}}>
+                     style={{fontSize:'10px',width:'84%',height:"100%",backgroundColor:''}}>
    
                      <div className="d-flex  justify-content-start align-items-start  "
                        style={{fontSize:'10px',minWidth:'100%',minHeight:"55%",backgroundColor:'',padding:"10px"}}>
@@ -324,11 +329,38 @@ useEffect(() => {
                           no graphic or inappropriate content! 
                        
                      </div>
-
-                    
-                    
                 </div>
              </div>
+
+   
+             <div className="d-flex  mb-0 mt-0 justify-content-start align-items-center star"
+              style={{width:"100%",height:'30%',backgroundColor:'white'}}>
+                <div className="d-flex  mb-0 mt-0 justify-content-start align-items-center cloud-bg"
+                   style={{width:"80%",height:'100%',backgroundColor:'white'}}>
+                   {(!challenge_id) ?  
+                    (
+                      <input style={{fontWeight:600,textAlign:"center", width:'100%',height:'45px',fontFamily:"Arsenal SC serif",backgroundColor:"transparent",padding:"10px",
+                        border:'none',textDecoration:"none",fontFamily:"Arsenal SC serif",color:"black"}}
+                      className="description" onChange={addDescrition}  name='description'  placeholder='Add title to your challenge'/>
+                   
+                    ):(
+                      <input style={{fontWeight:600,textAlign:"center", width:'100%',height:'45px',fontFamily:"Arsenal SC serif",backgroundColor:"transparent",padding:"10px",
+                        border:'none',textDecoration:"none",color:"black"}}
+                      className="description" onChange={addDescrition}  name='description' value={challenge.desc} />
+  
+                    )}
+                </div>   
+                <div className="d-flex  mb-0 mt-0 justify-content-start align-items-center"
+                   style={{width:"20%",height:'100%',backgroundColor:'lightgreen'}}>
+                     <button onClick={handleUploading} className=' submit-button'
+                     style={{width:"100%",height:'100%',borderRadius:"2px", backgroundColor:'#1ee635'}}>
+                                Submit
+                      </button>
+                </div> 
+          </div>
+  
+
+
           </div>  
 
         </>

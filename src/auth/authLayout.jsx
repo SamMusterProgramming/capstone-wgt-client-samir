@@ -17,7 +17,7 @@ return (
      { isAuthenticated ? ( < Navigate to ="/notifications" /> ):
      ( 
      <div className="homelayout"> 
-     <TopBar/>
+     {/* <TopBar/> */}
         <TopLoadingBar/>
         <Outlet />
       <RightSideBar/>
