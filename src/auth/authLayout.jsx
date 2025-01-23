@@ -14,7 +14,7 @@ const AuthLayout = ({user}) => {
 
 return (
    <>
-     { isAuthenticated ? ( < Navigate to ="/notifications" /> ):
+     { isAuthenticated ? ( < Navigate to ="/home" /> ):
      ( 
      <div className="homelayout"> 
      {/* <TopBar/> */}

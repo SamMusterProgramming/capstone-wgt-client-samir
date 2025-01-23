@@ -60,8 +60,8 @@ const TopBar = (props) => {
                 <Link to={'/notifications'}
                 className="d-flex flex-column justify-content-center align-items-center  menu-item"
                    >   
-                   <Badge badgeContent={notCount} color="error">
-                    <img style={{backgroundColor:''}} className="challenge-logo" src="/asset/material/bells.png" alt="" />
+                   <Badge badgeContent={6} color="error">
+                    <img  className="challenge-logo" src="/asset/material/bells.png" alt="" />
                    </Badge>    
                 </Link>  
             

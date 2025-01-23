@@ -3,7 +3,7 @@ import './Components.css'
 import { BASE_URL } from "../apiCalls"
 import { useContext, useEffect, useRef, useState } from "react"
 import { AuthContent } from "../context/AuthContent"
-import { Badge } from "antd"
+import Badge from '@mui/material/Badge';
 
 const RightSideBar = ({user}) => {
 
@@ -24,6 +24,7 @@ useEffect(() => {
     setNotCount(notifs.length)
   }
 }, [notifications])
+
 useEffect(() => {
   if (isHome) {
     setIsTalent(false)
@@ -94,13 +95,15 @@ useEffect(() => {
                        src="/asset/material/challenge-logo.png" alt="" />
                 </Link>    
                 
-                <Link to={'/notifications'} onClick={(e)=>{setIsTalent(true)}}
+                <Link data-toggle = "tooltip" title="talent" to={'/notifications'} onClick={(e)=>{setIsTalent(true)}}
                  className={isTalent ?
                   "d-flex flex-column justify-content-center align-items-center text-center menu-item-selected" :
                   "d-flex  justify-content-center align-items-center text-center menu-item" }
                    >
-                   <Badge badgeContent={notCount} color="error">
-                    <img className= {isTalent ?"challenge-logo-selected":"challenge-logo"}
+                   <Badge badgeContent={notCount} color="error"
+                     className= {isTalent ?"challenge-logo-selected":"challenge-logo"}>
+                    <img 
+                   
                      src="/asset/material/bells.png" alt=""
                      style={{marginLeft:"5px"}} />
                    </Badge>    
