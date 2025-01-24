@@ -142,7 +142,12 @@ return (
             <a href="#">Forgot your password?</a>
        </div>   
     </div>
-
+    <div className="d-flex mt-0 gap-5 mb-0 justify-content-center align-item-center "
+      style={{minWidth:'100%',marginLeft:'0%'}}>   
+          <Link to="/demo">
+             <p style={{fontSize:'13px',marginLeft:'0px',color:'#c4d3f5'}}>Watch Demo</p>
+          </Link>
+      </div>
      <div className="d-flex mt-4 gap-5 mb-5 justify-content-center align-item-center "
       style={{minWidth:'100%',marginLeft:'0%'}}>   
           <img src="/asset/material/you.png" alt="" 
