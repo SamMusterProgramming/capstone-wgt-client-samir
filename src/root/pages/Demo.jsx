@@ -19,12 +19,14 @@ const Demo = (props) => {
 
   return (
 
-
+    <div className='d-flex flex-column align-items-center  justify-content-center dark-bg'
+    style={{width:'100%' ,height:'92%',backgroundColor:''}} >
             <div className='d-flex flex-column align-items-center  justify-content-start'
-              style={{width:'100%' ,height:'100%',backgroundColor:'gray'}} >
+              style={{width:'90%' ,height:'90%',border:'5px solid white',borderRadius:"15px"}} >
                 <video  src={demoUrl} controls autoPlay audio={true}
-                style={{objectFit:"fill",width:'100%' ,height:'100%'}} />      
+                style={{objectFit:"fill",width:'100%' ,height:'100%',borderRadius:"5px"}} />      
             </div>
+    </div>        
 
   )
 }

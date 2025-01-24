@@ -44,4 +44,6 @@ Create a .env file in the root of the backend project and set up your database c
 4. Run the app: npm run dev
 
 
-import { toast } from 'sonner' for alerts
+# links 
+app deployed in Render , click the link below to open the App
+https://capstone-wgt-client-samir.onrender.com
