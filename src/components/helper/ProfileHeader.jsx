@@ -66,22 +66,22 @@ return (
                         style={{fontSize:'10px',width:'90%',height:"30%"
                         ,borderRadius:"5px"}} >
                         <Select
-                            style={{width:"98%",height:"100%",border:"solid 3px black",fontSize:'11px' ,border:"none",
+                            style={{width:"98%",height:"100%",border:"solid 3px black",fontSize:'14px' ,border:"none",
                               fontWeight:"600", backgroundColor:'#d19f15',opacity:"70%",textAlign:"center"}}
-                            defaultValue="ALL TYPE" 
+                            defaultValue="All" 
                              >   
-                            <Select.Option value = {"ALL CHALLENGES"} 
+                            {/* <Select.Option value = {"ALL CHALLENGES"} 
                                         style={{ color:'black',fontFamily:'Arsenal SC',
                                         backgroundColor:"#d19f15",width:"100%",height:"30px",opacity:"70%" }} >
-                                       <p style={{ color:'black'}}>ALL TYPES</p> 
-                             </Select.Option>
+                                       <p style={{ color:'black'}}></p> 
+                             </Select.Option> */}
                             {challengeType.map((selection,index)=>{   
                                 return ( 
                                    <Select.Option key={index} value = {selection.type}
                                         style={{ color:'black',fontFamily:'Arsenal SC',
-                                        backgroundColor:"#d19f15",width:"100%",height:"30px" }} >
-                                    <p style={{ color:'black', fontFamily:'Arsenal SC serif',fontWeight:"900",
-                                        backgroundColor:"", width:"100%",fontSize:"17px"}}>{selection.type}</p> 
+                                        backgroundColor:"",width:"100%",height:"30px" }} >
+                                         <p style={{ color:'black', fontFamily:'Arsenal SC serif',fontWeight:"900",
+                                        backgroundColor:"", width:"100%",fontSize:"14px"}}>{selection.type}</p> 
                                     </Select.Option> )
                             })} 
                         </Select>

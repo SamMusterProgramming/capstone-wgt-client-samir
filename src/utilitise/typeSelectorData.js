@@ -1,5 +1,10 @@
 export const challengeType =[
     {
+        type : "All" , 
+        category:[
+         "SOCCER","FOOTBALL","BASKETBALLl","CRICKET","TENNIS","SWIMMING"
+        ]
+     },{
        type : "Sport" , 
        category:[
         "SOCCER","FOOTBALL","BASKETBALLl","CRICKET","TENNIS","SWIMMING"
@@ -12,7 +17,7 @@ export const challengeType =[
         ]
     },
     {
-        type: "Food" ,
+        type: "Eating" ,
         category:[
             "EATING","COOKING","BAKING"
         ]
@@ -23,10 +28,24 @@ export const challengeType =[
             "EATING","COOKING","BAKING"
         ]
     },
-    ,
     {
         type: "Fitness" 
-    }
+    },
+    {
+        type : "Magic" , 
+        category:[
+         "SOCCER","FOOTBALL","BASKETBALLl","CRICKET","TENNIS","SWIMMING"
+        ]
+     },
+     {
+        type : "Dance" , 
+        category:[
+         "SOCCER","FOOTBALL","BASKETBALLl","CRICKET","TENNIS","SWIMMING"
+        ]
+     },
+     {
+        type : "Music" 
+     }
 ]
 
 export const privacyData =[ 

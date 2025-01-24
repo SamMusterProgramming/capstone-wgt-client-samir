@@ -71,20 +71,17 @@ useEffect(() => {
                             style={{width:"100%",height:"100%",fontSize:'13px' ,color:"black",
                               border:"none",fontWeight:"1400", 
                                backgroundColor:'',textAlign:"center",opacity:"70%", fontFamily:'Arsenal SC'}}
-                            defaultValue="Adventure" 
+                            defaultValue="All" 
                              >   
-                            <Select.Option value = {"ALL CHALLENGES"} 
-                                        style={{ color:'black', fontFamily:'Arsenal SC',
-                                        backgroundColor:"",width:"100%",height:"30px",opacity:"70%" }} >
-                                       <p style={{ color:'white'}}>ALL TYPES</p> 
-                             </Select.Option>
+                        
+   
                             {challengeType.map((selection,index)=>{   
                                 return ( 
                                    <Select.Option key={index} value = {selection.type}
                                         style={{ borderRadius:"0px",color:'black',
                                         backgroundColor:"", width:"100%",height:"100%" ,opacity:"70%"}} >
                                        <p style={{ color:'black', fontFamily:'Arsenal SC serif',fontWeight:"900",
-                                        backgroundColor:"", width:"100%",fontSize:"17px"}}>{selection.type}</p> 
+                                        backgroundColor:"", width:"100%",fontSize:"14px"}}>{selection.type}</p> 
                                     </Select.Option> )
                             })} 
                         </Select>
