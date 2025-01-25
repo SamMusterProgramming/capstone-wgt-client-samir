@@ -18,7 +18,7 @@ import { deleteObject, getDownloadURL, ref } from 'firebase/storage';
 import { generateUserFolder, getMediaFireBase, storage } from '../../firebase';
 import DialogConfirm from './DialogConfirm';
 import { AuthContent } from '../../context/AuthContent';
-
+import ReactPlayer from 'react-player';
 
 
 
@@ -44,6 +44,7 @@ const ParticipantsDisplayer = (props) => {
   const[isDeleted,setIsDeleted]= useState(false)
   const[isQuit,setIsQuit]= useState(false)
   const [isExpired,setIsExpired] = useState(false)
+  const [autoPlay,setAutoPlay] = useState(false)
   const {notifications,setNotifications,userChallenges,setUserChallenges,
         participateChallenges,setParticipateChallenges,setTopChallenges} = useContext(AuthContent)
 
@@ -219,6 +220,7 @@ const handleChange = async (value) =>{
                                    likes:newParticipant.likes,
                                    votes:newParticipant.votes,
                                    email:newParticipant.email })
+      
       } 
    
 useEffect(() => {
@@ -292,6 +294,24 @@ useEffect(() => {
     }
   }, [])
   
+ const  handleEnd =()=>{
+   const index = props.challenge.participants.findIndex(el=> el.user_id === selectedParticipant.user_id)
+   const newParticipant =  props.participants[(index+1)%props.challenge.participants.length];
+      setSelectedParticipant( { ...selectedParticipant,
+                                   _id:newParticipant._id,
+                                   name:newParticipant.name,
+                                   profile_img:newParticipant.profile_img,
+                                   user_id:newParticipant.user_id,
+                                   video_url:newParticipant.video_url,
+                                   likes:newParticipant.likes,
+                                   votes:newParticipant.votes,
+                                   email:newParticipant.email })
+      setAutoPlay(true)
+ }
+
+ const handleStart =()=> {
+  // setAutoPlay(true)
+ }
   return (
 
     <div className="d-flex flex-column mb-3 mt-0 justify-content-start align-items-center challenges">
@@ -542,16 +562,23 @@ useEffect(() => {
       
         <div className=" d-flex flex-column videopost">
             <div className='videodisplayer'>
-                <video
-                    className='video'
-                    style={{width:'100%',backgroundColor:'black'}}
+                <ReactPlayer
+                    // className='video'
+                    style={{width:'100%',backgroundColor:'black',position:"relative"}}
                     width="100%"
                     height="100%"
                     // autoPlay
                     // src={ BASE_URL + video_url}
-                    src={selectedParticipant.video_url}
-                    muted={false}
-                    controls />
+                    url={selectedParticipant.video_url}
+                    onReady={handleStart}
+                    // muted={false}
+                    // autoPlay
+                    // playsInline
+                    playing={autoPlay}
+                    // light={true}
+                    controls={true}
+                    onEnded={handleEnd}
+                    />
                 
             </div>
             <PostFooter challenge={props.challenge} likesVotesData={likesVotesData} handleLikes={handleLikes}

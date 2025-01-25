@@ -102,6 +102,12 @@ const Challenge = () => {
                   </div>
         </div>
 
+        
+        {/* replay to challenge here  */}
+
+        
+
+
         {challenge.participants.map( participant =>{
             return <Participant participant={participant} setReRender ={setReRender} reRender={reRender}
             user={user} challenge_id ={challenge_id} challenge={challenge} />
