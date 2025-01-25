@@ -3,6 +3,7 @@
 .full-page {
     width: 100vw;
     height: 100vh;
+    max-height: 900px;
    background-color:rgb(241, 234, 234); 
    display: flex;
    align-items: center;
@@ -14,6 +15,7 @@
     height:100%;
     width: 100vw;
     max-width: 500px;
+    max-height: 900px;
     /* max-height: 900px;  */
     overflow: scroll;
     /* background-color:" #084569";  */
@@ -82,7 +84,7 @@
 .postholder {
     max-width: 500px;
     width: 100%;
-    height: 70%;
+    height: 92%;
     /* background-color: rgb(10, 11, 11); */
     border-radius: 15px;
 }
@@ -107,6 +109,19 @@
   cursor: pointer;
   color: #1f1e15;
 }
+.submit-button-active{
+    /* background-color: green; */
+    width: 20%;
+    height: 30px;
+    border-radius: 10px;
+    font-weight: 500;
+    font-size: 10px;
+    color:white;
+    opacity: 100%;
+    font-size: 13px;
+    font-weight: 800;
+    background-color:green
+}
 .submit-button{
     /* background-color: green; */
     width: 20%;
@@ -114,10 +129,11 @@
     border-radius: 10px;
     font-weight: 500;
     font-size: 10px;
-    color:gray;
-    opacity: 50%;
+    color:white;
+    opacity: 100%;
     font-size: 13px;
-    font-weight: 1000;
+    font-weight: 800;
+    background-color:gray
 }
 
 /* ************************** homepage ****************************************** */
@@ -217,7 +233,7 @@
 
 }
 .mid-container{
-    max-width:  500px;
+    max-width:  400px;
     /* width: 100%; */
     /* background-color: rgb(35, 21, 21); */
     min-height: 200px;

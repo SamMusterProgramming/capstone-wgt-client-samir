@@ -163,7 +163,7 @@ const LiveWebcam = (props) => {
                         </svg>
                       </button> */}
                   
-                   <VideoRecorder   setSwitchUploadLive={props.setSwitchUploadLive}/>
+                   {/* <VideoRecorder   setSwitchUploadLive={props.setSwitchUploadLive}/> */}
                   </div>
               
                 </>  

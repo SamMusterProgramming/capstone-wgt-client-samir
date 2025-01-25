@@ -13,6 +13,8 @@ import Challenge from './root/pages/Challenge.jsx'
 import Talent from './root/pages/Talent.jsx'
 import Homepage from './root/pages/Homepage.jsx'
 import NewChallenge from './root/pages/NewChallenge.jsx'
+import Replay from './root/pages/Replay.jsx'
+
 import Challenges from './root/pages/Challenges.jsx'
 import TopChallenges from './root/pages/TopChallenges.jsx'
 import Profile from './root/pages/Profile.jsx'
@@ -69,7 +71,7 @@ export default function App() {
               </Route>
 
               <Route path="newchallenge" element={ <NewChallenge user={user}/>} />
-              <Route path="matchchallenge/:id" element={ <NewChallenge user={user}/>} />
+              <Route path="matchchallenge/:id" element={ <Replay user={user}/>} />
                 {/* <Route path="challenge" element={ <Challenge user={user}/>} />
                 <Route path="about" element ={<Signin />} /> 
              </Route> */}

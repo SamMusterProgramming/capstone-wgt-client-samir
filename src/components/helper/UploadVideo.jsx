@@ -50,12 +50,7 @@ const UploadVideo = (props) => {
             }
      
          </div>
-         <div className=' d-flex  justify-content-between
-              align-items-center postfooter'
-              style={{width:"90%", height:"5%"}}>
-                  <VideoUploader  onChange={props.handleUpload} /> 
-                  <VideoRecorder   setSwitchUploadLive={props.setSwitchUploadLive}/>
-         </div>
+        
    
       </>
   
