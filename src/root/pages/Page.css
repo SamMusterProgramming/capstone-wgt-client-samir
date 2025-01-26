@@ -166,7 +166,9 @@
 .challenges {
     background-color:#1f1e15;
     /* background-color:#b0a220; */
-    height:735px;
+     min-height:720px;
+    /* height:100%; */
+
     /* min-width:500px; */
     max-width: 100%;
     width: 100%;

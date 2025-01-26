@@ -24,10 +24,10 @@ const DialogConfirm = (props) => {
 
   return (
     <>
-      <Button 
+      <button 
         onClick={handleClickOpen} style={props.style}>
         {props.action}
-      </Button>
+      </button>
       <Dialog
         open={open}
         onClose={handleClose}

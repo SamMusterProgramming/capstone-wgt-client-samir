@@ -15,7 +15,7 @@ useEffect(() => {
 
   return (
    
-    <div className=' d-flex  flex-wrap  mb-0 gap-4 justify-content-center align-items-center '
+    <div className=' d-flex  flex-column mb-0 gap-4 justify-content-start align-items-center bg-light '
     style={{width:"100%",height:"65%"}}>
        
    

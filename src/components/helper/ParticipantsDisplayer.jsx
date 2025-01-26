@@ -314,81 +314,86 @@ useEffect(() => {
  }
   return (
 
-    <div className="d-flex flex-column mb-3 mt-0 justify-content-start align-items-center challenges">
+    <div className="d-flex flex-column  justify-content-start align-items-center  challenges">
          
-          <div className='d-flex justify-content-start  align-items-center sky-bg'
-          style={{minHeight:"40px",minWidth:"100%",backgroundColor:""}}>
-            <div className='d-flex flex-column justify-content-center  align-items-center'
+          <div className='d-flex justify-content-start   align-items-center star'
+          style={{minHeight:"3%",minWidth:"100%",backgroundColor:""}}>
+            <div className='d-flex  justify-content-center gap-1 align-items-center'
                style={{height:"100%",minWidth:"25%",backgroundColor:""}}>
-                <span style={{fontSize:'9px',fontWeight:"600",marginTop:'0px', fontFamily:'Arsenal SC serif'}}>Initiated By</span>
-                <p style={{fontSize:'10px',fontWeight:"600",marginTop:'-3px',color:'gold',fontFamily:'Arsenal SC serif'}}>{props.challenge.name}</p>
+                <span style={{fontSize:'9px',fontWeight:"600",marginTop:'0px', fontFamily:'Arsenal SC serif'}}>By</span>
+                <p style={{fontSize:'9px',fontWeight:"600",marginTop:'0px',color:'gold',fontFamily:'Arsenal SC serif'}}> {props.challenge.name}</p>
+            </div>
+            <div className='d-flex justify-content-center gap-1 align-items-center'
+               style={{height:"100%",minWidth:"25%",backgroundColor:""}}>
+                <span style={{fontSize:'10px',fontWeight:"600", fontFamily:'Arsenal SC serif'}}>Top  </span>
+                <p style={{fontSize:'9px',fontWeight:"600",marginTop:'0px',color:'gold',fontFamily:'Arsenal SC serif'}}>{topChallenger.topChallenger}</p>
+            </div>
+            <div className='d-flex f justify-content-center gap-2 align-items-center'
+               style={{height:"100%",minWidth:"25%",backgroundColor:""}}>
+                {/* <span style={{fontSize:'10px',fontWeight:"600", fontFamily:'Arsenal SC serif'}}>Top Challenger </span> */}
+                           <span style={{fontSize:'10px',fontWeight:"600",marginTop:'0px', fontFamily:'Arsenal SC serif'}}>{props.participants.length} </span>
+                <p style={{fontSize:'9px',fontWeight:"600",marginTop:'0px',color:'gold',fontFamily:'Arsenal SC serif'}}>  Participants</p>
+                {/* <p style={{fontSize:'9px',fontWeight:"600",marginTop:'0px',color:'gold',fontFamily:'Arsenal SC serif'}}>{topChallenger.topChallenger}</p> */}
             </div>
             <div className='d-flex flex-column justify-content-center gap align-items-center'
-               style={{height:"100%",minWidth:"25%",backgroundColor:""}}>
-                <span style={{fontSize:'10px',fontWeight:"600", fontFamily:'Arsenal SC serif'}}>Top Challenger </span>
-                <p style={{fontSize:'10px',fontWeight:"600",marginTop:'-3px',color:'gold',fontFamily:'Arsenal SC serif'}}>{topChallenger.topChallenger}</p>
-            </div>
-            <div className='d-flex flex-column justify-content-center gap align-items-center'
-               style={{height:"100%",minWidth:"25%",backgroundColor:""}}>
-                <span style={{fontSize:'10px',fontWeight:"600",marginTop:'0px', fontFamily:'Arsenal SC serif'}}>{props.participants.length}</span>
-                <p style={{fontSize:'10px',fontWeight:"600",marginTop:'-3px',color:'gold',fontFamily:'Arsenal SC serif'}}>Participants</p>
+               style={{height:"100%",minWidth:"10%",backgroundColor:""}}>
+                <span style={{fontSize:'10px',fontWeight:"600",marginTop:'0px',color:'gold',fontFamily:'Arsenal SC serif '}}> {props.challenge.privacy.toLowerCase()}</span>      
             </div>
             <div className='d-flex flex-column  justify-content-center  align-items-center'
-               style={{height:"100%",minWidth:"25%",backgroundColor:""}}>
-                 <span style={{fontSize:'10px',fontWeight:"600",color:'white',fontFamily:'Arsenal SC'}}> {props.challenge.type}</span> 
-                 <span style={{fontSize:'10px',fontWeight:"600",marginTop:'-3px',color:'gold',fontFamily:'Arsenal SC '}}> {props.challenge.privacy}</span>      
+               style={{height:"100%",minWidth:"15%",backgroundColor:""}}>
+                 <span style={{fontSize:'10px',fontWeight:"600",color:'white',fontFamily:'Arsenal SC serif'}}> {props.challenge.type.toLowerCase()}</span> 
             </div>
         </div>
 
-         <div className='d-flex flex-column justify-content-start align-items-center star'
-           style={{width:"100%",height:"160px"}}>
+         <div className='d-flex flex-column justify-content-center  align-items-center star'
+           style={{width:"100%",minHeight:"11%"}}>
 
-              <div className='d-flex mt-0 justify-content-start align-items-center '
-                 style={{width:"100%",height:"40px"}}> 
-                  <Link to={`/viewchallenge/${props.challenge._id}`} className='d-flex mt-0 justify-content-start align-items-center'
-                      style={{width:"25%",height:"40px",padding:'10px' ,backgroundColor:""}}>
-                      <span style={{fontSize:'13px', color:'lightblue', fontFamily:'Arsenal SC serif',fontWeight:'900'}} >
+              <div className='d-flex gap-3 justify-content-start align-items-center '
+                 style={{width:"100%",height:"40%"}}> 
+                  <Link to={`/viewchallenge/${props.challenge._id}`} className='d-flex mt-0 justify-content-center align-items-center'
+                      style={{width:"15%",minHeight:"100%",padding:'10px' ,backgroundColor:""}}>
+                      <span style={{fontSize:'10px', color:'lightblue', fontFamily:'Arsenal SC serif',fontWeight:'900'}} >
                         Challenge
                       </span>
                   </Link>
-                  <div className='d-flex mt-0 justify-content-center align-items-center cloud-bg'
-                    style={{width:"75%",height:"40px",padding:'10px',backgroundColor:''}}>
-                        <p style={{fontSize:'12px',color:"black",fontFamily:'Arsenal SC serif',
+                  <div className='d-flex mt-0 justify-content-center align-items-center '
+                    style={{width:"75%",minHeight:"100%",padding:'0px',backgroundColor:''}}>
+                        <p style={{fontSize:'10px',color:"white",fontFamily:'Arsenal SC serif',
                           fontWeight:"900"
                         }}> {props.challenge.desc}</p>
                   </div>
               </div>
-              <div className="d-flex  justify-content-start align-items-center  " 
-                    style={{height:'120px',width:'100%'}}>
-                      <div className="d-flex flex-column justify-content-center align-items-center  " 
-                          style={{minHeight:'120px',width:'25%',backgroundColor:'lightblue'}}>
-                            <Link  style={{height:'110px',width:'93%'}}
-                             to = {(props.user._id === selectedParticipant.user_id)?`/profile/${selectedParticipant.user_id}`:`/userprofile/${selectedParticipant.user_id}`} > 
-                              <img  style={{height:'100%',width:'100%',borderRadius:'15px',objectFit:"cover"}} src={selectedParticipant.profile_img} alt="" />
-                            </Link>
-                      </div>
-                      <div className="d-flex flex-column justify-content-start align-items-center " 
-                          style={{height:'120px',width:'75%',backgroundColor:''}}>
+
+              <div className="d-flex  justify-content-start gap-2 align-items-center  " 
+                    style={{height:'50%',width:'100%'}}>
+                      <Link  to = {(props.user._id === selectedParticipant.user_id)?`/profile/${selectedParticipant.user_id}`:`/userprofile/${selectedParticipant.user_id}`}
+                       className="d-flex flex-column justify-content-center align-items-center  " 
+                          style={{height:'90%',width:'15%',backgroundColor:''}}>
+                             <img  style={{height:'25px',width:'25px',borderRadius:'50px',objectFit:"cover"}} src={selectedParticipant.profile_img} alt="" />
+                        
+                      </Link>
+                      <div className="d-flex flex-column justify-content-center align-items-center " 
+                          style={{height:'100%',width:'40%',backgroundColor:''}}>
                             
                             
-                             <div className='d-flex mt-0 justify-content-center participantdisplayer star'
-                             style={{height:'40px',width:'100%',backgroundColor:''}}> 
+                             <div className='d-flex flex-column justify-content-center participantdisplayer star'
+                             style={{height:'100%',width:'100%',backgroundColor:''}}> 
                                 <Select
-                                  style={{width:"100%",height:"39px",fontSize:' 25px' ,borderRadius:"0px",opacity:"100%",
+                                  style={{width:"100%",height:"80%",fontSize:' 25px' ,borderRadius:"0px",opacity:"60%",
                                     fontWeight:"800", color:'white',textAlign:"center"}}
                                     defaultValue="Select a Participant"
                                     onChange={handleChange} value={selectedParticipant.user_id}
                                       >   
                                       {props.participants.map((participant,index)=>{    
                                         return  (<Select.Option  key={index} style={{ color:'white',fontWeight:"700",
-                                          backgroundColor:"",width:"100%",height:"37px",borderRadius:"0px"
+                                          backgroundColor:"",width:"100%",height:"30px",borderRadius:"0px"
                                         }}  value = {participant.user_id} autoFocus
-                                        className="d-flex flex-row align-items-start gap3"
+                                        // className="d-flex flex-row align-items-start gap3"
                                         >
                                           <div  className="d-flex flex-row justify-content-center  align-items-center gap-2">
                                               <div className="chip">
                                                     {/* <img src={participant.profile_img} alt="" /> */}
-                                                    <p style={{marginTop:'-10px',opacity:"100%", color:'black',fontWeight:"700", fontFamily:'Arsenal SC serif'}} > 
+                                                    <p style={{marginTop:'-10px',opacity:"80%", fontSize:"9px",color:'black',fontWeight:"700", fontFamily:'Arsenal SC serif'}} > 
                                                       {(props.user._id===participant.user_id)? participant.name + " - YOU": participant.name} </p> 
                                               </div>
                                           </div>
@@ -402,7 +407,13 @@ useEffect(() => {
                              </div>
 
                             
-                             <div className='d-flex justify-content-start align-items-center '
+
+
+
+              
+
+
+                             {/* <div className='d-flex justify-content-start align-items-center '
                                 style={{height:'40px',width:'100%'}}>
                                        <div className='d-flex justify-content-between align-items-center text-dark '
                                            style={{height:'40px',width:'50%',backgroundColor:"lightpink"}}>
@@ -440,8 +451,9 @@ useEffect(() => {
                                                </div>
                                                     
                                         </div>
-                             </div>
+                             </div> */}
 
+                             {/* 
                              <div className='d-flex justify-content-start align-items-center '
                                 style={{height:'40px',width:'100%'}}>
                     
@@ -548,11 +560,119 @@ useEffect(() => {
                                                   handleAction={handleReportUser}/>    
                                   </div> 
                                   
-                              </div>
-
-                             
-
+                              </div> */}
                       </div>
+
+                      <div className='d-flex justify-content-center  align-items-center '
+                                style={{height:'100%',width:'45%'}}>
+                    
+                              
+                                  <div className='d-flex flex-column justify-content-end gap align-items-center'
+                                        style={{height:"100%",width:"30%",backgroundColor:"transparent"}}>
+                                    {(selectedParticipant.user_id === props.user._id)? 
+                                    (
+                                      <button style={{width:'100%',height:'60%', fontFamily:'Arsenal SC serif' ,opacity:"50%",backgroundColor:"transparent",
+                                        fontSize:'11px',fontWeight:"800",border:'none'}}
+                                      disabled >
+                                        Follow
+                                      </button>
+                                    ):
+                                    ( 
+                                      <>
+                                      {followings.find(following => following.following_id === selectedParticipant.user_id)?(
+                                      <Button style={{width:'100%',height:'60%', fontFamily:'Arsenal SC serif', backgroundColor:"transparent",
+                                          fontSize:'11px',border:'none',color:'#0f4ff2',fontWeight:"800",borderRadius:'0px'}}
+                                          onClick={handleUnFollowing}>
+                                          Unfollow
+                                      </Button>
+                                      ):(
+                                        <button style={{width:'100%',height:'60%', fontFamily:'Arsenal SC serif', color:"#0f4ff2",
+                                          fontSize:'11px',fontWeight:"800"}}
+                                        onClick={handleFollowing}>
+                                          Follow
+                                        </button>
+                                      )
+                                      }
+                                      </>
+                                  
+                                    )}      
+                                    
+                                  </div> 
+
+
+                                  {(props.user._id === selectedParticipant.user_id)? 
+                                  (
+                                    <div className='d-flex flex-column justify-content-end align-items-center'
+                                        style={{height:"100%",width:"40%", backgroundColor:""}}>
+                                    <Button style={{width:'100%',border:'none', fontFamily:'Arsenal SC serif',height:'60%',color:'white',opacity:"50%",
+                                    borderRadius:'0px', backgroundColor:"",fontSize:'10px',fontWeight:"800"}}
+                                      disabled >
+                                          Add Friend
+                                    </Button>
+                                  </div> 
+
+                                  ):(
+                                    <>
+                                    {participantFriendData && (
+                                      <>
+                                      {isAccept && (
+                                        <div className='d-flex flex-column justify-content-end align-items-center'
+                                          style={{height:"100%",width:"30%", backgroundColor:""}}>
+                                              <DialogConfirm style={{width:'100%',border:'none',borderRadius:'0px', fontFamily:'Arsenal SC serif ',
+                                                  height:'60%',color:'#e32b62', 
+                                                  backgroundColor:"",fontSize:'10px',fontWeight:"800"}}
+                                                  action={"Accept"} message ={`are you sure you want to accept ${selectedParticipant.name}'s friend request?`} 
+                                                  handleAction={okFriendRequest}/>    
+                                        </div> 
+                                    )}
+                                      {isFriend && (
+                                        <div className='d-flex flex-column justify-content-end align-items-center'
+                                          style={{height:"100%",width:"34%", backgroundColor:""}}>
+                                              <DialogConfirm style={{width:'100%',border:'none',borderRadius:'0px', fontFamily:'Arsenal SC serif',
+                                                  height:'60%',color:'#e32b62', 
+                                                  backgroundColor:"",fontSize:'11px',fontWeight:"800"}}
+                                                  action={"Unfriend"} message ={`are you sure you want to remove ${selectedParticipant.name} from your friend list?`} 
+                                                  handleAction={unfriendFriendRequest}/>    
+                                        </div> 
+                                    )}
+                                    {isPending&&(
+                                          <div className='d-flex flex-column justify-content-end align-items-center'
+                                            style={{height:"100%",width:"34%", backgroundColor:""}}>
+                                              <DialogConfirm style={{width:'100%',border:'none',borderRadius:'0px', fontFamily:'Arsenal SC serif ',
+                                                  height:'60%',color:'#e32b62', 
+                                                  backgroundColor:"",fontSize:'11px',fontWeight:"800"}}
+                                                  action={"Pending"} message ={`are you sure you want to cancel friend request sent to ${selectedParticipant.name}?`} 
+                                                  handleAction={cancelFriendRequest}/>    
+                                          </div> 
+                                    )}
+                                    {!(isPending||isFriend||isAccept)&&(
+                                        <div className='d-flex flex-column justify-content-end align-items-center'
+                                          style={{height:"100%",width:"34%", backgroundColor:""}}>
+                                          <DialogConfirm style={{width:'100%',border:'none',borderRadius:'0px', fontFamily:'Arsenal SC serif ',
+                                              height:'60%',color:'#e32b62', 
+                                              backgroundColor:"",fontSize:'10px',fontWeight:"800"}}
+                                              action={"Add Friend"} message ={`are you sure you want to send a friend request to ${selectedParticipant.name} ?`} 
+                                              handleAction={sendFriendRequest}/>
+                                        </div> 
+                                    )}
+                                      </>
+                                    )}
+
+                                    </>
+                                
+                                  )
+                                  }
+                                  <div className='d-flex flex-column justify-content-end align-items-center'
+                                        style={{height:"100%",width:"30%"}}>
+                                        <DialogConfirm style={{width:'100%',border:'none',borderRadius:'0px', fontFamily:'Arsenal SC serif ',
+                                                  height:'60%',color:'lightgray', 
+                                                  backgroundColor:"black",fontSize:'10px',fontWeight:"800"}}
+                                                  action={"Report"} message ={`are you sure you want to cancel friend request sent to ${selectedParticipant.name}?`} 
+                                                  handleAction={handleReportUser}/>    
+                                  </div> 
+                                  
+                              </div> 
+
               </div>
                     
 
@@ -560,10 +680,10 @@ useEffect(() => {
 
 
       
-        <div className=" d-flex flex-column videopost">
+        <div className=" d-flex flex-column  videopost">
             <div className='videodisplayer'>
                 <ReactPlayer
-                    // className='video'
+                    className='video'
                     style={{width:'100%',backgroundColor:'black',position:"relative"}}
                     width="100%"
                     height="100%"
@@ -586,12 +706,12 @@ useEffect(() => {
                />
         </div> 
 
-        <div className='d-flex flex-row  justify-content-between align-items-center sky-bg ' 
-            style={{height:'42px',width:'100%',backgroundColor:''}} >
+        <div className='d-flex flex-row  justify-content-between align-items-center star ' 
+            style={{height:'8%',width:'100%',backgroundColor:''}} >
               
                    {!ownChallenge? (    
-                     <DialogConfirm handleAction={(e)=> navigate(`/matchchallenge/${props.challenge._id}`)} style={{width:'90px',color:"white",textAlign:'center',
-                      backgroundColor:'#269e32',height:'100%',fontSize:"12px",fontWeight:"800",border:'none', fontFamily:'Arsenal SC serif'
+                     <DialogConfirm handleAction={(e)=> navigate(`/matchchallenge/${props.challenge._id}`)} style={{width:'90px',color:"#269e32",textAlign:'center',
+                      backgroundColor:'',height:'100%',fontSize:"12px",fontWeight:"800",border:'none', fontFamily:'Arsenal SC serif'
                     }}   action={"JOIN"} message ={'are you sure you want to join  the challenge'}  />
                   ):(
                     <>
@@ -601,35 +721,38 @@ useEffect(() => {
                           backgroundColor:'#b81842',height:'100%',fontSize:"12px",fontWeight:"800",border:'none', fontFamily:'Arsenal SC serif'
                          }} action={"DELETE"} message ={'are you sure you want to delete  the challenge'} />
                       ):(
-                        <DialogConfirm handleAction={handleQuit} style={{width:'90px',color:"white",textAlign:'center',
-                          backgroundColor:'#b81842',height:'100%',fontSize:"12px",fontWeight:"800",border:'none', fontFamily:'Arsenal SC serif'
+                        <DialogConfirm handleAction={handleQuit} style={{width:'90px',color:"#bd5167",textAlign:'center',
+                          backgroundColor:'',height:'100%',fontSize:"12px",fontWeight:"800",border:'none', fontFamily:'Arsenal SC serif'
                          }} action={"RESIGN"} message ={'are you sure you want to resign from the challenge'} />
                       )} 
                     </>
                     )}
             
-                   <div className='d-flex flex align-items-center gap-3 justify-content-evenly'
+                   {/* <div className='d-flex flex align-items-center gap-3 justify-content-evenly'
                       style={{widh:"180px" , height:"100%",backgroundColor:""}}>
-                      {/* <span style={{fontSize:'10px' ,marginTop:"5px"}}>{props.participants.length}</span>
-                      <p style={{fontSize:'9px'}}>CHALLENGERS</p> */}
                       <button style={{color:props.isLikedColor}} onClick={props.handleLikes} >
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" className="bi bi-hand-thumbs-up-fill" viewBox="0 0 16 16">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" className="bi bi-hand-thumbs-up-fill" viewBox="0 0 16 16">
                           <path d="M6.956 1.745C7.021.81 7.908.087 8.864.325l.261.066c.463.116.874.456 1.012.965.22.816.533 2.511.062 4.51a10 10 0 0 1 .443-.051c.713-.065 1.669-.072 2.516.21.518.173.994.681 1.2 1.273.184.532.16 1.162-.234 1.733q.086.18.138.363c.077.27.113.567.113.856s-.036.586-.113.856c-.039.135-.09.273-.16.404.169.387.107.819-.003 1.148a3.2 3.2 0 0 1-.488.901c.054.152.076.312.076.465 0 .305-.089.625-.253.912C13.1 15.522 12.437 16 11.5 16H8c-.605 0-1.07-.081-1.466-.218a4.8 4.8 0 0 1-.97-.484l-.048-.03c-.504-.307-.999-.609-2.068-.722C2.682 14.464 2 13.846 2 13V9c0-.85.685-1.432 1.357-1.615.849-.232 1.574-.787 2.132-1.41.56-.627.914-1.28 1.039-1.639.199-.575.356-1.539.428-2.59z"/>
                         </svg>
                       </button>
                       <span style={{fontSize:'12px',fontWeight:"700",color:'white',fontFamily:"Arsenal SC"}}>{props.challenge.like_count}  </span>
-                   </div>
-                   <div className='d-flex flex-column align-items-center justify-content-start'
-                      style={{widh:"180px" , height:"100%"}}>      
-                    <p style={{fontSize:'10px',color:'white',marginTop:"5px"}}>4.5</p> 
-                    <span style={{fontSize:'14px',color:'gold'}}> *****  </span>
+                   </div> */}
+                   <div className='d-flex  align-items-center gap-2 justify-content-start'
+                      style={{widh:"180px" , height:"100%"}}>  
+                     <button style={{backgroundColor:'',border:'none'
+                      ,width:'90px',color:"white",height:'100%',fontSize:"13px",fontWeight:"800", fontFamily:'Arsenal SC serif'
+                      }}>
+                      Rate
+                   </button>    
+                    <p style={{fontSize:'11px',color:'white',marginTop:"0px"}}>4.5</p> 
+                    <span style={{fontSize:'11px',color:'gold'}}> *****  </span>
                       {/* <p style={{fontSize:'11px',color:'white',marginTop:"-9px",marginLeft:"29px"}}> </p> */}
                    </div>
-                   <Button style={{backgroundColor:'#114fc2',border:'none'
-                      ,width:'90px',color:"lightblue",height:'100%',fontSize:"11px",fontWeight:"800", fontFamily:'Arsenal SC serif'
+                   <button style={{backgroundColor:'',border:'none'
+                      ,width:'90px',color:"#114fc2",height:'100%',fontSize:"13px",fontWeight:"800", fontFamily:'Arsenal SC'
                       }}>
                       FOLLOW
-                   </Button>
+                   </button>
             
         </div>
 
