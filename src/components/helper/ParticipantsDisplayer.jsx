@@ -354,7 +354,7 @@ useEffect(() => {
                   <div className='d-flex mt-0 justify-content-center align-items-center cloud-bg'
                     style={{width:"75%",height:"40px",padding:'10px',backgroundColor:''}}>
                         <p style={{fontSize:'12px',color:"black",fontFamily:'Arsenal SC serif',
-                          fontWeight:"700px"
+                          fontWeight:"900"
                         }}> {props.challenge.desc}</p>
                   </div>
               </div>

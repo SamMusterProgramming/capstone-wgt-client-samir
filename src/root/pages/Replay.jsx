@@ -173,15 +173,15 @@ const Replay = (props) => {
   
           <div className='d-flex mt-0 justify-content-start align-items-center bg-dark'
                    style={{width:"100%",height:"6%"}}> 
-                    <div className='d-flex mt-0 justify-content-start align-items-center'
+                    <div className='d-flex mt-0 justify-content-center align-items-center'
                         style={{width:"25%",height:"100%",padding:'10px' ,backgroundColor:"#3f7f8c"}}>
-                        <span style={{fontSize:'13px', color:'lightblue', fontFamily:'Arsenal SC serif',fontWeight:'900'}} >
+                        <span style={{fontSize:'12px', color:'lightblue', fontFamily:'Arsenal SC serif',fontWeight:'900'}} >
                           Challenge
                         </span>
                     </div>
-                    <div className='d-flex mt-0 justify-content-center align-items-center'
-                      style={{width:"75%",height:"100%",padding:'12px',backgroundColor:'lightgray'}}>
-                          <p style={{fontSize:'10px',color:"black",fontFamily:'Arsenal SC serif',fontWeight:'900'}}> 
+                    <div className='d-flex mt-0 justify-content-center text-center align-items-center'
+                      style={{width:"75%",height:"100%",padding:'11px',backgroundColor:'lightgray'}}>
+                          <p style={{fontSize:'12px',color:"black",fontFamily:'Arsenal SC serif',fontWeight:'900'}}> 
                             {challenge.desc}</p>
                     </div>
           </div>
@@ -193,7 +193,7 @@ const Replay = (props) => {
           <div className="d-flex  justify-content-start align-items-center  " 
                     style={{height:'12%',width:'100%'}}>
                       <div className="d-flex flex-column justify-content-center align-items-center  " 
-                          style={{height:'100%',width:'25%',backgroundColor:'lightblue'}}>
+                          style={{height:'100%',width:'25%',backgroundColor:''}}>
                             <Link  style={{height:'90%',width:'93%'}}
                              to = {`/userprofile/${props.user.user_id}`} > 
                               <img  style={{height:'100%',width:'100%',borderRadius:'15px',objectFit:"cover"}} src={props.user.profile_img} alt="" />
@@ -213,17 +213,17 @@ const Replay = (props) => {
                                           
                                         
                              </div>
-                             <div className='d-flex mt-0 justify-content-center border participantdisplayer'
+                             <div className='d-flex mt-0 justify-content-center participantdisplayer'
                                  style={{height:'60%',width:'75%',backgroundColor:'white'}}> 
                              
-                                          <div  className="d-flex flex-row justify-content-center gap-4  align-items-center "
-                                          style={{height:'100%',width:'50%',backgroundColor:'lightgray'}}>
+                                          <div  className="d-flex flex-row justify-content-center   align-items-center "
+                                          style={{height:'100%',width:'50%',backgroundColor:''}}>
                                                      <VideoUploader  onChange={handleUpload} /> 
-                                                     {/* <p>upload</p> */}
+                                                   
                                           </div>
                                           
                                           <div  className="d-flex flex-row justify-content-center  align-items-center "
-                                          style={{height:'100%',width:'50%',backgroundColor:'pink'}}>
+                                          style={{height:'100%',width:'50%',backgroundColor:''}}>
                                                       <VideoRecorder setSwitchUploadLive={setSwitchUploadLive}  />
 
                                           </div>

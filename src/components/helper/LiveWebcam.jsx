@@ -4,6 +4,12 @@ import RecordRTC from 'recordrtc'
 import VideoRecorder from "./VideoRecorder";
 
 
+const audioConstraints = {
+  suppressLocalAudioPlayback: true,
+  noiseSuppression: true,
+  echoCancellation: true,
+};
+
 const LiveWebcam = (props) => {
     
   const webcamRef = useRef(null);
@@ -23,6 +29,9 @@ const LiveWebcam = (props) => {
     if(data.size > 0){
       setRecordedChunks(prev => prev.concat(data));
     }
+
+   
+
   },[setRecordedChunks]) 
    
   const handleStartRecording = useCallback(()=>{
@@ -74,11 +83,13 @@ const LiveWebcam = (props) => {
         //   objectFit:"cover"
         // }}
         //  onUserMedia={handleUserMedia}
-         ref={webcamRef}
-         videoConstraints = {{
+        audioConstraints={audioConstraints}
+        ref={webcamRef}
+        videoConstraints = {{
           facingMode: facingMode
         }}
          audio={true}
+         muted={true}
          controls   
         />
 
