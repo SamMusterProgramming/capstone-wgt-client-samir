@@ -4,21 +4,22 @@ import { Upload } from 'antd'
 const VideoUploader = (props) => {
 
   return (
-    <div style={{ marginLeft:0,marginTop:'8px'}} className=''>
-    <Upload className=""
+   //  <div style={{ marginTop:'0px'}} className=''>
+    <Upload className=" d-flex flex-column justify-content-end"
+      //  style={{width:"60px",height:"40px",margintop:'50px'}}
        showUploadList={false}
        accept="video/*"           
        maxCount={1}
        onChange={props.onChange}>
        <button type='button'
-        style={{margintop:'55px',backgroundColor:'transparent',color:'blue'}}
+        style={{margintop:'40px',backgroundColor:'transparent',color:'blue'}}
         >
-            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="blue" className="bi bi-cloud-arrow-up-fill" viewBox="0 0 16 16">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="blue" className="bi bi-cloud-arrow-up-fill" viewBox="0 0 16 16">
                <path d="M8 2a5.53 5.53 0 0 0-3.594 1.342c-.766.66-1.321 1.52-1.464 2.383C1.266 6.095 0 7.555 0 9.318 0 11.366 1.708 13 3.781 13h8.906C14.502 13 16 11.57 16 9.773c0-1.636-1.242-2.969-2.834-3.194C12.923 3.999 10.69 2 8 2m2.354 5.146a.5.5 0 0 1-.708.708L8.5 6.707V10.5a.5.5 0 0 1-1 0V6.707L6.354 7.854a.5.5 0 1 1-.708-.708l2-2a.5.5 0 0 1 .708 0z"/>
             </svg>
        </button>
     </Upload>
- </div>
+//  </div>
   )
 }
 

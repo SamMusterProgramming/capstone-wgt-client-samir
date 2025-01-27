@@ -27,7 +27,7 @@ const Replay = (props) => {
     const [file,setFile] = useState(null)
     const [description , setDescription] = useState("")
     const [canSubmit, setCanSubmit] = useState(false)
-
+    
     const navigate = useNavigate("")
   
     
@@ -199,7 +199,7 @@ const Replay = (props) => {
           {/* replay video here  */}
 
           <div className="d-flex  justify-content-start align-items-center  " 
-                    style={{height:'8%',width:'100%'}}>
+                    style={{minHeight:'8%',width:'100%'}}>
 
                       <div className="d-flex flex-column justify-content-center align-items-center  " 
                           style={{height:'100%',width:'15%',backgroundColor:''}}>
@@ -211,33 +211,29 @@ const Replay = (props) => {
                       </div>
 
                       <div className="d-flex flex-column justify-content-start align-items-center " 
-                          style={{height:'100%',width:'65%',backgroundColor:''}}>
+                          style={{height:'100%',width:'70%',backgroundColor:''}}>
                     
+
                              <div className='d-flex mt-0 justify-content-center participantdisplayer'
-                             style={{height:'40%',width:'100%',backgroundColor:''}}> 
-                             
-                                          <div  className="d-flex flex-row justify-content-start  align-items-center ">
-                                                    <p style={{color:"white",fontSize:"11px", fontFamily:'Arsenal SC serif',fontWeight:"700"}} > 
+                                 style={{height:'100%',width:'100%',backgroundColor:''}}> 
+                                
+                                          <div  className="d-flex flex-row justify-content-center gap-1   align-items-center "
+                                            style={{height:'100%',width:'30%',backgroundColor:''}}>
+                                                     <p style={{color:"white",fontSize:"10px", fontFamily:'Arsenal SC serif',fontWeight:"700"}} > 
                                                         {props.user.name}
                                                     </p> 
                                           </div>
-                                          
-                                        
-                             </div>
-                             <div className='d-flex mt-0 justify-content-center participantdisplayer'
-                                 style={{height:'60%',width:'100%',backgroundColor:''}}> 
-                             
-                                          <div  className="d-flex flex-row justify-content-center gap-2   align-items-center "
-                                          style={{height:'100%',width:'50%',backgroundColor:''}}>
+                                          <div  className="d-flex justify-content-center gap-1   align-items-center "
+                                          style={{height:'100%',width:'35%',backgroundColor:''}}>
                                                      <VideoUploader  onChange={handleUpload} />
                                                      <p style={{fontSize:'10px',color:"white",fontFamily:'Arsenal SC serif',
-                                                        fontWeight:"900" }}>
+                                                        fontWeight:"900",margingBottom:"50px" }}>
                                                          Upload
                                                      </p>
                                           </div>
                                           
                                           <div  className="d-flex flex-row justify-content-center gap-2 align-items-center "
-                                          style={{height:'100%',width:'50%',backgroundColor:''}}>
+                                          style={{height:'100%',width:'35%',backgroundColor:''}}>
                                                       <VideoRecorder setSwitchUploadLive={setSwitchUploadLive} />
                                                       <p style={{fontSize:'10px',color:"white",fontFamily:'Arsenal SC serif',
                                                         fontWeight:"900" }}>
@@ -249,9 +245,15 @@ const Replay = (props) => {
                
                     </div>
                     <div className="d-flex flex-column justify-content-center align-items-center  " 
-                          style={{height:'100%',width:'15%',backgroundColor:'red',opacity:"70%",marginLeft:"auto"}}>
-                            <button style={{height:'100%',width:'100%'}}
-                            className="d-flex flex-column justify-content-center align-items-center  " 
+                         style= { canSubmit? {height:'100%',width:'15%',backgroundColor:'',opacity:"100%",marginLeft:"auto"} :
+                           {height:'100%',width:'15%',backgroundColor:'',opacity:"50%",marginLeft:"auto"}
+                        }
+                
+                        
+                         >
+                            <button onClick={handleUploading}
+                            style={{height:'100%',width:'100%'}}
+                            className="d-flex flex-column justify-content-center align-items-center " 
                                 > 
                               <img  style={{height:'90%',width:'90%',borderRadius:'10px',objectFit:"cover"}}
                                src="/asset/material/submit.png" alt="" />

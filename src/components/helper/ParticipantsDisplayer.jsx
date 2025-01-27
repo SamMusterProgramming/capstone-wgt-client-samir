@@ -349,17 +349,17 @@ useEffect(() => {
          <div className='d-flex flex-column justify-content-center  align-items-center star'
            style={{width:"100%",minHeight:"11%"}}>
 
-              <div className='d-flex gap-3 justify-content-start align-items-center '
+              <div className='d-flex gap-3 justify-content-center align-items-center '
                  style={{width:"100%",height:"40%"}}> 
                   <Link to={`/viewchallenge/${props.challenge._id}`} className='d-flex mt-0 justify-content-center align-items-center'
                       style={{width:"15%",minHeight:"100%",padding:'10px' ,backgroundColor:""}}>
-                      <span style={{fontSize:'10px', color:'lightblue', fontFamily:'Arsenal SC serif',fontWeight:'900'}} >
+                      <span style={{fontSize:'12px', color:'lightblue', fontFamily:'Arsenal SC serif',fontWeight:'900'}} >
                         Challenge
                       </span>
                   </Link>
                   <div className='d-flex mt-0 justify-content-center align-items-center '
                     style={{width:"75%",minHeight:"100%",padding:'0px',backgroundColor:''}}>
-                        <p style={{fontSize:'10px',color:"white",fontFamily:'Arsenal SC serif',
+                        <p style={{fontSize:'11px',color:"white",fontFamily:'Arsenal SC serif',
                           fontWeight:"900"
                         }}> {props.challenge.desc}</p>
                   </div>
@@ -380,7 +380,7 @@ useEffect(() => {
                              <div className='d-flex flex-column justify-content-center participantdisplayer star'
                              style={{height:'100%',width:'100%',backgroundColor:''}}> 
                                 <Select
-                                  style={{width:"100%",height:"80%",fontSize:' 25px' ,borderRadius:"0px",opacity:"60%",
+                                  style={{width:"100%",height:"80%",fontSize:' 25px' ,borderRadius:"0px",opacity:"70%",
                                     fontWeight:"800", color:'white',textAlign:"center"}}
                                     defaultValue="Select a Participant"
                                     onChange={handleChange} value={selectedParticipant.user_id}
@@ -394,7 +394,7 @@ useEffect(() => {
                                           <div  className="d-flex flex-row justify-content-center  align-items-center gap-2">
                                               <div className="chip">
                                                     {/* <img src={participant.profile_img} alt="" /> */}
-                                                    <p style={{marginTop:'-10px',opacity:"80%", fontSize:"9px",color:'black',fontWeight:"700", fontFamily:'Arsenal SC serif'}} > 
+                                                    <p style={{marginTop:'-10px',opacity:"80%", fontSize:"10px",color:'black',fontWeight:"700", fontFamily:'Arsenal SC serif'}} > 
                                                       {(props.user._id===participant.user_id)? participant.name + " - YOU": participant.name} </p> 
                                               </div>
                                           </div>

@@ -29,5 +29,5 @@ export default function TopLoadingBar() {
     );
   }, []);
 
-  return <LoadingBar shadow color="#9441b7" style={{marginTop:'0px',height:'2px'}} ref={ref} />;
+  return <LoadingBar shadow color="#9441b7" style={{marginTop:'0px',height:'4px'}} ref={ref} />;
 }

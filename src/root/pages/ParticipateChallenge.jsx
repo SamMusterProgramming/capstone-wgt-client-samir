@@ -31,13 +31,14 @@ const ParticipateChallenge = ({user}) => {
                        <hr style={{width:"100%", border: '3px solid yellow',backgroundColor:"white"}} /> 
                         <ParticipantsDisplayer user={user}  participants = {challenge.participants} key={index}
                         challenge={challenge} setVideo_url={setVideo_url} />
-                       <hr style={{width:"100%", border: '3px solid yellow',backgroundColor:"white"}} /> 
  
                        </> 
 
                          )
                }
                ) } 
+               <hr style={{width:"100%", border: '3px solid yellow',backgroundColor:"white"}} /> 
+
                </> ) 
               :
            ( <div  className='d-flex flex-column gap-5 align-items-center mt-auto justify-content-center'
