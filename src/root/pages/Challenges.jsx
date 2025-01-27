@@ -23,7 +23,7 @@ const [video_url ,setVideo_url] = useState()
 
   return (
   
-     <div className=' d-flex gap-4 flex-column mt-0 justify-content-start align-items-center'
+     <div className=' d-flex  flex-column mt-0 justify-content-start align-items-center'
      style={{width:"100%",height:"65%"}}>
        
        { (userChallenges.length > 0)?
@@ -31,8 +31,13 @@ const [video_url ,setVideo_url] = useState()
          { userChallenges.map((challenge,index)=>{
 
           return  ( 
+            <>
+               <hr style={{width:"100%", border: '3px solid yellow',backgroundColor:"white"}} />
                 <ParticipantsDisplayer user={user}  participants = {challenge.participants} key={index}
                 challenge={challenge} setVideo_url={setVideo_url} />
+               <hr style={{width:"100%", border: '3px solid yellow',backgroundColor:"white"}} />
+
+            </>    
 
           )
    

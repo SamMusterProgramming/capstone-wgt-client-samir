@@ -31,7 +31,7 @@
 /* ********************************* PostFooter **************************** */
 .videofooter {
     height: 8%; 
-    background-color: #1f1f1b;
+    /* background-color: #1f1f1b; */
     align-items: center;
     /* justify-content: center; */
 }
@@ -103,7 +103,7 @@
     align-items: center;
     /* border: 2px solid black; */
     /* background-color: #d14f6e; */
-    background-color:white;
+    /* background-color:white; */
     overflow-wrap: scroll;
 }
 .videopost {
@@ -226,7 +226,7 @@
     background-repeat: no-repeat; 
   }
   .star {
-    background-image:  url('../asset/material/dark-sky.jpg');
+    background-image:  url('../asset/material/dark-sky.jpeg');
     background-size: cover; 
     background-position: bottom; 
     background-repeat: no-repeat; 

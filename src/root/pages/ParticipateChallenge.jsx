@@ -19,7 +19,7 @@ const ParticipateChallenge = ({user}) => {
 
 
        
-        <div className='d-flex flex-column  mt-0 gap-4 justify-content-start align-items-center'
+        <div className='d-flex flex-column  justify-content-start align-items-center'
          style={{width:"100%",height:"65%"}}>
             
             { (participateChallenges.length > 0)?
@@ -27,8 +27,13 @@ const ParticipateChallenge = ({user}) => {
                    { participateChallenges.map((challenge,index)=>{
 
                       return  ( 
+                        <>
+                       <hr style={{width:"100%", border: '3px solid yellow',backgroundColor:"white"}} /> 
                         <ParticipantsDisplayer user={user}  participants = {challenge.participants} key={index}
                         challenge={challenge} setVideo_url={setVideo_url} />
+                       <hr style={{width:"100%", border: '3px solid yellow',backgroundColor:"white"}} /> 
+ 
+                       </> 
 
                          )
                }

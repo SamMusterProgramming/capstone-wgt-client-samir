@@ -15,15 +15,20 @@ useEffect(() => {
 
   return (
    
-    <div className=' d-flex  flex-column mb-0 gap-4 justify-content-start align-items-center bg-light '
+    <div className=' d-flex  flex-column  justify-content-start align-items-center bg-light '
     style={{width:"100%",height:"65%"}}>
        
    
     { topChallenges.map((challenge,index)=>{
 
          return  ( 
+              <>
+                        <hr style={{width:"100%", border: '3px solid yellow',backgroundColor:"white"}} />
                          <ParticipantsDisplayer user={user}  participants={challenge.participants} key={index}
                          challenge={challenge} />
+                        <hr style={{width:"100%", border: '3px solid yellow',backgroundColor:"white"}} />
+
+            </>        
               ) 
              }
              )} 
