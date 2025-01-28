@@ -1,13 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { Link, Navigate, useNavigate, useParams } from 'react-router-dom';
 import { AuthContent } from '../../context/AuthContent';
-import { getChallengeById } from '../../apiCalls';
+import { getChallengeById, getTopChallenges, getUserParticipateChallenges, quitChallenge } from '../../apiCalls';
 import Participant from '../../components/Participant';
 import DialogConfirm from '../../components/helper/DialogConfirm';
 import { Button } from 'antd';
 
 const Challenge = () => {
-  const {user} = useContext(AuthContent)
+  const {user,setTopChallenges,setParticipateChallenges} = useContext(AuthContent)
   const  challenge_id  = useParams().id;
   const [topChallenger ,setTopChallenger] = useState("")
   const [ownChallenge , setOwnChallenge ] = useState(false)
@@ -57,6 +57,27 @@ const Challenge = () => {
     console.log(challenge)
   }
   },[challenge] )
+
+  const handleQuit = (e) => {
+    quitChallenge(challenge._id,user._id).
+    then(res => {
+       const you =  challenge.participants.find(participant => participant.user_id == user._id)
+       const fileRef = ref(storage,you.video_url); 
+       deleteObject(fileRef)
+        .then(() => {
+         console.log("File deleted successfully!");
+          navigate('/chpage/participatechallenges')
+         })
+        .catch((error) => {
+        console.error("Error deleting file:", error);
+         });  
+         getTopChallenges(user._id,setTopChallenges)
+         getUserParticipateChallenges(user._id,setParticipateChallenges)
+         navigate('/home')
+
+    })
+  
+  }
 
   return (
     <div className="d-flex flex-column  mt-0  bg-dark justify-content-start align-items-center star"
@@ -140,7 +161,7 @@ const Challenge = () => {
                          }} action={"DELETE"} message ={'are you sure you want to delete  the challenge'} />
                       ):(
                         <DialogConfirm
-                        //  handleAction={handleQuit} 
+                         handleAction={handleQuit} 
                          style={{width:'25%',color:"#b81842",textAlign:'center',
                           backgroundColor:'',height:'100%',fontSize:"12px",fontWeight:"800",border:'none', fontFamily:'Arsenal SC serif'
                          }} action={"RESIGN"} message ={'are you sure you want to resign from the challenge'} />

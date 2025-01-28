@@ -125,7 +125,7 @@ const ParticipantsDisplayer = (props) => {
               console.error("Error deleting file:", error);
                });  
                getTopChallenges(props.user._id,setTopChallenges)
-               getUserParticipateChallenges(props.user_id,setParticipateChallenges)
+               getUserParticipateChallenges(props.user._id,setParticipateChallenges)
                navigate('/home')
      
           })
@@ -564,8 +564,8 @@ useEffect(() => {
                     <>
                     {props.participants.length == 1 ? 
                       (
-                        <DialogConfirm handleAction={handleDelete} style={{width:'90px',color:"white",textAlign:'center',
-                          backgroundColor:'#b81842',height:'100%',fontSize:"12px",fontWeight:"800",border:'none', fontFamily:'Arsenal SC serif'
+                        <DialogConfirm handleAction={handleDelete} style={{width:'90px',color:"#b81842",textAlign:'center',
+                          backgroundColor:'',height:'100%',fontSize:"12px",fontWeight:"800",border:'none', fontFamily:'Arsenal SC serif'
                          }} action={"DELETE"} message ={'are you sure you want to delete  the challenge'} />
                       ):(
                         <DialogConfirm handleAction={handleQuit} style={{width:'90px',color:"#bd5167",textAlign:'center',

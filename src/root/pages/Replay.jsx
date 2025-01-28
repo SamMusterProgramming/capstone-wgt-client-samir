@@ -248,8 +248,6 @@ const Replay = (props) => {
                          style= { canSubmit? {height:'100%',width:'15%',backgroundColor:'',opacity:"100%",marginLeft:"auto"} :
                            {height:'100%',width:'15%',backgroundColor:'',opacity:"50%",marginLeft:"auto"}
                         }
-                
-                        
                          >
                             <button onClick={handleUploading}
                             style={{height:'100%',width:'100%'}}
@@ -279,14 +277,6 @@ const Replay = (props) => {
                 )
       
                 }
-              {/* <div className="d-flex  justify-content-center align-items-center  " 
-                    style={{width:"100%",height:"8%"}}>
-                      <button onClick={handleUploading}
-                        className= {canSubmit ? 'submit-button-active':'submit-button'} 
-                        style={{width:"100%",height:'100%',borderRadius:"2px"}}>
-                         Submit
-                      </button>
-              </div>   */}
 
            </div>
           {/* participants challengers here */}
