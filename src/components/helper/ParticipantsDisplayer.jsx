@@ -352,10 +352,10 @@ useEffect(() => {
   return (
   
 
-    <div className="d-flex flex-column  justify-content-start align-items-center  challenges sky-bg">
+    <div className="d-flex flex-column  justify-content-start align-items-center border challenges sky-bg">
          
           <div className='d-flex justify-content-start   align-items-center '
-          style={{minHeight:"5%",minWidth:"100%",backgroundColor:""}}>
+          style={{minHeight:"3%",minWidth:"100%",backgroundColor:""}}>
             <div className='d-flex  justify-content-center gap-1 align-items-center'
                style={{height:"100%",minWidth:"25%",backgroundColor:""}}>
                 <span style={{fontSize:'9px',fontWeight:"600",marginTop:'0px', fontFamily:'Arsenal SC serif'}}>By</span>
@@ -593,9 +593,7 @@ useEffect(() => {
                     // onExitFullscreen={handleFullscreenChange}
                     // onFullScreen={handleFullscreenChange}
                     />
-     
-                 <p style={{position:"absolute",marginTop:"100%"}}>hello samir</p>
-                
+                    
             </div>
             <PostFooter challenge={props.challenge} likesVotesData={likesVotesData} handleLikes={handleLikes}
               handleVotes={handleVotes}  isLikedColor={isLikedColor} isVotedColor={isVotedColor} user={props.user}
@@ -603,7 +601,7 @@ useEffect(() => {
         </div> 
 
         <div className='d-flex flex-row  justify-content-between align-items-center sky-bg ' 
-            style={{height:'6%',width:'100%',backgroundColor:''}} >
+            style={{height:'8%',width:'100%',backgroundColor:''}} >
               
                    {!ownChallenge? (    
                      <DialogConfirm handleAction={(e)=> navigate(`/matchchallenge/${props.challenge._id}`)} style={{width:'90px',color:"#269e32",textAlign:'center',
