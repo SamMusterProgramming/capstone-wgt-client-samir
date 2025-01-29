@@ -20,6 +20,7 @@ import DialogConfirm from './DialogConfirm';
 import { AuthContent } from '../../context/AuthContent';
 import ReactPlayer from 'react-player';
 import { InView, useInView } from 'react-intersection-observer';
+import { FullScreen, useFullScreenHandle } from 'react-full-screen';
 
 
 const ParticipantsDisplayer = (props) => {
@@ -331,8 +332,8 @@ useEffect(() => {
     }, [inView, autoPlay]);
 
 
-    // const [isFullscreen, setIsFullscreen] = useState(false);
-
+    const [isFullScreen, setIsFullScreen] = useState(false);
+    const fullscreenHandle = useFullScreenHandle();
     // const handlePlay = () => {
     //   console.log("hello")
     //   if (!isFullscreen) {
@@ -566,6 +567,7 @@ useEffect(() => {
 
       
         <div className=" d-flex flex-column  videopost">
+
             <div className='videodisplayer' ref={ref}
              style={{position:"relative"}}>
  
@@ -584,17 +586,22 @@ useEffect(() => {
                     // playsInline
                     playing={autoPlay}
                     // light={true}
-                    controls
+                    controls={true}
                     onEnded={handleEnd}
                     // muted 
                     // playsInline
                     // onClick={handlePlay}
                     // onPause=
-                    // onExitFullscreen={handleFullscreenChange}
-                    // onFullScreen={handleFullscreenChange}
+                    // onFullScreen={() => setIsFullScreen(true)}
+                    // onExitFullScreen={() => setIsFullScreen(false)}
                     />
+
+                  
                     
             </div>
+          
+            
+
             <PostFooter challenge={props.challenge} likesVotesData={likesVotesData} handleLikes={handleLikes}
               handleVotes={handleVotes}  isLikedColor={isLikedColor} isVotedColor={isVotedColor} user={props.user}
                />
