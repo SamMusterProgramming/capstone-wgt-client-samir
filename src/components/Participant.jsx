@@ -5,6 +5,9 @@ import DialogConfirm from './helper/DialogConfirm'
 import { AuthContent } from '../context/AuthContent'
 import PostFooter from './helper/PostFooter'
 import { Button } from 'antd'
+import { useInView } from 'react-intersection-observer'
+
+
 
 const Participant = (props) => {
 
@@ -26,6 +29,8 @@ const Participant = (props) => {
     const[isAccept,setIsAccept]= useState(false)
     const[isExpired,setIsExpired]= useState(false)
     const[isQuit,setIsQuit]= useState(false)
+    const [autoPlay,setAutoPlay] = useState(false)
+
 
     const {notifications,setNotifications,userChallenges,setUserChallenges,
         participateChallenges,setParticipateChallenges,setTopChallenges} = useContext(AuthContent)
@@ -173,6 +178,20 @@ const Participant = (props) => {
           }
         }, [])  
       
+    
+        const { ref, inView } = useInView({
+         threshold: 0.8
+           });
+       
+           useEffect(() => {
+             if (inView && !autoPlay && videoRef.current) {
+               videoRef.current.play();
+               setAutoPlay(true);
+             } else if (!inView && autoPlay) {
+               videoRef.current.pause();
+               setAutoPlay(false);
+             }
+           }, [inView, autoPlay]);
 
 return (<>
     {likesVotesData &&
@@ -355,7 +374,7 @@ return (<>
         
 
             <div className=" d-flex flex-column videopost">
-            <div className='videodisplayer'>
+            <div className='videodisplayer' ref={ref}>
                 <video
                     className='video'
                     style={{width:'100%',backgroundColor:'black'}}
@@ -363,7 +382,7 @@ return (<>
                     height="100%"
                     ref={videoRef}
                     src={props.participant.video_url}
-                    autoPlay={isPlaying}
+                    // autoPlay={autoPlay}
                     muted={false}
                     controls />
                 

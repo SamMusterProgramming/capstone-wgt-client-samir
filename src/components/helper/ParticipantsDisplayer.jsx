@@ -19,7 +19,7 @@ import { generateUserFolder, getMediaFireBase, storage } from '../../firebase';
 import DialogConfirm from './DialogConfirm';
 import { AuthContent } from '../../context/AuthContent';
 import ReactPlayer from 'react-player';
-
+import { InView, useInView } from 'react-intersection-observer';
 
 
 const ParticipantsDisplayer = (props) => {
@@ -178,6 +178,7 @@ const ParticipantsDisplayer = (props) => {
        loadLikeVoteData(ids,setLikesVotesData,likesVotesData,setIsExpired)   
        getUserFriendsData(props.user._id,setUserFriendData)
        getUserFriendsData(selectedParticipant.user_id,setParticipantFriendData)
+      //  setAutoPlay(true)
     }, [selectedParticipant])
     
 
@@ -209,7 +210,6 @@ const ParticipantsDisplayer = (props) => {
   
     
 const handleChange = async (value) =>{
-      // getUserById(value ,setUserProfile)
       const newParticipant =  props.participants.find(participant => participant.user_id === value);
       setSelectedParticipant( { ...selectedParticipant,
                                    _id:newParticipant._id,
@@ -220,7 +220,7 @@ const handleChange = async (value) =>{
                                    likes:newParticipant.likes,
                                    votes:newParticipant.votes,
                                    email:newParticipant.email })
-      
+                                   setAutoPlay(true)
       } 
    
 useEffect(() => {
@@ -312,6 +312,23 @@ useEffect(() => {
  const handleStart =()=> {
   // setAutoPlay(true)
  }
+
+
+ 
+ const videoRef = useRef(null);
+ const { ref, inView } = useInView({
+  threshold: 0.5 
+    });
+
+    useEffect(() => {
+      if (inView && !autoPlay &&videoRef.current) {
+        // videoRef.current.play();
+        setAutoPlay(true);
+      } else if (!inView && autoPlay) {
+        // videoRef.current.pause();
+        setAutoPlay(false);
+      }
+    }, [inView, autoPlay]);
   return (
   
 
@@ -498,7 +515,8 @@ useEffect(() => {
                                           <DialogConfirm style={{width:'100%',border:'none',borderRadius:'0px', fontFamily:'Arsenal SC serif ',
                                               height:'60%',color:'#e32b62', 
                                               backgroundColor:"",fontSize:'10px',fontWeight:"800"}}
-                                              action={"Add Friend"} message ={`are you sure you want to send a friend request to ${selectedParticipant.name} ?`} 
+                                              action={"Add Friend"}
+                                               message ={`are you sure you want to send a friend request to ${selectedParticipant.name} ?`} 
                                               handleAction={sendFriendRequest}/>
                                         </div> 
                                     )}
@@ -528,12 +546,14 @@ useEffect(() => {
 
       
         <div className=" d-flex flex-column  videopost">
-            <div className='videodisplayer'>
+            <div className='videodisplayer' ref={ref}>
+ 
                 <ReactPlayer
                     className='video'
                     style={{width:'100%',backgroundColor:'black',position:"relative"}}
                     width="100%"
                     height="100%"
+                    ref={videoRef}
                     // autoPlay
                     // src={ BASE_URL + video_url}
                     url={selectedParticipant.video_url}
@@ -543,9 +563,12 @@ useEffect(() => {
                     // playsInline
                     playing={autoPlay}
                     // light={true}
-                    controls={true}
+                    controls
                     onEnded={handleEnd}
+                    // muted 
+                    // playsInline
                     />
+  
                 
             </div>
             <PostFooter challenge={props.challenge} likesVotesData={likesVotesData} handleLikes={handleLikes}
