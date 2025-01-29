@@ -329,6 +329,26 @@ useEffect(() => {
         setAutoPlay(false);
       }
     }, [inView, autoPlay]);
+
+
+    const [isFullscreen, setIsFullscreen] = useState(false);
+
+    const handlePlay = (e) => {
+      console.log("hello")
+      if (!isFullscreen) {
+        videoRef.current.wrapper.requestFullscreen();
+        setIsFullscreen(true);
+      }
+    };
+  
+    const handleFullscreenChange = () => {
+      setIsFullscreen(document.fullscreenElement !== null);
+    };
+  
+    
+
+
+
   return (
   
 
@@ -546,7 +566,8 @@ useEffect(() => {
 
       
         <div className=" d-flex flex-column  videopost">
-            <div className='videodisplayer' ref={ref}>
+            <div className='videodisplayer' ref={ref}
+             style={{position:"relative"}}>
  
                 <ReactPlayer
                     className='video'
@@ -567,8 +588,13 @@ useEffect(() => {
                     onEnded={handleEnd}
                     // muted 
                     // playsInline
+                    onClick={handlePlay}
+                    // onPause=
+                    onExitFullscreen={handleFullscreenChange}
+                    onFullScreen={handleFullscreenChange}
                     />
-  
+     
+                 <p style={{position:"absolute",marginTop:"-100%"}}>hello samir</p>
                 
             </div>
             <PostFooter challenge={props.challenge} likesVotesData={likesVotesData} handleLikes={handleLikes}
