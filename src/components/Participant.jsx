@@ -198,8 +198,8 @@ return (<>
          
     (
      <>
-      <hr style={{width:"100%", border: '3px solid yellow',backgroundColor:"white"}} />
-      <div className='d-flex flex-column justify-content-start align-items-center '
+      <hr style={{width:"100%", border: '3px solid lightblue',backgroundColor:"blue"}} />
+      <div className='d-flex flex-column justify-content-start align-items-center star '
            style={{width:"100%",minHeight:"8%"}}>
               
               <div className="d-flex  justify-content-start align-items-center  " 
@@ -391,7 +391,6 @@ return (<>
               handleVotes={handleVotes}  isLikedColor={isLikedColor} isVotedColor={isVotedColor} user={props.user}
                />
          </div> 
-         <hr style={{width:"100%", border: '3px solid yellow',backgroundColor:"white"}} />
      </>
     )
     }

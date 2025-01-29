@@ -23,15 +23,17 @@ useEffect(() => {
 
          return  ( 
               <>
-                        <hr style={{width:"100%", border: '3px solid yellow',backgroundColor:"white"}} />
+                        <hr style={{width:"100%", border: '3px solid green',backgroundColor:"white"}} />
                          <ParticipantsDisplayer user={user}  participants={challenge.participants} key={index}
                          challenge={challenge} />
-                        <hr style={{width:"100%", border: '3px solid yellow',backgroundColor:"white"}} />
+
 
             </>        
               ) 
              }
              )} 
+            <hr style={{width:"100%", border: '3px solid green',backgroundColor:"white"}} />
+
    </div>
   )
 }

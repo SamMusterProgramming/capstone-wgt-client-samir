@@ -32,7 +32,7 @@ const [video_url ,setVideo_url] = useState()
 
           return  ( 
             <>
-               <hr style={{width:"100%", border: '3px solid yellow',backgroundColor:"white"}} />
+               <hr style={{width:"100%", border: '3px solid red',backgroundColor:"red"}} />
                 <ParticipantsDisplayer user={user}  participants = {challenge.participants} key={index}
                 challenge={challenge} setVideo_url={setVideo_url} />
 
@@ -42,7 +42,7 @@ const [video_url ,setVideo_url] = useState()
    
     }
     ) } 
-       <hr style={{width:"100%", border: '3px solid yellow',backgroundColor:"white"}} />
+       <hr style={{width:"100%", border: '3px solid red',backgroundColor:""}} />
 
      </> ) 
        :

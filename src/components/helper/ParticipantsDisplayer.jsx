@@ -331,19 +331,19 @@ useEffect(() => {
     }, [inView, autoPlay]);
 
 
-    const [isFullscreen, setIsFullscreen] = useState(false);
+    // const [isFullscreen, setIsFullscreen] = useState(false);
 
-    const handlePlay = (e) => {
-      console.log("hello")
-      if (!isFullscreen) {
-        videoRef.current.wrapper.requestFullscreen();
-        setIsFullscreen(true);
-      }
-    };
+    // const handlePlay = () => {
+    //   console.log("hello")
+    //   if (!isFullscreen) {
+    //     videoRef.current.wrapper.requestFullscreen();
+    //     setIsFullscreen(true);
+    //   }
+    // };
   
-    const handleFullscreenChange = () => {
-      setIsFullscreen(document.fullscreenElement !== null);
-    };
+    // const handleFullscreenChange = () => {
+    //   setIsFullscreen(document.fullscreenElement !== null);
+    // };
   
     
 
@@ -352,10 +352,10 @@ useEffect(() => {
   return (
   
 
-    <div className="d-flex flex-column  justify-content-start align-items-center  challenges">
+    <div className="d-flex flex-column  justify-content-start align-items-center  challenges sky-bg">
          
-          <div className='d-flex justify-content-start   align-items-center star'
-          style={{minHeight:"3%",minWidth:"100%",backgroundColor:""}}>
+          <div className='d-flex justify-content-start   align-items-center '
+          style={{minHeight:"5%",minWidth:"100%",backgroundColor:""}}>
             <div className='d-flex  justify-content-center gap-1 align-items-center'
                style={{height:"100%",minWidth:"25%",backgroundColor:""}}>
                 <span style={{fontSize:'9px',fontWeight:"600",marginTop:'0px', fontFamily:'Arsenal SC serif'}}>By</span>
@@ -383,7 +383,7 @@ useEffect(() => {
             </div>
         </div>
 
-         <div className='d-flex flex-column justify-content-center  align-items-center star'
+         <div className='d-flex flex-column justify-content-center  align-items-center '
            style={{width:"100%",minHeight:"11%"}}>
 
               <div className='d-flex gap-3 justify-content-center align-items-center '
@@ -402,7 +402,7 @@ useEffect(() => {
                   </div>
               </div>
 
-              <div className="d-flex  justify-content-start gap-2 align-items-center  " 
+              <div className="d-flex  justify-content-start gap-2 align-items-center star " 
                     style={{height:'50%',width:'100%'}}>
                       <Link  to = {(props.user._id === selectedParticipant.user_id)?`/profile/${selectedParticipant.user_id}`:`/userprofile/${selectedParticipant.user_id}`}
                        className="d-flex flex-column justify-content-center align-items-center  " 
@@ -417,7 +417,7 @@ useEffect(() => {
                              <div className='d-flex flex-column justify-content-center participantdisplayer star'
                              style={{height:'100%',width:'100%',backgroundColor:''}}> 
                                 <Select
-                                  style={{width:"100%",height:"80%",fontSize:' 25px' ,borderRadius:"0px",opacity:"70%",
+                                  style={{width:"100%",height:"70%",fontSize:' 25px' ,borderRadius:"0px",opacity:"70%",
                                     fontWeight:"800", color:'white',textAlign:"center"}}
                                     defaultValue="Select a Participant"
                                     onChange={handleChange} value={selectedParticipant.user_id}
@@ -551,7 +551,7 @@ useEffect(() => {
                                         style={{height:"100%",width:"30%"}}>
                                         <DialogConfirm style={{width:'100%',border:'none',borderRadius:'0px', fontFamily:'Arsenal SC serif ',
                                                   height:'60%',color:'lightgray', 
-                                                  backgroundColor:"black",fontSize:'10px',fontWeight:"800"}}
+                                                  backgroundColor:"",fontSize:'10px',fontWeight:"800"}}
                                                   action={"Report"} message ={`are you sure you want to cancel friend request sent to ${selectedParticipant.name}?`} 
                                                   handleAction={handleReportUser}/>    
                                   </div> 
@@ -572,8 +572,8 @@ useEffect(() => {
                 <ReactPlayer
                     className='video'
                     style={{width:'100%',backgroundColor:'black',position:"relative"}}
-                    width="100%"
-                    height="100%"
+                    width='100%'
+                    height='100%'
                     ref={videoRef}
                     // autoPlay
                     // src={ BASE_URL + video_url}
@@ -588,13 +588,13 @@ useEffect(() => {
                     onEnded={handleEnd}
                     // muted 
                     // playsInline
-                    onClick={handlePlay}
+                    // onClick={handlePlay}
                     // onPause=
-                    onExitFullscreen={handleFullscreenChange}
-                    onFullScreen={handleFullscreenChange}
+                    // onExitFullscreen={handleFullscreenChange}
+                    // onFullScreen={handleFullscreenChange}
                     />
      
-                 <p style={{position:"absolute",marginTop:"-100%"}}>hello samir</p>
+                 <p style={{position:"absolute",marginTop:"100%"}}>hello samir</p>
                 
             </div>
             <PostFooter challenge={props.challenge} likesVotesData={likesVotesData} handleLikes={handleLikes}
@@ -602,8 +602,8 @@ useEffect(() => {
                />
         </div> 
 
-        <div className='d-flex flex-row  justify-content-between align-items-center star ' 
-            style={{height:'8%',width:'100%',backgroundColor:''}} >
+        <div className='d-flex flex-row  justify-content-between align-items-center sky-bg ' 
+            style={{height:'6%',width:'100%',backgroundColor:''}} >
               
                    {!ownChallenge? (    
                      <DialogConfirm handleAction={(e)=> navigate(`/matchchallenge/${props.challenge._id}`)} style={{width:'90px',color:"#269e32",textAlign:'center',

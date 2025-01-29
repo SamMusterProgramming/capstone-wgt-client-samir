@@ -7,7 +7,7 @@ const PostFooter = (props) => {
 
   
   return (
-  <div className='d-flex flex-row text-light justify-content-evenly gap-5 align-items-center  videofooter '>
+  <div className='d-flex flex-row text-light justify-content-evenly gap-5 align-items-center  videofooter star'>
     <div className='d-flex align-items-center gap-3'>
        <button style={{color:props.isLikedColor,marginLeft:'15px'}} onClick={props.handleLikes} >
         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" className="bi bi-hand-thumbs-up-fill" viewBox="0 0 16 16">

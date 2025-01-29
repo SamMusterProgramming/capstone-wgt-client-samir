@@ -80,7 +80,7 @@ const Challenge = () => {
   }
 
   return (
-    <div className="d-flex flex-column  mt-0  bg-dark justify-content-start align-items-center star"
+    <div className="d-flex flex-column  mt-0  bg-dark justify-content-start align-items-center  sky-bg"
     style={{width:'100%',height:"100%",overflow:"scroll"}}>
         {challenge ? 
         (
@@ -142,7 +142,7 @@ const Challenge = () => {
             user={user} challenge_id ={challenge_id} challenge={challenge} />
         })
         }
-
+       <hr style={{width:"100%", border: '3px solid lightblue',backgroundColor:"white"}} />
        <div className='d-flex flex-row  justify-content-between align-items-center '  //#1f1e15
             style={{minHeight:'6%',width:'100%',backgroundColor:''}} >
               

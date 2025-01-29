@@ -28,7 +28,7 @@ const ParticipateChallenge = ({user}) => {
 
                       return  ( 
                         <>
-                       <hr style={{width:"100%", border: '3px solid yellow',backgroundColor:"white"}} /> 
+                       <hr style={{width:"100%", border: '3px solid lightblue',backgroundColor:""}} /> 
                         <ParticipantsDisplayer user={user}  participants = {challenge.participants} key={index}
                         challenge={challenge} setVideo_url={setVideo_url} />
  
@@ -37,7 +37,7 @@ const ParticipateChallenge = ({user}) => {
                          )
                }
                ) } 
-               <hr style={{width:"100%", border: '3px solid yellow',backgroundColor:"white"}} /> 
+               <hr style={{width:"100%", border: '3px solid lightblue',backgroundColor:""}} /> 
 
                </> ) 
               :
