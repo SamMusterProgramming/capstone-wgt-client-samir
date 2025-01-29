@@ -352,7 +352,7 @@ useEffect(() => {
   return (
   
 
-    <div className="d-flex flex-column  justify-content-start align-items-center border challenges sky-bg">
+    <div className="d-flex flex-column  justify-content-start align-items-center challenges sky-bg">
          
           <div className='d-flex justify-content-start   align-items-center '
           style={{minHeight:"3%",minWidth:"100%",backgroundColor:""}}>
