@@ -2,6 +2,7 @@ import { useCallback, useRef, useState } from "react"
 import Webcam from "react-webcam";
 import RecordRTC from 'recordrtc'
 import VideoRecorder from "./VideoRecorder";
+import { Camera, CameraResultType } from '@capacitor/camera';
 
 
 const audioConstraints = {
@@ -34,9 +35,13 @@ const LiveWebcam = (props) => {
 
   },[setRecordedChunks]) 
    
-  const handleStartRecording = useCallback(()=>{
+  const handleStartRecording = useCallback(async()=>{
     setRecording(true);
     // setIsFullscreen(true);
+    const { granted } = await Camera.checkPermissions();
+    if (!granted) {
+      await Camera.requestPermissions();
+    }
     mediaRecorderRef.current = RecordRTC(webcamRef.current.stream,{
       mimeType: "video/webm"
     })
