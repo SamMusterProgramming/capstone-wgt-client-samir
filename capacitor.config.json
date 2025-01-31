@@ -1,6 +1,5 @@
 {
   "appId": "com.example.app",
   "appName": "capstone-wgt-client",
-  "webDir": "dist",
-  "bundledWebRuntime": false
+  "webDir": "dist"
 }
