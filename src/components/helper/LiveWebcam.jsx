@@ -35,13 +35,13 @@ const LiveWebcam = (props) => {
 
   },[setRecordedChunks]) 
    
-  const handleStartRecording = useCallback(async()=>{
+  const handleStartRecording = useCallback(()=>{
     setRecording(true);
     // setIsFullscreen(true);
-    const { granted } = await Camera.checkPermissions();
-    if (!granted) {
-      await Camera.requestPermissions();
-    }
+    // const { granted } = await Camera.checkPermissions();
+    // if (!granted) {
+    //   await Camera.requestPermissions();
+    // }
     mediaRecorderRef.current = RecordRTC(webcamRef.current.stream,{
       mimeType: "video/webm"
     })
