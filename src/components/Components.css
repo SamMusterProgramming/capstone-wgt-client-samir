@@ -87,6 +87,7 @@
     min-height: 60px;
     max-height: 8%;
     width: 100%;
+    bottom: 0;
     max-width: 500px;
     align-items: center;
     display: flex;
@@ -94,7 +95,7 @@
     justify-content:center;
     align-items: center;
     position: "fixed";
-    /* margin-top: auto; */
+    margin-top: auto;
     width: "100%";
     /* background-color: black; */
    

@@ -83,7 +83,7 @@ return (
    
      
      <div className="user_card star"> 
-       <div className ='logo-header text-center'>
+       <div className ='logo-header text-center '>
          <h1>Challengify</h1>
        </div>
 

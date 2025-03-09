@@ -2,7 +2,7 @@
 
 .full-page {
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
     max-height: 900px;
    background-color:rgb(241, 234, 234); 
    display: flex;
@@ -22,12 +22,12 @@
     background:rgb(16, 65, 102);
     display: flex;
     align-items: center;
-    justify-content: start;
+    justify-content: between;
     flex-direction: column;
 }
 /* ************************** challenge post ****************************************** */
 .post-container{
-    min-height: 92%; 
+    height: 92%; 
     width: 100%;
     max-width:500px;
     /* gap:30px; */

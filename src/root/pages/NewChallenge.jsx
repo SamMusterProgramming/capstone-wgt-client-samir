@@ -68,7 +68,7 @@ const NewChallenge = (props) => {
                 email:props.user.email,
               }
 
-              if(!challenge_id){ // when user creates new challenge
+              if(!challenge_id){ 
                 challenge = {...challenge,
                   type:selectedType,
                   // category:selectedCategory,
@@ -142,6 +142,8 @@ useEffect(() => {
     setCanSubmit(true)
   } else setCanSubmit(false)
  }, [file,description]) 
+
+
   return (
   
     <div className="d-flex justify-content-start gap-0 align-items-center  post-container star">
